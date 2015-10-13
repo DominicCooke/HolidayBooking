@@ -1,0 +1,19 @@
+﻿<!--<input class="allTeamMemberCheckbox" type="checkbox" value="all" ng-click="isChecked($event)">All<br>
+<div ng-repeat="member in listOfTeamMembers">
+    <input class="teamMemberCheckbox" type="checkbox" value={{member}} ng-click="isChecked($event)">{{member}}<br>
+</div>-->
+<div class="teamMemberToggleContainer">
+    <div class="rowOfTeamMembers" id="rowOfPeople1">
+        <div class="teamMember allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
+        <div class="teamMember person" value="John" id="person1" ng-click="isChecked($event)">John</div>
+    </div>
+    <div class="rowOfTeamMembers" id="rowOfPeople2">
+        <div class="teamMember person" value="Mary" id="person2" ng-click="isChecked($event)">Mary</div>
+        <div class="teamMember person" value="Randy" id="person3" ng-click="isChecked($event)">Randy</div>
+    </div>
+    <div class="rowOfTeamMembers" id="rowOfPeople3">
+        <div class="teamMember person" value="Roger" id="person4" ng-click="isChecked($event)">Roger</div>
+        <div class="teamMember person" value="Ronald" id="person5" ng-click="isChecked($event)">Ronald</div>
+    </div>
+
+</div>

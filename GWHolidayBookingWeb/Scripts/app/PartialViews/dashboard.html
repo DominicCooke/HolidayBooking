@@ -1,0 +1,18 @@
+﻿<div ng-controller="dashboardCtrl">
+    <div class="row">
+        <div id="chartContainer" class="col-xs-6">
+            <canvas id="dashboard"
+                    class="chart chart-doughnut col-xs-4"
+                    chart-legend="true"
+                    chart-data="data"
+                    chart-labels="labels"
+                    chart-options="{animationEasing : 'easeInOutQuart',percentageInnerCutout : 42,animationSteps : 90}">
+            </canvas>
+        </div>
+        <div>
+            <p>Days of Entitlement : {{data[0]}}</p>
+            <p>Days planned : {{data[1]}}</p>
+            <p>Days taken : {{data[2]}}</p>
+        </div>
+    </div>
+</div>

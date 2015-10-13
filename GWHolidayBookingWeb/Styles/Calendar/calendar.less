@@ -1,0 +1,596 @@
+﻿@publicHoliday-colour: #2875C7;
+@normalHoliday-colour: #72c015;
+@oneHoliday-colour: #0f0;
+@twoHoliday-colour: #af0;
+@threeHoliday-colour: #fb0;
+@fourHoliday-colour: #f40;
+@fiveHoliday-colour: #f00;
+@background-colour: fade(#000,60%);
+@background-colour-no-fade: #000;
+@border-colour: rgba(0, 0, 0, 0.1);
+@spacing: 10px;
+@icon-width: 40px;
+@header-height: 40px;
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('../../Content/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+.vertical-centre (@height) {
+    height: @height;
+    line-height: @height !important;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.border-box {
+    box-sizing: border-box;
+}
+
+.bodyContainer {
+    width: 100%;
+    height: 70%;
+    border: 1px solid black;
+    font-family: Roboto-Regular;
+    position: relative;
+    background-size: cover;
+    background-image: url('../../Content/images/background.jpg');
+
+    > .otherSpace {
+        position: relative;
+        width: 40%;
+        height: 100%;
+        font-size: 330%;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: bolder;
+        line-height: 1;
+        float: left;
+        z-index: 6;
+
+        > .title {
+            width: 100%;
+            padding-top: 5%;
+            text-align: center;
+            text-shadow: 0 0 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
+        }
+
+        > .dayspending {
+            width: 100%;
+            text-align: center;
+            margin-top: 10%;
+            text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
+        }
+
+        > .daysconfirmed {
+            width: 100%;
+            text-align: center;
+            margin-top: 10%;
+            text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
+        }
+        > .dayscancelled {
+            width: 100%;
+            text-align: center;
+            margin-top: 10%;
+            text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
+        }
+        > .daysremaining {
+            width: 100%;
+            text-align: center;
+            margin-top: 10%;
+            text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
+        }
+        > tabs {
+            color: white;
+            font-size: 15px;
+            font-weight: normal;
+
+            > .navigationalTabsContainer {
+                margin-top: 5%;
+                padding-left: 6%;
+                padding-right: 6%;
+                border-collapse: collapse;
+
+                > .nav {
+                    > .navigationalTab {
+                        border: 1px solid lighten(@background-colour-no-fade,50%);
+                        background: @background-colour;
+                        color: white;
+                        border-radius: 0;
+
+                        > a {
+                            border: 0;
+                            color: white;
+                            background: @background-colour;
+                            border-radius: 0;
+                        }
+                    }
+
+                    > .navigationalTab.active {
+                        > a {
+                            background: lighten(@background-colour-no-fade,50%);
+                        }
+                    }
+                }
+
+                > .tab-content {
+                    > .tab-pane {
+                        height: 63%;
+                        border-left: 1px solid lighten(@background-colour-no-fade,50%);
+                        border-right: 1px solid lighten(@background-colour-no-fade,50%);
+                        border-bottom: 1px solid lighten(@background-colour-no-fade,50%);
+                        background: @background-colour;
+
+                        > checkbox {
+                            > .teamMemberToggleContainer {
+                                display: table;
+                                margin: 0 auto;
+
+                                > .rowOfTeamMembers {
+                                    display: table-row;
+
+                                    > .teamMember {
+                                        cursor: pointer;
+                                        display: table-cell;
+                                        background: lighten(@background-colour,20%);
+                                        padding: 10px 15px;
+                                        text-align: center;
+                                        border: 1px solid lighten(@background-colour-no-fade,50%);
+
+                                        &.active {
+                                            background: lighten(@background-colour,50%);
+                                        }
+
+                                        &.dead {
+                                            cursor: none;
+                                            pointer-events: none;
+                                            background: darken(@background-colour,50%);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        > .controls {
+            position: absolute;
+            bottom: 1px;
+            color: white;
+            font-size: 15px;
+            font-weight: normal;
+
+            > button {
+                background-color: @background-colour;
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            > selectbox {
+                > #selectContainer {
+                    background: @background-colour;
+                    vertical-align: bottom;
+
+                    > option {
+                        background-color: @background-colour;
+                    }
+                }
+            }
+        }
+    }
+
+
+    > calendar {
+        position: relative;
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+        float: left;
+        display: block;
+        box-sizing: border-box;
+        background: @background-colour;
+        width: 50%;
+        height: 100%;
+        z-index: 7;
+
+
+        > .header {
+            float: left;
+            width: 100%;
+            height: @header-height;
+            color: white;
+            margin-top: 15%;
+
+            > * {
+                .vertical-centre(@header-height);
+            }
+
+            > i {
+                float: left;
+                width: 10%;
+                position: relative;
+                .border-box;
+                padding: 0 @spacing;
+                cursor: pointer;
+
+                > &.fa-angle-left {
+                    text-align: left;
+                }
+
+                > &.fa-angle-right {
+                    text-align: right;
+                }
+            }
+
+
+
+
+            > span {
+                float: left;
+                width: 80%;
+                font-weight: bold;
+                font-size: 2em;
+                text-transform: uppercase;
+                .border-box;
+                text-align: center;
+                color: inherit;
+            }
+        }
+
+        > .month {
+            transition: 2s;
+
+            > .week {
+                width: 100%;
+                padding-left: 10%;
+                padding-right: 10%;
+                float: left;
+
+                &:first-child {
+                    border-top: none;
+                }
+
+                > .day {
+                    float: left;
+                    border-radius: 15%;
+                    width: 95%/7;
+                    .border-box;
+                    font-size: 1em;
+                    text-align: center;
+                    .vertical-centre(5vh);
+                    cursor: pointer;
+                    color: white;
+                    margin: 2.5%/7;
+
+                    &.isweekend{
+                        cursor:none;
+                        pointer-events: none;
+                        background: lighten(@background-colour,40%)
+                    }
+                    
+                    &:first-child {
+                    }
+
+                    &:last-child {
+                    }
+
+                    &.today {
+                        font-size: 1.8em;
+                        font-weight: bolder;
+                    }
+
+                    &.different-month {
+                        color: rgba(255, 255, 255, 0.60);
+                    }
+
+                    &.selected {
+                        background: rgba(254, 254, 254,0.4);
+                        border-radius: 15%;
+                    }
+
+                    @keyframes holidayAnimation {
+                        from {
+                            background-color: rgba(0, 0, 0, 0);
+                        }
+
+                        to {
+                        }
+                    }
+
+                    &.isConfirmedHoliday {
+                        background: @normalHoliday-colour;
+                        transition: 2s;
+                    }
+
+                    &.isPublicHoliday {
+                        background: @publicHoliday-colour;
+                        cursor:none;
+                        pointer-events: none;
+                    }
+
+                    &.isPendingHoliday {
+                        background-color: purple;
+                        transition: 2s;
+                    }
+                    &.isCancelledHoliday {
+                        background-color: red;
+                        transition: 2s;
+                    }
+                    &.isTeamHoliday.isPendingHoliday {
+                        animation-delay: 2s;
+                        animation: pending 5s;
+                        animation-iteration-count: infinite;
+                    }
+
+                    @keyframes pending {
+                        from {
+                            transform: scale3d(1, 1, 1);
+                        }
+
+                        10%, 20% {
+                            transform: scale3d(.99, .99, .99) rotate3d(0, 0, 1, -2deg);
+                        }
+
+                        30%, 50%, 70%, 90% {
+                            transform: scale3d(1.01, 1.01, 1.01) rotate3d(0, 0, 1, 2deg);
+                        }
+
+                        40%, 60%, 80% {
+                            transform: scale3d(1.01, 1.01, 1.01) rotate3d(0, 0, 1, -2deg);
+                        }
+
+                        91% {
+                            background: purple;
+                        }
+
+                        to {
+                            transform: scale3d(1, 1, 1);
+                        }
+                    }
+
+                    @keyframes pulsate {
+                        0% {
+                            opacity: 1;
+                            border: 0.4px solid black;
+                        }
+
+                        50% {
+                            opacity: 0.95;
+                            border: 0.8px solid black;
+                        }
+
+                        100% {
+                            opacity: 1;
+                            border: 0.4px solid black;
+                        }
+                    }
+
+                    &.holidayNum1 {
+                        background: fade(@oneHoliday-colour, 80%);
+                        color: white;
+                        border-radius: 15%;
+                        transition: 2s;
+                    }
+
+                    &.holidayNum2 {
+                        background: fade(@twoHoliday-colour, 80%);
+                        color: white;
+                        border-radius: 15%;
+                        transition: 2s;
+                    }
+
+                    &.holidayNum3 {
+                        background: fade(@threeHoliday-colour, 80%);
+                        color: white;
+                        border-radius: 15%;
+                        transition: 2s;
+                    }
+
+                    &.holidayNum4 {
+                        background: fade(@fourHoliday-colour, 80%);
+                        color: white;
+                        border-radius: 15%;
+                        transition: 2s;
+                    }
+
+                    &.holidayNum5 {
+                        background: fade(@fiveHoliday-colour, 80%);
+                        color: white;
+                        border-radius: 15%;
+                        transition: 2s;
+                    }
+                }
+
+                &.names > span {
+                    color: rgba(255, 255, 255, 0.60);
+                    margin-top: 30px;
+                }
+            }
+        }
+
+        > tooltip {
+            > .hoverTooltip {
+                position: fixed;
+                z-index: 100;
+                background: rgba(0, 0, 0, 0.7);
+                outline: solid 1px black;
+                color: white;
+                pointer-events: none;
+                display: table;
+                border-spacing: 9px;
+                text-align: center;
+
+                &.holidayNum1 {
+                    border: solid 1px @oneHoliday-colour;
+                }
+
+                &.holidayNum2 {
+                    border: solid 1px @twoHoliday-colour;
+                }
+
+                &.holidayNum3 {
+                    border: solid 1px @threeHoliday-colour;
+                }
+
+                &.holidayNum4 {
+                    border: solid 1px @fourHoliday-colour;
+                }
+
+                &.holidayNum5 {
+                    border: solid 1px @fiveHoliday-colour;
+                }
+
+                > .employeeWithHolidayName {
+                    display: table-row;
+
+                    > .tooltipName {
+                        display: table-cell;
+                    }
+
+                    > .tooltipIcon {
+                        display: table-cell;
+                    }
+
+                    > .fa-check {
+                        color: lime;
+                        outline: 1px solid lime;
+                        background-color: fade(lime,30%);
+                    }
+
+                    > .fa-times {
+                        color: red;
+                        outline: 1px solid red;
+                        background-color: fade(red,30%);
+                    }
+
+                    > .fa-question {
+                        color: deepskyblue;
+                        outline: 1px solid deepskyblue;
+                        background-color: fade(deepskyblue,30%);
+                    }
+                }
+            }
+        }
+
+        > .key {
+            width: 100%;
+            bottom: 0;
+            height: 13%;
+            position: absolute;
+            padding-left: 5%;
+            padding-right: 5%;
+
+            .keyLabel {
+                color: white;
+                float: left;
+                width: 50%;
+                margin-left: 10%;
+                margin-top: 20%;
+            }
+
+            .keyColor {
+                width: 21%;
+                height: 100%;
+                float: left;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                border: 1px solid black;
+                border-bottom: 0;
+            }
+
+            > #publicHolidayKey {
+                width: 25%;
+                height: 100%;
+                float: left;
+
+                > #publicHolidayKeyColor {
+                    background-color: @publicHoliday-colour;
+                }
+            }
+
+            > #confirmedHolidayKey {
+                width: 25%;
+                height: 100%;
+                float: left;
+
+                > #confirmedHolidayKeyColor {
+                    background-color: @normalHoliday-colour;
+                }
+            }
+
+            > #pendingHolidayKey {
+                width: 25%;
+                height: 100%;
+                float: left;
+
+                > #pendingHolidayKeyColor {
+                    background-color: purple;
+                }
+            }
+            > #cancelledHolidayKey {
+                width: 25%;
+                height: 100%;
+                float: left;
+
+                > #cancelledHolidayKeyColor {
+                    background-color: red;
+                }
+            }
+            > #teamHolidayKey {
+                width: 70%;
+                height: 100%;
+                float: left;
+                display: table;
+                line-height: 2;
+
+
+                > .teamHolidayKeyLabel {
+                    color: white;
+                    text-align: center;
+                }
+
+                > .colorContainer {
+                    display: table-row;
+                    vertical-align: middle;
+                    width: 100%;
+                    height: 2vh;
+
+                    > #teamHolidayKeyColor {
+                        border-radius: 15px;
+                        width: 100%;
+                        height: 100%;
+                        display: table-cell;
+                        border-bottom: 1px solid black;
+                        background: -webkit-gradient(linear, left top, right top, color-stop(0, @oneHoliday-colour), color-stop(50%, @threeHoliday-colour), color-stop(100%, @fiveHoliday-colour));
+                    }
+                }
+
+                > .teamHolidayKeyLabelValues {
+                    color: white;
+                    float: left;
+                    display: table-footer-group;
+
+                    &.one {
+                    }
+
+                    &.two {
+                        margin-left: 20%;
+                    }
+
+                    &.three {
+                        margin-left: 20%;
+                    }
+
+                    &.four {
+                        margin-left: 20%;
+                    }
+
+                    &.five {
+                        float: right;
+                    }
+                }
+            }
+        }
+    }
+}

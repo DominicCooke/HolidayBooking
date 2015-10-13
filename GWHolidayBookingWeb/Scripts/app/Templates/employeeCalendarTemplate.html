@@ -1,0 +1,48 @@
+﻿
+<div class="header">
+    <i class="fa fa-angle-left" ng-click="previous()"></i>
+    <span>{{month.format("MMMM, YYYY")}}</span>
+    <i class="fa fa-angle-right" ng-click="next()"></i>
+</div>
+<div class="month">
+    <div class="week names">
+        <span class="day">Mon</span>
+        <span class="day">Tue</span>
+        <span class="day">Wed</span>
+        <span class="day">Thu</span>
+        <span class="day">Fri</span>
+        <span class="day">Sat</span>
+        <span class="day">Sun</span>
+    </div>
+
+    <div class="week" ng-repeat="week in weeks">
+        <span class="day" ng-class="{
+              today: day.isToday,
+              'different-month': !day.isCurrentMonth,
+              selected: day.date.isSame(selected),
+              isWeekend: isWeekend(day.date),
+              isConfirmedHoliday: isStatusHoliday(day.date, 1),
+              isCancelledHoliday: isStatusHoliday(day.date,2),
+              isPendingHoliday: isStatusHoliday(day.date,0),
+              isPublicHoliday: isPublicHoliday(day.date)
+              }" ng-click="select(day.date)" ng-repeat="day in week.days">{{day.number}}</span>
+    </div>
+</div>
+<div class="key">
+    <div id="publicHolidayKey">
+        <div class="keyColor" id="publicHolidayKeyColor"></div>
+        <div class="keyLabel">Public Holiday</div>
+    </div>
+    <div id="pendingHolidayKey">
+        <div class="keyColor" id="pendingHolidayKeyColor"></div>
+        <div class="keyLabel">Pending Holiday</div>
+    </div>
+    <div id="confirmedHolidayKey">
+        <div class="keyColor" id="confirmedHolidayKeyColor"></div>
+        <div class="keyLabel">Confirmed Holiday</div>
+    </div>
+    <div id="cancelledHolidayKey">
+        <div class="keyColor" id="cancelledHolidayKeyColor"></div>
+        <div class="keyLabel">Cancelled Holiday</div>
+    </div>
+</div>

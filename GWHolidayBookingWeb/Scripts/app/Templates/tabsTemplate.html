@@ -1,0 +1,12 @@
+﻿<uib-tabset class="navigationalTabsContainer" justified="true">
+    <uib-tab class="navigationalTab" heading="Static title"><checkbox></checkbox></uib-tab>
+    <uib-tab class="navigationalTab" heading="Static title">
+        <div class="blah" ng-repeat="name in holidayEmployeeNamesTooltip">
+            <span class="blah">{{name.name}}</span>
+            <span class="blah" ng-class="{isFound : checkIsFound(name.isFoundState), 'fa fa-check':  isFoundValue == 'checked', 'fa fa-times':  isFoundValue == 'crossed', 'fa fa-question': isFoundValue == 'pending'}"></span>
+        </div>
+    </uib-tab>
+    <uib-tab class="navigationalTab" heading="Static title">Static content3</uib-tab>
+    <uib-tab class="navigationalTab" heading="Static title">Static content4</uib-tab>
+    <uib-tab class="navigationalTab" heading="Static title">Static content5</uib-tab>
+</uib-tabset>
