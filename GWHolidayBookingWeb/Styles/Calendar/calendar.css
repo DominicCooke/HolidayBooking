@@ -79,7 +79,7 @@
   border-radius: 0;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .nav > .navigationalTab.active > a {
-  background: #808080;
+  background: #4d4d4d;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane {
   height: 63%;
@@ -91,22 +91,45 @@
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer {
   display: table;
   margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
-.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer > .rowOfTeamMembers {
+.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer > .teamMemberRow {
   display: table-row;
 }
-.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer > .rowOfTeamMembers > .teamMember {
+.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer > .teamMemberRow > .teamMemberInfo {
+  display: table-cell;
+  padding: 5px 15px;
+  border: 1px solid #808080;
+}
+@keyframes textpulsate {
+  50% {
+    color: deepskyblue;
+  }
+}
+.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer > .teamMemberRow > .teamMemberInfo.isPendingHoliday {
+  animation: textpulsate 5s;
+  animation-iteration-count: infinite;
+}
+.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer > .teamMemberRow > .teamMemberInfoHeader {
+  display: table-cell;
+  padding: 5px 15px;
+  border-bottom: 1px solid #808080;
+  border-left: 1px solid #808080;
+}
+.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer .teamMember {
   cursor: pointer;
   display: table-cell;
   background: rgba(51, 51, 51, 0.6);
   padding: 10px 15px;
   text-align: center;
-  border: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  border-right: 1px solid #808080;
 }
-.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer > .rowOfTeamMembers > .teamMember.active {
+.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer .teamMember.active {
   background: rgba(128, 128, 128, 0.6);
 }
-.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer > .rowOfTeamMembers > .teamMember.dead {
+.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > checkbox > .teamMemberToggleContainer .teamMember.dead {
   cursor: none;
   pointer-events: none;
   background: rgba(0, 0, 0, 0.6);
@@ -231,12 +254,12 @@
   transition: 2s;
 }
 .bodyContainer > calendar > .month > .week > .day.isPublicHoliday {
-  background: #2875c7;
+  background: #b9b9b9;
   cursor: none;
   pointer-events: none;
 }
 .bodyContainer > calendar > .month > .week > .day.isPendingHoliday {
-  background-color: purple;
+  background-color: deepskyblue;
   transition: 2s;
 }
 .bodyContainer > calendar > .month > .week > .day.isCancelledHoliday {
@@ -267,8 +290,8 @@
   80% {
     transform: scale3d(1.01, 1.01, 1.01) rotate3d(0, 0, 1, -2deg);
   }
-  91% {
-    background: purple;
+  50% {
+    background: deepskyblue;
   }
   to {
     transform: scale3d(1, 1, 1);
@@ -402,7 +425,7 @@
   float: left;
 }
 .bodyContainer > calendar > .key > #publicHolidayKey > #publicHolidayKeyColor {
-  background-color: #2875c7;
+  background-color: #b9b9b9;
 }
 .bodyContainer > calendar > .key > #confirmedHolidayKey {
   width: 25%;
@@ -418,7 +441,7 @@
   float: left;
 }
 .bodyContainer > calendar > .key > #pendingHolidayKey > #pendingHolidayKeyColor {
-  background-color: purple;
+  background-color: deepskyblue;
 }
 .bodyContainer > calendar > .key > #cancelledHolidayKey {
   width: 25%;

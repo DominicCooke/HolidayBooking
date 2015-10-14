@@ -1,5 +1,6 @@
-﻿@publicHoliday-colour: #2875C7;
+﻿@publicHoliday-colour: #b9b9b9;
 @normalHoliday-colour: #72c015;
+@pendingHoliday-colour: deepskyblue;
 @oneHoliday-colour: #0f0;
 @twoHoliday-colour: #af0;
 @threeHoliday-colour: #fb0;
@@ -68,18 +69,21 @@
             margin-top: 10%;
             text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
         }
+
         > .dayscancelled {
             width: 100%;
             text-align: center;
             margin-top: 10%;
             text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
         }
+
         > .daysremaining {
             width: 100%;
             text-align: center;
             margin-top: 10%;
             text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
         }
+
         > tabs {
             color: white;
             font-size: 15px;
@@ -108,7 +112,7 @@
 
                     > .navigationalTab.active {
                         > a {
-                            background: lighten(@background-colour-no-fade,50%);
+                            background: lighten(@background-colour-no-fade,30%);
                         }
                     }
                 }
@@ -121,31 +125,65 @@
                         border-bottom: 1px solid lighten(@background-colour-no-fade,50%);
                         background: @background-colour;
 
+
+
                         > checkbox {
                             > .teamMemberToggleContainer {
                                 display: table;
                                 margin: 0 auto;
+                                text-align: center;
+                                width: 100%;
 
-                                > .rowOfTeamMembers {
+                                > .teamMemberRow {
                                     display: table-row;
 
-                                    > .teamMember {
-                                        cursor: pointer;
+                                    > .teamMemberInfo {
                                         display: table-cell;
-                                        background: lighten(@background-colour,20%);
-                                        padding: 10px 15px;
-                                        text-align: center;
+                                        padding: 5px 15px;
                                         border: 1px solid lighten(@background-colour-no-fade,50%);
 
-                                        &.active {
-                                            background: lighten(@background-colour,50%);
+                                        @keyframes textpulsate {
+                                            0% {
+                                            }
+
+                                            50% {
+                                                color: @pendingHoliday-colour;
+                                            }
+
+                                            100% {
+                                            }
                                         }
 
-                                        &.dead {
-                                            cursor: none;
-                                            pointer-events: none;
-                                            background: darken(@background-colour,50%);
+                                        &.isPendingHoliday {
+                                            animation: textpulsate 5s;
+                                            animation-iteration-count: infinite;
                                         }
+                                    }
+
+                                    > .teamMemberInfoHeader {
+                                        display: table-cell;
+                                        padding: 5px 15px;
+                                        border-bottom: 1px solid lighten(@background-colour-no-fade,50%);
+                                        border-left: 1px solid lighten(@background-colour-no-fade,50%);
+                                    }
+                                }
+
+                                .teamMember {
+                                    cursor: pointer;
+                                    display: table-cell;
+                                    background: lighten(@background-colour,20%);
+                                    padding: 10px 15px;
+                                    text-align: center;
+                                    border-bottom: 1px solid lighten(@background-colour-no-fade,50%);
+                                    border-right: 1px solid lighten(@background-colour-no-fade,50%);
+                                    &.active {
+                                        background: lighten(@background-colour,50%);
+                                    }
+
+                                    &.dead {
+                                        cursor: none;
+                                        pointer-events: none;
+                                        background: darken(@background-colour,50%);
                                     }
                                 }
                             }
@@ -263,12 +301,12 @@
                     color: white;
                     margin: 2.5%/7;
 
-                    &.isweekend{
-                        cursor:none;
+                    &.isweekend {
+                        cursor: none;
                         pointer-events: none;
-                        background: lighten(@background-colour,40%)
+                        background: lighten(@background-colour,40%);
                     }
-                    
+
                     &:first-child {
                     }
 
@@ -305,18 +343,20 @@
 
                     &.isPublicHoliday {
                         background: @publicHoliday-colour;
-                        cursor:none;
+                        cursor: none;
                         pointer-events: none;
                     }
 
                     &.isPendingHoliday {
-                        background-color: purple;
+                        background-color: @pendingHoliday-colour;
                         transition: 2s;
                     }
+
                     &.isCancelledHoliday {
                         background-color: red;
                         transition: 2s;
                     }
+
                     &.isTeamHoliday.isPendingHoliday {
                         animation-delay: 2s;
                         animation: pending 5s;
@@ -340,8 +380,8 @@
                             transform: scale3d(1.01, 1.01, 1.01) rotate3d(0, 0, 1, -2deg);
                         }
 
-                        91% {
-                            background: purple;
+                        50% {
+                            background: @pendingHoliday-colour;
                         }
 
                         to {
@@ -465,9 +505,9 @@
                     }
 
                     > .fa-question {
-                        color: deepskyblue;
-                        outline: 1px solid deepskyblue;
-                        background-color: fade(deepskyblue,30%);
+                        color: @pendingHoliday-colour;
+                        outline: 1px solid @pendingHoliday-colour;
+                        background-color: fade(@pendingHoliday-colour,30%);
                     }
                 }
             }
@@ -525,9 +565,10 @@
                 float: left;
 
                 > #pendingHolidayKeyColor {
-                    background-color: purple;
+                    background-color: @pendingHoliday-colour;
                 }
             }
+
             > #cancelledHolidayKey {
                 width: 25%;
                 height: 100%;
@@ -537,6 +578,7 @@
                     background-color: red;
                 }
             }
+
             > #teamHolidayKey {
                 width: 70%;
                 height: 100%;

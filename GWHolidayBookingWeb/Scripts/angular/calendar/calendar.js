@@ -88,9 +88,9 @@
 
             $scope.isTeamHoliday = function (date) {
                 var isFound = false;
-                var teamHolidays = $scope.TeamHolidays;
+                var teamHolidays = $scope.teamHolidays;
                 for (var i = 0; i < teamHolidays.length; i++) {
-                    var teamHolidaybookings = $scope.TeamHolidays[i].HolidayBookings;
+                    var teamHolidaybookings = $scope.teamHolidays[i].HolidayBookings;
                     for (var k = 0; k < teamHolidaybookings.length; k++) {
                         if (teamHolidaybookings[k].StartDate.isSame(date)) {
                             isFound = true;

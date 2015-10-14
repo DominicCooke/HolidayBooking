@@ -21,7 +21,7 @@
                     if (event.target.classList.contains("active"))
                         allSelected = true;
                     for (var j = 0; j < teamMembers.length; j++) {
-                        $scope.toggleClass(teamMembers[j], "dead"); 
+                        $scope.toggleClass(teamMembers[j], "dead");
                     }
                     for (var i = 0; i < teamHolidays.length; i++) {
                         teamHolidays[i].isVisible = allSelected;
@@ -41,6 +41,25 @@
                     element.classList.remove(className);
                     element.classList.remove("active");
                 }
+            }
+
+            $scope.executefunction = function (user) {
+                var pendingCount = 0;
+                var confirmedCount = 0;
+                var cancelledCount = 0;
+                var holidayBookings = user.HolidayBookings;
+                for (var i = 0; i < holidayBookings.length; i++) {
+                    if (holidayBookings[i].BookingStatus == 0)
+                        pendingCount++;
+                    else if (holidayBookings[i].BookingStatus == 1)
+                        confirmedCount++;
+                    else {
+                        cancelledCount++;
+                    }
+                }
+                user.PendingHolidays = pendingCount;
+                user.ConfirmedHolidays = confirmedCount;
+                user.CancelledHolidays = cancelledCount;
             }
         }
     };

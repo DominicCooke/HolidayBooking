@@ -28,12 +28,12 @@
                     employeeWithHolidayNames.push(teamNameEntry);
                 }
 
-                for (var i = 0; i < $scope.TeamHolidays.length; i++) {
-                    for (var k = 0; k < $scope.TeamHolidays[i].HolidayBookings.length; k++) {
-                        if ($scope.TeamHolidays[i].isVisible == true) {
-                            if ($scope.TeamHolidays[i].HolidayBookings[k].StartDate.isSame(date)) {
+                for (var i = 0; i < $scope.teamHolidays.length; i++) {
+                    for (var k = 0; k < $scope.teamHolidays[i].HolidayBookings.length; k++) {
+                        if ($scope.teamHolidays[i].isVisible == true) {
+                            if ($scope.teamHolidays[i].HolidayBookings[k].StartDate.isSame(date)) {
                                 employeeWithHolidayCount++;
-                                if ($scope.TeamHolidays[i].HolidayBookings[k].BookingStatus == "0") {
+                                if ($scope.teamHolidays[i].HolidayBookings[k].BookingStatus == "0") {
                                     employeeWithHolidayNames[i].isFoundState = "pending";
                                 } else {
                                     employeeWithHolidayNames[i].isFoundState = "checked";

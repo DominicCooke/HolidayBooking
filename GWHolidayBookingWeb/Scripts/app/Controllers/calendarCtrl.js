@@ -11,6 +11,8 @@
         dataService.getData().then(function (response) {
             $scope.teamHolidays = response.data;
             $scope.parseDateTimeToMoment();
+            $scope.unmergeHolidays();
+            $scope.parseDateTimeToMoment();
             $scope.getListOfTeamMembers();
 
             if (mode == 'manager')
@@ -21,6 +23,20 @@
             }
         });
     };
+
+    $scope.unmergeHolidays = function () {
+        for (var i = 0; i < $scope.teamHolidays.length; i++) {
+            var count = $scope.teamHolidays[i].HolidayBookings.length;
+            for (var j = 0; j < count; j++) {
+                while ($scope.teamHolidays[i].HolidayBookings[j].StartDate.day() != $scope.teamHolidays[i].HolidayBookings[j].EndDate.day()) {
+                    var copyOfHolidayBooking = _.cloneDeep($scope.teamHolidays[i].HolidayBookings[j]);
+                    copyOfHolidayBooking.StartDate = copyOfHolidayBooking.EndDate;
+                    $scope.teamHolidays[i].HolidayBookings.push(copyOfHolidayBooking);
+                    $scope.teamHolidays[i].HolidayBookings[j].EndDate = $scope.teamHolidays[i].HolidayBookings[j].EndDate.subtract(1, 'days');
+                }
+            }
+        }
+    }
 
     $scope.parseDateTimeToMoment = function () {
 
@@ -106,14 +122,30 @@
 
     $scope.submitHoliday = function () {
         $scope.HolidayDays.HolidayBookings = _.sortBy($scope.HolidayDays.HolidayBookings, function (Booking) { return Booking.StartDate });
-        for (var i = 0; i < $scope.HolidayDays.HolidayBookings.length; i++) {
-            if ($scope.HolidayDays.HolidayBookings[i].StartDate) {
-
+        var startFlag = true;
+        var consolidatedHolidayBookings = [];
+        var holidayDays = JSON.parse(JSON.stringify($scope.HolidayDays));
+        var holidayBooking = $scope.HolidayDays.HolidayBookings.slice();
+        do {
+            if (holidayBooking[0].StartDate.day() + 1 == holidayBooking[1].StartDate.day() && startFlag == true) {
+                holidayBooking[0].EndDate = holidayBooking[1].StartDate;
+                if (holidayBooking.length == 2)
+                    consolidatedHolidayBookings.push(holidayBooking[0]);
+                holidayBooking.splice(1, 1);
+                startFlag = false;
+            } else if (holidayBooking[0].EndDate.day() + 1 == holidayBooking[1].StartDate.day() && startFlag == false) {
+                holidayBooking[0].EndDate = holidayBooking[1].StartDate;
+                if (holidayBooking.length == 2)
+                    consolidatedHolidayBookings.push(holidayBooking[0]);
+                holidayBooking.splice(1, 1);
+            } else {
+                consolidatedHolidayBookings.push(holidayBooking[0]);
+                holidayBooking.splice(0, 1);
+                startFlag = true;
             }
-        }
-
-
-        dataService.sendData($scope.HolidayDays).then(function (response) {
+        } while (holidayBooking.length != 1)
+        holidayDays.HolidayBookings = consolidatedHolidayBookings;
+        dataService.sendData(holidayDays).then(function (response) {
             alert("woo");
         });
     }

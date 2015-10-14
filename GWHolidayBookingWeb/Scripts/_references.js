@@ -25,3 +25,4 @@
 /// <reference path="jquery/jquery-2.1.4.js" />
 /// <reference path="app/services/dataservice.js" />
 /// <reference path="underscore/underscore-min.js" />
+/// <reference path="lodash/lodash.js" />
