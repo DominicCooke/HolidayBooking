@@ -1,16 +1,17 @@
 ﻿<link href="../../Styles/Calendar/calendar.css" rel="stylesheet" />
 <div class="bodyContainer" ng-controller="calendarCtrl" ng-init="init('employee')">
     <div class="otherSpace">
-        <div ng-model="selectedUser" class="title">{{selectedUser}}'s Calendar</div>
-        <div class="dayspending">{{infoBoxDaysPending}} DAYS PENDING</div>
-        <div class="daysconfirmed">{{infoBoxDaysConfirmed}} DAYS CONFIRMED</div>
-        <div class="dayscancelled">{{infoBoxDaysCancelled}} DAYS CANCELLED</div>
-        <div class="daysremaining">{{infoBoxDaysRemaining}} DAYS REMAINING</div>
+        <div class="infoBox">
+            <div class="">{{infoBoxDaysPending}} DAYS PENDING</div>
+            <div class="">{{infoBoxDaysConfirmed}} DAYS CONFIRMED</div>
+            <div class="">{{infoBoxDaysCancelled}} DAYS CANCELLED</div>
+            <div class="">{{infoBoxDaysRemaining}} DAYS REMAINING</div>
+        </div>
+
         <div class="controls">
             <button ng-click="toggleEditMode()">Edit Mode</button>
             <button ng-click="submitHoliday(selectedUser)" ng-model="selectedUser">Submit</button>
             <selectbox></selectbox>
-            <button ng-click="resetHoliday()">Reset Holiday</button>
         </div>
     </div>
 </div>

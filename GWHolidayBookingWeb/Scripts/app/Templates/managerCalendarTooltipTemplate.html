@@ -2,6 +2,6 @@
 
     <div class="employeeWithHolidayName" ng-repeat="name in holidayEmployeeNamesTooltip">
         <span class="tooltipName">{{name.name}}</span>
-        <span class="tooltipIcon" ng-class="{isFound : checkIsFound(name.isFoundState), 'fa fa-check':  isFoundValue == 'checked', 'fa fa-times':  isFoundValue == 'crossed', 'fa fa-question': isFoundValue == 'pending'}"></span>
+        <span class="tooltipIcon" ng-class="{isFound : checkIsFound(name.isFoundState), 'fa fa-check':  isFoundValue == 'checked', 'fa fa-minus':  isFoundValue == 'crossed', 'fa fa-question': isFoundValue == 'pending'}"></span>
     </div>
 </div>

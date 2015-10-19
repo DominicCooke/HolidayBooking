@@ -25,16 +25,21 @@
                isPendingHoliday: hasPendingHolidayRequestTeam(day.date),
                isTeamHoliday : populateScopeWithHolidayCounts(day.date),
                isWeekend: isWeekend(day.date),
-               holidayNum1:  holidayCount == 1, holidayNum2:  holidayCount == 2, holidayNum3:  holidayCount == 3, holidayNum4:  holidayCount == 4, holidayNum5:  holidayCount == 5 }" ng-click="select(day.date)" ng-repeat="day in week.days" ng-mouseover="showTooltip($event, day)" ng-mousemove="moveTooltip($event)" ng-mouseleave="hideTooltip()">{{day.number}}</span>
+               holidayNum1:  holidayCount == 1, holidayNum2:  holidayCount == 2, holidayNum3:  holidayCount == 3, holidayNum4:  holidayCount == 4, holidayNum5:  holidayCount == 5
+              }" ng-click="select(day.date)" ng-repeat="day in week.days" ng-mouseover="showTooltip($event, day)" ng-mousemove="moveTooltip($event)" ng-mouseleave="hideTooltip()">{{day.number}}</span>
     </div>
 </div>
 
-<tooltip></tooltip>
+<managercalendartooltip></managercalendartooltip>
 
 <div class="key">
     <div id="publicHolidayKey">
         <div class="keyColor" id="publicHolidayKeyColor"></div>
         <div class="keyLabel">Public Holiday</div>
+    </div>
+    <div id="pendingHolidayKey">
+        <div class="keyColor" id="pendingHolidayKeyColor"></div>
+        <div class="keyLabel" id="pendingHolidayKeyColorLabel">Pending Holiday</div>
     </div>
     <div id="teamHolidayKey">
         <div class="teamHolidayKeyLabel">Team Holidays</div>

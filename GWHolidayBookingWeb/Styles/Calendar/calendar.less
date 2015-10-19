@@ -8,7 +8,7 @@
 @fiveHoliday-colour: #f00;
 @background-colour: fade(#000,60%);
 @background-colour-no-fade: #000;
-@border-colour: rgba(0, 0, 0, 0.1);
+@border-colour: lighten(rgba(0, 0, 0, 0.6),12%);
 @spacing: 10px;
 @icon-width: 40px;
 @header-height: 40px;
@@ -42,68 +42,59 @@
         position: relative;
         width: 40%;
         height: 100%;
-        font-size: 330%;
+        font-size: 250%;
         color: rgba(255, 255, 255, 0.8);
         font-weight: bolder;
         line-height: 1;
         float: left;
         z-index: 6;
 
-        > .title {
-            width: 100%;
-            padding-top: 5%;
-            text-align: center;
-            text-shadow: 0 0 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
+        > .infoBox {
+            color: rgba(0, 0, 0, 0.8);
         }
 
-        > .dayspending {
-            width: 100%;
-            text-align: center;
-            margin-top: 10%;
-            text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
-        }
-
-        > .daysconfirmed {
-            width: 100%;
-            text-align: center;
-            margin-top: 10%;
-            text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
-        }
-
-        > .dayscancelled {
-            width: 100%;
-            text-align: center;
-            margin-top: 10%;
-            text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
-        }
-
-        > .daysremaining {
-            width: 100%;
-            text-align: center;
-            margin-top: 10%;
-            text-shadow: 0 0px 0 #ccc, 0 1px 0 #c9c9c9, 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 5px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 0px 3px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.2), 0 3px 10px rgba(0,0,0,.25), 0 7px 10px rgba(0,0,0,.2), 0 15px 20px rgba(0,0,0,.15);
-        }
-
-        > tabs {
+        > managercalendartabs {
             color: white;
             font-size: 15px;
             font-weight: normal;
 
             > .navigationalTabsContainer {
                 margin-top: 5%;
+                margin-bottom: 5%;
                 padding-left: 6%;
                 padding-right: 6%;
                 border-collapse: collapse;
 
                 > .nav {
                     > .navigationalTab {
-                        border: 1px solid lighten(@background-colour-no-fade,50%);
+                        border-bottom: 1px solid black;
+                        border-top: 1px solid black;
+                        border-right: 1px solid black;
+
+                        &:last-child {
+                            border-right: none;
+                        }
+
+                        &:first-child {
+                            border-left: 1px solid black;
+                        }
+
                         background: @background-colour;
                         color: white;
                         border-radius: 0;
+                        width: 20%;
+                        height: 10%;
+                        float: left;
+                        text-align: center;
 
                         > a {
+                            width: 100%;
+                            height: 100%;
                             border: 0;
+                            padding: 0;
+                            display: flex;
+                            justify-content: center;
+                            flex-direction: column;
                             color: white;
                             background: @background-colour;
                             border-radius: 0;
@@ -118,17 +109,17 @@
                 }
 
                 > .tab-content {
+                    height: 84%;
+
                     > .tab-pane {
-                        height: 63%;
-                        border-left: 1px solid lighten(@background-colour-no-fade,50%);
-                        border-right: 1px solid lighten(@background-colour-no-fade,50%);
-                        border-bottom: 1px solid lighten(@background-colour-no-fade,50%);
+                        height: 100%%;
+                        border-left: 1px solid black;
+                        border-right: 1px solid black;
+                        border-bottom: 1px solid black;
                         background: @background-colour;
 
-
-
-                        > checkbox {
-                            > .teamMemberToggleContainer {
+                        > managercalendarcontrols {
+                            > .teamMemberInfoContainer {
                                 display: table;
                                 margin: 0 auto;
                                 text-align: center;
@@ -136,11 +127,28 @@
 
                                 > .teamMemberRow {
                                     display: table-row;
+                                    border-bottom: 1px solid @border-colour;
+
+                                    &:first-child {
+                                        > .teamMemberInfoHeader {
+                                            border-bottom: 1px solid black;
+                                            border-left: 1px solid black;
+                                        }
+                                    }
+
+                                    &:last-child {
+                                        border-bottom: 0;
+
+                                        > .teamMember {
+                                            border-bottom: 0;
+                                        }
+                                    }
 
                                     > .teamMemberInfo {
                                         display: table-cell;
-                                        padding: 5px 15px;
-                                        border: 1px solid lighten(@background-colour-no-fade,50%);
+                                        padding: 0 5px;
+                                        border-left: 1px solid @border-colour;
+
 
                                         @keyframes textpulsate {
                                             0% {
@@ -148,6 +156,7 @@
 
                                             50% {
                                                 color: @pendingHoliday-colour;
+                                                background: fade(@pendingHoliday-colour,20%);
                                             }
 
                                             100% {
@@ -157,14 +166,15 @@
                                         &.isPendingHoliday {
                                             animation: textpulsate 5s;
                                             animation-iteration-count: infinite;
+                                            cursor: pointer;
                                         }
                                     }
 
                                     > .teamMemberInfoHeader {
                                         display: table-cell;
                                         padding: 5px 15px;
-                                        border-bottom: 1px solid lighten(@background-colour-no-fade,50%);
-                                        border-left: 1px solid lighten(@background-colour-no-fade,50%);
+                                        border-bottom: 1px solid @border-colour;
+                                        border-left: 1px solid @border-colour;
                                     }
                                 }
 
@@ -174,16 +184,74 @@
                                     background: lighten(@background-colour,20%);
                                     padding: 10px 15px;
                                     text-align: center;
-                                    border-bottom: 1px solid lighten(@background-colour-no-fade,50%);
-                                    border-right: 1px solid lighten(@background-colour-no-fade,50%);
+                                    border-right: 1px solid black;
+                                    border-bottom: 1px solid black;
+
                                     &.active {
                                         background: lighten(@background-colour,50%);
                                     }
 
                                     &.dead {
-                                        cursor: none;
                                         pointer-events: none;
                                         background: darken(@background-colour,50%);
+                                    }
+                                }
+                            }
+
+                            > .pendingHolidayContainer {
+                                display: table;
+                                margin: 0 auto;
+                                text-align: center;
+                                width: 100%;
+
+                                > .pendingHolidayRow {
+                                    display: table-row;
+
+                                    &:last-child {
+                                        > .pendingHolidayCell {
+                                            border-bottom: 0;
+                                        }
+                                    }
+
+                                    > .pendingHolidayCell {
+                                        display: table-cell;
+                                        padding: 5px 5px;
+                                        border-bottom: 1px solid black;
+
+                                        &:last-child {
+                                            border-left: 1px solid black;
+                                        }
+
+                                        > .pendingHolidayAction {
+                                            cursor: pointer;
+
+                                            &.fa-check {
+                                                color: green;
+                                            }
+
+                                            &.fa-times {
+                                                color: red;
+                                            }
+
+                                            &.fa-comment {
+                                            }
+                                        }
+                                    }
+
+                                    > .pendingHolidayHeader {
+                                        background: lighten(@background-colour,20%);
+                                        border-top: 1px black solid;
+                                        border-bottom: 1px black solid;
+                                        border-right: 1px black solid;
+                                        padding: 8px 5px;
+
+                                        &:last-child {
+                                            border-right: 0;
+                                        }
+
+                                        &:first-child {
+                                            border-left: 0;
+                                        }
                                     }
                                 }
                             }
@@ -192,7 +260,6 @@
                 }
             }
         }
-
 
         > .controls {
             position: absolute;
@@ -232,6 +299,66 @@
         height: 100%;
         z-index: 7;
 
+        > managercalendartooltip {
+            > .hoverTooltip {
+                position: fixed;
+                z-index: 100;
+                background: rgba(0, 0, 0, 0.7);
+                outline: solid 1px black;
+                color: white;
+                pointer-events: none;
+                display: table;
+                border-spacing: 9px;
+                text-align: center;
+
+                &.holidayNum1 {
+                    border: solid 1px @oneHoliday-colour;
+                }
+
+                &.holidayNum2 {
+                    border: solid 1px @twoHoliday-colour;
+                }
+
+                &.holidayNum3 {
+                    border: solid 1px @threeHoliday-colour;
+                }
+
+                &.holidayNum4 {
+                    border: solid 1px @fourHoliday-colour;
+                }
+
+                &.holidayNum5 {
+                    border: solid 1px @fiveHoliday-colour;
+                }
+
+                > .employeeWithHolidayName {
+                    display: table-row;
+
+                    > .tooltipName {
+                        display: table-cell;
+                    }
+
+                    > .tooltipIcon {
+                        display: table-cell;
+                    }
+
+                    > .fa-check {
+                        color: lime;
+                        outline: 1px solid lime;
+                        background-color: fade(lime,30%);
+                    }
+
+                    > .fa-minus {
+                    }
+
+                    > .fa-question {
+                        color: @pendingHoliday-colour;
+                        outline: 1px solid @pendingHoliday-colour;
+                        background-color: fade(@pendingHoliday-colour,30%);
+                    }
+                }
+            }
+        }
 
         > .header {
             float: left;
@@ -381,7 +508,7 @@
                         }
 
                         50% {
-                            background: @pendingHoliday-colour;
+                            background: fade(@pendingHoliday-colour,60%);
                         }
 
                         to {
@@ -448,71 +575,7 @@
                 }
             }
         }
-
-        > tooltip {
-            > .hoverTooltip {
-                position: fixed;
-                z-index: 100;
-                background: rgba(0, 0, 0, 0.7);
-                outline: solid 1px black;
-                color: white;
-                pointer-events: none;
-                display: table;
-                border-spacing: 9px;
-                text-align: center;
-
-                &.holidayNum1 {
-                    border: solid 1px @oneHoliday-colour;
-                }
-
-                &.holidayNum2 {
-                    border: solid 1px @twoHoliday-colour;
-                }
-
-                &.holidayNum3 {
-                    border: solid 1px @threeHoliday-colour;
-                }
-
-                &.holidayNum4 {
-                    border: solid 1px @fourHoliday-colour;
-                }
-
-                &.holidayNum5 {
-                    border: solid 1px @fiveHoliday-colour;
-                }
-
-                > .employeeWithHolidayName {
-                    display: table-row;
-
-                    > .tooltipName {
-                        display: table-cell;
-                    }
-
-                    > .tooltipIcon {
-                        display: table-cell;
-                    }
-
-                    > .fa-check {
-                        color: lime;
-                        outline: 1px solid lime;
-                        background-color: fade(lime,30%);
-                    }
-
-                    > .fa-times {
-                        color: red;
-                        outline: 1px solid red;
-                        background-color: fade(red,30%);
-                    }
-
-                    > .fa-question {
-                        color: @pendingHoliday-colour;
-                        outline: 1px solid @pendingHoliday-colour;
-                        background-color: fade(@pendingHoliday-colour,30%);
-                    }
-                }
-            }
-        }
-
+                
         > .key {
             width: 100%;
             bottom: 0;
@@ -524,9 +587,13 @@
             .keyLabel {
                 color: white;
                 float: left;
-                width: 50%;
-                margin-left: 10%;
-                margin-top: 20%;
+                width: 79%;
+                height: 100%;
+                padding: 12.5%;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
             }
 
             .keyColor {
@@ -547,6 +614,10 @@
                 > #publicHolidayKeyColor {
                     background-color: @publicHoliday-colour;
                 }
+
+                > #publicHolidayKeyColorLabel {
+                    //outline: solid 1px @publicHoliday-colour;
+                }
             }
 
             > #confirmedHolidayKey {
@@ -556,6 +627,10 @@
 
                 > #confirmedHolidayKeyColor {
                     background-color: @normalHoliday-colour;
+                }
+
+                > #confirmedHolidayKeyColorLabel {
+                    //outline: solid 1px @normalHoliday-colour;
                 }
             }
 
@@ -567,6 +642,10 @@
                 > #pendingHolidayKeyColor {
                     background-color: @pendingHoliday-colour;
                 }
+
+                > #pendingHolidayKeyColorLabel {
+                    //outline: solid 1px @pendingHoliday-colour;
+                }
             }
 
             > #cancelledHolidayKey {
@@ -577,10 +656,15 @@
                 > #cancelledHolidayKeyColor {
                     background-color: red;
                 }
+
+                > #cancelledHolidayKeyColorLabel {
+                    //outline: solid 1px red;
+                }
             }
 
+
             > #teamHolidayKey {
-                width: 70%;
+                width: 50%;
                 height: 100%;
                 float: left;
                 display: table;

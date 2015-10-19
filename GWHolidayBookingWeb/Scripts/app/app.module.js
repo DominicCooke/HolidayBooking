@@ -12,9 +12,10 @@ app.controller('dashboardCtrl', dashboardCtrl);
 app.controller('calendarCtrl', calendarCtrl);
 
 app.directive('calendar', calendarDirective);
-app.directive('checkbox', checkboxDirective);
+app.directive('managercalendarcontrols', managerCalendarControlsDirective);
 app.directive('selectbox', selectboxDirective);
-app.directive('tooltip', tooltipDirective);
-app.directive('tabs', tabsDirective);
+app.directive('managercalendartooltip', managerCalendarTooltipDirective);
+app.directive('managercalendartabs', managerCalendarTabsDirective);
 
 app.factory('templates', templates);
+

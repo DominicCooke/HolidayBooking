@@ -1,0 +1,32 @@
+﻿<div class="teamMemberInfoContainer">
+    <div class="teamMemberRow">
+        <div class="teamMember allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
+        <div class="teamMemberInfoHeader fa fa-question"></div>
+        <div class="teamMemberInfoHeader fa fa-times"></div>
+        <div class="teamMemberInfoHeader fa fa-check"></div>
+        <div class="teamMemberInfoHeader">RA</div>
+        <div class="teamMemberInfoHeader">HA</div>
+    </div>
+    <div class="teamMemberRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamHolidays">
+        <div class="teamMember person" value="{{user.StaffNumber}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName}}</div>
+        <div ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="pendingHolidaySelect(user.StaffNumber)" class="teamMemberInfo">{{user.PendingHolidays}}</div>
+        <div class="teamMemberInfo">{{user.CancelledHolidays}}</div>
+        <div class="teamMemberInfo">{{user.ConfirmedHolidays}}</div>
+        <div class="teamMemberInfo">{{user.RemainingAllowance}}</div>
+        <div class="teamMemberInfo">{{user.HolidayAllowance}}</div>
+    </div>
+</div>
+<div class="pendingHolidayContainer">
+    <div class="pendingHolidayRow">
+        <div class="pendingHolidayHeader pendingHolidayCell">Date</div>
+        <div class="pendingHolidayHeader pendingHolidayCell">Actions</div>
+    </div>
+    <div class="pendingHolidayRow" ng-repeat="pendingHoliday in tabPendingHolidays">
+        <div class="pendingHolidayCell">{{formatDate(pendingHoliday.holidayDate.StartDate)}}</div>
+        <div class="pendingHolidayCell">
+            <div class="fa fa-check pendingHolidayAction" ng-click="pendingHolidayActionAccept(pendingHoliday.holidayDate.StartDate,pendingHoliday.StaffNumber)"></div>
+            <div class="fa fa-times pendingHolidayAction" ng-click="pendingHolidayActionDecline(pendingHoliday.holidayDate.StartDate,pendingHoliday.StaffNumber)"></div>
+            <div class="fa fa-comment pendingHolidayAction" ng-click=""></div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
-﻿tooltipDirective = function () {
+﻿managerCalendarTooltipDirective = function () {
     return {
         restrict: "E",
-        templateUrl: "/Scripts/app/templates/tooltipTemplate.html",
+        templateUrl: "/Scripts/app/templates/managerCalendarTooltipTemplate.html",
         controller: 'calendarCtrl',
         controllerAs: 'vm',
         scope: false,

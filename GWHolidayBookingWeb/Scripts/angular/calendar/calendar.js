@@ -18,8 +18,9 @@
 
                 $scope.selected = date;
                 if ($scope.editMode == true) {
-                    if ($scope.isStatusHoliday(date, 0) == true || $scope.isStatusHoliday(date, 1) == true || $scope.isStatusHoliday(date, 2) == true)
+                    if ($scope.isStatusHoliday(date, 0) == true || $scope.isStatusHoliday(date, 1) == true || $scope.isStatusHoliday(date, 2) == true) {
                         var isFound = true;
+                    }
                     var holidayBookings = $scope.HolidayDays.HolidayBookings;
                     if (isFound == true) {
                         for (var i = 0; i < holidayBookings.length; i++) {
@@ -65,11 +66,12 @@
                 var isFound = false;
                 var holidayBookings = $scope.HolidayDays.HolidayBookings;
                 for (var k = 0; k < holidayBookings.length; k++) {
-                    if (holidayBookings[k].StartDate.isSame(date))
+                    if (holidayBookings[k].StartDate.isSame(date)) {
                         if (holidayBookings[k].BookingStatus == state) {
                             isFound = true;
                             break;
                         }
+                    }
                 }
                 return isFound;
             }
@@ -80,8 +82,9 @@
                     if ($scope.publicHolidays.days[i].isSame(date)) {
                         isFound = true;
                         break;
-                    } else
+                    } else {
                         isFound = false;
+                    }
                 }
                 return isFound;
             }
@@ -102,10 +105,12 @@
 
             $scope.isWeekend = function (date) {
                 var dayNumber = date.day();
-                if (dayNumber == 6 || dayNumber == 0)
+                if (dayNumber == 6 || dayNumber == 0) {
                     return true
-                else
+                }
+                else {
                     return false
+                }
             }
         }
     };

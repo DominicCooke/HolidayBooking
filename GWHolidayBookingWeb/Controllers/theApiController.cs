@@ -34,7 +34,8 @@ namespace GWHolidayBookingWeb.Controllers
                     new User
                     {
                         StaffNumber = 0,
-                        Name = "John",
+                        FirstName = "John",
+                        LastName = "A",
                         HolidayAllowance = 25,
                         RemainingAllowance = 20,
                         isVisible = false,
@@ -52,7 +53,8 @@ namespace GWHolidayBookingWeb.Controllers
                     new User
                     {
                         StaffNumber = 1,
-                        Name = "Mary",
+                        FirstName = "Mary",
+                        LastName = "B",
                         HolidayAllowance = 25,
                         RemainingAllowance = 17,
                         isVisible = false,
@@ -77,7 +79,8 @@ namespace GWHolidayBookingWeb.Controllers
                     new User
                     {
                         StaffNumber = 2,
-                        Name = "Randy",
+                        FirstName = "Randy",
+                        LastName = "C",
                         HolidayAllowance = 25,
                         RemainingAllowance = 17,
                         isVisible = false,
@@ -102,7 +105,8 @@ namespace GWHolidayBookingWeb.Controllers
                     new User
                     {
                         StaffNumber = 3,
-                        Name = "Roger",
+                        FirstName = "Roger",
+                        LastName = "D",
                         HolidayAllowance = 25,
                         RemainingAllowance = 18,
                         isVisible = false,
@@ -127,7 +131,8 @@ namespace GWHolidayBookingWeb.Controllers
                     new User
                     {
                         StaffNumber = 4,
-                        Name = "Ronald",
+                        FirstName = "Ronald",
+                        LastName = "E",
                         HolidayAllowance = 25,
                         RemainingAllowance = 17,
                         isVisible = false,
@@ -151,7 +156,7 @@ namespace GWHolidayBookingWeb.Controllers
                     }
                 };
             }
-            
+
         }
     }
 }

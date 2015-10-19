@@ -6,10 +6,10 @@
         controllerAs: 'vm',
         scope: false,
         link: function ($scope) {
-            $scope.isSelect = function (member) {
+            $scope.isSelect = function (StaffNumber) {
                 var teamHolidays = $scope.teamHolidays;
                 for (var i = 0; i < teamHolidays.length; i++) {
-                    if (teamHolidays[i].Name == member) {
+                    if (teamHolidays[i].StaffNumber == StaffNumber) {
                         teamHolidays[i].isVisible = !teamHolidays[i].isVisible;
                         $scope.HolidayDays = teamHolidays[i];
                         return;

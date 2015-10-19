@@ -120,10 +120,10 @@
     <Content Include="Scripts\angular\bootstrap\ui-bootstrap-0.13.4.js" />
     <Content Include="Scripts\angular\bootstrap\ui-bootstrap-tpls-0.14.0.js" />
     <Content Include="Scripts\angular\calendar\calendar.js" />
-    <Content Include="Scripts\angular\calendar\checkbox\checkbox.js" />
+    <Content Include="Scripts\angular\calendar\managerCalendarControls\managerCalendarControls.js" />
     <Content Include="Scripts\angular\calendar\selectbox\selectbox.js" />
-    <Content Include="Scripts\angular\calendar\tabs\tabs.js" />
-    <Content Include="Scripts\angular\calendar\tooltip\tooltip.js" />
+    <Content Include="Scripts\angular\calendar\managerCalendarTabs\managerCalendarTabs.js" />
+    <Content Include="Scripts\angular\calendar\managerCalendarTooltip\managerCalendarTooltip.js" />
     <Content Include="Scripts\angular\chart\angular-chart.css" />
     <Content Include="Scripts\angular\chart\angular-chart.js" />
     <Content Include="Scripts\angular\chart\angular-chart.min.css" />
@@ -136,13 +136,13 @@
     <Content Include="Scripts\app\Enums\views.js" />
     <Content Include="Scripts\app\Services\templateService.js" />
     <Content Include="Scripts\app\Services\viewService.js" />
-    <Content Include="Scripts\app\Templates\checkboxTemplate.html" />
+    <Content Include="Scripts\app\Templates\managerCalendarControlsTemplate.html" />
     <Content Include="Scripts\app\Templates\employeeCalendarTemplate.html" />
     <Content Include="Scripts\app\Templates\managerCalendarTemplate.html" />
     <Content Include="Scripts\app\Templates\selectboxTemplate.html" />
-    <Content Include="Scripts\app\Templates\tabsTemplate.html" />
+    <Content Include="Scripts\app\Templates\managerCalendarTabsTemplate.html" />
     <Content Include="Scripts\app\Templates\templates.js" />
-    <Content Include="Scripts\app\Templates\tooltipTemplate.html" />
+    <Content Include="Scripts\app\Templates\managerCalendarTooltipTemplate.html" />
     <Content Include="Scripts\app\PartialViews\dashboard.html" />
     <Content Include="Scripts\app\PartialViews\employeeCalendar.html" />
     <Content Include="Scripts\app\PartialViews\managerCalendar.html" />
@@ -170,9 +170,7 @@
     </Compile>
     <Compile Include="Models\Day.cs" />
     <Compile Include="Models\HolidayBooking.cs" />
-    <Compile Include="Models\TeamHoliday.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserHoliday.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
