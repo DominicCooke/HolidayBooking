@@ -1,4 +1,4 @@
-﻿selectboxDirective = function () {
+﻿selectboxDirective = function (dataService) {
     return {
         restrict: "E",
         templateUrl: "/Scripts/app/templates/selectboxTemplate.html",
@@ -6,17 +6,15 @@
         controllerAs: 'vm',
         scope: false,
         link: function ($scope) {
-            $scope.isSelect = function (StaffNumber) {
-                var teamHolidays = $scope.teamHolidays;
-                for (var i = 0; i < teamHolidays.length; i++) {
-                    if (teamHolidays[i].StaffNumber == StaffNumber) {
-                        teamHolidays[i].isVisible = !teamHolidays[i].isVisible;
-                        $scope.HolidayDays = teamHolidays[i];
-                        return;
-                    }
-                }
+            $scope.isSelect = function (id) {
+                dataService.getUserById(id).then(function (response) {
+                    $scope.HolidayDays = response.data;
+                    $scope.initData([$scope.HolidayDays]);
+                    $scope.HolidayDays.isVisible = !$scope.HolidayDays.isVisible;
+                });
             }
         }
-    };
-
+    }
 };
+selectboxDirective.$inject = ['dataService'];
+

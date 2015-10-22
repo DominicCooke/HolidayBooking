@@ -21,6 +21,10 @@ C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\New
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\System.Net.Http.Formatting.xml
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\System.Web.Http.xml
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\System.Web.Http.WebHost.xml
-C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.csprojResolveAssemblyReference.cache
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.dll
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.pdb
+C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\EntityFramework.dll
+C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\EntityFramework.SqlServer.dll
+C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\EntityFramework.xml
+C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\EntityFramework.SqlServer.xml
+C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.csprojResolveAssemblyReference.cache

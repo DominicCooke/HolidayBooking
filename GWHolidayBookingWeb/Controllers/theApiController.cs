@@ -1,4 +1,6 @@
-﻿using GWHolidayBookingWeb.Models;
+﻿using System.Runtime.Remoting.Contexts;
+using System.Web.Helpers;
+using GWHolidayBookingWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,149 +16,16 @@ namespace GWHolidayBookingWeb.Controllers
 
         public List<User> GetUsers()
         {
-            var TestData = Users.TestUsers;
-            return TestData;
+            return Models.User.GetAll();
         }
-        public void PostUsers(User data)
+        public User GetUserById(int StaffNumber)
         {
-
+            return Models.User.GetById(StaffNumber);
         }
-    }
-
-    public static class Users
-    {
-        public static List<User> TestUsers
+        public void PostUsers(User User)
         {
-            get
-            {
-                return new List<User>
-                {
-                    new User
-                    {
-                        StaffNumber = 0,
-                        FirstName = "John",
-                        LastName = "A",
-                        HolidayAllowance = 25,
-                        RemainingAllowance = 20,
-                        isVisible = false,
-                        HolidayBookings = new List<HolidayBooking>
-                        {
-                            new HolidayBooking
-                            {
-                                StartDate = new DateTime(2015, 10, 5),
-                                EndDate = new DateTime(2015, 10, 9),
-                                AllowanceDays = 4,
-                                BookingStatus = BookingStatusEnum.Pending
-                            }
-                        }
-                    },
-                    new User
-                    {
-                        StaffNumber = 1,
-                        FirstName = "Mary",
-                        LastName = "B",
-                        HolidayAllowance = 25,
-                        RemainingAllowance = 17,
-                        isVisible = false,
-                        HolidayBookings = new List<HolidayBooking>
-                        {
-                            new HolidayBooking
-                            {
-                                StartDate = new DateTime(2015, 10, 14),
-                                EndDate = new DateTime(2015, 10, 16),
-                                AllowanceDays = 1,
-                                BookingStatus = BookingStatusEnum.Confirmed
-                            },
-                            new HolidayBooking
-                            {
-                                StartDate = new DateTime(2015, 10, 19),
-                                EndDate = new DateTime(2015, 10, 23),
-                                AllowanceDays = 1,
-                                BookingStatus = BookingStatusEnum.Confirmed
-                            }
-                        }
-                    },
-                    new User
-                    {
-                        StaffNumber = 2,
-                        FirstName = "Randy",
-                        LastName = "C",
-                        HolidayAllowance = 25,
-                        RemainingAllowance = 17,
-                        isVisible = false,
-                        HolidayBookings = new List<HolidayBooking>
-                        {
-                            new HolidayBooking
-                            {
-                                StartDate = new DateTime(2015, 10, 12),
-                                EndDate = new DateTime(2015, 10, 16),
-                                AllowanceDays = 1,
-                                BookingStatus = BookingStatusEnum.Confirmed
-                            },
-                            new HolidayBooking
-                            {
-                                StartDate = new DateTime(2015, 10, 27),
-                                EndDate = new DateTime(2015, 10, 29),
-                                AllowanceDays = 1,
-                                BookingStatus = BookingStatusEnum.Pending
-                            }
-                        }
-                    },
-                    new User
-                    {
-                        StaffNumber = 3,
-                        FirstName = "Roger",
-                        LastName = "D",
-                        HolidayAllowance = 25,
-                        RemainingAllowance = 18,
-                        isVisible = false,
-                        HolidayBookings = new List<HolidayBooking>
-                        {
-                            new HolidayBooking
-                            {
-                                StartDate = new DateTime(2015, 10, 29),
-                                EndDate = new DateTime(2015, 10, 30),
-                                AllowanceDays = 1,
-                                BookingStatus = BookingStatusEnum.Confirmed
-                            },
-                            new HolidayBooking
-                            {
-                                StartDate = new DateTime(2015, 9, 28),
-                                EndDate = new DateTime(2015, 10, 2),
-                                AllowanceDays = 1,
-                                BookingStatus = BookingStatusEnum.Confirmed
-                            }
-                        }
-                    },
-                    new User
-                    {
-                        StaffNumber = 4,
-                        FirstName = "Ronald",
-                        LastName = "E",
-                        HolidayAllowance = 25,
-                        RemainingAllowance = 17,
-                        isVisible = false,
-                        HolidayBookings = new List<HolidayBooking>
-                        {
-                            new HolidayBooking
-                            {
-                                StartDate = new DateTime(2015, 10, 7),
-                                EndDate = new DateTime(2015, 10, 9),
-                                AllowanceDays = 1,
-                                BookingStatus = BookingStatusEnum.Confirmed
-                            },
-                            new HolidayBooking
-                            {
-                                StartDate = new DateTime(2015, 10, 19),
-                                EndDate = new DateTime(2015, 10, 23),
-                                AllowanceDays = 1,
-                                BookingStatus = BookingStatusEnum.Confirmed
-                            }
-                        }
-                    }
-                };
-            }
-
+            Models.User.SaveAll(User);
+            Models.HolidayBooking.SaveAll(User.HolidayBookings);
         }
     }
 }
