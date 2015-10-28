@@ -24,7 +24,7 @@
                     var holidayBookings = $scope.HolidayDays.HolidayBookings;
                     if (isFound == true) {
                         for (var i = 0; i < holidayBookings.length; i++) {
-                            if (holidayBookings[i].StartDate.isSame(date)) {
+                            if (holidayBookings[i].StartDate.isSame(date,"day")) {
                                 if (holidayBookings[i].BookingStatus == 0) {
                                     holidayBookings.splice(i, 1);
                                     $scope.HolidayDays.RemainingAllowance++;
@@ -37,12 +37,17 @@
                         }
                     } else {
                         $scope.HolidayDays.RemainingAllowance--;
+                        var sDate, eDate;
+                        sDate = date.clone().add(1,'h'),
+                        eDate = date.clone().add(1, 'h'),
                         holidayBookings.push(
                         {
-                            StartDate: date,
-                            EndDate: date,
+                            // add an hour to reflect the time zone GMT +1
+                            StartDate: sDate,
+                            EndDate: eDate,
                             AllowanceDays: 1,
-                            BookingStatus: 0
+                            BookingStatus: 0,
+                            HolidayId: 0
                         });
                     }
                 }
@@ -62,11 +67,11 @@
                 _buildMonth($scope, previous, $scope.month);
             };
 
-            $scope.isStatusHoliday = function (date, state) {
+            $scope.isStatusHoliday = function(date, state) {
                 var isFound = false;
                 var holidayBookings = $scope.HolidayDays.HolidayBookings;
                 for (var k = 0; k < holidayBookings.length; k++) {
-                    if (holidayBookings[k].StartDate.isSame(date)) {
+                    if (holidayBookings[k].StartDate.isSame(date, 'day')) {
                         if (holidayBookings[k].BookingStatus == state) {
                             isFound = true;
                             break;
@@ -74,12 +79,12 @@
                     }
                 }
                 return isFound;
-            }
+            };
 
-            $scope.isPublicHoliday = function (date) {
+            $scope.isPublicHoliday = function(date) {
                 var isFound;
                 for (var i = 0; i < $scope.publicHolidays.days.length; i++) {
-                    if ($scope.publicHolidays.days[i].isSame(date)) {
+                    if ($scope.publicHolidays.days[i].isSame(date, 'day')) {
                         isFound = true;
                         break;
                     } else {
@@ -87,31 +92,83 @@
                     }
                 }
                 return isFound;
-            }
+            };
 
-            $scope.isTeamHoliday = function (date) {
+            $scope.isTeamHoliday = function(date) {
                 var isFound = false;
                 var teamHolidays = $scope.teamHolidays;
                 for (var i = 0; i < teamHolidays.length; i++) {
                     var teamHolidaybookings = $scope.teamHolidays[i].HolidayBookings;
                     for (var k = 0; k < teamHolidaybookings.length; k++) {
-                        if (teamHolidaybookings[k].StartDate.isSame(date)) {
+                        if (teamHolidaybookings[k].StartDate.isSame(date, 'day')) {
                             isFound = true;
                         }
                     }
                 }
                 return isFound;
-            }
+            };
 
-            $scope.isWeekend = function (date) {
+            $scope.isPendingHolidayRequestTeam = function (date) {
+                var teamHolidays = $scope.teamHolidays;
+                for (var i = 0; i < teamHolidays.length; i++) {
+                    for (var k = 0; k < teamHolidays[i].HolidayBookings.length; k++) {
+                        if (teamHolidays[i].isVisible == true) {
+                            var teamHolidayBookings = $scope.teamHolidays[i].HolidayBookings[k];
+                            if (teamHolidayBookings.StartDate.isSame(date, 'day')) {
+                                if (teamHolidayBookings.BookingStatus == 0) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
+            };
+
+            $scope.isCancelledHolidayRequestTeam = function (date) {
+                var teamHolidays = $scope.teamHolidays;
+                for (var i = 0; i < teamHolidays.length; i++) {
+                    for (var k = 0; k < teamHolidays[i].HolidayBookings.length; k++) {
+                        if (teamHolidays[i].isVisible == true) {
+                            var teamHolidayBookings = $scope.teamHolidays[i].HolidayBookings[k];
+                            if (teamHolidayBookings.StartDate.isSame(date, 'day')) {
+                                if (teamHolidayBookings.BookingStatus == 2) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
+            };
+
+            $scope.isWeekend = function(date) {
                 var dayNumber = date.day();
                 if (dayNumber == 6 || dayNumber == 0) {
                     return true
-                }
-                else {
+                } else {
                     return false
                 }
-            }
+            };
+
+            $scope.isTeamHolidayAndPopulatesHolidayCount = function (date) {
+                $scope.holidayCount = 0;
+                var teamHolidays = $scope.teamHolidays;
+                for (var i = 0; i < teamHolidays.length; i++) {
+                    for (var k = 0; k < teamHolidays[i].HolidayBookings.length; k++) {
+                        if (teamHolidays[i].isVisible == true) {
+                            var teamHolidayBookings = $scope.teamHolidays[i].HolidayBookings[k];
+                            if (teamHolidayBookings.StartDate.isSame(date, 'day')) {
+                                $scope.holidayCount++;
+                            }
+                        }
+                    }
+                }
+                if ($scope.holidayCount > 5)
+                    $scope.holidayCount = 5;
+                if ($scope.holidayCount > 0)
+                    return true;
+            };
         }
     };
 

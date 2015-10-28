@@ -13,19 +13,37 @@ namespace GWHolidayBookingWeb.Controllers
 {
     public class theApiController : ApiController
     {
+        private readonly IUserContext context;
+        private readonly IUserService userService;
+
+        public theApiController(IUserService userService, IUserContext context)
+        {
+            this.userService = userService;
+            this.context = context;
+        }
 
         public List<User> GetUsers()
         {
-            return Models.User.GetAll();
+            var listOfUsers = userService.Get();
+            return listOfUsers;
         }
-        public User GetUserById(int StaffNumber)
+        public User GetUserById(int staffNumber)
         {
-            return Models.User.GetById(StaffNumber);
+            var user = userService.GetUserById(staffNumber);
+            return user;
         }
-        public void PostUsers(User User)
+        public void PostUser(User user)
         {
-            Models.User.SaveAll(User);
-            Models.HolidayBooking.SaveAll(User.HolidayBookings);
+            userService.Update(user);
+            context.SaveChanges();
+        }
+        public void PostUsers(List<User> users)
+        {
+            foreach (var user in users)
+            {
+                userService.Update(user);
+                context.SaveChanges();
+            }
         }
     }
 }

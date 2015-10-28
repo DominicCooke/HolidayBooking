@@ -9,24 +9,28 @@
     </div>
     <div class="teamMemberRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamHolidays">
         <div class="teamMember person" value="{{user.StaffNumber}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName}}</div>
-        <div ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="pendingHolidaySelect(user.StaffNumber)" class="teamMemberInfo">{{user.PendingHolidays}}</div>
-        <div class="teamMemberInfo">{{user.CancelledHolidays}}</div>
+        <div ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffNumber, 0)" class="teamMemberInfo">{{user.PendingHolidays}}</div>
+        <div ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffNumber, 2)" class="teamMemberInfo">{{user.CancelledHolidays}}</div>
         <div class="teamMemberInfo">{{user.ConfirmedHolidays}}</div>
         <div class="teamMemberInfo">{{user.RemainingAllowance}}</div>
         <div class="teamMemberInfo">{{user.HolidayAllowance}}</div>
     </div>
 </div>
-<div class="pendingHolidayContainer">
-    <div class="pendingHolidayRow">
-        <div class="pendingHolidayHeader pendingHolidayCell">Date</div>
-        <div class="pendingHolidayHeader pendingHolidayCell">Actions</div>
-    </div>
-    <div class="pendingHolidayRow" ng-repeat="pendingHoliday in tabPendingHolidays">
-        <div class="pendingHolidayCell">{{formatDate(pendingHoliday.holidayDate.StartDate)}}</div>
-        <div class="pendingHolidayCell">
-            <div class="fa fa-check pendingHolidayAction" ng-click="pendingHolidayActionAccept(pendingHoliday.holidayDate.StartDate,pendingHoliday.StaffNumber)"></div>
-            <div class="fa fa-times pendingHolidayAction" ng-click="pendingHolidayActionDecline(pendingHoliday.holidayDate.StartDate,pendingHoliday.StaffNumber)"></div>
-            <div class="fa fa-comment pendingHolidayAction" ng-click=""></div>
+<div class="tabHeaderHolidayRow">
+    <div class="tabHolidayHeader tabHolidayHeaderCell">Date</div>
+    <div class="tabHolidayHeader tabHolidayHeaderCell">Actions</div>
+</div>
+<div class="tabHolidayContainer">
+    <div class="tabTableHolidayContainer">
+        <div class="tabHolidayRow" ng-repeat="tabHoliday in tabHolidays.TabHolidays">
+            <div class="tabHolidayCell">{{formatDate(tabHoliday.holidayDate.StartDate)}}</div>
+            <div class="tabHolidayCell">
+                <div class="fa fa-check tabHolidayAction" ng-click="tabHolidayActionAccept(tabHoliday.holidayDate.StartDate,tabHoliday.StaffNumber)"></div>
+                <div class="fa fa-times tabHolidayAction" ng-click="tabHolidayActionDecline(tabHoliday.holidayDate.StartDate,tabHoliday.StaffNumber)"></div>
+                <div class="fa fa-comment tabHolidayAction" ng-click=""></div>
+            </div>
         </div>
     </div>
 </div>
+
+

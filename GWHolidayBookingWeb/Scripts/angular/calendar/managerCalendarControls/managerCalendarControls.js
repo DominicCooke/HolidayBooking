@@ -69,16 +69,16 @@
                 return formattedDate;
             }
 
-            $scope.pendingHolidayActionAccept = function (date, staffNumber) {
+            $scope.tabHolidayActionAccept = function (date, staffNumber) {
                 var teamHolidays = $scope.teamHolidays;
                 for (var i = 0; i < teamHolidays.length; i++) {
                     for (var j = 0; j < teamHolidays[i].HolidayBookings.length; j++) {
-                        if (teamHolidays[i].HolidayBookings[j].StartDate.isSame(date) && teamHolidays[i].StaffNumber == staffNumber) {
+                        if (teamHolidays[i].HolidayBookings[j].StartDate.isSame(date, 'day') && teamHolidays[i].StaffNumber == staffNumber) {
                             teamHolidays[i].HolidayBookings[j].BookingStatus = 1;
-                            var pendingHolidays = $scope.tabPendingHolidays;
-                            for (var k = 0; k < pendingHolidays.length; k++) {
-                                if (pendingHolidays[k].StaffNumber == teamHolidays[i].StaffNumber && pendingHolidays[k].holidayDate == teamHolidays[i].HolidayBookings[j]) {
-                                    pendingHolidays.splice(k, 1);
+                            var tabHolidays = $scope.tabHolidays;
+                            for (var k = 0; k < tabHolidays.TabHolidays.length; k++) {
+                                if (tabHolidays.TabHolidays[k].StaffNumber == teamHolidays[i].StaffNumber && tabHolidays.TabHolidays[k].holidayDate == teamHolidays[i].HolidayBookings[j]) {
+                                    tabHolidays.TabHolidays.splice(k, 1);
                                 }
                             }
                             _.defer(function () { $scope.$apply(); });
@@ -87,16 +87,16 @@
                 }
             }
 
-            $scope.pendingHolidayActionDecline = function (date, staffNumber) {
+            $scope.tabHolidayActionDecline = function (date, staffNumber) {
                 var teamHolidays = $scope.teamHolidays;
                 for (var i = 0; i < teamHolidays.length; i++) {
                     for (var j = 0; j < teamHolidays[i].HolidayBookings.length; j++) {
-                        if (teamHolidays[i].HolidayBookings[j].StartDate.isSame(date) && teamHolidays[i].StaffNumber == staffNumber) {
-                            var pendingHolidays = $scope.tabPendingHolidays;
+                        if (teamHolidays[i].HolidayBookings[j].StartDate.isSame(date, 'day') && teamHolidays[i].StaffNumber == staffNumber) {
+                            var tabHolidays = $scope.tabHolidays;
                             teamHolidays[i].RemainingAllowance++;
-                            for (var k = 0; k < pendingHolidays.length; k++) {
-                                if (pendingHolidays[k].StaffNumber == teamHolidays[i].StaffNumber && pendingHolidays[k].holidayDate == teamHolidays[i].HolidayBookings[j]) {
-                                    pendingHolidays.splice(k, 1);
+                            for (var k = 0; k < tabHolidays.TabHolidays.length; k++) {
+                                if (tabHolidays.TabHolidays[k].StaffNumber == teamHolidays[i].StaffNumber && tabHolidays.TabHolidays[k].holidayDate == teamHolidays[i].HolidayBookings[j]) {
+                                    tabHolidays.TabHolidays.splice(k, 1);
                                 }
                             }
                             teamHolidays[i].HolidayBookings.splice(j, 1);
@@ -106,23 +106,28 @@
                     }
                 }
             }
-            $scope.$watch('tabPendingHolidays', function () {
-                if (typeof $scope.tabPendingHolidays !== "undefined") {
-                    if ($scope.tabPendingHolidays.length == 0) {
-                        $('.pendingHolidayContainer').hide();
-                    } else {
-                        $('.pendingHolidayContainer').show();
+            $scope.$watch('tabHolidays', function () {
+                if (typeof $scope.tabHolidays !== "undefined") {
+                    $('.pendingHolidayRow').hide();
+                    $('.cancelledHolidayRow').hide();
+                    if (!$scope.tabHolidays.TabHolidays.length == 0 && $scope.tabHolidays.TypeOfHoliday == 0) {
+                        $('.pendingHolidayRow').show();
                     }
+                    if (!$scope.tabHolidays.TabHolidays.length == 0 && $scope.tabHolidays.TypeOfHoliday == 2) {
+                        $('.cancelledHolidayRow').show();
+                    };
                 }
             }, true);
-            $scope.pendingHolidaySelect = function (staffNumber) {
+
+            $scope.tabHolidaySelect = function (staffNumber, typeOfHoliday) {
                 var teamHolidays = $scope.teamHolidays;
-                var pendingHolidays = [];
+                var tabHolidays = [];
                 for (var i = 0; i < teamHolidays.length; i++) {
+                    teamHolidays[i].HolidayBookings = _.sortBy(teamHolidays[i].HolidayBookings, function (Booking) { return Booking.StartDate });
                     if (teamHolidays[i].StaffNumber == staffNumber) {
                         for (var j = 0; j < teamHolidays[i].HolidayBookings.length; j++) {
-                            if (teamHolidays[i].HolidayBookings[j].BookingStatus == 0) {
-                                pendingHolidays.push({
+                            if (teamHolidays[i].HolidayBookings[j].BookingStatus == typeOfHoliday) {
+                                tabHolidays.push({
                                     StaffNumber: staffNumber,
                                     holidayDate: teamHolidays[i].HolidayBookings[j]
                                 });
@@ -130,8 +135,29 @@
                         }
                     }
                 }
-                $scope.tabPendingHolidays = pendingHolidays;
-            }
+                $scope.tabHolidays = {
+                    TabHolidays: tabHolidays,
+                    TypeOfHoliday: typeOfHoliday
+                };
+            };
+
+
+            //$scope.pendingHolidaySelect = function(staffNumber) {
+            //    var teamHolidays = $scope.teamHolidays;
+            //    var pendingHolidays = [];
+            //    for (var i = 0; i < teamHolidays.length; i++) {
+            //        if (teamHolidays[i].StaffNumber == staffNumber) {
+            //            for (var j = 0; j < teamHolidays[i].HolidayBookings.length; j++) {
+            //                if (teamHolidays[i].HolidayBookings[j].BookingStatus == 0) {
+            //                    pendingHolidays.push({
+            //                        StaffNumber: staffNumber,
+            //                        holidayDate: teamHolidays[i].HolidayBookings[j]
+            //                    });
+            //                }
+            //            }
+            //        }
+            //    }
+            //    $scope.tabPendingHolidays = pendingHolidays;
         }
     };
 

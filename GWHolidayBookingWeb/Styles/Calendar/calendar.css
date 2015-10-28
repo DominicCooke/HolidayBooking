@@ -32,15 +32,20 @@
   color: white;
   font-size: 15px;
   font-weight: normal;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
 }
 .bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer {
-  margin-top: 5%;
-  margin-bottom: 5%;
-  padding-left: 6%;
-  padding-right: 6%;
+  padding: 6%;
+  height: 100%;
+  width: 100%;
   border-collapse: collapse;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .nav > .navigationalTab {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > ul.nav {
+  height: 15%;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > ul.nav > .navigationalTab {
   border-bottom: 1px solid black;
   border-top: 1px solid black;
   border-right: 1px solid black;
@@ -48,17 +53,17 @@
   color: white;
   border-radius: 0;
   width: 20%;
-  height: 10%;
+  height: 100%;
   float: left;
   text-align: center;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .nav > .navigationalTab:last-child {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > ul.nav > .navigationalTab:last-child {
   border-right: none;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .nav > .navigationalTab:first-child {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > ul.nav > .navigationalTab:first-child {
   border-left: 1px solid black;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .nav > .navigationalTab > a {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > ul.nav > .navigationalTab > a {
   width: 100%;
   height: 100%;
   border: 0;
@@ -70,24 +75,30 @@
   background: rgba(0, 0, 0, 0.6);
   border-radius: 0;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .nav > .navigationalTab.active > a {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > ul.nav > .navigationalTab.active > a {
   background: #4d4d4d;
 }
 .bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content {
-  height: 84%;
+  height: 85%;
 }
 .bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane {
-  height: 100%%;
+  height: 100%;
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   background: rgba(0, 0, 0, 0.6);
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols {
+  height: 100%;
+  width: 100%;
+  display: block;
 }
 .bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .teamMemberInfoContainer {
   display: table;
   margin: 0 auto;
   text-align: center;
   width: 100%;
+  height: 42%;
 }
 .bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .teamMemberInfoContainer > .teamMemberRow {
   display: table-row;
@@ -108,14 +119,25 @@
   padding: 0 5px;
   border-left: 1px solid rgba(31, 31, 31, 0.6);
 }
-@keyframes textpulsate {
+@keyframes textpulsatepending {
   50% {
     color: deepskyblue;
     background: rgba(0, 191, 255, 0.2);
   }
 }
+@keyframes textpulsatecancelled {
+  50% {
+    color: red;
+    background: rgba(255, 0, 0, 0.2);
+  }
+}
 .bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .teamMemberInfoContainer > .teamMemberRow > .teamMemberInfo.isPendingHoliday {
-  animation: textpulsate 5s;
+  animation: textpulsatepending 5s;
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .teamMemberInfoContainer > .teamMemberRow > .teamMemberInfo.isCancelledHoliday {
+  animation: textpulsatecancelled 5s;
   animation-iteration-count: infinite;
   cursor: pointer;
 }
@@ -141,47 +163,68 @@
   pointer-events: none;
   background: rgba(0, 0, 0, 0.6);
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHeaderHolidayRow {
   display: table;
-  margin: 0 auto;
   text-align: center;
   width: 100%;
+  height: 7%;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow {
-  display: table-row;
-}
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow:last-child > .pendingHolidayCell {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHeaderHolidayRow:last-child > .tabHolidayHeaderCell {
   border-bottom: 0;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow > .pendingHolidayCell {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHeaderHolidayRow > .tabHolidayHeaderCell {
   display: table-cell;
   padding: 5px 5px;
   border-bottom: 1px solid black;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow > .pendingHolidayCell:last-child {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHeaderHolidayRow > .tabHolidayHeaderCell:last-child {
   border-left: 1px solid black;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow > .pendingHolidayCell > .pendingHolidayAction {
-  cursor: pointer;
-}
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow > .pendingHolidayCell > .pendingHolidayAction.fa-check {
-  color: green;
-}
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow > .pendingHolidayCell > .pendingHolidayAction.fa-times {
-  color: red;
-}
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow > .pendingHolidayHeader {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHeaderHolidayRow > .tabHolidayHeader {
   background: rgba(51, 51, 51, 0.6);
   border-top: 1px black solid;
   border-bottom: 1px black solid;
   border-right: 1px black solid;
   padding: 8px 5px;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow > .pendingHolidayHeader:last-child {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHeaderHolidayRow > .tabHolidayHeader:last-child {
   border-right: 0;
 }
-.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .pendingHolidayContainer > .pendingHolidayRow > .pendingHolidayHeader:first-child {
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHeaderHolidayRow > .tabHolidayHeader:first-child {
   border-left: 0;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHolidayContainer {
+  text-align: center;
+  width: 100%;
+  height: 51%;
+  overflow-y: scroll;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHolidayContainer > .tabTableHolidayContainer {
+  display: table;
+  width: 100%;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHolidayContainer > .tabTableHolidayContainer > .tabHolidayRow {
+  display: table-row;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHolidayContainer > .tabTableHolidayContainer > .tabHolidayRow:last-child > .tabHolidayCell {
+  border-bottom: 0;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHolidayContainer > .tabTableHolidayContainer > .tabHolidayRow > .tabHolidayCell {
+  display: table-cell;
+  padding: 5px 5px;
+  border-bottom: 1px solid black;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHolidayContainer > .tabTableHolidayContainer > .tabHolidayRow > .tabHolidayCell:last-child {
+  border-left: 1px solid black;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHolidayContainer > .tabTableHolidayContainer > .tabHolidayRow > .tabHolidayCell > .tabHolidayAction {
+  cursor: pointer;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHolidayContainer > .tabTableHolidayContainer > .tabHolidayRow > .tabHolidayCell > .tabHolidayAction.fa-check {
+  color: green;
+}
+.bodyContainer > .otherSpace > managercalendartabs > .navigationalTabsContainer > .tab-content > .tab-pane > managercalendarcontrols > .tabHolidayContainer > .tabTableHolidayContainer > .tabHolidayRow > .tabHolidayCell > .tabHolidayAction.fa-times {
+  color: red;
 }
 .bodyContainer > .otherSpace > .controls {
   position: absolute;
@@ -357,7 +400,7 @@
   transition: 2s;
 }
 .bodyContainer > calendar > .month > .week > .day.isCancelledHoliday {
-  background-color: red;
+  background: red !important;
   transition: 2s;
 }
 .bodyContainer > calendar > .month > .week > .day.isTeamHoliday.isPendingHoliday {

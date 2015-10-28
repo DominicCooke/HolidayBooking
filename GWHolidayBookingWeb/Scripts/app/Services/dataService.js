@@ -7,11 +7,20 @@
             }).success(function (data) {
                 return data;
             });
-        }, sendData: function (userData) {
+        }, sendUserData: function (userData) {
             return $http({
                 method: 'POST',
                 contentType: "application/json",
-                data: JSON.stringify(userData),
+                data: userData,
+                url: 'http://localhost:57068/api/theApi/PostUser'
+            }).success(function (data) {
+
+            });
+        }, sendUsersData: function (userData) {
+            return $http({
+                method: 'POST',
+                contentType: "application/json",
+                data: userData,
                 url: 'http://localhost:57068/api/theApi/PostUsers'
             }).success(function (data) {
 
@@ -20,7 +29,7 @@
             return $http({
                 method: 'GET',
                 params: {
-                    StaffNumber: id
+                    staffNumber: id
                 },
                 url: 'http://localhost:57068/api/theApi/GetUserById'
             }).success(function (data) {
