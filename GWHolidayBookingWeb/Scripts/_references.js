@@ -27,3 +27,4 @@
 /// <reference path="angular/calendar/managercalendartabs/managercalendartabs.js" />
 /// <reference path="angular/calendar/managercalendartooltip/managercalendartooltip.js" />
 /// <reference path="jquery/slimscroll/jquery.slimscroll.js" />
+/// <reference path="angular/calendar/employeecalendarinfobox/employeecalendarinfobox.js" />

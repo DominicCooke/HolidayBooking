@@ -87,7 +87,7 @@
                 var arrayOfTeamUserHolidayBookings = [];
                 var tUHB = $scope.teamUserHolidayBookings
                 for (var i = 0; i < tUHB.length; i++) {
-                    
+
                     tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function (Booking) { return Booking.StartDate });
                     $scope.setAllowanceDaysOfUnmergedHolidays(tUHB[i]);
                     var userHolidaysClone = _.cloneDeep(tUHB[i]);
@@ -169,6 +169,29 @@
                     if (!$scope.tabHolidays.TabHolidays.length == 0 && $scope.tabHolidays.TypeOfHoliday == 2) {
                         $('.cancelledHolidayRow').show();
                     };
+                }
+            }, true);
+
+            $scope.$watch('teamUserHolidayBookings', function () {
+                if (typeof $scope.teamUserHolidayBookings !== "undefined") {
+                    var tUHB = $scope.teamUserHolidayBookings;
+                    var pendingCount = 0, cancelledCount = 0;
+                    for (var i = 0; i < tUHB.length; i++) {
+                        pendingCount = pendingCount + tUHB[i].PendingHolidays;
+                        cancelledCount = cancelledCount + tUHB[i].CancelledHolidays;
+                    }
+                    $scope.pendingNotificationCount = pendingCount;
+                    $scope.cancelledNotificationCount = cancelledCount;
+                    if (pendingCount == 0) {
+                        $('.notification-counter-pending').hide();
+                    } else {
+                        $('.notification-counter-pending').show();
+                    }
+                    if (cancelledCount == 0) {
+                        $('.notification-counter-cancelled').hide();
+                    } else {
+                        $('.notification-counter-cancelled').show();
+                    }
                 }
             }, true);
 

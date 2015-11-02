@@ -1,7 +1,13 @@
 ﻿<div class="teamMemberHeaderRow">
     <div class="teamMemberInfoHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
-    <div class="teamMemberInfoHeader fa fa-question"></div>
-    <div class="teamMemberInfoHeader fa fa-times"></div>
+    <div class="teamMemberInfoHeader">
+        <div class="fa fa-question"></div>
+        <span class="notification-counter-pending">{{pendingNotificationCount}}</span>
+    </div>
+    <div class="teamMemberInfoHeader">
+        <div class="fa fa-times"></div>
+        <span class="notification-counter-cancelled">{{cancelledNotificationCount}}</span>
+    </div>
     <div class="teamMemberInfoHeader fa fa-check"></div>
     <div class="teamMemberInfoHeader">RA</div>
     <div class="teamMemberInfoHeader">HA</div>

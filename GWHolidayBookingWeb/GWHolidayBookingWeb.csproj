@@ -137,9 +137,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular\calendar\employeeCalendarInfoBox\employeeCalendarInfoBox.js" />
     <Content Include="Scripts\app\PartialViews\calendarModeEmployee.html" />
     <Content Include="Scripts\app\PartialViews\calendarModeManager.html" />
     <Content Include="Scripts\app\Services\dataService.js" />
+    <Content Include="Scripts\app\Templates\employeeCalendarInfoBoxTemplate.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

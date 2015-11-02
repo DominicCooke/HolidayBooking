@@ -32,15 +32,15 @@
                         // add an hour to reflect the time zone GMT +1
                         var sDate, eDate;
                         sDate = date.clone().add(1, 'h'),
-                        eDate = date.clone().add(1, 'h'),
-                        hB.push(
-                        {
-                            StartDate: sDate,
-                            EndDate: eDate,
-                            AllowanceDays: 1,
-                            BookingStatus: 0,
-                            HolidayId: 0
-                        });
+                            eDate = date.clone().add(1, 'h'),
+                            hB.push(
+                            {
+                                StartDate: sDate,
+                                EndDate: eDate,
+                                AllowanceDays: 1,
+                                BookingStatus: 0,
+                                HolidayId: 0
+                            });
                     }
                     $scope.reloadCalendar();
                 }
@@ -242,4 +242,4 @@
         }
         return days;
     }
-}
+};

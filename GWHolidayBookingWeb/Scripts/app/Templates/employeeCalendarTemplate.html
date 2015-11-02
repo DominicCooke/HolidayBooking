@@ -1,7 +1,6 @@
-﻿
-<div class="header">
+﻿<div class="header">
     <i class="fa fa-angle-left" ng-click="previous()"></i>
-    <span>{{month.format("MMMM, YYYY")}}</span>
+    <span>{{month.format("MMMM YYYY")}}</span>
     <i class="fa fa-angle-right" ng-click="next()"></i>
 </div>
 <div class="month">
@@ -18,7 +17,7 @@
     <div class="week" ng-repeat="week in weeks">
         <span class="day" ng-class="{
               today: day.isToday,
-              'different-month': !day.isCurrentMonth,
+             'different-month': !day.isCurrentMonth,
               selected: day.date.isSame(selected),
               isWeekend: day.isWeekend,
               isPublicHoliday: day.isPublicHoliday,
