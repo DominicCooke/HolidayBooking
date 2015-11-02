@@ -17,6 +17,5 @@ namespace GWHolidayBookingWeb.Models
         public int HolidayAllowance { get; set; }
         public int RemainingAllowance { get; set; }
         public virtual ICollection<HolidayBooking> HolidayBookings { get; set; }
-        public Boolean isVisible { get; set; }
     }
 }

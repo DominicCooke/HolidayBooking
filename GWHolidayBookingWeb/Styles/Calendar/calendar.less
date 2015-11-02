@@ -1,7 +1,7 @@
 ﻿@publicHoliday-colour: #b9b9b9;
 @normalHoliday-colour: #72c015;
 @pendingHoliday-colour: deepskyblue;
-@cancelledHoliday-colour: red;
+@cancelledHoliday-colour: #3a5fcd;
 @oneHoliday-colour: #0f0;
 @twoHoliday-colour: #af0;
 @threeHoliday-colour: #fb0;
@@ -39,6 +39,12 @@
     background-size: cover;
     background-image: url('../../Content/images/background.jpg');
 
+    > .test {
+        color: black;
+        font-size: 20px;
+        background: magenta;
+    }
+
     > .otherSpace {
         position: relative;
         width: 40%;
@@ -49,10 +55,6 @@
         line-height: 1;
         float: left;
         z-index: 6;
-
-        > .infoBox {
-            color: rgba(0, 0, 0, 0.8);
-        }
 
         > managercalendartabs {
             color: white;
@@ -72,12 +74,11 @@
                     height: 15%;
 
                     > .navigationalTab {
-                        border-bottom: 1px solid black;
                         border-top: 1px solid black;
                         border-right: 1px solid black;
 
                         &:last-child {
-                            border-right: none;
+                            /*border-right: none;*/
                         }
 
                         &:first-child {
@@ -128,101 +129,122 @@
                             width: 100%;
                             display: block;
 
-                            > .teamMemberInfoContainer {
+                            > .teamMemberHeaderRow {
                                 display: table;
-                                margin: 0 auto;
                                 text-align: center;
                                 width: 100%;
-                                height: 42%;
+                                height: 7%;
+                                border-top: 1px solid black;
 
-                                > .teamMemberRow {
-                                    display: table-row;
-                                    border-bottom: 1px solid @border-colour;
+                                > .teamMemberInfoHeader {
+                                    display: table-cell;
+                                    padding: 0 5px;
+                                    border-bottom: 1px solid black;
+                                    border-left: 1px solid black;
+                                    width: 12%;
+                                    pointer-events: none;
 
                                     &:first-child {
-                                        > .teamMemberInfoHeader {
-                                            border-bottom: 1px solid black;
-                                            border-left: 1px solid black;
+                                        pointer-events: all;
+                                        width: 30%;
+                                        padding: 10px 15px;
+                                        border-left: 0;
+                                        cursor: pointer;
+                                        background: lighten(@background-colour,20%);
+
+                                        &.active {
+                                            background: lighten(@background-colour,50%);
                                         }
-                                    }
-
-                                    &:last-child {
-                                        border-bottom: 0;
-
-                                        > .teamMember {
-                                            border-bottom: 0;
-                                        }
-                                    }
-
-                                    > .teamMemberInfo {
-                                        display: table-cell;
-                                        padding: 0 5px;
-                                        border-left: 1px solid @border-colour;
-
-
-                                        @keyframes textpulsatepending {
-                                            0% {
-                                            }
-
-                                            50% {
-                                                color: @pendingHoliday-colour;
-                                                background: fade(@pendingHoliday-colour,20%);
-                                            }
-
-                                            100% {
-                                            }
-                                        }
-
-                                        @keyframes textpulsatecancelled {
-                                            0% {
-                                            }
-
-                                            50% {
-                                                color: @cancelledHoliday-colour;
-                                                background: fade(@cancelledHoliday-colour,20%);
-                                            }
-
-                                            100% {
-                                            }
-                                        }
-
-                                        &.isPendingHoliday {
-                                            animation: textpulsatepending 5s;
-                                            animation-iteration-count: infinite;
-                                            cursor: pointer;
-                                        }
-
-                                        &.isCancelledHoliday {
-                                            animation: textpulsatecancelled 5s;
-                                            animation-iteration-count: infinite;
-                                            cursor: pointer;
-                                        }
-                                    }
-
-                                    > .teamMemberInfoHeader {
-                                        display: table-cell;
-                                        padding: 5px 15px;
-                                        border-bottom: 1px solid @border-colour;
-                                        border-left: 1px solid @border-colour;
                                     }
                                 }
+                            }
 
-                                .teamMember {
-                                    cursor: pointer;
-                                    display: table-cell;
-                                    background: lighten(@background-colour,20%);
-                                    padding: 10px 15px;
+                            .slimScrollDiv {
+                                > .teamMemberInfoContainer {
                                     text-align: center;
-                                    border-right: 1px solid black;
-                                    border-bottom: 1px solid black;
+                                    width: 100%;
+                                    height: 100% !important;
+                                    overflow: hidden;
 
-                                    &.active {
-                                        background: lighten(@background-colour,50%);
+                                    .teamMemberTableInfoContainer {
+                                        display: table;
+                                        width: 100%;
+
+                                        > .teamMemberRow {
+                                            display: table-row;
+                                            border-bottom: 1px solid @border-colour;
+
+                                            &:last-child {
+                                                border-bottom: 0;
+
+                                                > .teamMember {
+                                                    border-bottom: 0;
+                                                }
+                                            }
+
+                                            > .teamMemberInfo {
+                                                display: table-cell;
+                                                padding: 0 5px;
+                                                border-left: 1px solid @border-colour;
+                                                width: 12%;
+
+                                                @keyframes textpulsatepending {
+                                                    0% {
+                                                    }
+
+                                                    50% {
+                                                        background: fade(@pendingHoliday-colour,40%);
+                                                    }
+
+                                                    100% {
+                                                    }
+                                                }
+
+                                                @keyframes textpulsatecancelled {
+                                                    0% {
+                                                    }
+
+                                                    50% {
+                                                        background: fade(@cancelledHoliday-colour,40%);
+                                                    }
+
+                                                    100% {
+                                                    }
+                                                }
+
+                                                &.isPendingHoliday {
+                                                    animation: textpulsatepending 5s;
+                                                    animation-iteration-count: infinite;
+                                                    cursor: pointer;
+                                                }
+
+                                                &.isCancelledHoliday {
+                                                    animation: textpulsatecancelled 5s;
+                                                    animation-iteration-count: infinite;
+                                                    cursor: pointer;
+                                                }
+                                            }
+                                        }
                                     }
 
-                                    &.dead {
-                                        pointer-events: none;
-                                        background: darken(@background-colour,50%);
+                                    .teamMember {
+                                        cursor: pointer;
+                                        display: table-cell;
+                                        background: lighten(@background-colour,20%);
+                                        padding: 10px 15px;
+                                        text-align: center;
+                                        border-right: 1px solid black;
+                                        border-bottom: 1px solid black;
+                                        width: 30%;
+
+                                        &.active {
+                                            background: lighten(@background-colour,50%);
+                                        }
+
+                                        &.dead {
+                                            pointer-events: none;
+                                            background: darken(@background-colour,50%);
+                                        }
                                     }
                                 }
                             }
@@ -232,6 +254,8 @@
                                 text-align: center;
                                 width: 100%;
                                 height: 7%;
+                                pointer-events: none;
+
                                 &:last-child {
                                     > .tabHolidayHeaderCell {
                                         border-bottom: 0;
@@ -257,6 +281,7 @@
 
                                     &:last-child {
                                         border-right: 0;
+                                        width: 25%;
                                     }
 
                                     &:first-child {
@@ -265,50 +290,47 @@
                                 }
                             }
 
-                            > .tabHolidayContainer {
-                                text-align: center;
-                                width: 100%;
-                                height: 51%;
-                                overflow-y: scroll;
-
-
-
-                                > .tabTableHolidayContainer {
-                                    display: table;
+                            .slimScrollDiv {
+                                > .tabHolidayContainer {
+                                    text-align: center;
                                     width: 100%;
+                                    height: 100% !important;
+                                    overflow-y: auto;
 
-                                    > .tabHolidayRow {
-                                        display: table-row;
+                                    > .tabTableHolidayContainer {
+                                        display: table;
+                                        width: 100%;
 
-                                        &:last-child {
-                                            > .tabHolidayCell {
-                                                border-bottom: 0;
-                                            }
-                                        }
-
-
-
-                                        > .tabHolidayCell {
-                                            display: table-cell;
-                                            padding: 5px 5px;
-                                            border-bottom: 1px solid black;
+                                        > .tabHolidayRow {
+                                            display: table-row;
 
                                             &:last-child {
-                                                border-left: 1px solid black;
+                                                > .tabHolidayCell {
+                                                    border-bottom: 0;
+                                                }
                                             }
 
-                                            > .tabHolidayAction {
-                                                cursor: pointer;
+                                            > .tabHolidayCell {
+                                                display: table-cell;
+                                                padding: 5px 5px;
+                                                border-bottom: 1px solid black;
+                                                background: rgba(255,255,255,0.15);
 
-                                                &.fa-check {
-                                                    color: green;
+                                                &:last-child {
+                                                    border-left: 1px solid black;
+                                                    width: 25%;
                                                 }
 
-                                                &.fa-times {
-                                                    color: red;
-                                                }
+                                                > .tabHolidayAction {
+                                                    cursor: pointer;
 
-                                                &.fa-comment {
+                                                    &.fa-check {
+                                                        color: #0f0;
+                                                    }
+
+                                                    &.fa-times {
+                                                        color: red;
+                                                    }
                                                 }
                                             }
                                         }
@@ -408,7 +430,10 @@
                         background-color: fade(lime,30%);
                     }
 
-                    > .fa-minus {
+                    > .fa-times {
+                        color: @cancelledHoliday-colour;
+                        outline: 1px solid @cancelledHoliday-colour;
+                        background-color: fade(@cancelledHoliday-colour,30%);
                     }
 
                     > .fa-question {
@@ -448,10 +473,8 @@
                 }
             }
 
-
-
-
             > span {
+                pointer-events: none;
                 float: left;
                 width: 80%;
                 font-weight: bold;
@@ -476,6 +499,12 @@
                     border-top: none;
                 }
 
+                &.names > span {
+                    color: rgba(255, 255, 255, 0.60);
+                    margin-top: 30px;
+                    pointer-events: none;
+                }
+
                 > .day {
                     float: left;
                     border-radius: 15%;
@@ -487,17 +516,13 @@
                     cursor: pointer;
                     color: white;
                     margin: 2.5%/7;
+                    background: rgba(255,255,255,0);
+                    transition: 1s;
 
                     &.isweekend {
                         cursor: none;
                         pointer-events: none;
                         background: lighten(@background-colour,40%);
-                    }
-
-                    &:first-child {
-                    }
-
-                    &:last-child {
                     }
 
                     &.today {
@@ -514,18 +539,9 @@
                         border-radius: 15%;
                     }
 
-                    @keyframes holidayAnimation {
-                        from {
-                            background-color: rgba(0, 0, 0, 0);
-                        }
-
-                        to {
-                        }
-                    }
-
                     &.isConfirmedHoliday {
                         background: @normalHoliday-colour;
-                        transition: 2s;
+                        transition: 0.5s;
                     }
 
                     &.isPublicHoliday {
@@ -535,114 +551,79 @@
                     }
 
                     &.isPendingHoliday {
-                        background-color: @pendingHoliday-colour;
-                        transition: 2s;
+                        background-color: @pendingHoliday-colour !important;
+                        transition: 0.5s;
                     }
 
                     &.isCancelledHoliday {
-                        background: red !important;
-                        transition: 2s;
+                        background: @cancelledHoliday-colour !important;
+                        transition: 0.5s;
                     }
 
                     &.isTeamHoliday.isPendingHoliday {
-                        animation-delay: 2s;
-                        animation: pending 5s;
-                        animation-iteration-count: infinite;
-                    }
-
-                    @keyframes pending {
-                        from {
-                            transform: scale3d(1, 1, 1);
-                        }
-
-                        10%, 20% {
-                            transform: scale3d(.99, .99, .99) rotate3d(0, 0, 1, -2deg);
-                        }
-
-                        30%, 50%, 70%, 90% {
-                            transform: scale3d(1.01, 1.01, 1.01) rotate3d(0, 0, 1, 2deg);
-                        }
-
-                        40%, 60%, 80% {
-                            transform: scale3d(1.01, 1.01, 1.01) rotate3d(0, 0, 1, -2deg);
-                        }
-
-                        50% {
-                            background: fade(@pendingHoliday-colour,60%);
-                        }
-
-                        to {
-                            transform: scale3d(1, 1, 1);
-                        }
-                    }
-
-                    @keyframes pulsate {
-                        0% {
-                            opacity: 1;
-                            border: 0.4px solid black;
-                        }
-
-                        50% {
-                            opacity: 0.95;
-                            border: 0.8px solid black;
-                        }
-
-                        100% {
-                            opacity: 1;
-                            border: 0.4px solid black;
-                        }
+                        background: @pendingHoliday-colour !important;
+                        transition: 0.5s;
                     }
 
                     &.holidayNum1 {
                         background: fade(@oneHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 2s;
+                        transition: 0.5s;
                     }
 
                     &.holidayNum2 {
                         background: fade(@twoHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 2s;
+                        transition: 0.5s;
                     }
 
                     &.holidayNum3 {
                         background: fade(@threeHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 2s;
+                        transition: 0.5s;
                     }
 
                     &.holidayNum4 {
                         background: fade(@fourHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 2s;
+                        transition: 0.5s;
                     }
 
                     &.holidayNum5 {
                         background: fade(@fiveHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 2s;
+                        transition: 0.5s;
                     }
-                }
-
-                &.names > span {
-                    color: rgba(255, 255, 255, 0.60);
-                    margin-top: 30px;
                 }
             }
         }
 
         > .key {
             width: 100%;
-            bottom: 0;
             height: 13%;
             position: absolute;
             padding-left: 5%;
             padding-right: 5%;
+            pointer-events: none;
+
+            &.top {
+                top: 0;
+
+                > .holidayKey {
+                    > .keyColor {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+
+            &.bottom {
+                bottom: 0;
+            }
 
             .keyLabel {
                 color: white;
@@ -674,10 +655,6 @@
                 > #publicHolidayKeyColor {
                     background-color: @publicHoliday-colour;
                 }
-
-                > #publicHolidayKeyColorLabel {
-                    //outline: solid 1px @publicHoliday-colour;
-                }
             }
 
             > #confirmedHolidayKey {
@@ -687,10 +664,6 @@
 
                 > #confirmedHolidayKeyColor {
                     background-color: @normalHoliday-colour;
-                }
-
-                > #confirmedHolidayKeyColorLabel {
-                    //outline: solid 1px @normalHoliday-colour;
                 }
             }
 
@@ -702,10 +675,6 @@
                 > #pendingHolidayKeyColor {
                     background-color: @pendingHoliday-colour;
                 }
-
-                > #pendingHolidayKeyColorLabel {
-                    //outline: solid 1px @pendingHoliday-colour;
-                }
             }
 
             > #cancelledHolidayKey {
@@ -714,11 +683,7 @@
                 float: left;
 
                 > #cancelledHolidayKeyColor {
-                    background-color: red;
-                }
-
-                > #cancelledHolidayKeyColorLabel {
-                    //outline: solid 1px red;
+                    background-color: @cancelledHoliday-colour;
                 }
             }
 

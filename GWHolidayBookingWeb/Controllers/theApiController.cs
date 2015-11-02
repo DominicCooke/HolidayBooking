@@ -30,6 +30,7 @@ namespace GWHolidayBookingWeb.Controllers
         public User GetUserById(int staffNumber)
         {
             var user = userService.GetUserById(staffNumber);
+
             return user;
         }
         public void PostUser(User user)

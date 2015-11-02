@@ -19,14 +19,12 @@
             else
                 element.html(html);
         },
-        addTemplate: function (templateUrl, target, scope, callback, append) {
+        addTemplate: function (templateUrl, target, scope, append) {
             var service = this;
             service.getTemplate(templateUrl).success(function (template) {
                 service.cacheTemplate(templateUrl, template);
                 var html = service.compileTemplate(template, scope);
                 service.renderTemplate(target, html, append);
-                if (callback)
-                    callback();
             }).error(function (data, status, headers, config) {
                 throw (data);
             });

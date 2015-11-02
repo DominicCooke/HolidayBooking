@@ -10,28 +10,28 @@
         $scope.selected = moment();
         if (mode == 'manager') {
             dataService.getAllUsers().then(function (response) {
-                $scope.teamHolidays = response.data;
-                $scope.initData($scope.teamHolidays);
-                $scope.getListOfTeamMembers($scope.teamHolidays);
-                viewService.calendarGoToView($scope, views.CalendarModeManager);
+                $scope.teamUserHolidayBookings = response.data;
+                $scope.initData($scope.teamUserHolidayBookings);
+                $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
+                viewService.calendarGoToView($scope, views.CalendarModeManager)
                 $scope.tabPendingHolidays = [];
             });
         } else {
             dataService.getUserById(1).then(function (response) {
-                $scope.HolidayDays = response.data;
-                $scope.initData([$scope.HolidayDays]);
-                $scope.HolidayDays.isVisible = !$scope.HolidayDays.isVisible;
+                $scope.userHolidayBookings = response.data;
+                $scope.initData([$scope.userHolidayBookings]);
+                $scope.userHolidayBookings.isVisible = false;
                 viewService.calendarGoToView($scope, views.CalendarModeEmployee);
                 $scope.temporarygetlistofteammembers();
             });
-        }
 
+        }
     };
 
     $scope.temporarygetlistofteammembers = function () {
         dataService.getAllUsers().then(function (response) {
-            $scope.teamHolidays = response.data;
-            $scope.getListOfTeamMembers($scope.teamHolidays);
+            $scope.teamUserHolidayBookings = response.data;
+            $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
         });
     };
 
@@ -40,12 +40,17 @@
             $scope.parseDateTimeToMoment(holidayArray[i].HolidayBookings);
         }
         $scope.unmergeHolidays(holidayArray);
+        for (var i = 0; i < holidayArray.length; i++) {
+            holidayArray[i].HolidayBookings = _.sortBy(holidayArray[i].HolidayBookings, function (Booking) { return Booking.StartDate });
+        }
     };
 
-    $scope.unmergeHolidays = function(holidayArray) {
+    $scope.unmergeHolidays = function (holidayArray) {
+        var totalDays = 0;
         for (var i = 0; i < holidayArray.length; i++) {
             var count = holidayArray[i].HolidayBookings.length;
             for (var j = 0; j < count; j++) {
+                totalDays = totalDays + holidayArray[i].HolidayBookings[j].AllowanceDays;
                 while (holidayArray[i].HolidayBookings[j].StartDate.day() != holidayArray[i].HolidayBookings[j].EndDate.day()) {
                     var copyOfHolidayBooking = _.cloneDeep(holidayArray[i].HolidayBookings[j]);
                     copyOfHolidayBooking.EndDate = moment(copyOfHolidayBooking.EndDate);
@@ -55,17 +60,19 @@
                 }
 
             }
+            holidayArray[i].RemainingAllowance = holidayArray[i].HolidayAllowance - totalDays;
+            totalDays = 0;
         }
+
     };
 
-    $scope.setAllowanceDaysOfUnmergedHolidays = function(holidayArray) {
+    $scope.setAllowanceDaysOfUnmergedHolidays = function (holidayArray) {
         for (var j = 0; j < holidayArray.HolidayBookings.length; j++) {
             holidayArray.HolidayBookings[j].AllowanceDays = 1;
-            //holidayArray.HolidayBookings[j].HolidayId = 0;
         }
     };
 
-    $scope.parseDateTimeToMoment = function(holidayBookingsArray) {
+    $scope.parseDateTimeToMoment = function (holidayBookingsArray) {
         for (var j = 0; j < holidayBookingsArray.length; j++) {
             var teamHolidayBookings = holidayBookingsArray[j];
             if (typeof teamHolidayBookings.StartDate === "object") {
@@ -79,30 +86,7 @@
         }
     };
 
-    $scope.$watch('HolidayDays', function () {
-        var pendingCount = 0;
-        var confirmedCount = 0;
-        var cancelledCount = 0;
-        if (typeof $scope.HolidayDays !== "undefined") {
-            var holidayBookings = $scope.HolidayDays.HolidayBookings;
-            for (var i = 0; i < holidayBookings.length; i++) {
-                if (holidayBookings[i].BookingStatus == 0)
-                    pendingCount++;
-                else if (holidayBookings[i].BookingStatus == 1)
-                    confirmedCount++;
-                else {
-                    cancelledCount++;
-                }
-            }
-            $scope.infoBoxDaysPending = pendingCount;
-            $scope.infoBoxDaysConfirmed = confirmedCount;
-            $scope.infoBoxDaysCancelled = cancelledCount;
-            $scope.infoBoxDaysRemaining = $scope.HolidayDays.RemainingAllowance;
-        }
-    }, true);
-
-
-    $scope.getListOfTeamMembers = function(holidayArray) {
+    $scope.getListOfTeamMembers = function (holidayArray) {
         var listOfTeamMembers = [];
         for (var i = 0; i < holidayArray.length; i++) {
             listOfTeamMembers.push({
@@ -113,14 +97,14 @@
         $scope.listOfTeamMembers = listOfTeamMembers;
     };
 
-    $scope.toggleEditMode = function() {
+    $scope.toggleEditMode = function () {
         $scope.editMode = !$scope.editMode;
     };
 
-    $scope.submitHoliday = function() {
-        $scope.HolidayDays.HolidayBookings = _.sortBy($scope.HolidayDays.HolidayBookings, function(Booking) { return Booking.StartDate });
-        $scope.setAllowanceDaysOfUnmergedHolidays($scope.HolidayDays);
-        var userHolidaysClone = _.cloneDeep($scope.HolidayDays);
+    $scope.submitHoliday = function () {
+        $scope.userHolidayBookings.HolidayBookings = _.sortBy($scope.userHolidayBookings.HolidayBookings, function (Booking) { return Booking.StartDate });
+        $scope.setAllowanceDaysOfUnmergedHolidays($scope.userHolidayBookings);
+        var userHolidaysClone = _.cloneDeep($scope.userHolidayBookings);
         var userHolidaysCloneHolidayBookings = userHolidaysClone.HolidayBookings;
         $scope.parseDateTimeToMoment(userHolidaysCloneHolidayBookings);
         if (userHolidaysCloneHolidayBookings.length > 0) {
@@ -133,7 +117,7 @@
         dataService.sendUserData(userHolidaysClone);
     };
 
-    $scope.consolidateHolidayBookings = function(holidayBooking) {
+    $scope.consolidateHolidayBookings = function (holidayBooking) {
         var consolidatedHolidayBookings = [];
         var startFlag = true;
         var test = null;

@@ -23,25 +23,23 @@ namespace GWHolidayBookingWeb.Migrations
                         LastName = "A",
                         HolidayAllowance = 25,
                         RemainingAllowance = 20,
-                        isVisible = false,
                         HolidayBookings = new List<HolidayBooking>
                         {
                             new HolidayBooking
                             {
                                 StartDate = new DateTime(2015, 10, 5),
                                 EndDate = new DateTime(2015, 10, 9),
-                                AllowanceDays = 4,
+                                AllowanceDays = 5,
                                 BookingStatus = BookingStatusEnum.Pending
                             }
                         }
                     },
-                    new User
+           new User
                     {
                         FirstName = "Mary",
                         LastName = "B",
                         HolidayAllowance = 25,
                         RemainingAllowance = 17,
-                        isVisible = false,
                         HolidayBookings = new List<HolidayBooking>
                         {
                             new HolidayBooking
@@ -66,7 +64,6 @@ namespace GWHolidayBookingWeb.Migrations
                         LastName = "C",
                         HolidayAllowance = 25,
                         RemainingAllowance = 17,
-                        isVisible = false,
                         HolidayBookings = new List<HolidayBooking>
                         {
                             new HolidayBooking
@@ -91,7 +88,6 @@ namespace GWHolidayBookingWeb.Migrations
                         LastName = "D",
                         HolidayAllowance = 25,
                         RemainingAllowance = 18,
-                        isVisible = false,
                         HolidayBookings = new List<HolidayBooking>
                         {
                             new HolidayBooking
@@ -116,7 +112,6 @@ namespace GWHolidayBookingWeb.Migrations
                         LastName = "E",
                         HolidayAllowance = 25,
                         RemainingAllowance = 17,
-                        isVisible = false,
                         HolidayBookings = new List<HolidayBooking>
                         {
                             new HolidayBooking
@@ -133,6 +128,16 @@ namespace GWHolidayBookingWeb.Migrations
                                 AllowanceDays = 5,
                                 BookingStatus = BookingStatusEnum.Confirmed
                             }
+                        }
+                    },
+                    new User
+                    {
+                        FirstName = "Dominic",
+                        LastName = "C",
+                        HolidayAllowance = 25,
+                        RemainingAllowance = 25,
+                        HolidayBookings = new List<HolidayBooking>
+                        {
                         }
                     }
             };

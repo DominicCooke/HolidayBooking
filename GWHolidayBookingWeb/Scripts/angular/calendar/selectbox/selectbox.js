@@ -8,9 +8,9 @@
         link: function ($scope) {
             $scope.isSelect = function (id) {
                 dataService.getUserById(id).then(function (response) {
-                    $scope.HolidayDays = response.data;
-                    $scope.initData([$scope.HolidayDays]);
-                    $scope.HolidayDays.isVisible = !$scope.HolidayDays.isVisible;
+                    $scope.userHolidayBookings = response.data;
+                    $scope.initData([$scope.userHolidayBookings]);
+                    $scope.userHolidayBookings.isVisible = !$scope.userHolidayBookings.isVisible;
                 });
             }
         }

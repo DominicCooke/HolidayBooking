@@ -7,11 +7,13 @@
         scope: false,
         link: function ($scope) {
             $scope.checkIsFound = function (isFoundState) {
-                $scope.isFoundValue = "crossed";
+                $scope.isFoundValue = "null";
                 if (isFoundState == "checked")
                     $scope.isFoundValue = "checked";
                 else if (isFoundState == "pending")
                     $scope.isFoundValue = "pending";
+                else if (isFoundState == "cancelled")
+                    $scope.isFoundValue = "cancelled";
 
             }
 
@@ -27,19 +29,18 @@
                     var teamNameEntry = { 'name': $scope.listOfTeamMembers[j], 'isFoundState': "crossed" };
                     employeeWithHolidayNames.push(teamNameEntry);
                 }
-
-                for (var i = 0; i < $scope.teamHolidays.length; i++) {
-                    for (var k = 0; k < $scope.teamHolidays[i].HolidayBookings.length; k++) {
-                        if ($scope.teamHolidays[i].isVisible == true) {
-                            if ($scope.teamHolidays[i].HolidayBookings[k].StartDate.isSame(date)) {
-                                employeeWithHolidayCount++;
-                                if ($scope.teamHolidays[i].HolidayBookings[k].BookingStatus == "0") {
-                                    employeeWithHolidayNames[i].isFoundState = "pending";
-                                } else {
-                                    employeeWithHolidayNames[i].isFoundState = "checked";
-                                }
+                var tUHB = $scope.teamUserHolidayBookings;
+                for (var i = 0; i < tUHB.length; i++) {
+                    for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
+                        if (tUHB[i].HolidayBookings[k].StartDate.isSame(date, 'day')) {
+                            employeeWithHolidayCount++;
+                            if (tUHB[i].HolidayBookings[k].BookingStatus == "0") {
+                                employeeWithHolidayNames[i].isFoundState = "pending";
+                            } else if (tUHB[i].HolidayBookings[k].BookingStatus == "1") {
+                                employeeWithHolidayNames[i].isFoundState = "checked";
+                            } else {
+                                employeeWithHolidayNames[i].isFoundState = "cancelled";
                             }
-
                         }
                     }
                 }
@@ -47,34 +48,30 @@
             }
 
             $scope.showTooltip = function (e, day) {
-                if ($scope.mode == "manager") {
-                    countAndNamesOfEmployeesWithHolidayOnDate = $scope.checkHowManyHolidaysAreOnEachDay(day.date);
-                    day.isTeamHoliday = $scope.isTeamHoliday(day.date);
-                    if (day.isPublicHoliday == true || day.isTeamHoliday == false || countAndNamesOfEmployeesWithHolidayOnDate.count == 0) {
-                        $scope.tooltipIsVisible = false;
-                        return;
-                    }
-
-                    $scope.tooltipIsVisible = true;
-                    var left = e.clientX + 40 + "px";
-                    var top = e.clientY + "px";
-                    var divTooltip = $(".hoverTooltip")[0];
-                    divTooltip.style.left = left;
-                    divTooltip.style.top = top;
-
-                    $scope.holidayCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.count;
-                    $scope.holidayEmployeeNamesTooltip = countAndNamesOfEmployeesWithHolidayOnDate.names;
+                countAndNamesOfEmployeesWithHolidayOnDate = $scope.checkHowManyHolidaysAreOnEachDay(day.date);
+                day.isTeamHoliday = $scope.isTeamHoliday(day.date);
+                if (day.isTeamHoliday == false || countAndNamesOfEmployeesWithHolidayOnDate.count == 0) {
+                    $scope.tooltipIsVisible = false;
+                    return;
                 }
+
+                $scope.tooltipIsVisible = true;
+                var left = e.clientX + 40 + "px";
+                var top = e.clientY + "px";
+                var divTooltip = $(".hoverTooltip")[0];
+                divTooltip.style.left = left;
+                divTooltip.style.top = top;
+
+                $scope.holidayCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.count;
+                $scope.holidayEmployeeNamesTooltip = countAndNamesOfEmployeesWithHolidayOnDate.names;
             }
 
             $scope.moveTooltip = function (e) {
-                if ($scope.mode == "manager") {
-                    var left = e.clientX + 40 + "px";
-                    var top = e.clientY + "px";
-                    var divTooltip = $(".hoverTooltip")[0];
-                    divTooltip.style.left = left;
-                    divTooltip.style.top = top;
-                }
+                var left = e.clientX + 40 + "px";
+                var top = e.clientY + "px";
+                var divTooltip = $(".hoverTooltip")[0];
+                divTooltip.style.left = left;
+                divTooltip.style.top = top;
             }
 
             $scope.hideTooltip = function () {

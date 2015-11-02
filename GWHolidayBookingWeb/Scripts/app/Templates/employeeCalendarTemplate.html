@@ -20,28 +20,28 @@
               today: day.isToday,
               'different-month': !day.isCurrentMonth,
               selected: day.date.isSame(selected),
-              isWeekend: isWeekend(day.date),
-              isConfirmedHoliday: isStatusHoliday(day.date, 1),
-              isCancelledHoliday: isStatusHoliday(day.date,2),
-              isPendingHoliday: isStatusHoliday(day.date,0),
-              isPublicHoliday: isPublicHoliday(day.date)
+              isWeekend: day.isWeekend,
+              isPublicHoliday: day.isPublicHoliday,
+              isConfirmedHoliday: day.isConfirmedHoliday,
+              isCancelledHoliday: day.isCancelledHoliday,
+              isPendingHoliday: day.isPendingHoliday
               }" ng-click="select(day.date)" ng-repeat="day in week.days">{{day.number}}</span>
     </div>
 </div>
-<div class="key">
-    <div id="publicHolidayKey">
+<div class="key bottom">
+    <div id="publicHolidayKey" class="holidayKey">
         <div class="keyColor" id="publicHolidayKeyColor"></div>
         <div class="keyLabel" id="publicHolidayKeyColorLabel">Public Holiday</div>
     </div>
-    <div id="pendingHolidayKey">
+    <div id="pendingHolidayKey" class="holidayKey">
         <div class="keyColor" id="pendingHolidayKeyColor"></div>
         <div class="keyLabel" id="pendingHolidayKeyColorLabel">Pending Holiday</div>
     </div>
-    <div id="confirmedHolidayKey">
+    <div id="confirmedHolidayKey" class="holidayKey">
         <div class="keyColor" id="confirmedHolidayKeyColor"></div>
         <div class="keyLabel" id="confirmedHolidayKeyColorLabel">Confirmed Holiday</div>
     </div>
-    <div id="cancelledHolidayKey">
+    <div id="cancelledHolidayKey" class="holidayKey">
         <div class="keyColor" id="cancelledHolidayKeyColor"></div>
         <div class="keyLabel" id="cancelledHolidayKeyColorLabel">Cancelled Holiday</div>
     </div>
