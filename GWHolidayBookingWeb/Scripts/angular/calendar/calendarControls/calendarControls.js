@@ -1,7 +1,6 @@
 ﻿calendarControlsDirective = function (dataService, templates) {
     return {
         restrict: "E",
-        //templateUrl: "/Scripts/app/templates/managerCalendarControlsTemplate.html",
         templateUrl: function ($elem, $attr) {
             return templates[$attr.mode];
         },
