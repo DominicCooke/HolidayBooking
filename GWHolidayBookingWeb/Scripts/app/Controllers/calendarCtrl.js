@@ -23,6 +23,7 @@
                 $scope.userHolidayBookings.isVisible = false;
                 viewService.calendarGoToView($scope, views.CalendarModeEmployee);
                 $scope.temporarygetlistofteammembers();
+                $scope.isSelect(1);
             });
 
         }

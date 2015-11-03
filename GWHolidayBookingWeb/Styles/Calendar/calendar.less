@@ -26,35 +26,21 @@
     vertical-align: middle;
 }
 
-.border-box {
-    box-sizing: border-box;
-}
-
 .bodyContainer {
     width: 100%;
     height: 70%;
     border: 1px solid black;
     font-family: Roboto-Regular;
-    position: relative;
     background-size: cover;
     background-image: url('../../Content/images/background.jpg');
 
-    > .test {
-        color: black;
-        font-size: 20px;
-        background: magenta;
-    }
-
     > .otherSpace {
-        position: relative;
         width: 40%;
         height: 100%;
         font-size: 250%;
-        color: rgba(255, 255, 255, 0.8);
         font-weight: bolder;
         line-height: 1;
         float: left;
-        z-index: 6;
 
         > employeecalendarinfobox {
             > .infoBoxContainer {
@@ -62,7 +48,6 @@
                 border: 1px solid black;
                 margin: 6%;
                 height: 20%;
-                width: 88%;
                 text-align: center;
 
                 > .infoBoxName {
@@ -73,12 +58,11 @@
 
                 > .infoBoxContainerTable {
                     display: table;
-                    width: 100%;
                     margin-top: 2%;
+                    width: 100%;
 
                     > .infoBoxContainerRow {
                         display: table-row;
-                        width: 100%;
 
                         > .infoBoxContainerCell {
                             display: table-cell;
@@ -121,9 +105,6 @@
             color: white;
             font-size: 15px;
             font-weight: normal;
-            height: 100%;
-            width: 100%;
-            display: inline-block;
 
             > .navigationalTabsContainer {
                 padding: 6%;
@@ -155,7 +136,6 @@
                         text-align: center;
 
                         > a {
-                            width: 100%;
                             height: 100%;
                             border: 0;
                             padding: 0;
@@ -164,7 +144,6 @@
                             flex-direction: column;
                             color: white;
                             background: @background-colour;
-                            border-radius: 0;
                         }
                     }
 
@@ -186,15 +165,11 @@
                         background: @background-colour;
 
                         > managercalendarcontrols {
-                            height: 100%;
-                            width: 100%;
-                            display: block;
 
                             > .teamMemberHeaderRow {
                                 display: table;
                                 text-align: center;
                                 width: 100%;
-                                height: 7%;
                                 border-top: 1px solid black;
 
                                 > .teamMemberInfoHeader {
@@ -220,22 +195,11 @@
                                     }
 
 
-                                    > .notification-counter-pending {
+                                    > .notification-counter {
                                         position: absolute;
                                         top: -7px;
                                         left: 33px;
                                         background-color: #d4130d;
-                                        color: #fff;
-                                        border-radius: 3px;
-                                        padding: 1px 3px;
-                                    }
-
-                                    > .notification-counter-cancelled {
-                                        position: absolute;
-                                        top: -7px;
-                                        left: 33px;
-                                        background-color: #d4130d;
-                                        color: #fff;
                                         border-radius: 3px;
                                         padding: 1px 3px;
                                     }
@@ -267,7 +231,6 @@
 
                                             > .teamMemberInfo {
                                                 display: table-cell;
-                                                padding: 0 5px;
                                                 border-left: 1px solid @border-colour;
                                                 width: 12%;
 
@@ -315,9 +278,7 @@
                                         display: table-cell;
                                         background: lighten(@background-colour,20%);
                                         padding: 10px 15px;
-                                        text-align: center;
                                         border-right: 1px solid black;
-                                        border-bottom: 1px solid black;
                                         width: 30%;
 
                                         &.active {
@@ -358,8 +319,6 @@
                                 > .tabHolidayHeader {
                                     background: lighten(@background-colour,20%);
                                     border-top: 1px black solid;
-                                    border-bottom: 1px black solid;
-                                    border-right: 1px black solid;
                                     padding: 8px 5px;
 
                                     &:last-child {
@@ -451,28 +410,21 @@
         }
     }
 
-
     > calendar {
         position: relative;
         border-right: 1px solid black;
         border-left: 1px solid black;
         float: left;
-        display: block;
-        box-sizing: border-box;
         background: @background-colour;
         width: 50%;
         height: 100%;
-        z-index: 7;
 
         > managercalendartooltip {
             > .hoverTooltip {
                 position: fixed;
-                z-index: 100;
                 background: rgba(0, 0, 0, 0.7);
                 outline: solid 1px black;
                 color: white;
-                pointer-events: none;
-                display: table;
                 border-spacing: 9px;
                 text-align: center;
 
@@ -531,7 +483,6 @@
         > .header {
             float: left;
             width: 100%;
-            height: @header-height;
             color: white;
             margin-top: 15%;
 
@@ -543,17 +494,16 @@
                 float: left;
                 width: 10%;
                 position: relative;
-                .border-box;
                 padding: 0 @spacing;
                 cursor: pointer;
+            }
 
-                > &.fa-angle-left {
-                    text-align: left;
-                }
+            > .fa-angle-left {
+                text-align: left;
+            }
 
-                > &.fa-angle-right {
-                    text-align: right;
-                }
+            > .fa-angle-right {
+                text-align: right;
             }
 
             > span {
@@ -563,27 +513,18 @@
                 font-weight: bold;
                 font-size: 2em;
                 text-transform: uppercase;
-                .border-box;
                 text-align: center;
-                color: inherit;
             }
         }
 
         > .month {
-            transition: 2s;
 
             > .week {
                 width: 100%;
                 padding-left: 10%;
                 padding-right: 10%;
-                float: left;
-
-                &:first-child {
-                    border-top: none;
-                }
 
                 &.names > span {
-                    color: rgba(255, 255, 255, 0.60);
                     margin-top: 30px;
                     pointer-events: none;
                 }
@@ -592,8 +533,6 @@
                     float: left;
                     border-radius: 15%;
                     width: 95%/7;
-                    .border-box;
-                    font-size: 1em;
                     text-align: center;
                     .vertical-centre(5vh);
                     cursor: pointer;
@@ -624,7 +563,6 @@
 
                     &.isConfirmedHoliday {
                         background: @normalHoliday-colour;
-                        transition: 0.5s;
                     }
 
                     &.isPublicHoliday {
@@ -635,60 +573,52 @@
 
                     &.isPendingHoliday {
                         background-color: @pendingHoliday-colour !important;
-                        transition: 0.5s;
                     }
 
                     &.isCancelledHoliday {
                         background: @cancelledHoliday-colour !important;
-                        transition: 0.5s;
                     }
 
                     &.isTeamHoliday.isPendingHoliday {
                         background: @pendingHoliday-colour !important;
-                        transition: 0.5s;
                     }
 
                     &.holidayNum1 {
                         background: fade(@oneHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 0.5s;
                     }
 
                     &.holidayNum2 {
                         background: fade(@twoHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 0.5s;
                     }
 
                     &.holidayNum3 {
                         background: fade(@threeHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 0.5s;
                     }
 
                     &.holidayNum4 {
                         background: fade(@fourHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 0.5s;
                     }
 
                     &.holidayNum5 {
                         background: fade(@fiveHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
-                        transition: 0.5s;
                     }
                 }
             }
         }
 
         > .key {
-            width: 100%;
             height: 13%;
+            width: 100%;
             position: absolute;
             padding-left: 5%;
             padding-right: 5%;
@@ -732,7 +662,6 @@
 
             > #publicHolidayKey {
                 width: 25%;
-                height: 100%;
                 float: left;
 
                 > #publicHolidayKeyColor {
@@ -742,7 +671,6 @@
 
             > #confirmedHolidayKey {
                 width: 25%;
-                height: 100%;
                 float: left;
 
                 > #confirmedHolidayKeyColor {
@@ -752,7 +680,6 @@
 
             > #pendingHolidayKey {
                 width: 25%;
-                height: 100%;
                 float: left;
 
                 > #pendingHolidayKeyColor {
@@ -762,7 +689,6 @@
 
             > #cancelledHolidayKey {
                 width: 25%;
-                height: 100%;
                 float: left;
 
                 > #cancelledHolidayKeyColor {
