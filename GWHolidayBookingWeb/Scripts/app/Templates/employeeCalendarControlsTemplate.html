@@ -1,0 +1,24 @@
+﻿<div class="placeholder">
+    <div class="placeholderteam">Technical Team</div>
+
+    <div class="teamMemberHeaderRow">
+        <div class="teamMemberInfoHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
+        <div class="teamMemberInfoHeader">
+            <div class="fa fa-check"></div>
+        </div>
+        <div class="teamMemberInfoHeader">RA</div>
+        <div class="teamMemberInfoHeader">HA</div>
+    </div>
+
+    <div class="teamMemberInfoContainerEmployee">
+        <div class="teamMemberTableInfoContainer">
+            <div class="teamMemberRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
+                <div class="teamMember person" value="{{user.StaffNumber}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName}}</div>
+                <div class="teamMemberInfo">{{user.ConfirmedHolidays}}</div>
+                <div class="teamMemberInfo">{{user.RemainingAllowance}}</div>
+                <div class="teamMemberInfo">{{user.HolidayAllowance}}</div>
+            </div>
+        </div>
+    </div>
+
+</div>

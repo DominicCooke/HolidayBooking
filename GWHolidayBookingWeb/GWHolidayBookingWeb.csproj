@@ -142,6 +142,7 @@
     <Content Include="Scripts\app\PartialViews\calendarModeManager.html" />
     <Content Include="Scripts\app\Services\dataService.js" />
     <Content Include="Scripts\app\Templates\employeeCalendarInfoBoxTemplate.html" />
+    <Content Include="Scripts\app\Templates\employeeCalendarControlsTemplate.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -161,7 +162,7 @@
     <Content Include="Scripts\angular\bootstrap\ui-bootstrap-0.13.4.js" />
     <Content Include="Scripts\angular\bootstrap\ui-bootstrap-tpls-0.14.0.js" />
     <Content Include="Scripts\angular\calendar\calendar.js" />
-    <Content Include="Scripts\angular\calendar\managerCalendarControls\managerCalendarControls.js" />
+    <Content Include="Scripts\angular\calendar\calendarControls\calendarControls.js" />
     <Content Include="Scripts\angular\calendar\selectbox\selectbox.js" />
     <Content Include="Scripts\angular\calendar\managerCalendarTabs\managerCalendarTabs.js" />
     <Content Include="Scripts\angular\calendar\managerCalendarTooltip\managerCalendarTooltip.js" />

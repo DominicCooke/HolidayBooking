@@ -1,9 +1,11 @@
-﻿managerCalendarControlsDirective = function (dataService) {
+﻿calendarControlsDirective = function (dataService, templates) {
     return {
         restrict: "E",
-        templateUrl: "/Scripts/app/templates/managerCalendarControlsTemplate.html",
+        //templateUrl: "/Scripts/app/templates/managerCalendarControlsTemplate.html",
+        templateUrl: function ($elem, $attr) {
+            return templates[$attr.mode];
+        },
         controller: 'calendarCtrl',
-        controllerAs: 'vm',
         scope: false,
         link: function ($scope) {
 
@@ -71,7 +73,12 @@
                     color: 'rgba(255, 255, 255, 0.95)'
                 });
                 $('.tabHolidayContainer').slimScroll({
-                    height: '51%',
+                    height: '25%',
+                    color: 'rgba(255, 255, 255, 0.95)'
+                });
+                $('.teamMemberInfoContainerEmployee').slimScroll({
+                    height: '27%',
+                    alwaysVisible: true,
                     color: 'rgba(255, 255, 255, 0.95)'
                 });
             };
@@ -161,14 +168,15 @@
 
             $scope.$watch('tabHolidays', function () {
                 if (typeof $scope.tabHolidays !== "undefined") {
-                    $('.pendingHolidayRow').hide();
-                    $('.cancelledHolidayRow').hide();
+                    $('.tabHolidayContainer').show();
                     if (!$scope.tabHolidays.TabHolidays.length == 0 && $scope.tabHolidays.TypeOfHoliday == 0) {
                         $('.pendingHolidayRow').show();
                     }
                     if (!$scope.tabHolidays.TabHolidays.length == 0 && $scope.tabHolidays.TypeOfHoliday == 2) {
                         $('.cancelledHolidayRow').show();
                     };
+                } else {
+                    $('.tabHolidayContainer').hide();
                 }
             }, true);
 
@@ -220,4 +228,4 @@
         }
     };
 };
-managerCalendarControlsDirective.$inject = ['dataService'];
+calendarControlsDirective.$inject = ['dataService', 'templates'];

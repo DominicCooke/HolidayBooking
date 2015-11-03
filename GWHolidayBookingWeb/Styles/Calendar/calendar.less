@@ -101,6 +101,154 @@
             }
         }
 
+
+        > calendarcontrols {
+
+            > .placeholder {
+                text-align: center;
+                background: rgba(0, 0, 0, 0.6);
+                border: 1px solid black;
+                margin: 6%;
+                border-collapse: collapse;
+                color: white;
+                font-size: 15px;
+                font-weight: normal;
+
+                > .placeholderteam {
+                    color: white;
+                    font-weight: normal;
+                    font-size: 25px;
+                    padding-top: 5%;
+                    padding-bottom: 2%;
+                }
+
+                > .teamMemberHeaderRow {
+                    display: table;
+                    width: 100%;
+                    border-top: 1px solid black;
+
+                    > .teamMemberInfoHeader {
+                        display: table-cell;
+                        padding: 0 5px;
+                        border-bottom: 1px solid black;
+                        border-left: 1px solid black;
+                        width: 12%;
+                        pointer-events: none;
+                        position: relative;
+
+                        &:first-child {
+                            pointer-events: all;
+                            width: 30%;
+                            padding: 10px 15px;
+                            border-left: 0;
+                            cursor: pointer;
+                            background: lighten(@background-colour,20%);
+
+                            &.active {
+                                background: lighten(@background-colour,50%);
+                            }
+                        }
+
+
+                        > .notification-counter {
+                            position: absolute;
+                            top: -7px;
+                            left: 33px;
+                            background-color: #d4130d;
+                            border-radius: 3px;
+                            padding: 1px 3px;
+                        }
+                    }
+                }
+
+                > .slimScrollDiv {
+                    > .teamMemberInfoContainerEmployee {
+                        width: 100%;
+                        height: 100% !important;
+                        overflow: hidden;
+
+                        .teamMemberTableInfoContainer {
+                            display: table;
+                            width: 100%;
+
+                            > .teamMemberRow {
+                                display: table-row;
+                                border-bottom: 1px solid black;
+
+                                &:last-child {
+                                    border-bottom: 0;
+
+                                    > .teamMember {
+                                        border-bottom: 0;
+                                    }
+                                }
+
+                                > .teamMemberInfo {
+                                    display: table-cell;
+                                    border-left: 1px solid @border-colour;
+                                    width: 12%;
+
+                                    @keyframes textpulsatepending {
+                                        0% {
+                                        }
+
+                                        50% {
+                                            background: fade(@pendingHoliday-colour,40%);
+                                        }
+
+                                        100% {
+                                        }
+                                    }
+
+                                    @keyframes textpulsatecancelled {
+                                        0% {
+                                        }
+
+                                        50% {
+                                            background: fade(@cancelledHoliday-colour,40%);
+                                        }
+
+                                        100% {
+                                        }
+                                    }
+
+                                    &.isPendingHoliday {
+                                        animation: textpulsatepending 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
+                                    }
+
+                                    &.isCancelledHoliday {
+                                        animation: textpulsatecancelled 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+                        }
+
+                        .teamMember {
+                            cursor: pointer;
+                            display: table-cell;
+                            background: lighten(@background-colour,20%);
+                            padding: 10px 15px;
+                            border-right: 1px solid black;
+                            width: 30%;
+
+                            &.active {
+                                background: lighten(@background-colour,50%);
+                            }
+
+                            &.dead {
+                                pointer-events: none;
+                                background: darken(@background-colour,50%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         > managercalendartabs {
             color: white;
             font-size: 15px;
@@ -158,13 +306,12 @@
                     height: 85%;
 
                     > .tab-pane {
-                        height: 100%;
                         border-left: 1px solid black;
                         border-right: 1px solid black;
                         border-bottom: 1px solid black;
                         background: @background-colour;
 
-                        > managercalendarcontrols {
+                        > calendarcontrols {
 
                             > .teamMemberHeaderRow {
                                 display: table;
@@ -294,7 +441,7 @@
                             }
 
                             > .tabHeaderHolidayRow {
-                                display: table;
+                                display: table !important;
                                 text-align: center;
                                 width: 100%;
                                 height: 7%;
@@ -333,11 +480,13 @@
                             }
 
                             .slimScrollDiv {
+
+
                                 > .tabHolidayContainer {
                                     text-align: center;
                                     width: 100%;
-                                    height: 100% !important;
                                     overflow-y: auto;
+                                    height: 100% !important;
 
                                     > .tabTableHolidayContainer {
                                         display: table;

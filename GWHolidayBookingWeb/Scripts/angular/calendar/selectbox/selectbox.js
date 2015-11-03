@@ -3,7 +3,6 @@
         restrict: "E",
         templateUrl: "/Scripts/app/templates/selectboxTemplate.html",
         controller: 'calendarCtrl',
-        controllerAs: 'vm',
         scope: false,
         link: function ($scope) {
             $scope.isSelect = function (id) {

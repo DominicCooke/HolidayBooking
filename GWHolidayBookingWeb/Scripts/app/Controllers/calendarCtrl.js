@@ -25,13 +25,13 @@
                 $scope.temporarygetlistofteammembers();
                 $scope.isSelect(1);
             });
-
         }
     };
 
     $scope.temporarygetlistofteammembers = function () {
         dataService.getAllUsers().then(function (response) {
             $scope.teamUserHolidayBookings = response.data;
+            $scope.initData($scope.teamUserHolidayBookings);
             $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
         });
     };

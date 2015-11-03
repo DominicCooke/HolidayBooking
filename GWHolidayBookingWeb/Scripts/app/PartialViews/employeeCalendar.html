@@ -2,9 +2,11 @@
 <div class="bodyContainer" ng-cloak ng-controller="calendarCtrl" ng-init="init('employee')">
     <div class="otherSpace">
         <employeecalendarinfobox></employeecalendarinfobox>
+        <calendarcontrols mode="employeeControls"></calendarcontrols> 
         <div class="controls">
             <button ng-click="toggleEditMode()">Edit Mode</button>
             <button ng-click="submitHoliday(selectedUser)" ng-model="selectedUser">Submit</button>
             <selectbox></selectbox>
         </div>
     </div>
+</div>
