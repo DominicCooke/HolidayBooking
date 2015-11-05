@@ -1,6 +1,5 @@
 ﻿<div class="teamMemberControlsContainer">
     <div class="nameOfTeam">Technical Team</div>
-
     <div class="teamMemberHeaderRow">
         <div class="teamMemberInfoHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
         <div class="teamMemberInfoHeader">
@@ -9,7 +8,6 @@
         <div class="teamMemberInfoHeader">RA</div>
         <div class="teamMemberInfoHeader">HA</div>
     </div>
-
     <div class="teamMemberInfoContainerEmployee">
         <div class="teamMemberTableInfoContainer">
             <div class="teamMemberRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
@@ -20,5 +18,4 @@
             </div>
         </div>
     </div>
-
 </div>

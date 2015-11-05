@@ -106,7 +106,7 @@
         var userHolidaysCloneHolidayBookings = userHolidaysClone.HolidayBookings;
         $scope.parseDateTimeToMoment(userHolidaysCloneHolidayBookings);
         if (userHolidaysCloneHolidayBookings.length > 0) {
-            var consolidatedHolidayBookings = $combineHolidayBookings(userHolidaysCloneHolidayBookings);
+            var consolidatedHolidayBookings = combineHolidayBookings(userHolidaysCloneHolidayBookings);
             if (consolidatedHolidayBookings.length > 0) {
                 userHolidaysClone.HolidayBookings = consolidatedHolidayBookings;
             }
