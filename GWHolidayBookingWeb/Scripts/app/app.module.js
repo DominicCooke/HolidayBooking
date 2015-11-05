@@ -14,9 +14,9 @@ app.controller('calendarCtrl', calendarCtrl);
 app.directive('calendar', calendarDirective);
 app.directive('calendarcontrols', calendarControlsDirective);
 app.directive('selectbox', selectboxDirective);
-app.directive('managercalendartooltip', managerCalendarTooltipDirective);
-app.directive('managercalendartabs', managerCalendarTabsDirective);
-app.directive('employeecalendarinfobox', employeeCalendarInfoBoxDirective);
+app.directive('tooltip', tooltipDirective);
+app.directive('tabs', tabsDirective);
+app.directive('infobox', infoBoxDirective);
 
 app.factory('templates', templates);
 

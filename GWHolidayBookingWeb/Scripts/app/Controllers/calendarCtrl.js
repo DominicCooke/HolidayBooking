@@ -21,32 +21,29 @@
                 $scope.userHolidayBookings = response.data;
                 $scope.initData([$scope.userHolidayBookings]);
                 $scope.userHolidayBookings.isVisible = false;
-                viewService.calendarGoToView($scope, views.CalendarModeEmployee);
-                $scope.temporarygetlistofteammembers();
-                $scope.isSelect(1);
+                dataService.getAllUsers().then(function (response) {
+                    $scope.teamUserHolidayBookings = response.data;
+                    $scope.initData($scope.teamUserHolidayBookings);
+                    $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
+                    viewService.calendarGoToView($scope, views.CalendarModeEmployee);
+                });
+
+
             });
         }
-    };
-
-    $scope.temporarygetlistofteammembers = function () {
-        dataService.getAllUsers().then(function (response) {
-            $scope.teamUserHolidayBookings = response.data;
-            $scope.initData($scope.teamUserHolidayBookings);
-            $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
-        });
     };
 
     $scope.initData = function (holidayArray) {
         for (var i = 0; i < holidayArray.length; i++) {
             $scope.parseDateTimeToMoment(holidayArray[i].HolidayBookings);
         }
-        $scope.unmergeHolidays(holidayArray);
+        $scope.unmergeHolidayBookings(holidayArray);
         for (var i = 0; i < holidayArray.length; i++) {
             holidayArray[i].HolidayBookings = _.sortBy(holidayArray[i].HolidayBookings, function (Booking) { return Booking.StartDate });
         }
     };
 
-    $scope.unmergeHolidays = function (holidayArray) {
+    $scope.unmergeHolidayBookings = function (holidayArray) {
         var totalDays = 0;
         for (var i = 0; i < holidayArray.length; i++) {
             var count = holidayArray[i].HolidayBookings.length;
@@ -102,14 +99,14 @@
         $scope.editMode = !$scope.editMode;
     };
 
-    $scope.submitHoliday = function () {
+    $scope.submitHolidaySingleEmployee = function () {
         $scope.userHolidayBookings.HolidayBookings = _.sortBy($scope.userHolidayBookings.HolidayBookings, function (Booking) { return Booking.StartDate });
         $scope.setAllowanceDaysOfUnmergedHolidays($scope.userHolidayBookings);
         var userHolidaysClone = _.cloneDeep($scope.userHolidayBookings);
         var userHolidaysCloneHolidayBookings = userHolidaysClone.HolidayBookings;
         $scope.parseDateTimeToMoment(userHolidaysCloneHolidayBookings);
         if (userHolidaysCloneHolidayBookings.length > 0) {
-            var consolidatedHolidayBookings = $scope.consolidateHolidayBookings(userHolidaysCloneHolidayBookings);
+            var consolidatedHolidayBookings = $combineHolidayBookings(userHolidaysCloneHolidayBookings);
             if (consolidatedHolidayBookings.length > 0) {
                 userHolidaysClone.HolidayBookings = consolidatedHolidayBookings;
             }
@@ -118,16 +115,36 @@
         dataService.sendUserData(userHolidaysClone);
     };
 
-    $scope.consolidateHolidayBookings = function (holidayBooking) {
+    $scope.submitTeamUsersData = function () {
+        var arrayOfTeamUserHolidayBookings = [];
+        var tUHB = $scope.teamUserHolidayBookings
+        for (var i = 0; i < tUHB.length; i++) {
+
+            tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function (Booking) { return Booking.StartDate });
+            $scope.setAllowanceDaysOfUnmergedHolidays(tUHB[i]);
+            var userHolidaysClone = _.cloneDeep(tUHB[i]);
+            var userHolidaysCloneHolidayBookings = userHolidaysClone.HolidayBookings;
+            $scope.parseDateTimeToMoment(userHolidaysCloneHolidayBookings);
+            if (userHolidaysCloneHolidayBookings.length > 0) {
+                var consolidatedHolidayBookings = combineHolidayBookings(userHolidaysCloneHolidayBookings);
+                if (consolidatedHolidayBookings.length > 0) {
+                    userHolidaysClone.HolidayBookings = consolidatedHolidayBookings;
+                }
+            }
+            arrayOfTeamUserHolidayBookings.push(userHolidaysClone);
+        }
+
+        dataService.sendUsersData(arrayOfTeamUserHolidayBookings).then(function (response) {
+            alert("woo");
+        });
+    };
+
+    function combineHolidayBookings(holidayBooking) {
         var consolidatedHolidayBookings = [];
         var startFlag = true;
         var test = null;
         while (holidayBooking.length != 1) {
             if (holidayBooking[0].StartDate.day() + 1 == holidayBooking[1].StartDate.day() && startFlag == true && holidayBooking[0].BookingStatus == holidayBooking[1].BookingStatus) {
-                // if [1] in the array is a consecutive day of [0] then
-                // set end date of [0] to the start date of [1]
-                // remove [1] from the list of holidaybookings
-                // set start flag false, as a consolidated holiday booking has started
                 holidayBooking[0].EndDate = holidayBooking[1].StartDate;
                 holidayBooking[0].AllowanceDays++;
                 if (holidayBooking.length == 2) {
@@ -136,9 +153,6 @@
                 holidayBooking.splice(1, 1);
                 startFlag = false;
             } else if (holidayBooking[0].EndDate.day() + 1 == holidayBooking[1].StartDate.day() && startFlag == false && holidayBooking[0].BookingStatus == holidayBooking[1].BookingStatus) {
-                // if [1] in the array is a consecutive day of [0] then
-                // set end date of [0] to the start date of [1]
-                // remove [1] from the list of holidaybookings
                 holidayBooking[0].EndDate = holidayBooking[1].StartDate;
                 holidayBooking[0].AllowanceDays++;
                 if (holidayBooking.length == 2) {
@@ -154,10 +168,6 @@
                 holidayBooking.splice(0, 1);
                 startFlag = true;
             } else {
-                // if [1] in the array isn't a consecutive day of [0] then
-                // push the current consolidated holiday booking to the consolidated array
-                // remove it from the array of holiday bookings
-                // set start flag true, as a consolidated holiday booking has ended
                 if (test == holidayBooking[0].HolidayId) {
                     holidayBooking[0].HolidayId = 0;
                 } else {

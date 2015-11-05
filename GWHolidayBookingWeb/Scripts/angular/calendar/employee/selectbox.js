@@ -1,7 +1,7 @@
 ﻿selectboxDirective = function (dataService) {
     return {
         restrict: "E",
-        templateUrl: "/Scripts/app/templates/selectboxTemplate.html",
+        templateUrl: "/Scripts/app/templates/employee/selectboxTemplate.html",
         controller: 'calendarCtrl',
         scope: false,
         link: function ($scope) {
@@ -10,6 +10,8 @@
                     $scope.userHolidayBookings = response.data;
                     $scope.initData([$scope.userHolidayBookings]);
                     $scope.userHolidayBookings.isVisible = !$scope.userHolidayBookings.isVisible;
+                    $scope.reloadCalendar();
+                    $scope.teamHolidayCount();
                 });
             }
         }

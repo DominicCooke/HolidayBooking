@@ -1,9 +1,9 @@
-﻿employeeCalendarInfoBoxDirective = function () {
+﻿infoBoxDirective = function () {
     return {
         restrict: "E",
-        templateUrl: "/Scripts/app/templates/employeeCalendarInfoBoxTemplate.html",
+        templateUrl: "/Scripts/app/templates/employee/employeeCalendarInfoBoxTemplate.html",
         controller: 'calendarCtrl',
-        scope: false,
+        scope: true,
         link: function ($scope) {
             $scope.$watch('userHolidayBookings', function () {
                 var pendingCount = 0, confirmedCount = 0, cancelledCount = 0;
@@ -18,11 +18,7 @@
                             cancelledCount++;
                         }
                     }
-                    $scope.infoBoxDaysPending = pendingCount;
-                    $scope.infoBoxDaysConfirmed = confirmedCount;
-                    $scope.infoBoxDaysCancelled = cancelledCount;
-                    $scope.infoBoxDaysRemaining = $scope.userHolidayBookings.RemainingAllowance;
-                    $scope.infoBoxName = $scope.userHolidayBookings.FirstName + " " + $scope.userHolidayBookings.LastName;
+                    $scope.infoBoxDays = { Pending: pendingCount, Confirmed: confirmedCount, Cancelled: cancelledCount, Remaining: $scope.userHolidayBookings.RemainingAllowance, Name: $scope.userHolidayBookings.FirstName + " " + $scope.userHolidayBookings.LastName }
                 }
             }, true);
 

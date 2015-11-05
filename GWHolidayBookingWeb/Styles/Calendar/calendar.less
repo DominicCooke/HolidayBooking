@@ -42,7 +42,7 @@
         line-height: 1;
         float: left;
 
-        > employeecalendarinfobox {
+        > infobox {
             > .infoBoxContainer {
                 background: rgba(0, 0, 0, 0.6);
                 border: 1px solid black;
@@ -249,7 +249,7 @@
             }
         }
 
-        > managercalendartabs {
+        > tabs {
             color: white;
             font-size: 15px;
             font-weight: normal;
@@ -568,7 +568,7 @@
         width: 50%;
         height: 100%;
 
-        > managercalendartooltip {
+        > tooltip {
             > .hoverTooltip {
                 position: fixed;
                 background: rgba(0, 0, 0, 0.7);
@@ -576,24 +576,25 @@
                 color: white;
                 border-spacing: 9px;
                 text-align: center;
+                z-index: 1;
 
-                &.holidayNum1 {
+                &.teamHoliday1 {
                     border: solid 1px @oneHoliday-colour;
                 }
 
-                &.holidayNum2 {
+                &.teamHoliday2 {
                     border: solid 1px @twoHoliday-colour;
                 }
 
-                &.holidayNum3 {
+                &.teamHoliday3 {
                     border: solid 1px @threeHoliday-colour;
                 }
 
-                &.holidayNum4 {
+                &.teamHoliday4 {
                     border: solid 1px @fourHoliday-colour;
                 }
 
-                &.holidayNum5 {
+                &.teamHoliday5 {
                     border: solid 1px @fiveHoliday-colour;
                 }
 
@@ -683,12 +684,35 @@
                     border-radius: 15%;
                     width: 95%/7;
                     text-align: center;
+                    position: relative;
                     .vertical-centre(5vh);
                     cursor: pointer;
                     color: white;
                     margin: 2.5%/7;
                     background: rgba(255,255,255,0);
-                    transition: 1s;
+
+                    &.nonName {
+                        background: rgba(255,255,255,0.05);
+                    }
+
+                    > .confirmedHolidayCount {
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        background-color: #d4130d;
+                        border-bottom-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                        padding: 1px 3px;
+                        font-size: 14px;
+                        line-height: 1;
+                        font-weight: normal;
+                        color: white;
+                        width: 15px;
+                        height: 15px;
+                        box-shadow: 0 0 0 1px @background-colour;
+                    }
+
 
                     &.isweekend {
                         cursor: none;
@@ -732,31 +756,31 @@
                         background: @pendingHoliday-colour !important;
                     }
 
-                    &.holidayNum1 {
+                    &.teamHoliday1 {
                         background: fade(@oneHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
                     }
 
-                    &.holidayNum2 {
+                    &.teamHoliday2 {
                         background: fade(@twoHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
                     }
 
-                    &.holidayNum3 {
+                    &.teamHoliday3 {
                         background: fade(@threeHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
                     }
 
-                    &.holidayNum4 {
+                    &.teamHoliday4 {
                         background: fade(@fourHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;
                     }
 
-                    &.holidayNum5 {
+                    &.teamHoliday5 {
                         background: fade(@fiveHoliday-colour, 80%);
                         color: white;
                         border-radius: 15%;

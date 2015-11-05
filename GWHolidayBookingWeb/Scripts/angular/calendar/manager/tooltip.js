@@ -1,12 +1,14 @@
-﻿managerCalendarTooltipDirective = function () {
+﻿tooltipDirective = function (templates) {
     return {
         restrict: "E",
-        templateUrl: "/Scripts/app/templates/managerCalendarTooltipTemplate.html",
+        templateUrl: function ($elem, $attr) {
+            return templates[$attr.mode];
+        },
         controller: 'calendarCtrl',
         scope: false,
         link: function ($scope) {
             $scope.checkIsFound = function (isFoundState) {
-                $scope.isFoundValue = "null";
+                $scope.isFoundValue = null;
                 if (isFoundState == "checked")
                     $scope.isFoundValue = "checked";
                 else if (isFoundState == "pending")
@@ -20,9 +22,10 @@
                 $scope.HolidayAmount = holidayCount;
             }
 
-            $scope.checkHowManyHolidaysAreOnEachDay = function (date) {
+            function checkHowManyHolidaysAreOnEachDay(date) {
                 var employeeWithHolidayNames = [];
                 var employeeWithHolidayCount = 0;
+                var employeeWithHolidayCountConfirmed = 0;
 
                 for (var j = 0; j < $scope.listOfTeamMembers.length; j++) {
                     var teamNameEntry = { 'name': $scope.listOfTeamMembers[j], 'isFoundState': "crossed" };
@@ -37,19 +40,19 @@
                                 employeeWithHolidayNames[i].isFoundState = "pending";
                             } else if (tUHB[i].HolidayBookings[k].BookingStatus == "1") {
                                 employeeWithHolidayNames[i].isFoundState = "checked";
+                                employeeWithHolidayCountConfirmed++;
                             } else {
                                 employeeWithHolidayNames[i].isFoundState = "cancelled";
                             }
                         }
                     }
                 }
-                return { count: employeeWithHolidayCount, names: employeeWithHolidayNames }
+                return { allCount: employeeWithHolidayCount, names: employeeWithHolidayNames, confirmedCount: employeeWithHolidayCountConfirmed }
             }
 
             $scope.showTooltip = function (e, day) {
-                countAndNamesOfEmployeesWithHolidayOnDate = $scope.checkHowManyHolidaysAreOnEachDay(day.date);
-                day.isTeamHoliday = $scope.isTeamHoliday(day.date);
-                if (day.isTeamHoliday == false || countAndNamesOfEmployeesWithHolidayOnDate.count == 0) {
+                countAndNamesOfEmployeesWithHolidayOnDate = checkHowManyHolidaysAreOnEachDay(day.date);
+                if (day.isTeamHoliday == false || countAndNamesOfEmployeesWithHolidayOnDate.allCount == 0) {
                     $scope.tooltipIsVisible = false;
                     return;
                 }
@@ -61,7 +64,8 @@
                 divTooltip.style.left = left;
                 divTooltip.style.top = top;
 
-                $scope.holidayCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.count;
+                $scope.holidayVisibleCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.confirmedCount;
+                $scope.holidayCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.allCount;
                 $scope.holidayEmployeeNamesTooltip = countAndNamesOfEmployeesWithHolidayOnDate.names;
             }
 
