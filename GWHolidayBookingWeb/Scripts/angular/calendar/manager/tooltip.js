@@ -26,7 +26,6 @@
                 var employeeWithHolidayNames = [];
                 var employeeWithHolidayCount = 0;
                 var employeeWithHolidayCountConfirmed = 0;
-
                 for (var j = 0; j < $scope.listOfTeamMembers.length; j++) {
                     var teamNameEntry = { 'name': $scope.listOfTeamMembers[j], 'isFoundState': "crossed" };
                     employeeWithHolidayNames.push(teamNameEntry);
@@ -56,14 +55,12 @@
                     $scope.tooltipIsVisible = false;
                     return;
                 }
-
                 $scope.tooltipIsVisible = true;
                 var left = e.clientX + 40 + "px";
                 var top = e.clientY + "px";
                 var divTooltip = $(".hoverTooltip")[0];
                 divTooltip.style.left = left;
                 divTooltip.style.top = top;
-
                 $scope.holidayConfirmCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.confirmedCount;
                 $scope.holidayCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.allCount;
                 $scope.holidayEmployeeNamesTooltip = countAndNamesOfEmployeesWithHolidayOnDate.names;
@@ -82,5 +79,4 @@
             }
         }
     };
-
 };

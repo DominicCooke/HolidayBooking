@@ -27,8 +27,6 @@
                     $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
                     viewService.calendarGoToView($scope, views.CalendarModeEmployee);
                 });
-
-
             });
         }
     };
@@ -56,7 +54,6 @@
                     holidayArray[i].HolidayBookings.push(copyOfHolidayBooking);
                     holidayArray[i].HolidayBookings[j].EndDate = holidayArray[i].HolidayBookings[j].EndDate.subtract(1, 'days');
                 }
-
             }
             holidayArray[i].RemainingAllowance = holidayArray[i].HolidayAllowance - totalDays;
             totalDays = 0;
@@ -80,7 +77,6 @@
                 teamHolidayBookings.StartDate = moment(teamHolidayBookings.StartDate + "-+0000", "YYYY-MM-DD-Z");
                 teamHolidayBookings.EndDate = moment(teamHolidayBookings.EndDate + "-+0000", "YYYY-MM-DD Z");
             }
-
         }
     };
 
@@ -119,7 +115,6 @@
         var arrayOfTeamUserHolidayBookings = [];
         var tUHB = $scope.teamUserHolidayBookings
         for (var i = 0; i < tUHB.length; i++) {
-
             tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function (Booking) { return Booking.StartDate });
             $scope.setAllowanceDaysOfUnmergedHolidays(tUHB[i]);
             var userHolidaysClone = _.cloneDeep(tUHB[i]);
@@ -133,7 +128,6 @@
             }
             arrayOfTeamUserHolidayBookings.push(userHolidaysClone);
         }
-
         dataService.sendUsersData(arrayOfTeamUserHolidayBookings).then(function (response) {
             alert("woo");
         });
@@ -183,6 +177,5 @@
         }
         return consolidatedHolidayBookings;
     };
-
 };
 calendarCtrl.$inject = ['$scope', 'dataService', 'viewService'];

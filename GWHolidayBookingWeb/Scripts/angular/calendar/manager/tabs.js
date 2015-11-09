@@ -5,8 +5,6 @@
         controller: 'calendarCtrl',
         scope: true,
         link: function ($scope) {
-
         }
     };
-
 };

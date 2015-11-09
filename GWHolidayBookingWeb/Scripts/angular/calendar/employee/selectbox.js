@@ -14,7 +14,7 @@
                 });
             }
         }
-    }
+    };
 };
 selectboxDirective.$inject = ['dataService'];
 

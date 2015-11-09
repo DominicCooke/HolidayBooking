@@ -1,4 +1,4 @@
-﻿calendarDirective = function (templates) {
+﻿calendarDirective = function (templates, $timeout) {
     return {
         restrict: "E",
         templateUrl: function ($elem, $attr) {
@@ -8,8 +8,8 @@
         scope: false,
         link: function ($scope) {
             $scope.select = function (date) {
-                $scope.selected = date;
                 if ($scope.editMode == true) {
+                    $scope.selected = date;
                     if (isStatusHoliday(date, 0) == true || isStatusHoliday(date, 1) == true || isStatusHoliday(date, 2) == true) {
                         var isFound = true;
                     }
@@ -42,23 +42,27 @@
                                 HolidayId: 0
                             });
                     }
-                    $scope.reloadCalendar();
+                    $scope.reloadCalendar(true);
                     $scope.teamHolidayCount();
                 }
             };
 
             $scope.next = function () {
                 var next = $scope.month.clone();
-                _removeTime(next.month(next.month() + 1).date(0));
+                removeTime(next.month(next.month() + 1).date(0));
                 $scope.month.month($scope.month.month() + 1);
-                _buildMonth($scope, next, $scope.month);
+                buildMonth($scope, next, $scope.month);
+                $scope.selected = $scope.month.clone();
+                $scope.teamHolidayCount();
             };
 
             $scope.previous = function () {
                 var previous = $scope.month.clone();
-                _removeTime(previous.month(previous.month() - 1).date(0));
+                removeTime(previous.month(previous.month() - 1).date(0));
                 $scope.month.month($scope.month.month() - 1);
-                _buildMonth($scope, previous, $scope.month);
+                buildMonth($scope, previous, $scope.month);
+                $scope.selected = $scope.month.clone();
+                $scope.teamHolidayCount();
             };
 
             function isWeekend(date) {
@@ -74,20 +78,20 @@
                 var holidayCount = 0;
                 var tUHB = $scope.teamUserHolidayBookings;
                 for (var i = 0; i < tUHB.length; i++) {
-                    for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
-                        if (tUHB[i].isVisible == true) {
+                    if (tUHB[i].isVisible == true) {
+                        for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
                             var tHB = tUHB[i].HolidayBookings[k];
                             if (tHB.StartDate.isSame(date, 'day') && tHB.BookingStatus == 1) {
                                 holidayCount++;
                                 break;
                             }
-                        } else {
-                            break;
+
                         }
                     }
                 }
-                if (holidayCount > 0)
+                if (holidayCount > 0) {
                     return holidayCount;
+                }
             };
 
             function isStatusHoliday(date, state) {
@@ -188,12 +192,40 @@
                 return days;
             }
 
-            $scope.reloadCalendar = function () {
-                $scope.month = $scope.selected.clone();
-                var start = $scope.selected.clone();
+            $scope.teamHolidayCount = function () {
+                $timeout(function () {
+                    $('.day').each(function (index) {
+                        var holidayCount = $(this)[0].getAttribute('amountofholiday');
+                        var isFound = false;
+                        for (var i = 0; i <= holidayCount; i++) {
+                            if ($(this).hasClass("employeeCalendar")) {
+                                className = "teamHolidayEmployee" + i;
+                            } else {
+                                className = "teamHoliday" + i;
+                            }
+                            if ($(this).hasClass(className)) {
+                                isFound = true;
+                                $(this).children(".confirmedHolidayCount").text(holidayCount);
+                                if ($(this).children(".confirmedHolidayCount").css("display") == "none") {
+                                    $(this).children(".confirmedHolidayCount").fadeIn("slow");
+                                }
+                                break;
+                            }
+                        }
+                    });
+                });
+            };
+
+            $scope.reloadCalendar = function (mode) {
+                if (mode == true) {
+                    var start = $scope.month.clone();
+                } else {
+                    $scope.month = $scope.selected.clone();
+                    var start = $scope.selected.clone();
+                }
                 start.date(-3);
                 removeTime(start.day(0));
-                buildMonth($scope, start, $scope.month);
+                buildMonth($scope, removeTime(start.endOf('month')), $scope.month);
             };
 
             function init() {
@@ -205,7 +237,6 @@
             };
 
             init();
-
         }
     };
 };

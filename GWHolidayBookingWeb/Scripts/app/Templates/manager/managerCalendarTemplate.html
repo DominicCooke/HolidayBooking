@@ -9,7 +9,6 @@
     <span>{{month.format("MMMM YYYY")}}</span>
     <i class="fa fa-angle-right" ng-click="next()"></i>
 </div>
-
 <div class="month">
     <div class="week names">
         <span class="day dayTitle">Mon</span>
@@ -20,8 +19,6 @@
         <span class="day dayTitle">Sat</span>
         <span class="day dayTitle">Sun</span>
     </div>
-
-
     <div class="week" ng-repeat="week in weeks">
         <span class="day managerCalendar" ng-class="{
                today: day.isToday,
@@ -41,9 +38,7 @@
         </span>
     </div>
 </div>
-
 <tooltip mode="managerTooltip"></tooltip>
-
 <div class="key bottom">
     <div id="pendingHolidayKey" class=" holidaykey">
         <div class="keyColor" id="pendingHolidayKeyColor"></div>

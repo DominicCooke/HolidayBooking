@@ -1,4 +1,4 @@
-﻿calendarControlsDirective = function (dataService, templates, $timeout) {
+﻿calendarControlsDirective = function (dataService, templates) {
     return {
         restrict: "E",
         templateUrl: function ($elem, $attr) {
@@ -7,7 +7,6 @@
         controller: 'calendarCtrl',
         scope: false,
         link: function ($scope) {
-
             $scope.$watch('tabHolidays', function () {
                 if (typeof $scope.tabHolidays !== "undefined") {
                     $('.tabHolidayContainer').show();
@@ -108,7 +107,6 @@
                                         tH.TabHolidays.splice(k, 1);
                                     }
                                 }
-
                                 if (action == "accept") {
                                     if (tUHB[i].HolidayBookings[j].BookingStatus == 0) {
                                         tUHB[i].HolidayBookings[j].BookingStatus = 1;
@@ -155,30 +153,6 @@
                 };
             };
 
-            $scope.teamHolidayCount = function () {
-                $timeout(function () {
-                    $('.day').each(function (index) {
-
-                        var isFound = false;
-                        for (var i = 0; i < 6; i++) {
-                            if ($(this).hasClass("employeeCalendar")) {
-                                className = "teamHolidayEmployee" + i;
-                            } else {
-                                className = "teamHoliday" + i;
-                            }
-                            if ($(this).hasClass(className)) {
-                                isFound = true;
-                                $(this).children(".confirmedHolidayCount").text($(this)[0].getAttribute('amountofholiday'));
-                                if ($(this).children(".confirmedHolidayCount").css("display") == "none") {
-                                    $(this).children(".confirmedHolidayCount").fadeIn("slow");
-                                }
-                                break;
-                            }
-                        }
-                    });
-                });
-            };
-
             function setTeamSelected(userOptionChecked, event) {
                 var allSelected = false;
                 var teamMembers = $('.person');
@@ -213,4 +187,4 @@
         }
     };
 };
-calendarControlsDirective.$inject = ['dataService', 'templates', '$timeout'];
+calendarControlsDirective.$inject = ['dataService', 'templates'];

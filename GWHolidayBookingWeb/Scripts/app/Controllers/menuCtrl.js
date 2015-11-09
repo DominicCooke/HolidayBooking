@@ -1,10 +1,9 @@
-﻿menuCtrl = function ($scope, viewService, $rootScope) {
+﻿menuCtrl = function ($scope, viewService) {
     var childScope;
-    var init = function () {
+    function init() {
         viewService.gotoView($scope, views.Menu, '#menu');
         viewService.gotoView($scope, views.Dashboard);
     };
-    init();
     $scope.navigate = function (nameOfLink) {
         if (typeof $scope.state === "undefined")
             $scope.state = "New";
@@ -23,5 +22,6 @@
         var clickTo = angular.element(document.getElementById(nameOfLink));
         clickTo.addClass("active");
     }
+    init();
 };
-menuCtrl.$inject = ['$scope', 'viewService', '$rootScope'];
+menuCtrl.$inject = ['$scope', 'viewService'];
