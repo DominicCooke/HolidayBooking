@@ -35,9 +35,9 @@
                teamHoliday2: day.holidayCount == 2,
                teamHoliday3:  day.holidayCount == 3,
                teamHoliday4:  day.holidayCount == 4,
-               teamHoliday5:  day.holidayCount == 5}" ng-repeat="day in week.days">
+               teamHoliday5:  day.holidayCount >= 5}" ng-repeat="day in week.days" amountofholiday="{{day.holidayCount}}">
             {{day.number}}
-            <span class="confirmedHolidayCount" ng-mouseover="showTooltip($event, day)" ng-mouseleave="hideTooltip()">{{confirmedCount}}</span>
+            <span class="confirmedHolidayCount" ng-mouseover="showTooltip($event, day)" ng-mouseleave="hideTooltip()"></span>
         </span>
     </div>
 </div>

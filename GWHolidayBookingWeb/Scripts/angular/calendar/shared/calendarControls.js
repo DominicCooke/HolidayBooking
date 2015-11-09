@@ -96,8 +96,6 @@
                 return formattedDate;
             };
 
-            
-
             $scope.tabHolidayAction = function (date, staffNumber, typeOfHoliday, action) {
                 var tUHB = $scope.teamUserHolidayBookings;
                 for (var i = 0; i < tUHB.length; i++) {
@@ -160,8 +158,9 @@
             $scope.teamHolidayCount = function () {
                 $timeout(function () {
                     $('.day').each(function (index) {
+
                         var isFound = false;
-                        for (var i = 0; i < 5; i++) {
+                        for (var i = 0; i < 6; i++) {
                             if ($(this).hasClass("employeeCalendar")) {
                                 className = "teamHolidayEmployee" + i;
                             } else {
@@ -169,7 +168,7 @@
                             }
                             if ($(this).hasClass(className)) {
                                 isFound = true;
-                                $(this).children(".confirmedHolidayCount").text(i);
+                                $(this).children(".confirmedHolidayCount").text($(this)[0].getAttribute('amountofholiday'));
                                 if ($(this).children(".confirmedHolidayCount").css("display") == "none") {
                                     $(this).children(".confirmedHolidayCount").fadeIn("slow");
                                 }

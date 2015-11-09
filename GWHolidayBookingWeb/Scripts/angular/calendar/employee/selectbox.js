@@ -11,7 +11,6 @@
                     $scope.initData([$scope.userHolidayBookings]);
                     $scope.userHolidayBookings.isVisible = !$scope.userHolidayBookings.isVisible;
                     $scope.reloadCalendar();
-                    $scope.teamHolidayCount();
                 });
             }
         }

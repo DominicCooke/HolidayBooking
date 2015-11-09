@@ -1,4 +1,4 @@
-﻿calendarDirective = function (templates, $timeout) {
+﻿calendarDirective = function (templates) {
     return {
         restrict: "E",
         templateUrl: function ($elem, $attr) {
@@ -86,8 +86,6 @@
                         }
                     }
                 }
-                if (holidayCount > 5)
-                    holidayCount = 5;
                 if (holidayCount > 0)
                     return holidayCount;
             };
@@ -121,37 +119,21 @@
                 return isFound;
             };
 
-            function isStatusHolidayTeam(date, type) {
+            function isStatusHolidayTeam(date, state) {
                 var tUHB = $scope.teamUserHolidayBookings;
                 for (var i = 0; i < tUHB.length; i++) {
-                    for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
-                        if (tUHB[i].isVisible == true) {
+                    if (tUHB[i].isVisible == true) {
+                        for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
                             var tHB = tUHB[i].HolidayBookings[k];
                             if (tHB.StartDate.isSame(date, 'day')) {
-                                if (tHB.BookingStatus == type) {
+                                if (tHB.BookingStatus == state) {
                                     return true;
                                 }
                             }
-                        } else {
-                            break;
                         }
                     }
                 }
                 return false;
-            };
-
-            function isTeamHoliday(date) {
-                var isFound = false;
-                var tUHB = $scope.teamUserHolidayBookings;
-                for (var i = 0; i < tUHB.length; i++) {
-                    var tHB = tUHB[i].HolidayBookings;
-                    for (var k = 0; k < tHB.length; k++) {
-                        if (tHB[k].StartDate.isSame(date, 'day')) {
-                            return true;
-                        }
-                    }
-                }
-                return isFound;
             };
 
             function removeTime(date) {
@@ -183,7 +165,6 @@
                             date: date,
                             isPendingHoliday: isStatusHolidayTeam(date, 0),
                             isCancelledHoliday: isStatusHolidayTeam(date, 2),
-                            isTeamHoliday: isTeamHoliday(date),
                             holidayCount: isTeamHolidayAndPopulatesHolidayCount(date)
                         });
                     } else {
@@ -198,7 +179,6 @@
                             isConfirmedHoliday: isStatusHoliday(date, 1),
                             isCancelledHoliday: isStatusHoliday(date, 2),
                             isPendingHoliday: isStatusHoliday(date, 0),
-                            isTeamHoliday: isTeamHoliday(date),
                             holidayCount: isTeamHolidayAndPopulatesHolidayCount(date)
                         });
                     }

@@ -64,7 +64,7 @@
                 divTooltip.style.left = left;
                 divTooltip.style.top = top;
 
-                $scope.holidayVisibleCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.confirmedCount;
+                $scope.holidayConfirmCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.confirmedCount;
                 $scope.holidayCountTooltip = countAndNamesOfEmployeesWithHolidayOnDate.allCount;
                 $scope.holidayEmployeeNamesTooltip = countAndNamesOfEmployeesWithHolidayOnDate.names;
             }
