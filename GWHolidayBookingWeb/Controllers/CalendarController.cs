@@ -11,12 +11,14 @@ using System.Web.Http;
 
 namespace GWHolidayBookingWeb.Controllers
 {
-    public class theApiController : ApiController
+    [RoutePrefix("api/Calendar")]
+    [Authorize]
+    public class CalendarController : ApiController
     {
         private readonly IUserContext context;
         private readonly IUserService userService;
 
-        public theApiController(IUserService userService, IUserContext context)
+        public CalendarController(IUserService userService, IUserContext context)
         {
             this.userService = userService;
             this.context = context;
@@ -30,7 +32,6 @@ namespace GWHolidayBookingWeb.Controllers
         public User GetUserById(int staffNumber)
         {
             var user = userService.GetUserById(staffNumber);
-
             return user;
         }
         public void PostUser(User user)

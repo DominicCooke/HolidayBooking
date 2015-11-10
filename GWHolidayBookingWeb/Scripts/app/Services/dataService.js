@@ -1,29 +1,38 @@
-﻿dataService = function ($http) {
+﻿dataService = function ($http, tokenService) {
     return {
         getAllUsers: function () {
             return $http({
                 method: 'GET',
-                url: 'http://localhost:57068/api/theApi/GetUsers'
-            }).success(function (data) {
-                return data;
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                url: 'http://localhost:57068/api/Calendar/GetUsers'
             });
         }, sendUserData: function (userData) {
             return $http({
                 method: 'POST',
                 contentType: "application/json",
                 data: userData,
-                url: 'http://localhost:57068/api/theApi/PostUser'
-            }).success(function (data) {
-
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                url: 'http://localhost:57068/api/Calendar/PostUser'
             });
         }, sendUsersData: function (userData) {
             return $http({
                 method: 'POST',
                 contentType: "application/json",
                 data: userData,
-                url: 'http://localhost:57068/api/theApi/PostUsers'
-            }).success(function (data) {
-
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                url: 'http://localhost:57068/api/Calendar/PostUsers'
             });
         }, getUserById: function (id) {
             return $http({
@@ -31,9 +40,23 @@
                 params: {
                     staffNumber: id
                 },
-                url: 'http://localhost:57068/api/theApi/GetUserById'
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                url: 'http://localhost:57068/api/Calendar/GetUserById'
+            });
+        }, getToken: function (u, p) {
+            return $http({
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                data: $.param({ username: u, password: p, grant_type: "password" }),
+                url: 'http://localhost:57068/token'
             }).success(function (data) {
-
+                tokenService.setToken(data.access_token);
             });
         }
     };

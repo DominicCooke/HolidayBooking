@@ -27,8 +27,8 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                             new HolidayBooking
                             {
-                                StartDate = new DateTime(2015, 10, 5),
-                                EndDate = new DateTime(2015, 10, 9),
+                                StartDate = new DateTime(2015, 11, 5),
+                                EndDate = new DateTime(2015, 11, 9),
                                 AllowanceDays = 5,
                                 BookingStatus = BookingStatusEnum.Pending
                             }
@@ -44,15 +44,15 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                             new HolidayBooking
                             {
-                                StartDate = new DateTime(2015, 10, 14),
-                                EndDate = new DateTime(2015, 10, 16),
+                                StartDate = new DateTime(2015, 11, 14),
+                                EndDate = new DateTime(2015, 11, 16),
                                 AllowanceDays = 3,
                                 BookingStatus = BookingStatusEnum.Confirmed
                             },
                             new HolidayBooking
                             {
-                                StartDate = new DateTime(2015, 10, 19),
-                                EndDate = new DateTime(2015, 10, 23),
+                                StartDate = new DateTime(2015, 11, 19),
+                                EndDate = new DateTime(2015, 11, 23),
                                 AllowanceDays = 5,
                                 BookingStatus = BookingStatusEnum.Confirmed
                             }
@@ -68,15 +68,15 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                             new HolidayBooking
                             {
-                                StartDate = new DateTime(2015, 10, 12),
-                                EndDate = new DateTime(2015, 10, 16),
+                                StartDate = new DateTime(2015, 11, 12),
+                                EndDate = new DateTime(2015, 11, 16),
                                 AllowanceDays = 5,
                                 BookingStatus = BookingStatusEnum.Confirmed
                             },
                             new HolidayBooking
                             {
-                                StartDate = new DateTime(2015, 10, 27),
-                                EndDate = new DateTime(2015, 10, 29),
+                                StartDate = new DateTime(2015, 11, 27),
+                                EndDate = new DateTime(2015, 11, 29),
                                 AllowanceDays = 3,
                                 BookingStatus = BookingStatusEnum.Pending
                             }
@@ -92,15 +92,15 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                             new HolidayBooking
                             {
-                                StartDate = new DateTime(2015, 10, 29),
-                                EndDate = new DateTime(2015, 10, 30),
+                                StartDate = new DateTime(2015, 11, 29),
+                                EndDate = new DateTime(2015, 11, 30),
                                 AllowanceDays = 2,
                                 BookingStatus = BookingStatusEnum.Confirmed
                             },
                             new HolidayBooking
                             {
-                                StartDate = new DateTime(2015, 9, 28),
-                                EndDate = new DateTime(2015, 10, 2),
+                                StartDate = new DateTime(2015, 11, 28),
+                                EndDate = new DateTime(2015, 11, 2),
                                 AllowanceDays = 5,
                                 BookingStatus = BookingStatusEnum.Confirmed
                             }
@@ -116,15 +116,15 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                             new HolidayBooking
                             {
-                                StartDate = new DateTime(2015, 10, 7),
-                                EndDate = new DateTime(2015, 10, 9),
+                                StartDate = new DateTime(2015, 11, 7),
+                                EndDate = new DateTime(2015, 11, 9),
                                 AllowanceDays = 3,
                                 BookingStatus = BookingStatusEnum.Confirmed
                             },
                             new HolidayBooking
                             {
-                                StartDate = new DateTime(2015, 10, 19),
-                                EndDate = new DateTime(2015, 10, 23),
+                                StartDate = new DateTime(2015, 11, 19),
+                                EndDate = new DateTime(2015, 11, 23),
                                 AllowanceDays = 5,
                                 BookingStatus = BookingStatusEnum.Confirmed
                             }
@@ -133,7 +133,17 @@ namespace GWHolidayBookingWeb.Migrations
                     new User
                     {
                         FirstName = "Dominic",
-                        LastName = "C",
+                        LastName = "F",
+                        HolidayAllowance = 25,
+                        RemainingAllowance = 25,
+                        HolidayBookings = new List<HolidayBooking>
+                        {
+                        }
+                    },
+                    new User
+                    {
+                        FirstName = "Alonso",
+                        LastName = "G",
                         HolidayAllowance = 25,
                         RemainingAllowance = 25,
                         HolidayBookings = new List<HolidayBooking>

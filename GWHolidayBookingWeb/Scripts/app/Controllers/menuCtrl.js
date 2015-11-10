@@ -4,6 +4,7 @@
         viewService.gotoView($scope, views.Menu, '#menu');
         viewService.gotoView($scope, views.Dashboard);
     };
+
     $scope.navigate = function (nameOfLink) {
         if (typeof $scope.state === "undefined")
             $scope.state = "New";
@@ -21,7 +22,8 @@
         clickFrom.removeClass();
         var clickTo = angular.element(document.getElementById(nameOfLink));
         clickTo.addClass("active");
-    }
+    };
+
     init();
 };
 menuCtrl.$inject = ['$scope', 'viewService'];

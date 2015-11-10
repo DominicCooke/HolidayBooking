@@ -1,0 +1,16 @@
+﻿.loginContainer {
+  width: 100%;
+  height: 70%;
+}
+.loginContainer > .loginBody {
+  width: 30%;
+  height: 40%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.loginContainer > .loginBody > .input-group {
+  padding: 5px;
+}
+/*# sourceMappingURL=login.css.map */
