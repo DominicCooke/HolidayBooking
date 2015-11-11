@@ -173,7 +173,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular\calendar\employee\infoBox.js" />
     <Content Include="Scripts\app\Controllers\loginCtrl.js" />
@@ -190,9 +190,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular\angular\angular-mocks.js" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="JSLintNet.json" />
     <None Include="Scripts\angular\angular\angular.intellisense.js" />
     <Content Include="Scripts\angular\angular\angular.js" />
@@ -247,8 +247,8 @@
     <Content Include="Views\Home\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\NinjectResolver.cs" />
-    <Compile Include="App_Start\NinjectScope.cs" />
+    <Compile Include="App_Start\NinjectConfigurator.cs" />
+    <Compile Include="App_Start\NinjectDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
@@ -259,24 +259,23 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Contexts\AuthContext.cs" />
-    <Compile Include="Models\Contexts\IAuthContext.cs" />
-    <Compile Include="Models\Day.cs" />
+    <Compile Include="DataAccess\Identity\AuthContext.cs" />
+    <Compile Include="DataAccess\Identity\IAuthContext.cs" />
     <Compile Include="Models\HolidayBooking.cs" />
-    <Compile Include="Models\Contexts\IDbContext.cs" />
-    <Compile Include="Models\Contexts\IUserContext.cs" />
-    <Compile Include="Models\Identity Models\UserModel.cs" />
-    <Compile Include="Models\Providers\SimpleAuthorizationServerProvider.cs" />
-    <Compile Include="Models\Repositorys\AuthRepository.cs" />
-    <Compile Include="Models\Repositorys\IAuthRepository.cs" />
-    <Compile Include="Models\Repositorys\IUserRepository.cs" />
-    <Compile Include="Models\Services\AuthService.cs" />
-    <Compile Include="Models\Services\IAuthService.cs" />
-    <Compile Include="Models\Services\IUserService.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\Contexts\UserContext.cs" />
-    <Compile Include="Models\Repositorys\UserRepository.cs" />
-    <Compile Include="Models\Services\UserService.cs" />
+    <Compile Include="DataAccess\IDbContext.cs" />
+    <Compile Include="DataAccess\IUserContext.cs" />
+    <Compile Include="DataAccess\Identity\UserModel.cs" />
+    <Compile Include="DataAccess\Providers\SimpleAuthorizationServerProvider.cs" />
+    <Compile Include="DataAccess\Repositories\AuthRepository.cs" />
+    <Compile Include="DataAccess\Repositories\IAuthRepository.cs" />
+    <Compile Include="DataAccess\Repositories\IUserRepository.cs" />
+    <Compile Include="Services\Auth\AuthService.cs" />
+    <Compile Include="Services\Auth\IAuthService.cs" />
+    <Compile Include="Services\User\IUserDataService.cs" />
+    <Compile Include="Models\UserData.cs" />
+    <Compile Include="DataAccess\UserContext.cs" />
+    <Compile Include="DataAccess\Repositories\UserRepository.cs" />
+    <Compile Include="Services\User\UserDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

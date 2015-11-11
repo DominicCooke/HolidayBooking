@@ -1,13 +1,10 @@
+using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+using GWHolidayBookingWeb.DataAccess;
+using GWHolidayBookingWeb.Models;
+
 namespace GWHolidayBookingWeb.Migrations
 {
-    using GWHolidayBookingWeb.Models;
-    using GWHolidayBookingWeb.Models.Contexts;
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     internal sealed class Configuration : DbMigrationsConfiguration<UserContext>
     {
         public Configuration()
@@ -16,9 +13,9 @@ namespace GWHolidayBookingWeb.Migrations
         }
         protected override void Seed(UserContext context)
         {
-            var users = new List<User>
+            var users = new List<UserData>
             {
-            new User
+            new UserData
                     {
                         FirstName = "John",
                         LastName = "A",
@@ -28,7 +25,7 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                         }
                     },
-           new User
+           new UserData
                     {
                         FirstName = "Mary",
                         LastName = "B",
@@ -38,7 +35,7 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                         }
                     },
-                    new User
+                    new UserData
                     {
                         FirstName = "Randy",
                         LastName = "C",
@@ -48,7 +45,7 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                         }
                     },
-                    new User
+                    new UserData
                     {
                         FirstName = "Roger",
                         LastName = "D",
@@ -58,7 +55,7 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                         }
                     },
-                    new User
+                    new UserData
                     {
                         FirstName = "Ronald",
                         LastName = "E",
@@ -68,7 +65,7 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                         }
                     },
-                    new User
+                    new UserData
                     {
                         FirstName = "Dominic",
                         LastName = "F",
@@ -78,7 +75,7 @@ namespace GWHolidayBookingWeb.Migrations
                         {
                         }
                     },
-                    new User
+                    new UserData
                     {
                         FirstName = "Alonso",
                         LastName = "G",

@@ -1,15 +1,8 @@
-﻿using System.Runtime.Remoting.Contexts;
-using System.Web.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection.Emit;
+﻿using System.Collections.Generic;
 using System.Web.Http;
-using GWHolidayBookingWeb.Models.Contexts;
-using GWHolidayBookingWeb.Models.Services;
+using GWHolidayBookingWeb.DataAccess;
 using GWHolidayBookingWeb.Models;
+using GWHolidayBookingWeb.Services.User;
 
 namespace GWHolidayBookingWeb.Controllers
 {
@@ -18,30 +11,30 @@ namespace GWHolidayBookingWeb.Controllers
     public class CalendarController : ApiController
     {
         private readonly IUserContext context;
-        private readonly IUserService userService;
+        private readonly IUserDataService userService;
 
-        public CalendarController(IUserService userService, IUserContext context)
+        public CalendarController(IUserDataService userService, IUserContext context)
         {
             this.userService = userService;
             this.context = context;
         }
 
-        public List<User> GetUsers()
+        public List<UserData> GetUsers()
         {
             var listOfUsers = userService.Get();
             return listOfUsers;
         }
-        public User GetUserById(int staffNumber)
+        public UserData GetUserById(int staffNumber)
         {
             var user = userService.GetUserById(staffNumber);
             return user;
         }
-        public void PostUser(User user)
+        public void PostUser(UserData user)
         {
             userService.Update(user);
             context.SaveChanges();
         }
-        public void PostUsers(List<User> users)
+        public void PostUsers(List<UserData> users)
         {
             foreach (var user in users)
             {

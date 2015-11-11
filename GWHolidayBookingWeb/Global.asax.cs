@@ -15,6 +15,9 @@ namespace GWHolidayBookingWeb
     {
         void Application_Start(object sender, EventArgs e)
         {
+            AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

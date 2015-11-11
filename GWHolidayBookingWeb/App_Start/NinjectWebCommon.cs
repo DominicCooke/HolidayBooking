@@ -1,14 +1,15 @@
+using System;
+using System.Web;
 using System.Web.Http;
+using GWHolidayBookingWeb.DataAccess;
+using GWHolidayBookingWeb.DataAccess.Identity;
+using GWHolidayBookingWeb.DataAccess.Repositories;
+using GWHolidayBookingWeb.Services.Auth;
+using GWHolidayBookingWeb.Services.User;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
-using WebApiContrib.IoC.Ninject;
-using Ninject.Extensions.Conventions;
-using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-using System.Web;
-using GWHolidayBookingWeb.Models.Contexts;
-using GWHolidayBookingWeb.Models.Services;
-using GWHolidayBookingWeb.Models.Repositorys;
-using System;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(GWHolidayBookingWeb.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(GWHolidayBookingWeb.App_Start.NinjectWebCommon), "Stop")]
 
@@ -31,6 +32,7 @@ namespace GWHolidayBookingWeb.App_Start
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
+            GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(Kernel);
         }
 
         /// <summary>
@@ -70,7 +72,7 @@ namespace GWHolidayBookingWeb.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUserContext>().To<UserContext>().InRequestScope();
-            kernel.Bind<IUserService>().To<UserService>().InRequestScope();
+            kernel.Bind<IUserDataService>().To<UserDataService>().InRequestScope();
             kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
             kernel.Bind<IAuthService>().To<AuthService>().InRequestScope();
             kernel.Bind<IAuthRepository>().To<AuthRepository>().InRequestScope();

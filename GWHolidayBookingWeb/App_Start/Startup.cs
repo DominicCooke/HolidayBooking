@@ -1,14 +1,8 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
+﻿using System;
+using GWHolidayBookingWeb.DataAccess.Providers;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using GWHolidayBookingWeb.Models.Providers;
 
 [assembly: OwinStartup(typeof(GWHolidayBookingWeb.App_Start.Startup))]
 namespace GWHolidayBookingWeb.App_Start
@@ -19,10 +13,6 @@ namespace GWHolidayBookingWeb.App_Start
         {
             ConfigureOAuth(app);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-            AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(NinjectWebCommon.Kernel);
         }
 
         public void ConfigureOAuth(IAppBuilder app)

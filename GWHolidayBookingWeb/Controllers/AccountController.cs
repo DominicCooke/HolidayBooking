@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
-using GWHolidayBookingWeb.Models.Identity_Models;
-using GWHolidayBookingWeb.Models.Repositorys;
-using GWHolidayBookingWeb.Models.Services;
+using GWHolidayBookingWeb.DataAccess.Identity;
+using GWHolidayBookingWeb.Services.Auth;
 using Microsoft.AspNet.Identity;
 
 namespace GWHolidayBookingWeb.Controllers
