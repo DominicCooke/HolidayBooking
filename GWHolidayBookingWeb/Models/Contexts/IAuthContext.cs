@@ -6,11 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GWHolidayBookingWeb.Models.Contexts
 {
-    public class AuthContext : IdentityDbContext<IdentityUser>, IAuthContext
+    public interface IAuthContext : IDbContext
     {
-        public AuthContext()
-            : base("ConnStringDb1")
-        {
-        }
     }
 }

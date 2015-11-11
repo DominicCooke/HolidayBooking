@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using Ninject.Activation;
+using GWHolidayBookingWeb.Models.Repositorys;
 
-namespace GWHolidayBookingWeb.Models
+namespace GWHolidayBookingWeb.Models.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository userRepository;
+
         public UserService(IUserRepository userRepository)
         {
             this.userRepository = userRepository;

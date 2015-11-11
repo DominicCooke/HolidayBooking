@@ -5,8 +5,9 @@ using System.Web;
 using System.Data.Entity;
 using MoreLinq;
 using Ninject.Extensions.Conventions.BindingGenerators;
+using GWHolidayBookingWeb.Models.Contexts;
 
-namespace GWHolidayBookingWeb.Models
+namespace GWHolidayBookingWeb.Models.Repositorys
 {
     public class UserRepository : IUserRepository
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GWHolidayBookingWeb.Models
+namespace GWHolidayBookingWeb.Models.Repositorys
 {
     public interface IUserRepository
     {

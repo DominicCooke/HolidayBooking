@@ -31,7 +31,7 @@ namespace GWHolidayBookingWeb.App_Start
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(300),
                 Provider = new SimpleAuthorizationServerProvider()
             };
 

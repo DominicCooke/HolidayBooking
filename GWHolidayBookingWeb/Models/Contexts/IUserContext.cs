@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace GWHolidayBookingWeb.Models
+namespace GWHolidayBookingWeb.Models.Contexts
 {
     public interface IUserContext : IDbContext
     {

@@ -6,7 +6,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
-namespace GWHolidayBookingWeb.Models
+namespace GWHolidayBookingWeb.Models.Contexts
 {
     public class UserContext : DbContext, IUserContext
     {

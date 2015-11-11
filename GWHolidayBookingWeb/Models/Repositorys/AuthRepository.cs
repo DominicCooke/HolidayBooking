@@ -10,14 +10,14 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GWHolidayBookingWeb.Models.Repositorys
 {
-    public class AuthRepository : IDisposable
+    public class AuthRepository : IAuthRepository
     {
-        private AuthContext context;
+        private readonly IAuthContext context;
         private UserManager<IdentityUser> userManager;
 
-        public AuthRepository()
+        public AuthRepository(AuthContext context)
         {
-            context = new AuthContext();
+            this.context = context;
             userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
         }
 

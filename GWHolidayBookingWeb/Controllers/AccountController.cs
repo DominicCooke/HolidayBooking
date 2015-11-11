@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Http;
 using GWHolidayBookingWeb.Models.Identity_Models;
 using GWHolidayBookingWeb.Models.Repositorys;
+using GWHolidayBookingWeb.Models.Services;
 using Microsoft.AspNet.Identity;
 
 namespace GWHolidayBookingWeb.Controllers
@@ -13,11 +14,11 @@ namespace GWHolidayBookingWeb.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-        private AuthRepository repo = null;
+        private readonly IAuthService authService;
 
-        public AccountController()
+        public AccountController(IAuthService authService)
         {
-            repo = new AuthRepository();
+            this.authService = authService;
         }
 
         [AllowAnonymous]
@@ -29,7 +30,7 @@ namespace GWHolidayBookingWeb.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await repo.RegisterUser(userModel);
+            IdentityResult result = await authService.RegisterUser(userModel);
             IHttpActionResult errorResult = GetErrorResult(result);
 
             if (errorResult != null)
@@ -43,7 +44,7 @@ namespace GWHolidayBookingWeb.Controllers
         {
             if (disposing)
             {
-                repo.Dispose();
+                authService.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -1,4 +1,5 @@
-﻿using GWHolidayBookingWeb.Models.Repositorys;
+﻿using GWHolidayBookingWeb.Models.Contexts;
+using GWHolidayBookingWeb.Models.Repositorys;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.OAuth;
 using System;
@@ -22,9 +23,9 @@ namespace GWHolidayBookingWeb.Models.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            using (AuthRepository repo = new AuthRepository())
+            using (AuthRepository authRepository = new AuthRepository(new AuthContext()))
             {
-                IdentityUser user = await repo.FindUser(context.UserName, context.Password);
+                IdentityUser user = await authRepository.FindUser(context.UserName, context.Password);
 
                 if (user == null)
                 {
