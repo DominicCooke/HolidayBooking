@@ -3,26 +3,26 @@
   src: url('../../Content/fonts/Roboto-Regular.ttf') format('truetype');
 }
 .bodyContainer {
-  width: 100%;
-  height: 70%;
+  background-image: url('../../Content/images/background.jpg');
+  background-size: cover;
   border: 1px solid black;
   font-family: Roboto-Regular;
-  background-size: cover;
-  background-image: url('../../Content/images/background.jpg');
+  height: 70%;
+  width: 100%;
 }
 .bodyContainer > .otherSpace {
-  width: 40%;
-  height: 100%;
+  float: left;
   font-size: 250%;
   font-weight: bolder;
+  height: 100%;
   line-height: 1;
-  float: left;
+  width: 40%;
 }
 .bodyContainer > .otherSpace > infobox > .infoBoxContainer {
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid black;
-  margin: 6%;
   height: 20%;
+  margin: 6%;
   text-align: center;
 }
 .bodyContainer > .otherSpace > infobox > .infoBoxContainer > .infoBoxName {
@@ -60,73 +60,73 @@
   color: white;
 }
 .bodyContainer > .otherSpace > infobox > .infoBoxContainer > .infoBoxContainerTable > .infoBoxContainerRow > .infoBoxContainerCell > .infoBoxContainerLabel {
+  color: white;
   font-size: 12px;
   font-weight: normal;
-  color: white;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer {
-  text-align: center;
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid black;
-  margin: 6%;
   border-collapse: collapse;
   color: white;
   font-size: 15px;
   font-weight: normal;
+  margin: 6%;
+  text-align: center;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .nameOfTeam {
   color: white;
-  font-weight: normal;
   font-size: 25px;
-  padding-top: 5%;
+  font-weight: normal;
   padding-bottom: 2%;
+  padding-top: 5%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .teamMemberHeaderRow {
+  border-top: 1px solid black;
   display: table;
   width: 100%;
-  border-top: 1px solid black;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .teamMemberHeaderRow > .teamMemberInfoHeader {
-  display: table-cell;
-  padding: 0 5px;
   border-bottom: 1px solid black;
   border-left: 1px solid black;
-  width: 12%;
+  display: table-cell;
+  padding: 0 5px;
   pointer-events: none;
-  transition: 1s;
   position: relative;
+  transition: 1s;
+  width: 12%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .teamMemberHeaderRow > .teamMemberInfoHeader:first-child {
-  pointer-events: all;
-  width: 30%;
-  padding: 10px 15px;
+  background: rgba(51, 51, 51, 0.6);
   border-left: 0;
   cursor: pointer;
-  background: rgba(51, 51, 51, 0.6);
+  padding: 10px 15px;
+  pointer-events: all;
+  width: 30%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .teamMemberHeaderRow > .teamMemberInfoHeader:first-child.active {
   background: rgba(128, 128, 128, 0.6);
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .teamMemberHeaderRow > .teamMemberInfoHeader > .notification-counter {
-  position: absolute;
-  top: -7px;
-  left: 33px;
   background-color: #d4130d;
   border-radius: 3px;
+  left: 33px;
   padding: 1px 3px;
+  position: absolute;
+  top: -7px;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .slimScrollDiv > .teamMemberInfoContainerEmployee {
-  width: 100%;
   height: 100% !important;
   overflow: hidden;
+  width: 100%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .slimScrollDiv > .teamMemberInfoContainerEmployee .teamMemberTableInfoContainer {
   display: table;
   width: 100%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .slimScrollDiv > .teamMemberInfoContainerEmployee .teamMemberTableInfoContainer > .teamMemberRow {
-  display: table-row;
   border-bottom: 1px solid black;
+  display: table-row;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .slimScrollDiv > .teamMemberInfoContainerEmployee .teamMemberTableInfoContainer > .teamMemberRow:last-child {
   border-bottom: 0;
@@ -135,8 +135,8 @@
   border-bottom: 0;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .slimScrollDiv > .teamMemberInfoContainerEmployee .teamMemberTableInfoContainer > .teamMemberRow > .teamMemberInfo {
-  display: table-cell;
   border-left: 1px solid rgba(31, 31, 31, 0.6);
+  display: table-cell;
   width: 12%;
 }
 @keyframes textpulsatepending {
@@ -160,11 +160,11 @@
   cursor: pointer;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .slimScrollDiv > .teamMemberInfoContainerEmployee .teamMember {
+  background: rgba(51, 51, 51, 0.6);
+  border-right: 1px solid black;
   cursor: pointer;
   display: table-cell;
-  background: rgba(51, 51, 51, 0.6);
   padding: 10px 15px;
-  border-right: 1px solid black;
   transition: 1s;
   width: 30%;
 }
@@ -172,8 +172,8 @@
   background: rgba(128, 128, 128, 0.6);
 }
 .bodyContainer > .otherSpace > calendarcontrols > .teamMemberControlsContainer > .slimScrollDiv > .teamMemberInfoContainerEmployee .teamMember.dead {
-  pointer-events: none;
   background: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
 }
 .bodyContainer > .otherSpace > tabs {
   color: white;
@@ -181,40 +181,37 @@
   font-weight: normal;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer {
-  padding: 6%;
-  height: 100%;
-  width: 100%;
   border-collapse: collapse;
+  height: 100%;
+  padding: 6%;
+  width: 100%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > ul.nav {
   height: 15%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > ul.nav > .navigationalTab {
-  border-top: 1px solid black;
   border-right: 1px solid black;
+  border-top: 1px solid black;
   background: rgba(0, 0, 0, 0.6);
-  color: white;
   border-radius: 0;
-  width: 25%;
-  height: 100%;
+  color: white;
   float: left;
+  height: 100%;
   text-align: center;
-}
-.bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > ul.nav > .navigationalTab:last-child {
-  /*border-right: none;*/
+  width: 25%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > ul.nav > .navigationalTab:first-child {
   border-left: 1px solid black;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > ul.nav > .navigationalTab > a {
-  height: 100%;
-  border: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  color: white;
   background: rgba(0, 0, 0, 0.6);
+  border: 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  padding: 0;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > ul.nav > .navigationalTab.active > a {
   background: #4d4d4d;
@@ -223,59 +220,59 @@
   height: 85%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane {
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  background: rgba(0, 0, 0, 0.6);
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols > .teamMemberHeaderRow {
+  border-top: 1px solid black;
   display: table;
   text-align: center;
   width: 100%;
-  border-top: 1px solid black;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols > .teamMemberHeaderRow > .teamMemberInfoHeader {
-  display: table-cell;
-  padding: 0 5px;
   border-bottom: 1px solid black;
   border-left: 1px solid black;
-  width: 12%;
+  display: table-cell;
+  padding: 0 5px;
   pointer-events: none;
   position: relative;
   transition: 1s;
+  width: 12%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols > .teamMemberHeaderRow > .teamMemberInfoHeader:first-child {
-  pointer-events: all;
-  width: 30%;
-  padding: 10px 15px;
+  background: rgba(51, 51, 51, 0.6);
   border-left: 0;
   cursor: pointer;
-  background: rgba(51, 51, 51, 0.6);
+  padding: 10px 15px;
+  pointer-events: all;
+  width: 30%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols > .teamMemberHeaderRow > .teamMemberInfoHeader:first-child.active {
   background: rgba(128, 128, 128, 0.6);
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols > .teamMemberHeaderRow > .teamMemberInfoHeader > .notification-counter {
-  position: absolute;
-  top: -7px;
-  left: 33px;
   background-color: #d4130d;
   border-radius: 3px;
+  left: 33px;
   padding: 1px 3px;
+  position: absolute;
+  top: -7px;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .teamMemberInfoContainer {
-  text-align: center;
-  width: 100%;
   height: 100% !important;
   overflow: hidden;
+  text-align: center;
+  width: 100%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .teamMemberInfoContainer .teamMemberTableInfoContainer {
   display: table;
   width: 100%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .teamMemberInfoContainer .teamMemberTableInfoContainer > .teamMemberRow {
-  display: table-row;
   border-bottom: 1px solid rgba(31, 31, 31, 0.6);
+  display: table-row;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .teamMemberInfoContainer .teamMemberTableInfoContainer > .teamMemberRow:last-child {
   border-bottom: 0;
@@ -284,8 +281,8 @@
   border-bottom: 0;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .teamMemberInfoContainer .teamMemberTableInfoContainer > .teamMemberRow > .teamMemberInfo {
-  display: table-cell;
   border-left: 1px solid rgba(31, 31, 31, 0.6);
+  display: table-cell;
   width: 12%;
 }
 @keyframes textpulsatepending {
@@ -309,35 +306,35 @@
   cursor: pointer;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .teamMemberInfoContainer .teamMember {
+  background: rgba(51, 51, 51, 0.6);
+  border-right: 1px solid black;
   cursor: pointer;
   display: table-cell;
-  background: rgba(51, 51, 51, 0.6);
   padding: 10px 15px;
-  border-right: 1px solid black;
-  width: 30%;
   transition: 1s;
+  width: 30%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .teamMemberInfoContainer .teamMember.active {
   background: rgba(128, 128, 128, 0.6);
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .teamMemberInfoContainer .teamMember.dead {
-  pointer-events: none;
   background: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols > .tabHeaderHolidayRow {
   display: table !important;
-  text-align: center;
-  width: 100%;
   height: 7%;
   pointer-events: none;
+  text-align: center;
+  width: 100%;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols > .tabHeaderHolidayRow:last-child > .tabHolidayHeaderCell {
   border-bottom: 0;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols > .tabHeaderHolidayRow > .tabHolidayHeaderCell {
+  border-bottom: 1px solid black;
   display: table-cell;
   padding: 5px 5px;
-  border-bottom: 1px solid black;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols > .tabHeaderHolidayRow > .tabHolidayHeaderCell:last-child {
   border-left: 1px solid black;
@@ -355,10 +352,10 @@
   border-left: 0;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .tabHolidayContainer {
+  height: 100% !important;
+  overflow-y: auto;
   text-align: center;
   width: 100%;
-  overflow-y: auto;
-  height: 100% !important;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .tabHolidayContainer > .tabTableHolidayContainer {
   display: table;
@@ -371,10 +368,10 @@
   border-bottom: 0;
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .tabHolidayContainer > .tabTableHolidayContainer > .tabHolidayRow > .tabHolidayCell {
+  background: rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid black;
   display: table-cell;
   padding: 5px 5px;
-  border-bottom: 1px solid black;
-  background: rgba(255, 255, 255, 0.15);
 }
 .bodyContainer > .otherSpace > tabs > .navigationalTabsContainer > .tab-content > .tab-pane > calendarcontrols .slimScrollDiv > .tabHolidayContainer > .tabTableHolidayContainer > .tabHolidayRow > .tabHolidayCell:last-child {
   border-left: 1px solid black;
@@ -390,11 +387,11 @@
   color: red;
 }
 .bodyContainer > .otherSpace > .controls {
-  position: absolute;
   bottom: 1px;
   color: white;
   font-size: 15px;
   font-weight: normal;
+  position: absolute;
 }
 .bodyContainer > .otherSpace > .controls > button {
   background-color: rgba(0, 0, 0, 0.6);
@@ -408,20 +405,20 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 .bodyContainer > calendar {
-  position: relative;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-  float: left;
   background: rgba(0, 0, 0, 0.6);
-  width: 50%;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  float: left;
   height: 100%;
+  position: relative;
+  width: 50%;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip {
-  position: fixed;
   background: rgba(0, 0, 0, 0.7);
-  outline: solid 1px black;
-  color: white;
   border-spacing: 9px;
+  color: white;
+  outline: solid 1px black;
+  position: fixed;
   text-align: center;
   z-index: 1;
 }
@@ -450,38 +447,38 @@
   display: table-cell;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip > .employeeWithHolidayName > .fa-check {
+  background-color: rgba(0, 255, 0, 0.3);
   color: lime;
   outline: 1px solid lime;
-  background-color: rgba(0, 255, 0, 0.3);
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip > .employeeWithHolidayName > .fa-times {
+  background-color: rgba(58, 95, 205, 0.3);
   color: #3a5fcd;
   outline: 1px solid #3a5fcd;
-  background-color: rgba(58, 95, 205, 0.3);
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip > .employeeWithHolidayName > .fa-question {
+  background-color: rgba(0, 191, 255, 0.3);
   color: deepskyblue;
   outline: 1px solid deepskyblue;
-  background-color: rgba(0, 191, 255, 0.3);
 }
 .bodyContainer > calendar > .header {
-  float: left;
-  width: 100%;
   color: white;
+  float: left;
   margin-top: 15%;
+  width: 100%;
 }
 .bodyContainer > calendar > .header > * {
+  display: inline-block;
   height: 40px;
   line-height: 40px !important;
-  display: inline-block;
   vertical-align: middle;
 }
 .bodyContainer > calendar > .header > i {
-  float: left;
-  width: 10%;
-  position: relative;
-  padding: 0 10px;
   cursor: pointer;
+  float: left;
+  padding: 0 10px;
+  position: relative;
+  width: 10%;
 }
 .bodyContainer > calendar > .header > .fa-angle-left {
   text-align: left;
@@ -490,62 +487,62 @@
   text-align: right;
 }
 .bodyContainer > calendar > .header > span {
-  pointer-events: none;
   float: left;
-  width: 80%;
-  font-weight: bold;
   font-size: 2em;
-  text-transform: uppercase;
+  font-weight: bold;
+  pointer-events: none;
   text-align: center;
+  text-transform: uppercase;
+  width: 80%;
 }
 .bodyContainer > calendar > .month > .week {
-  width: 100%;
   padding-left: 10%;
   padding-right: 10%;
+  width: 100%;
 }
 .bodyContainer > calendar > .month > .week.names > span {
   margin-top: 30px;
   pointer-events: none;
 }
 .bodyContainer > calendar > .month > .week > .day {
-  float: left;
-  border-radius: 15%;
-  width: 13.57142857%;
-  text-align: center;
-  position: relative;
+  display: inline-block;
   height: 5vh;
   line-height: 5vh !important;
-  display: inline-block;
   vertical-align: middle;
-  cursor: pointer;
-  color: white;
-  margin: 0.35714286%;
   background: rgba(255, 255, 255, 0);
+  border-radius: 15%;
+  color: white;
+  cursor: pointer;
+  float: left;
+  margin: 0.35714286%;
+  position: relative;
+  text-align: center;
+  width: 13.57142857%;
 }
 .bodyContainer > calendar > .month > .week > .day.nonName {
   background: rgba(255, 255, 255, 0.05);
 }
 .bodyContainer > calendar > .month > .week > .day > .confirmedHolidayCount {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
   background-color: #d4130d;
   border-bottom-left-radius: 5px;
   border-top-right-radius: 5px;
-  padding: 1px 3px;
-  font-size: 14px;
-  line-height: 1;
-  font-weight: normal;
-  color: white;
-  width: 15px;
-  height: 15px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
+  color: white;
+  display: none;
+  font-size: 14px;
+  font-weight: normal;
+  height: 15px;
+  line-height: 1;
+  padding: 1px 3px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 15px;
 }
 .bodyContainer > calendar > .month > .week > .day.isweekend {
+  background: rgba(102, 102, 102, 0.6);
   cursor: none;
   pointer-events: none;
-  background: rgba(102, 102, 102, 0.6);
 }
 .bodyContainer > calendar > .month > .week > .day.today {
   font-size: 1.8em;
@@ -577,36 +574,36 @@
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday1 {
   background: rgba(0, 255, 0, 0.8);
-  color: white;
   border-radius: 15%;
+  color: white;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday2 {
   background: rgba(170, 255, 0, 0.8);
-  color: white;
   border-radius: 15%;
+  color: white;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday3 {
   background: rgba(255, 187, 0, 0.8);
-  color: white;
   border-radius: 15%;
+  color: white;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday4 {
   background: rgba(255, 68, 0, 0.8);
-  color: white;
   border-radius: 15%;
+  color: white;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday5 {
   background: rgba(255, 0, 0, 0.8);
-  color: white;
   border-radius: 15%;
+  color: white;
 }
 .bodyContainer > calendar > .key {
   height: 13%;
-  width: 100%;
-  position: absolute;
   padding-left: 5%;
   padding-right: 5%;
   pointer-events: none;
+  position: absolute;
+  width: 100%;
 }
 .bodyContainer > calendar > .key.top {
   top: 0;
@@ -619,58 +616,58 @@
 }
 .bodyContainer > calendar > .key .keyLabel {
   color: white;
+  display: flex;
+  flex-direction: column;
   float: left;
-  width: 79%;
   height: 100%;
+  justify-content: center;
   padding: 12.5%;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  width: 79%;
 }
 .bodyContainer > calendar > .key .keyColor {
-  width: 21%;
-  height: 100%;
-  float: left;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   border: 1px solid black;
   border-bottom: 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  float: left;
+  height: 100%;
+  width: 21%;
 }
 .bodyContainer > calendar > .key > #publicHolidayKey {
-  width: 25%;
   float: left;
+  width: 25%;
 }
 .bodyContainer > calendar > .key > #publicHolidayKey > #publicHolidayKeyColor {
   background-color: #b9b9b9;
 }
 .bodyContainer > calendar > .key > #confirmedHolidayKey {
-  width: 25%;
   float: left;
+  width: 25%;
 }
 .bodyContainer > calendar > .key > #confirmedHolidayKey > #confirmedHolidayKeyColor {
   background-color: #72c015;
 }
 .bodyContainer > calendar > .key > #pendingHolidayKey {
-  width: 25%;
   float: left;
+  width: 25%;
 }
 .bodyContainer > calendar > .key > #pendingHolidayKey > #pendingHolidayKeyColor {
   background-color: deepskyblue;
 }
 .bodyContainer > calendar > .key > #cancelledHolidayKey {
-  width: 25%;
   float: left;
+  width: 25%;
 }
 .bodyContainer > calendar > .key > #cancelledHolidayKey > #cancelledHolidayKeyColor {
   background-color: #3a5fcd;
 }
 .bodyContainer > calendar > .key > #teamHolidayKey {
-  width: 50%;
-  height: 100%;
-  float: left;
   display: table;
+  float: left;
+  height: 100%;
   line-height: 2;
+  width: 50%;
 }
 .bodyContainer > calendar > .key > #teamHolidayKey > .teamHolidayKeyLabel {
   color: white;
@@ -678,22 +675,22 @@
 }
 .bodyContainer > calendar > .key > #teamHolidayKey > .colorContainer {
   display: table-row;
+  height: 2vh;
   vertical-align: middle;
   width: 100%;
-  height: 2vh;
 }
 .bodyContainer > calendar > .key > #teamHolidayKey > .colorContainer > #teamHolidayKeyColor {
-  border-radius: 15px;
-  width: 100%;
-  height: 100%;
-  display: table-cell;
-  border-bottom: 1px solid black;
   background: -webkit-gradient(linear, left top, right top, color-stop(0, #00ff00), color-stop(50%, #ffbb00), color-stop(100%, #ff0000));
+  border-bottom: 1px solid black;
+  border-radius: 15px;
+  display: table-cell;
+  height: 100%;
+  width: 100%;
 }
 .bodyContainer > calendar > .key > #teamHolidayKey > .teamHolidayKeyLabelValues {
   color: white;
-  float: left;
   display: table-footer-group;
+  float: left;
 }
 .bodyContainer > calendar > .key > #teamHolidayKey > .teamHolidayKeyLabelValues.two {
   margin-left: 20%;

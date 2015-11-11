@@ -17,13 +17,13 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
 
         public List<UserData> Get()
         {
-            var userList = context.Users.Include("HolidayBookings").ToList();
+            List<UserData> userList = context.Users.Include("HolidayBookings").ToList();
             return userList;
         }
 
         public UserData GetUserById(int staffNumber)
         {
-            var user = context.Users.Include("HolidayBookings").FirstOrDefault(x => x.StaffNumber == staffNumber);
+            UserData user = context.Users.Include("HolidayBookings").FirstOrDefault(x => x.StaffNumber == staffNumber);
             return user;
         }
 
@@ -39,24 +39,23 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
 
         public void Update(UserData user)
         {
-            var userInDb = context.Users.Find(user.StaffNumber);
+            UserData userInDb = context.Users.Find(user.StaffNumber);
 
             context.Entry(userInDb).CurrentValues.SetValues(user);
 
-            foreach (var holidayBooking in userInDb.HolidayBookings.ToList())
+            foreach (HolidayBooking holidayBooking in userInDb.HolidayBookings.ToList())
             {
                 if (!user.HolidayBookings.Any(h => h.HolidayId == holidayBooking.HolidayId))
                 {
                     context.Entry(userInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
                         .State = EntityState.Deleted;
                     userInDb.HolidayBookings.Remove(holidayBooking);
-
                 }
             }
 
-            foreach (var holidayBooking in user.HolidayBookings)
+            foreach (HolidayBooking holidayBooking in user.HolidayBookings)
             {
-                var holidayBookingInDb =
+                HolidayBooking holidayBookingInDb =
                     userInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId);
                 if (holidayBookingInDb != null)
                 {
@@ -66,7 +65,8 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
                 {
                     context.HolidayBookings.Attach(holidayBooking);
                     userInDb.HolidayBookings.Add(holidayBooking);
-                    context.Entry(userInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId)).State = EntityState.Added;
+                    context.Entry(userInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
+                        .State = EntityState.Added;
                     context.SaveChanges();
                 }
             }
@@ -75,7 +75,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
 
         public HolidayBooking GetHolidayBookingById(int holidayId)
         {
-            var HolidayBooking = context.HolidayBookings.FirstOrDefault(x => x.HolidayId == holidayId);
+            HolidayBooking HolidayBooking = context.HolidayBookings.FirstOrDefault(x => x.HolidayId == holidayId);
             return HolidayBooking;
         }
     }

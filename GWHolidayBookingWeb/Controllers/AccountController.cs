@@ -55,7 +55,7 @@ namespace GWHolidayBookingWeb.Controllers
             {
                 if (result.Errors != null)
                 {
-                    foreach (var error in result.Errors)
+                    foreach (string error in result.Errors)
                     {
                         ModelState.AddModelError("", error);
                     }

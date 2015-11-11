@@ -8,7 +8,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
     public class AuthRepository : IAuthRepository
     {
         private readonly IAuthContext context;
-        private UserManager<IdentityUser> userManager;
+        private readonly UserManager<IdentityUser> userManager;
 
         public AuthRepository(AuthContext context)
         {
@@ -18,11 +18,11 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
 
         public async Task<IdentityResult> RegisterUser(UserModel userModel)
         {
-            IdentityUser user = new IdentityUser
+            var user = new IdentityUser
             {
                 UserName = userModel.UserName
             };
-            var result = await userManager.CreateAsync(user, userModel.Password);
+            IdentityResult result = await userManager.CreateAsync(user, userModel.Password);
             return result;
         }
 

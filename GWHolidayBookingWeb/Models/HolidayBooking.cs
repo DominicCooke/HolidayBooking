@@ -7,11 +7,11 @@ namespace GWHolidayBookingWeb.Models
     {
         [Key]
         public int HolidayId { get; set; }
+
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int AllowanceDays { get; set; }
         public BookingStatusEnum BookingStatus { get; set; }
-
     }
 
     public enum BookingStatusEnum

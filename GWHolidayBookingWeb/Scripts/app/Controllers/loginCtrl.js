@@ -1,9 +1,9 @@
-﻿loginCtrl = function ($scope, dataService) {
+﻿loginCtrl = function($scope, dataService) {
     var vm = this;
-    $scope.login = function () {
-        dataService.getToken($scope.username, $scope.password).then(function () {
+    $scope.login = function() {
+        dataService.getToken($scope.username, $scope.password).then(function() {
             alert("woo");
-        }).catch(function () {
+        }).catch(function() {
             alert("boo");
         });
 

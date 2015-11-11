@@ -7,6 +7,7 @@ namespace GWHolidayBookingWeb.Models
     {
         [Key]
         public int StaffNumber { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int HolidayAllowance { get; set; }

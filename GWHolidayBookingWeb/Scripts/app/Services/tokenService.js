@@ -1,10 +1,10 @@
-﻿tokenService = function () {
+﻿tokenService = function() {
     var serviceToken;
     return {
-        getToken: function () {
+        getToken: function() {
             return serviceToken;
         },
-        setToken: function (token) {
+        setToken: function(token) {
             serviceToken = token;
         }
     };

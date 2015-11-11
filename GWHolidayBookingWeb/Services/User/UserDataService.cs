@@ -12,6 +12,7 @@ namespace GWHolidayBookingWeb.Services.User
         {
             this.userRepository = userRepository;
         }
+
         public List<UserData> Get()
         {
             return userRepository.Get();

@@ -1,11 +1,12 @@
-﻿menuCtrl = function ($scope, viewService) {
+﻿menuCtrl = function($scope, viewService) {
     var childScope;
+
     function init() {
         viewService.gotoView($scope, views.Menu, '#menu');
         viewService.gotoView($scope, views.Dashboard);
     };
 
-    $scope.navigate = function (nameOfLink) {
+    $scope.navigate = function(nameOfLink) {
         if (typeof $scope.state === "undefined")
             $scope.state = "New";
         if ($scope.state == "New") {

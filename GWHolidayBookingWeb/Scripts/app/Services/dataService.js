@@ -1,6 +1,6 @@
-﻿dataService = function ($http, tokenService) {
+﻿dataService = function($http, tokenService) {
     return {
-        getAllUsers: function () {
+        getAllUsers: function() {
             return $http({
                 method: 'GET',
                 headers: {
@@ -10,7 +10,8 @@
                 },
                 url: 'http://localhost:57068/api/Calendar/GetUsers'
             });
-        }, sendUserData: function (userData) {
+        },
+        sendUserData: function(userData) {
             return $http({
                 method: 'POST',
                 contentType: "application/json",
@@ -22,7 +23,8 @@
                 },
                 url: 'http://localhost:57068/api/Calendar/PostUser'
             });
-        }, sendUsersData: function (userData) {
+        },
+        sendUsersData: function(userData) {
             return $http({
                 method: 'POST',
                 contentType: "application/json",
@@ -34,7 +36,8 @@
                 },
                 url: 'http://localhost:57068/api/Calendar/PostUsers'
             });
-        }, getUserById: function (id) {
+        },
+        getUserById: function(id) {
             return $http({
                 method: 'GET',
                 params: {
@@ -47,7 +50,8 @@
                 },
                 url: 'http://localhost:57068/api/Calendar/GetUserById'
             });
-        }, getToken: function (u, p) {
+        },
+        getToken: function(u, p) {
             return $http({
                 method: 'POST',
                 headers: {
@@ -55,7 +59,7 @@
                 },
                 data: $.param({ username: u, password: p, grant_type: "password" }),
                 url: 'http://localhost:57068/token'
-            }).success(function (data) {
+            }).success(function(data) {
                 tokenService.setToken(data.access_token);
             });
         }

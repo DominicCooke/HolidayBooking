@@ -16,10 +16,9 @@ namespace GWHolidayBookingWeb.DataAccess.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] {"*"});
 
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-
-            using (AuthRepository authRepository = new AuthRepository(new AuthContext()))
+            using (var authRepository = new AuthRepository(new AuthContext()))
             {
                 IdentityUser user = await authRepository.FindUser(context.UserName, context.Password);
 
@@ -35,7 +34,6 @@ namespace GWHolidayBookingWeb.DataAccess.Providers
             identity.AddClaim(new Claim("role", "user"));
 
             context.Validated(identity);
-
         }
     }
 }

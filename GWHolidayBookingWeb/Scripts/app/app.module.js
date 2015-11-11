@@ -19,4 +19,3 @@ app.directive('tabs', tabsDirective);
 app.directive('infobox', infoBoxDirective);
 
 app.factory('templates', templates);
-

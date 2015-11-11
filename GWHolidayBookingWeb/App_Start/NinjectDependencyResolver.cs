@@ -38,6 +38,5 @@ namespace GWHolidayBookingWeb.App_Start
         {
             GC.SuppressFinalize(this);
         }
-
     }
 }

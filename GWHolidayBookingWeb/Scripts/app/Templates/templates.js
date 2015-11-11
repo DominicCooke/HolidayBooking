@@ -1,4 +1,4 @@
-﻿templates = function () {
+﻿templates = function() {
     return {
         employee: 'Scripts/app/templates/employee/employeeCalendarTemplate.html',
         manager: 'Scripts/app/templates/manager/managerCalendarTemplate.html',
