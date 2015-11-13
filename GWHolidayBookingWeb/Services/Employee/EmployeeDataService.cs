@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GWHolidayBookingWeb.DataAccess.Repositories;
 using GWHolidayBookingWeb.Models;
 
@@ -18,7 +19,7 @@ namespace GWHolidayBookingWeb.Services.Employee
             return employeeRepository.Get();
         }
 
-        public EmployeeCalendar GetEmployeeById(int staffId)
+        public EmployeeCalendar GetEmployeeById(Guid staffId)
         {
             return employeeRepository.GetEmployeeById(staffId);
         }
@@ -28,21 +29,19 @@ namespace GWHolidayBookingWeb.Services.Employee
             return employeeRepository.GetHolidayBookingById(holidayId);
         }
 
-        public void Delete(int staffId)
+        public void Delete(Guid staffId)
         {
             employeeRepository.Delete(staffId);
         }
 
         public void Update(EmployeeCalendar employee)
         {
-            if (employee.StaffId == 0)
-            {
-                employeeRepository.Create(employee);
-            }
-            else
-            {
-                employeeRepository.Update(employee);
-            }
+            employeeRepository.Update(employee);
+        }
+
+        public void Create(EmployeeCalendar employee)
+        {
+            employeeRepository.Create(employee);
         }
     }
 }

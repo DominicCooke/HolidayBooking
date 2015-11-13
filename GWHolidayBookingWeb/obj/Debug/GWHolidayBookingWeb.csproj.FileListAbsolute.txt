@@ -67,3 +67,4 @@ C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Deb
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.pdb
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\AutoMapper.dll
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\AutoMapper.xml
+C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.csprojResolveAssemblyReference.cache

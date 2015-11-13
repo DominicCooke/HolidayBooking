@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Routing;
 using GWHolidayBookingWeb.App_Start;
 using GWHolidayBookingWeb.DataAccess.Providers;
 using Microsoft.Owin;
@@ -14,6 +17,9 @@ namespace GWHolidayBookingWeb.App_Start
     {
         public void Configuration(IAppBuilder app)
         {
+            AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
             ConfigureOAuth(app);
             app.UseCors(CorsOptions.AllowAll);
         }

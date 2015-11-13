@@ -1,4 +1,4 @@
-﻿dataService = function($http, tokenService) {
+﻿dataService = function($http, tokenService, guidService) {
     return {
         getAllUsers: function() {
             return $http({
@@ -37,11 +37,10 @@
                 url: 'http://localhost:57068/api/Calendar/UpdateEmployees'
             });
         },
-        getUserById: function(id) {
+        getUser: function() {
             return $http({
                 method: 'GET',
                 params: {
-                    staffId: id
                 },
                 headers: {
                     "Authorization": "Bearer " + tokenService.getToken(),

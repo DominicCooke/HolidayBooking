@@ -1,46 +1,52 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 using GWHolidayBookingWeb.DataAccess;
 using GWHolidayBookingWeb.Models;
 using GWHolidayBookingWeb.Services.Employee;
+using Microsoft.Owin;
 
 namespace GWHolidayBookingWeb.Controllers
 {
     [RoutePrefix("api/Calendar")]
-    //[Authorize]
+    [Authorize]
     public class CalendarController : ApiController
     {
         private readonly IEmployeeContext context;
-        private readonly IEmployeeDataService employeeService;
+        private readonly IEmployeeDataService employeeDataService;
 
-        public CalendarController(IEmployeeDataService employeeService, IEmployeeContext context)
+        public CalendarController(IEmployeeDataService employeeDataService, IEmployeeContext context)
         {
-            this.employeeService = employeeService;
+            this.employeeDataService = employeeDataService;
             this.context = context;
         }
 
         public List<EmployeeCalendar> GetEmployees()
         {
-            return employeeService.Get();
+            return employeeDataService.Get();
         }
 
-        public EmployeeCalendar GetEmployeeById(int staffId)
+        public EmployeeCalendar GetEmployeeById()
         {
-            return employeeService.GetEmployeeById(staffId);
+            IOwinContext owinContext = ControllerContext.Request.GetOwinContext();
+            var user = (ClaimsIdentity) owinContext.Authentication.User.Identity;
+            Claim staffIdClaim = user.Claims.FirstOrDefault(c => c.Type == "id");
+            return employeeDataService.GetEmployeeById(Guid.Parse(staffIdClaim.Value));
         }
 
         public void UpdateEmployee(EmployeeCalendar employee)
         {
-            employeeService.Update(employee);
-            context.SaveChanges();
+            employeeDataService.Update(employee);
         }
 
         public void UpdateEmployees(List<EmployeeCalendar> employees)
         {
             foreach (EmployeeCalendar employee in employees)
             {
-                employeeService.Update(employee);
-                context.SaveChanges();
+                employeeDataService.Update(employee);
             }
         }
     }

@@ -230,7 +230,7 @@
 
             function init() {
                 if ($scope.mode == "employee") {
-                    $scope.isSelect(1);
+                    $scope.isSelect();
                 } else {
                     $scope.reloadCalendar();
                 }

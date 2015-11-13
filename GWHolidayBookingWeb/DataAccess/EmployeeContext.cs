@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using GWHolidayBookingWeb.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GWHolidayBookingWeb.DataAccess
 {

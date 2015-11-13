@@ -177,7 +177,6 @@
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
     <Content Include="Scripts\angular\calendar\employee\infoBox.js" />
     <Content Include="Scripts\app\Controllers\loginCtrl.js" />
     <Content Include="Scripts\app\PartialViews\calendar\employee\employeeCalendarMode.html" />
@@ -259,10 +258,8 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="DataAccess\Identity\IdentityContext.cs" />
+    <Compile Include="DataAccess\Identity\EmployeeCreateViewModel.cs" />
     <Compile Include="DataAccess\Identity\IIdentityContext.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Identity\ConfigIdentity.cs" />
     <Compile Include="Migrations\Employee\ConfigEmployeeCalendar.cs" />
     <Compile Include="Models\EmployeeCalendarHoldiayBooking.cs" />

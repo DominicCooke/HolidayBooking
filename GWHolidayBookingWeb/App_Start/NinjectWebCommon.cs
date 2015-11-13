@@ -5,12 +5,12 @@ using GWHolidayBookingWeb.App_Start;
 using GWHolidayBookingWeb.DataAccess;
 using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.DataAccess.Repositories;
+using GWHolidayBookingWeb.Services.Employee;
+using GWHolidayBookingWeb.Services.Identity;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using WebActivatorEx;
-using GWHolidayBookingWeb.Services.Employee;
-using GWHolidayBookingWeb.Services.Identity;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof (NinjectWebCommon), "Start")]
 [assembly: ApplicationShutdownMethod(typeof (NinjectWebCommon), "Stop")]

@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GWHolidayBookingWeb.DataAccess.Identity;
-using GWHolidayBookingWeb.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using AutoMapper;
 
 namespace GWHolidayBookingWeb.DataAccess.Repositories
 {
@@ -18,11 +16,12 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             userManager = new UserManager<IdentityEmployee>(new UserStore<IdentityEmployee>(context));
         }
 
-        public async Task<IdentityResult> RegisterEmployee(IdentityEmployee identityEmployee)
+        public async Task<IdentityResult> RegisterEmployee(EmployeeCreateViewModel identityEmployeeCreateViewModel)
         {
             var user = new IdentityEmployee
             {
-                UserName = identityEmployee.UserName
+                StaffId = identityEmployeeCreateViewModel.StaffId,
+                UserName = identityEmployeeCreateViewModel.EmailAddress
             };
             IdentityResult result = await userManager.CreateAsync(user, "123123");
             return result;

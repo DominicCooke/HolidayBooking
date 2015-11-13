@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.DataAccess.Repositories;
-using GWHolidayBookingWeb.Models;
 using Microsoft.AspNet.Identity;
 
 namespace GWHolidayBookingWeb.Services.Identity
@@ -15,9 +14,9 @@ namespace GWHolidayBookingWeb.Services.Identity
             this.identityRepository = identityRepository;
         }
 
-        public Task<IdentityResult> RegisterEmployee(IdentityEmployee identityEmployee)
+        public Task<IdentityResult> RegisterEmployee(EmployeeCreateViewModel identityEmployeeCreateViewModel)
         {
-            return identityRepository.RegisterEmployee(identityEmployee);
+            return identityRepository.RegisterEmployee(identityEmployeeCreateViewModel);
         }
 
         public void Dispose()

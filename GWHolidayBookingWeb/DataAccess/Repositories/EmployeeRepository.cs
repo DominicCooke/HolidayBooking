@@ -20,7 +20,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             return context.Employees.Include("HolidayBookings").ToList();
         }
 
-        public EmployeeCalendar GetEmployeeById(int staffId)
+        public EmployeeCalendar GetEmployeeById(Guid staffId)
         {
             return context.Employees.Include("HolidayBookings").FirstOrDefault(x => x.StaffId == staffId);
         }
@@ -28,9 +28,10 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
         public void Create(EmployeeCalendar employee)
         {
             context.Employees.Add(employee);
+            context.SaveChanges();
         }
 
-        public void Delete(int staffId)
+        public void Delete(Guid staffId)
         {
             throw new NotImplementedException();
         }
@@ -45,7 +46,8 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             {
                 if (!employee.HolidayBookings.Any(h => h.HolidayId == holidayBooking.HolidayId))
                 {
-                    context.Entry(employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
+                    context.Entry(
+                        employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
                         .State = EntityState.Deleted;
                     employeeInDb.HolidayBookings.Remove(holidayBooking);
                 }
@@ -63,7 +65,8 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
                 {
                     context.HolidayBookings.Attach(holidayBooking);
                     employeeInDb.HolidayBookings.Add(holidayBooking);
-                    context.Entry(employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
+                    context.Entry(
+                        employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
                         .State = EntityState.Added;
                     context.SaveChanges();
                 }

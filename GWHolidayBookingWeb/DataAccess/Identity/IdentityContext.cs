@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Common;
+﻿using System.Data.Common;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GWHolidayBookingWeb.DataAccess.Identity
 {
@@ -13,7 +13,6 @@ namespace GWHolidayBookingWeb.DataAccess.Identity
         public IdentityContext(DbConnection connection)
             : base(connection, true)
         {
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GWHolidayBookingWeb.Models
@@ -6,7 +7,7 @@ namespace GWHolidayBookingWeb.Models
     public class EmployeeCalendar
     {
         [Key]
-        public int StaffId { get; set; }
+        public Guid StaffId { get; set; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
