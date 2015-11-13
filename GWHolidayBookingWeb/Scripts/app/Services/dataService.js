@@ -8,7 +8,7 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Calendar/GetUsers'
+                url: 'http://localhost:57068/api/Calendar/GetEmployees'
             });
         },
         sendUserData: function(userData) {
@@ -21,7 +21,7 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Calendar/PostUser'
+                url: 'http://localhost:57068/api/Calendar/UpdateEmployee'
             });
         },
         sendUsersData: function(userData) {
@@ -34,21 +34,21 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Calendar/PostUsers'
+                url: 'http://localhost:57068/api/Calendar/UpdateEmployees'
             });
         },
         getUserById: function(id) {
             return $http({
                 method: 'GET',
                 params: {
-                    staffNumber: id
+                    staffId: id
                 },
                 headers: {
                     "Authorization": "Bearer " + tokenService.getToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Calendar/GetUserById'
+                url: 'http://localhost:57068/api/Calendar/GetEmployeeById'
             });
         },
         getToken: function(u, p) {

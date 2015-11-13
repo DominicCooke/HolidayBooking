@@ -95,15 +95,15 @@
                 return formattedDate;
             };
 
-            $scope.tabHolidayAction = function(date, staffNumber, typeOfHoliday, action) {
+            $scope.tabHolidayAction = function (date, staffId, typeOfHoliday, action) {
                 var tUHB = $scope.teamUserHolidayBookings;
                 for (var i = 0; i < tUHB.length; i++) {
-                    if (tUHB[i].StaffNumber == staffNumber) {
+                    if (tUHB[i].StaffId == staffId) {
                         for (var j = 0; j < tUHB[i].HolidayBookings.length; j++) {
-                            if (tUHB[i].HolidayBookings[j].StartDate.isSame(date, 'day') && tUHB[i].StaffNumber == staffNumber) {
+                            if (tUHB[i].HolidayBookings[j].StartDate.isSame(date, 'day') && tUHB[i].StaffId == staffId) {
                                 var tH = $scope.tabHolidays;
                                 for (var k = 0; k < tH.TabHolidays.length; k++) {
-                                    if (tH.TabHolidays[k].StaffNumber == tUHB[i].StaffNumber && tH.TabHolidays[k].HolidayDate == tUHB[i].HolidayBookings[j]) {
+                                    if (tH.TabHolidays[k].StaffId == tUHB[i].StaffId && tH.TabHolidays[k].HolidayDate == tUHB[i].HolidayBookings[j]) {
                                         tH.TabHolidays.splice(k, 1);
                                     }
                                 }
@@ -130,16 +130,16 @@
                 $scope.teamHolidayCount();
             };
 
-            $scope.tabHolidaySelect = function(staffNumber, typeOfHoliday) {
+            $scope.tabHolidaySelect = function (staffId, typeOfHoliday) {
                 var tUHB = $scope.teamUserHolidayBookings;
                 var tabHolidays = [];
                 for (var i = 0; i < tUHB.length; i++) {
                     tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function(Booking) { return Booking.StartDate; });
-                    if (tUHB[i].StaffNumber == staffNumber) {
+                    if (tUHB[i].StaffId == staffId) {
                         for (var j = 0; j < tUHB[i].HolidayBookings.length; j++) {
                             if (tUHB[i].HolidayBookings[j].BookingStatus == typeOfHoliday) {
                                 tabHolidays.push({
-                                    StaffNumber: staffNumber,
+                                    StaffId: staffId,
                                     HolidayDate: tUHB[i].HolidayBookings[j],
                                     TypeOfHoliday: typeOfHoliday
                                 });
@@ -169,7 +169,7 @@
                     }
                 } else {
                     for (var i = 0; i < tUHB.length; i++) {
-                        if (tUHB[i].StaffNumber == userOptionChecked) {
+                        if (tUHB[i].StaffId == userOptionChecked) {
                             tUHB[i].isVisible = !tUHB[i].isVisible;
                         }
                     }

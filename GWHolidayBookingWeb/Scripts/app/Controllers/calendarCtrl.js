@@ -85,7 +85,7 @@
         for (var i = 0; i < holidayArray.length; i++) {
             listOfTeamMembers.push({
                 Name: holidayArray[i].FirstName + " " + holidayArray[i].LastName,
-                StaffNumber: holidayArray[i].StaffNumber
+                StaffId: holidayArray[i].StaffId
             });
         }
         $scope.listOfTeamMembers = listOfTeamMembers;

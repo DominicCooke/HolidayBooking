@@ -15,9 +15,9 @@
 <div class="teamMemberInfoContainer">
     <div class="teamMemberTableInfoContainer">
         <div class="teamMemberRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
-            <div class="teamMember person" value="{{user.StaffNumber}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName}}</div>
-            <div ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffNumber, 0)" class="teamMemberInfo">{{user.PendingHolidays}}</div>
-            <div ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffNumber, 2)" class="teamMemberInfo">{{user.CancelledHolidays}}</div>
+            <div class="teamMember person" value="{{user.StaffId}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName}}</div>
+            <div ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 0)" class="teamMemberInfo">{{user.PendingHolidays}}</div>
+            <div ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 2)" class="teamMemberInfo">{{user.CancelledHolidays}}</div>
             <div class="teamMemberInfo">{{user.ConfirmedHolidays}}</div>
             <div class="teamMemberInfo">{{user.RemainingAllowance}}</div>
             <div class="teamMemberInfo">{{user.HolidayAllowance}}</div>
@@ -33,8 +33,8 @@
         <div class="tabHolidayRow" ng-repeat="tabHoliday in tabHolidays.TabHolidays" ng-init="$last ? addScrollBar() : null">
             <div class="tabHolidayCell">{{formatDate(tabHoliday.HolidayDate.StartDate)}}</div>
             <div class="tabHolidayCell">
-                <div class="fa fa-check tabHolidayAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffNumber,tabHoliday.TypeOfHoliday,'accept')"></div>
-                <div class="fa fa-times tabHolidayAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffNumber,tabHoliday.TypeOfHoliday,'decline')"></div>
+                <div class="fa fa-check tabHolidayAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffId,tabHoliday.TypeOfHoliday,'accept')"></div>
+                <div class="fa fa-times tabHolidayAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffId,tabHoliday.TypeOfHoliday,'decline')"></div>
                 <div class="fa fa-comment tabHolidayAction" ng-click=""></div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 using System.Web.Http;
 using GWHolidayBookingWeb.DataAccess;
 using GWHolidayBookingWeb.Models;
-using GWHolidayBookingWeb.Services.User;
+using GWHolidayBookingWeb.Services.Employee;
 
 namespace GWHolidayBookingWeb.Controllers
 {
@@ -10,38 +10,36 @@ namespace GWHolidayBookingWeb.Controllers
     //[Authorize]
     public class CalendarController : ApiController
     {
-        private readonly IUserContext context;
-        private readonly IUserDataService userService;
+        private readonly IEmployeeContext context;
+        private readonly IEmployeeDataService employeeService;
 
-        public CalendarController(IUserDataService userService, IUserContext context)
+        public CalendarController(IEmployeeDataService employeeService, IEmployeeContext context)
         {
-            this.userService = userService;
+            this.employeeService = employeeService;
             this.context = context;
         }
 
-        public List<UserData> GetUsers()
+        public List<EmployeeCalendar> GetEmployees()
         {
-            List<UserData> listOfUsers = userService.Get();
-            return listOfUsers;
+            return employeeService.Get();
         }
 
-        public UserData GetUserById(int staffNumber)
+        public EmployeeCalendar GetEmployeeById(int staffId)
         {
-            UserData user = userService.GetUserById(staffNumber);
-            return user;
+            return employeeService.GetEmployeeById(staffId);
         }
 
-        public void PostUser(UserData user)
+        public void UpdateEmployee(EmployeeCalendar employee)
         {
-            userService.Update(user);
+            employeeService.Update(employee);
             context.SaveChanges();
         }
 
-        public void PostUsers(List<UserData> users)
+        public void UpdateEmployees(List<EmployeeCalendar> employees)
         {
-            foreach (UserData user in users)
+            foreach (EmployeeCalendar employee in employees)
             {
-                userService.Update(user);
+                employeeService.Update(employee);
                 context.SaveChanges();
             }
         }

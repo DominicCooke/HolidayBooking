@@ -65,3 +65,5 @@ C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\New
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\System.Web.Http.WebHost.xml
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.dll
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.pdb
+C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\AutoMapper.dll
+C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\AutoMapper.xml

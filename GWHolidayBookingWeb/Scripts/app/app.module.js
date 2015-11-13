@@ -1,5 +1,4 @@
-﻿'use strict';
-var app = angular.module("holApp", ['chart.js', 'ui.bootstrap']);
+﻿var app = angular.module("holApp", ['chart.js', 'ui.bootstrap']);
 
 app.service('templateService', ['$http', '$compile', '$templateCache', templateService]);
 app.service('viewService', ['templateService', viewService]);

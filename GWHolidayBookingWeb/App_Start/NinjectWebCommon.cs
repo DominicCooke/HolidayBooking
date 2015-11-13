@@ -5,12 +5,12 @@ using GWHolidayBookingWeb.App_Start;
 using GWHolidayBookingWeb.DataAccess;
 using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.DataAccess.Repositories;
-using GWHolidayBookingWeb.Services.Auth;
-using GWHolidayBookingWeb.Services.User;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using WebActivatorEx;
+using GWHolidayBookingWeb.Services.Employee;
+using GWHolidayBookingWeb.Services.Identity;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof (NinjectWebCommon), "Start")]
 [assembly: ApplicationShutdownMethod(typeof (NinjectWebCommon), "Stop")]
@@ -73,12 +73,12 @@ namespace GWHolidayBookingWeb.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IUserContext>().To<UserContext>().InRequestScope();
-            kernel.Bind<IUserDataService>().To<UserDataService>().InRequestScope();
-            kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
-            kernel.Bind<IAuthService>().To<AuthService>().InRequestScope();
-            kernel.Bind<IAuthRepository>().To<AuthRepository>().InRequestScope();
-            kernel.Bind<IAuthContext>().To<AuthContext>().InRequestScope();
+            kernel.Bind<IEmployeeContext>().To<EmployeeContext>().InRequestScope();
+            kernel.Bind<IEmployeeDataService>().To<EmployeeDataService>().InRequestScope();
+            kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>().InRequestScope();
+            kernel.Bind<IIdentityService>().To<IdentityService>().InRequestScope();
+            kernel.Bind<IIdentityRepository>().To<IdentityRepository>().InRequestScope();
+            kernel.Bind<IIdentityContext>().To<IdentityContext>().InRequestScope();
         }
     }
 }

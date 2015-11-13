@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -253,29 +256,30 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="DataAccess\Identity\IdentityContext.cs" />
+    <Compile Include="DataAccess\Identity\IIdentityContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="DataAccess\Identity\AuthContext.cs" />
-    <Compile Include="DataAccess\Identity\IAuthContext.cs" />
-    <Compile Include="Models\HolidayBooking.cs" />
+    <Compile Include="Migrations\Identity\ConfigIdentity.cs" />
+    <Compile Include="Migrations\Employee\ConfigEmployeeCalendar.cs" />
+    <Compile Include="Models\EmployeeCalendarHoldiayBooking.cs" />
     <Compile Include="DataAccess\IDbContext.cs" />
-    <Compile Include="DataAccess\IUserContext.cs" />
-    <Compile Include="DataAccess\Identity\UserModel.cs" />
+    <Compile Include="DataAccess\IEmployeeContext.cs" />
+    <Compile Include="DataAccess\Identity\IdentityEmployee.cs" />
     <Compile Include="DataAccess\Providers\SimpleAuthorizationServerProvider.cs" />
-    <Compile Include="DataAccess\Repositories\AuthRepository.cs" />
-    <Compile Include="DataAccess\Repositories\IAuthRepository.cs" />
-    <Compile Include="DataAccess\Repositories\IUserRepository.cs" />
-    <Compile Include="Services\Auth\AuthService.cs" />
-    <Compile Include="Services\Auth\IAuthService.cs" />
-    <Compile Include="Services\User\IUserDataService.cs" />
-    <Compile Include="Models\UserData.cs" />
-    <Compile Include="DataAccess\UserContext.cs" />
-    <Compile Include="DataAccess\Repositories\UserRepository.cs" />
-    <Compile Include="Services\User\UserDataService.cs" />
+    <Compile Include="DataAccess\Repositories\IdentityRepository.cs" />
+    <Compile Include="DataAccess\Repositories\IIdentityRepository.cs" />
+    <Compile Include="DataAccess\Repositories\IEmployeeRepository.cs" />
+    <Compile Include="Services\Identity\IdentityService.cs" />
+    <Compile Include="Services\Identity\IIdentityService.cs" />
+    <Compile Include="Services\Employee\IEmployeeDataService.cs" />
+    <Compile Include="Models\EmployeeCalendar.cs" />
+    <Compile Include="DataAccess\EmployeeContext.cs" />
+    <Compile Include="DataAccess\Repositories\EmployeeRepository.cs" />
+    <Compile Include="Services\Employee\EmployeeDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
