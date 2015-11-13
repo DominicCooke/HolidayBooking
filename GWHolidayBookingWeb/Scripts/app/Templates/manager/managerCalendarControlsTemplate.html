@@ -15,7 +15,7 @@
 <div class="teamMemberInfoContainer">
     <div class="teamMemberTableInfoContainer">
         <div class="teamMemberRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
-            <div class="teamMember person" value="{{user.StaffId}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName}}</div>
+            <div class="teamMember person" step="1" value="{{user.StaffId}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
             <div ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 0)" class="teamMemberInfo">{{user.PendingHolidays}}</div>
             <div ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 2)" class="teamMemberInfo">{{user.CancelledHolidays}}</div>
             <div class="teamMemberInfo">{{user.ConfirmedHolidays}}</div>
