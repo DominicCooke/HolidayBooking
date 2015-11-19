@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using GWHol.Web.ViewModels;
 using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.Models;
 using GWHolidayBookingWeb.Services.Employee;
-using GWHolidayBookingWeb.Services.Identity;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using AutoMapper;
 
 namespace GWHolidayBookingWeb.Controllers
 {
@@ -14,12 +18,16 @@ namespace GWHolidayBookingWeb.Controllers
     public class EmployeeController : ApiController
     {
         private readonly IEmployeeDataService employeeDataService;
-        private readonly IIdentityService identityService;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly UserManager<IdentityEmployee> userManager;
 
-        public EmployeeController(IIdentityService identityService, IEmployeeDataService employeeDataService)
+        public EmployeeController(IEmployeeDataService employeeDataService)
         {
-            this.identityService = identityService;
             this.employeeDataService = employeeDataService;
+            roleManager = Startup.RoleManagerFactory();
+            userManager = Startup.UserManagerFactory();
+            roleManager.CreateAsync(new IdentityRole("Admin"));
+            roleManager.CreateAsync(new IdentityRole("User"));
         }
 
         [AllowAnonymous]
@@ -32,7 +40,13 @@ namespace GWHolidayBookingWeb.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await identityService.RegisterEmployee(employeeCreateViewModel);
+            var user = new IdentityEmployee
+            {
+                StaffId = employeeCreateViewModel.StaffId,
+                UserName = employeeCreateViewModel.EmailAddress
+            };
+
+            IdentityResult result = await userManager.CreateAsync(user, "123123");
             IHttpActionResult errorResult = GetErrorResult(result);
 
             if (errorResult != null)
@@ -54,13 +68,70 @@ namespace GWHolidayBookingWeb.Controllers
             return Ok();
         }
 
-        protected override void Dispose(bool disposing)
+        [Route("SetRole")]
+        public async Task<IHttpActionResult> SetRole(IdentityRole employeeRoleViewModel)
         {
-            if (disposing)
+            IdentityUser user = userManager.Users.Where(u => u.StaffId == Guid.Parse(employeeRoleViewModel.Id)).First();
+            IdentityResult result = await userManager.AddToRoleAsync(user.Id, employeeRoleViewModel.Name);
+            IHttpActionResult errorResult = GetErrorResult(result);
+
+            if (errorResult != null)
             {
-                identityService.Dispose();
+                return errorResult;
             }
-            base.Dispose(disposing);
+
+            return Ok();
+        }
+
+        [Route("GetIdentityEmployees")]
+        public async Task<List<EmployeeCalendarViewModel>> GetIdentityEmployees()
+        {
+            List<EmployeeCalendar> listOfAllEmployees = employeeDataService.Get();
+            List<IdentityRole> listOfAllIdentityRoles = await roleManager.Roles.ToListAsync();
+            List<IdentityEmployee> listOfAllIdentityUsers = await userManager.Users.ToListAsync();
+            var listOfAllIdentityRolesAndUsers = listOfAllIdentityUsers.Select(User => new
+            {
+                User,
+                UserRoles = User.Roles.Select(Role => new
+                {
+                    Id = Role.RoleId,
+                    name = listOfAllIdentityRoles.First(IdentityRoleModel => IdentityRoleModel.Id == Role.RoleId).Name
+                })
+            });
+
+            IEnumerable<EmployeeCalendarViewModel> joined = from RoleAndUsers in listOfAllIdentityRolesAndUsers
+                join Employee in listOfAllEmployees on RoleAndUsers.User.StaffId equals Employee.StaffId
+                select new EmployeeCalendarViewModel
+                {
+                    HolidayAllowance = Employee.HolidayAllowance,
+                    RemainingAllowance = Employee.RemainingAllowance,
+                    StaffId = Employee.StaffId,
+                    FirstName = Employee.FirstName,
+                    LastName = Employee.LastName,
+                    UserViewModel = new IdentityUserViewModel
+                    {
+                        IdentityId = RoleAndUsers.User.Id,
+                        Username = RoleAndUsers.User.UserName,
+                        RoleViewModels = RoleAndUsers.UserRoles.Select(Role => new IdentityRole
+                        {
+                            Id = Role.Id,
+                            Name = Role.name
+                        }).ToList()
+                    }
+                };
+            return joined.ToList();
+        }
+
+        [Route("GetIdentityRoles")]
+        public async Task<List<IdentityRole>> GetIdentityRoles()
+        {
+            return await roleManager.Roles.ToListAsync();
+        }
+        
+        [Route("Update")]
+        public void Update(EmployeeCalendarViewModel employeeCalendarViewModel)
+        {
+            employeeDataService.UpdateEmployee(employeeCalendarViewModel);
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)

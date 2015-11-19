@@ -6,7 +6,6 @@ using GWHolidayBookingWeb.DataAccess;
 using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.DataAccess.Repositories;
 using GWHolidayBookingWeb.Services.Employee;
-using GWHolidayBookingWeb.Services.Identity;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -76,8 +75,6 @@ namespace GWHolidayBookingWeb.App_Start
             kernel.Bind<IEmployeeContext>().To<EmployeeContext>().InRequestScope();
             kernel.Bind<IEmployeeDataService>().To<EmployeeDataService>().InRequestScope();
             kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>().InRequestScope();
-            kernel.Bind<IIdentityService>().To<IdentityService>().InRequestScope();
-            kernel.Bind<IIdentityRepository>().To<IdentityRepository>().InRequestScope();
             kernel.Bind<IIdentityContext>().To<IdentityContext>().InRequestScope();
         }
     }

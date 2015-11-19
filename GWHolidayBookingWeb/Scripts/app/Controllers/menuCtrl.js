@@ -2,7 +2,7 @@
     var childScope;
 
     function init() {
-        viewService.gotoView($scope, views.Menu, '#menu');
+        viewService.menuGotoView($scope, views.Menu, '.side-bar-menu');
         viewService.gotoView($scope, views.Dashboard);
     };
 

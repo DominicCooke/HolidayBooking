@@ -1,21 +1,19 @@
-﻿<div class="teamMemberControlsContainer">
+﻿<div class="employeeControlsContainer">
     <div class="nameOfTeam">Technical Team</div>
-    <div class="teamMemberHeaderRow">
-        <div class="teamMemberInfoHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
-        <div class="teamMemberInfoHeader">
+    <div class="tableHeaderRow">
+        <div class="tableHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
+        <div class="tableHeader">
             <div class="fa fa-check"></div>
         </div>
-        <div class="teamMemberInfoHeader">RA</div>
-        <div class="teamMemberInfoHeader">HA</div>
+        <div class="tableHeader">RA</div>
+        <div class="tableHeader">HA</div>
     </div>
-    <div class="teamMemberInfoContainerEmployee">
-        <div class="teamMemberTableInfoContainer">
-            <div class="teamMemberRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
-                <div class="teamMember person" value="{{user.StaffId}}" step="1" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
-                <div class="teamMemberInfo">{{user.ConfirmedHolidays}}</div>
-                <div class="teamMemberInfo">{{user.RemainingAllowance}}</div>
-                <div class="teamMemberInfo">{{user.HolidayAllowance}}</div>
+        <div class="tableSubTable">
+            <div class="subTableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
+                <div class="subTableCell teamMember" value="{{user.StaffId}}" step="1" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
+                <div class="subTableCell">{{user.ConfirmedHolidays}}</div>
+                <div class="subTableCell">{{user.RemainingAllowance}}</div>
+                <div class="subTableCell">{{user.HolidayAllowance}}</div>
             </div>
         </div>
-    </div>
 </div>

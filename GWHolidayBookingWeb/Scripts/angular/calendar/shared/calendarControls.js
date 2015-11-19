@@ -81,11 +81,6 @@
                     height: '25%',
                     color: 'rgba(255, 255, 255, 0.95)'
                 });
-                $('.teamMemberInfoContainerEmployee').slimScroll({
-                    height: '27%',
-                    alwaysVisible: true,
-                    color: 'rgba(255, 255, 255, 0.95)'
-                });
             };
 
             $scope.formatDate = function(date) {

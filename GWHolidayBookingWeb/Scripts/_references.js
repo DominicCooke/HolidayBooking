@@ -28,3 +28,5 @@
 /// <reference path="angular/calendar/manager/tooltip.js" />
 /// <reference path="app/controllers/loginctrl.js" />
 /// <reference path="app/services/tokenservice.js" />
+/// <reference path="app/controllers/usertablectrl.js" />
+/// <reference path="angular/xeditable/xeditable.js" />

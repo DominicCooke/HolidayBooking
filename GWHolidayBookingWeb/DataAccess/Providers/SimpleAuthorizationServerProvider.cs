@@ -15,19 +15,18 @@ namespace GWHolidayBookingWeb.DataAccess.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] {"*"});
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-            using (var authRepository = new IdentityRepository(new IdentityContext()))
+            var userManager = Startup.UserManagerFactory();
+            IdentityEmployee user = await userManager.FindAsync(context.UserName, context.Password);
+            if (user == null)
             {
-                IdentityEmployee user = await authRepository.FindEmployee(context.UserName, context.Password);
-                if (user == null)
-                {
-                    context.SetError("invalid_grant", "The user name or password is incorrect.");
-                    return;
-                }
-                identity.AddClaim(new Claim("id", user.StaffId.ToString()));
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
             }
+            identity.AddClaim(new Claim("id", user.StaffId.ToString()));
+
             context.Validated(identity);
         }
     }

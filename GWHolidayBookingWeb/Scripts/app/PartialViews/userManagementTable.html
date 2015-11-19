@@ -1,0 +1,55 @@
+﻿<link href="../../../Styles/Table/table.css" rel="stylesheet" />
+<div class="page-title">
+    <h3>
+        User Management
+    </h3>
+</div>
+<div class="tableContainer" ng-controller='userTableCtrl'>
+    <table id="Employee" class="table table-striped table-hover table-bordered">
+        <tr class="tableHead">
+            <th>Actions</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>EmailAddress</th>
+            <th>Holiday Allowance</th>
+            <th>Remaining Allowance</th>
+            <th>Role</th>
+        </tr>
+        <tr class="tableRow" ng-repeat="employee in data" ng-hide="employee.Deleted" data-id="{{employee.StaffId}}">
+            <td class="actionsColumn">
+                <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" onaftersave="update($data, employee)" shown="employee.StaffId == ''">
+                    <button type="submit" value="submit" ng-disabled="rowform.$waiting" class="btn btn-primary"><i class="fa fa-floppy-o"></i></button>
+                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default"><i class="fa fa-ban"></i></button>
+                </form>
+                <div class="actionsOnData" ng-show="!rowform.$visible">
+                    <i ng-click="rowform.$show()" class="fa fa-pencil"></i>
+                    |
+                    <i ng-click="delete(employee)" class="fa fa-trash-o"></i>
+                    |
+                    <span uib-dropdown uib-dropdown-append-to-body>
+                        <a href id="simple-dropdown" uib-dropdown-toggle>
+                            <i class="fa fa-spinner"></i>
+                        </a>
+                        <ul class="uib-dropdown-menu" aria-labelledby="uib-simple-dropdown">
+                            <li ng-repeat="role in roles">
+                                <a href ng-click="setRole(role.Id, employee.EmployeeId, employee)" id="{{role.Id}}">{{role.Name}}</a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </td>
+            <td><span ng-show="!rowform.$visible" e-name="FirstName" ng-model="user.FirstName" editable-text="employee.FirstName" e-form="rowform">{{employee.FirstName}}</span></td>
+            <td><span ng-show="!rowform.$visible" e-name="LastName" ng-model="user.LastName" editable-text="employee.LastName" e-form="rowform">{{employee.LastName}}</span></td>
+            <td><span ng-show="!rowform.$visible" e-name="EmailAddress" ng-model="user.EmailAddress" editable-text="employee.UserViewModel.Username" e-form="rowform">{{employee.UserViewModel.Username}}</span></td>
+            <td><span ng-show="!rowform.$visible" e-name="HolidayAllowance" ng-model="user.HolidayAllowance" editable-text="employee.HolidayAllowance" e-form="rowform">{{employee.HolidayAllowance}}</span></td>
+            <td><span ng-show="!rowform.$visible" e-name="RemainingAllowance" ng-model="user.RemainingAllowance" editable-text="employee.RemainingAllowance" e-form="rowform">{{employee.RemainingAllowance}}</span></td>
+            <td>
+                <div ng-repeat="employeeRoles in employee.UserViewModel.RoleViewModels">
+                    <span>{{employeeRoles.Name}}</span>
+                    <br />
+                </div>
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-default" ng-click="addUser(); rowform.$show()">Add employee</button>
+</div>

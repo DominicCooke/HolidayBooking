@@ -2,17 +2,47 @@
     <title>Holiday Booking System</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="Styles/index.css" rel="stylesheet" />
     <link href="Scripts/angular/chart/angular-chart.css" rel="stylesheet" />
 </head>
+
 <body ng-app="holApp">
-    <div class="row" style="margin:0;">
-        <div ng-controller="menuCtrl">
-            <div id="ribbon" class="col-xs-12 page-header">
-                <h1>My Account</h1>
+    <div class="mainContainer" ng-controller="menuCtrl">
+        <div class="menuContainer">
+            <div class="side-bar">
+                <div class="profile">
+                    <div class="profilePic">
+                        <img src="Content/images/img.jpg" alt="..." class="img-circle profileImg">
+                    </div>
+                    <div class="profileInfo">
+                        <span>Welcome,</span>
+                        <h2>Anthony Fernando</h2>
+                    </div>
+                </div>
+                <div class="side-bar-menu"></div>
             </div>
-            <div id="menu" class="col-xs-2"></div>
         </div>
-        <div id="pageBody" class="col-xs-10"></div>
+        <div class="topNav">
+            <div class="navMenu">
+                <nav role="navigation">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="Content/images/img.jpg" alt="">John Doe
+                                <span class="fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#"><span>Settings</span></a></li>
+                                <li><a href="#">Help</a></li>
+                                <li><a href="#"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="pageBody"></div>
     </div>
 
     <!-- Major javascript libaries -->
@@ -30,6 +60,7 @@
     <script src="Scripts/jquery/slimscroll/jquery.slimscroll.js"></script>
     <script src="Scripts/lodash/lodash.js"></script>
     <script src="Scripts/angular/chart/angular-chart.js"></script>
+    <script src="Scripts/angular/xeditable/xeditable.js"></script>
 
     <!-- My directives -->
     <script src="Scripts/angular/calendar/shared/calendar.js"></script>
@@ -47,6 +78,7 @@
     <script src="Scripts/app/Services/dataService.js"></script>
     <script src="Scripts/app/Controllers/menuCtrl.js"></script>
     <script src="Scripts/app/Controllers/dashboardCtrl.js"></script>
+    <script src="Scripts/app/Controllers/userTableCtrl.js"></script>
     <script src="Scripts/app/Controllers/calendarCtrl.js"></script>
     <script src="Scripts/app/Controllers/loginCtrl.js"></script>
     <script src="Scripts/app/Templates/templates.js"></script>

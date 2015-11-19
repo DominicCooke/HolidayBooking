@@ -1,41 +1,43 @@
-﻿<div class="teamMemberHeaderRow">
-    <div class="teamMemberInfoHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
-    <div class="teamMemberInfoHeader">
-        <div class="fa fa-question"></div>
-        <span class="notification-counter-pending notification-counter">{{pendingNotificationCount}}</span>
+﻿<div class="managerControlsContainer">
+    <div class="teamMemberHeaderRow">
+        <div class="teamMemberInfoHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
+        <div class="teamMemberInfoHeader">
+            <div class="fa fa-question"></div>
+            <span class="notification-counter-pending notification-counter">{{pendingNotificationCount}}</span>
+        </div>
+        <div class="teamMemberInfoHeader">
+            <div class="fa fa-times"></div>
+            <span class="notification-counter-cancelled notification-counter">{{cancelledNotificationCount}}</span>
+        </div>
+        <div class="teamMemberInfoHeader fa fa-check"></div>
+        <div class="teamMemberInfoHeader">RA</div>
+        <div class="teamMemberInfoHeader">HA</div>
     </div>
-    <div class="teamMemberInfoHeader">
-        <div class="fa fa-times"></div>
-        <span class="notification-counter-cancelled notification-counter">{{cancelledNotificationCount}}</span>
-    </div>
-    <div class="teamMemberInfoHeader fa fa-check"></div>
-    <div class="teamMemberInfoHeader">RA</div>
-    <div class="teamMemberInfoHeader">HA</div>
-</div>
-<div class="teamMemberInfoContainer">
-    <div class="teamMemberTableInfoContainer">
-        <div class="teamMemberRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
-            <div class="teamMember person" step="1" value="{{user.StaffId}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
-            <div ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 0)" class="teamMemberInfo">{{user.PendingHolidays}}</div>
-            <div ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 2)" class="teamMemberInfo">{{user.CancelledHolidays}}</div>
-            <div class="teamMemberInfo">{{user.ConfirmedHolidays}}</div>
-            <div class="teamMemberInfo">{{user.RemainingAllowance}}</div>
-            <div class="teamMemberInfo">{{user.HolidayAllowance}}</div>
+    <div class="teamMemberInfoContainer">
+        <div class="teamMemberTableInfoContainer">
+            <div class="teamMemberRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
+                <div class="teamMember person" step="1" value="{{user.StaffId}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
+                <div ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 0)" class="teamMemberInfo">{{user.PendingHolidays}}</div>
+                <div ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 2)" class="teamMemberInfo">{{user.CancelledHolidays}}</div>
+                <div class="teamMemberInfo">{{user.ConfirmedHolidays}}</div>
+                <div class="teamMemberInfo">{{user.RemainingAllowance}}</div>
+                <div class="teamMemberInfo">{{user.HolidayAllowance}}</div>
+            </div>
         </div>
     </div>
-</div>
-<div class="tabHeaderHolidayRow">
-    <div class="tabHolidayHeader tabHolidayHeaderCell">Date</div>
-    <div class="tabHolidayHeader tabHolidayHeaderCell">Actions</div>
-</div>
-<div class="tabHolidayContainer">
-    <div class="tabTableHolidayContainer">
-        <div class="tabHolidayRow" ng-repeat="tabHoliday in tabHolidays.TabHolidays" ng-init="$last ? addScrollBar() : null">
-            <div class="tabHolidayCell">{{formatDate(tabHoliday.HolidayDate.StartDate)}}</div>
-            <div class="tabHolidayCell">
-                <div class="fa fa-check tabHolidayAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffId,tabHoliday.TypeOfHoliday,'accept')"></div>
-                <div class="fa fa-times tabHolidayAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffId,tabHoliday.TypeOfHoliday,'decline')"></div>
-                <div class="fa fa-comment tabHolidayAction" ng-click=""></div>
+    <div class="tabHeaderHolidayRow">
+        <div class="tabHolidayHeader tabHolidayHeaderCell">Date</div>
+        <div class="tabHolidayHeader tabHolidayHeaderCell">Actions</div>
+    </div>
+    <div class="tabHolidayContainer">
+        <div class="tabTableHolidayContainer">
+            <div class="tabHolidayRow" ng-repeat="tabHoliday in tabHolidays.TabHolidays" ng-init="$last ? addScrollBar() : null">
+                <div class="tabHolidayCell">{{formatDate(tabHoliday.HolidayDate.StartDate)}}</div>
+                <div class="tabHolidayCell">
+                    <div class="fa fa-check tabHolidayAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffId,tabHoliday.TypeOfHoliday,'accept')"></div>
+                    <div class="fa fa-times tabHolidayAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffId,tabHoliday.TypeOfHoliday,'decline')"></div>
+                    <div class="fa fa-comment tabHolidayAction" ng-click=""></div>
+                </div>
             </div>
         </div>
     </div>

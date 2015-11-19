@@ -21,7 +21,7 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Calendar/UpdateEmployee'
+                url: 'http://localhost:57068/api/Calendar/UpdateHoliday'
             });
         },
         sendUsersData: function(userData) {
@@ -34,7 +34,7 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Calendar/UpdateEmployees'
+                url: 'http://localhost:57068/api/Calendar/UpdateHolidays'
             });
         },
         getUser: function() {

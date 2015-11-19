@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.Models;
+using AutoMapper;
 
 namespace GWHolidayBookingWeb.DataAccess.Repositories
 {
@@ -36,7 +38,15 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update(EmployeeCalendar employee)
+        public void UpdateEmployee(EmployeeCalendarViewModel employeeCalendarViewModel)
+        {
+            var employee = Mapper.Map<EmployeeCalendar>(employeeCalendarViewModel);
+            EmployeeCalendar employeeInDb = context.Employees.Find(employee.StaffId);
+            context.Entry(employeeInDb).CurrentValues.SetValues(employee);
+            context.SaveChanges();
+        }
+
+        public void UpdateHolidays(EmployeeCalendar employee)
         {
             EmployeeCalendar employeeInDb = context.Employees.Find(employee.StaffId);
 

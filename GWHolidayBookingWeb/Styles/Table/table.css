@@ -1,0 +1,36 @@
+﻿.tableContainer > .table > tbody > .tableHead {
+  background: rgba(52, 73, 94, 0.94) !important;
+  color: #ECF0F1;
+}
+.tableContainer > .table > tbody > .tableHead > th {
+  border: 0;
+  font-size: 13px;
+  width: 15.5%;
+}
+.tableContainer > .table > tbody > .tableHead > th:first-child {
+  width: 7% !important;
+}
+.tableContainer > .table > tbody > .tableRow > .actionsColumn {
+  text-align: center;
+}
+.tableContainer > .table > tbody > .tableRow > .actionsColumn > form > button {
+  padding: 3px 6px;
+  margin-bottom: 1px;
+}
+.tableContainer > .table > tbody > .tableRow > td {
+  color: #73879C;
+  width: 15.5%;
+  font-size: 13px;
+}
+.tableContainer > .table > tbody > .tableRow > td:first-child {
+  width: 7% !important;
+}
+.tableContainer > .table > tbody > .tableRow > td > span > div > input {
+  width: 100%;
+}
+.tableContainer > .table > tbody > .tableRow:hover > td {
+  background: rgba(38, 185, 154, 0.07);
+  border-top: 1px solid rgba(38, 185, 154, 0.11);
+  border-bottom: 1px solid rgba(38, 185, 154, 0.11);
+}
+/*# sourceMappingURL=table.css.map */

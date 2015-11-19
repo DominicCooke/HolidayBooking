@@ -1,1 +1,1 @@
-﻿.loginContainer{height:70%;width:100%}.loginContainer>.loginBody{display:flex;flex-direction:column;height:40%;justify-content:center;margin:0 auto;width:30%}.loginContainer>.loginBody>.input-group{padding:5px}
+﻿.loginContainer{width:100%;height:70%}.loginContainer>.loginBody{width:30%;height:40%;margin:0 auto;display:flex;justify-content:center;flex-direction:column}.loginContainer>.loginBody>form>.form-actions>button{background-color:#2a3f54;border-color:transparent !important}

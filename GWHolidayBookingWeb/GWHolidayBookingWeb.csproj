@@ -175,13 +175,17 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\background.jpg" />
+    <Content Include="Content\images\img.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\angular\calendar\employee\infoBox.js" />
+    <Content Include="Scripts\angular\xeditable\xeditable.css" />
+    <Content Include="Scripts\angular\xeditable\xeditable.js" />
     <Content Include="Scripts\app\Controllers\loginCtrl.js" />
     <Content Include="Scripts\app\PartialViews\calendar\employee\employeeCalendarMode.html" />
     <Content Include="Scripts\app\PartialViews\calendar\manager\managerCalendarMode.html" />
     <Content Include="Scripts\app\PartialViews\login.html" />
+    <Content Include="Scripts\app\PartialViews\userManagementTable.html" />
     <Content Include="Scripts\app\Services\dataService.js" />
     <Content Include="Scripts\app\Services\tokenService.js" />
     <Content Include="Scripts\app\Templates\employee\employeeCalendarInfoBoxTemplate.html" />
@@ -237,11 +241,23 @@
     <Content Include="Scripts\underscore\underscore-min.js" />
     <Content Include="Styles\Calendar\calendar.css" />
     <Content Include="Styles\Calendar\calendar.min.css" />
+    <Content Include="Styles\Index.css">
+      <DependentUpon>index.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
     <Content Include="Styles\Login\login.css">
       <DependentUpon>login.less</DependentUpon>
     </Content>
     <Content Include="Styles\Login\login.min.css">
       <DependentUpon>login.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Table\table.css">
+      <DependentUpon>table.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\Table\table.min.css">
+      <DependentUpon>table.css</DependentUpon>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -249,6 +265,7 @@
     <Content Include="Views\Home\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="App_Start\NinjectConfigurator.cs" />
     <Compile Include="App_Start\NinjectDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -257,8 +274,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="DataAccess\Identity\ViewModels\EmployeeCalendarViewModel.cs" />
     <Compile Include="DataAccess\Identity\IdentityContext.cs" />
-    <Compile Include="DataAccess\Identity\EmployeeCreateViewModel.cs" />
+    <Compile Include="DataAccess\Identity\ViewModels\EmployeeCreateViewModel.cs" />
+    <Compile Include="DataAccess\Identity\ViewModels\IdentityEmployeeViewModel.cs" />
     <Compile Include="DataAccess\Identity\IIdentityContext.cs" />
     <Compile Include="Migrations\Identity\ConfigIdentity.cs" />
     <Compile Include="Migrations\Employee\ConfigEmployeeCalendar.cs" />
@@ -267,11 +286,8 @@
     <Compile Include="DataAccess\IEmployeeContext.cs" />
     <Compile Include="DataAccess\Identity\IdentityEmployee.cs" />
     <Compile Include="DataAccess\Providers\SimpleAuthorizationServerProvider.cs" />
-    <Compile Include="DataAccess\Repositories\IdentityRepository.cs" />
-    <Compile Include="DataAccess\Repositories\IIdentityRepository.cs" />
     <Compile Include="DataAccess\Repositories\IEmployeeRepository.cs" />
-    <Compile Include="Services\Identity\IdentityService.cs" />
-    <Compile Include="Services\Identity\IIdentityService.cs" />
+    <Content Include="Scripts\app\Controllers\userTableCtrl.js" />
     <Compile Include="Services\Employee\IEmployeeDataService.cs" />
     <Compile Include="Models\EmployeeCalendar.cs" />
     <Compile Include="DataAccess\EmployeeContext.cs" />
@@ -292,6 +308,14 @@
     <Content Include="Styles\Login\login.less" />
     <Content Include="Styles\Login\login.css.map">
       <DependentUpon>login.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Table\table.less" />
+    <Content Include="Styles\Table\table.css.map">
+      <DependentUpon>table.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\index.less" />
+    <Content Include="Styles\Index.css.map">
+      <DependentUpon>Index.css</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

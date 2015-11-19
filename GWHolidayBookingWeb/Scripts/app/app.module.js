@@ -1,4 +1,8 @@
-﻿var app = angular.module("holApp", ['chart.js', 'ui.bootstrap']);
+﻿var app = angular.module("holApp", ['chart.js', 'ui.bootstrap', 'xeditable']);
+
+app.run(function (editableOptions) {
+    editableOptions.theme = 'bs3';
+});
 
 app.service('templateService', ['$http', '$compile', '$templateCache', templateService]);
 app.service('viewService', ['templateService', viewService]);
@@ -9,6 +13,7 @@ app.controller('menuCtrl', menuCtrl);
 app.controller('dashboardCtrl', dashboardCtrl);
 app.controller('calendarCtrl', calendarCtrl);
 app.controller('loginCtrl', loginCtrl);
+app.controller('userTableCtrl', userTableCtrl);
 
 app.directive('calendar', calendarDirective);
 app.directive('calendarcontrols', calendarControlsDirective);

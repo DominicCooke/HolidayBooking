@@ -1,15 +1,19 @@
-﻿@publicHoliday-colour: #b9b9b9;
-@normalHoliday-colour: #72c015;
-@pendingHoliday-colour: deepskyblue;
-@cancelledHoliday-colour: #3a5fcd;
+﻿@publicHoliday-colour: #73879C;
+@normalHoliday-colour: #1ABB9C;
+@pendingHoliday-colour: #3498DB;
+@cancelledHoliday-colour: #9B59B6;
 @oneHoliday-colour: #0f0;
 @twoHoliday-colour: #af0;
 @threeHoliday-colour: #fb0;
 @fourHoliday-colour: #f40;
 @fiveHoliday-colour: #f00;
-@background-colour: fade(#000,60%);
-@background-colour-no-fade: #000;
-@border-colour: lighten(rgba(0, 0, 0, 0.6),12%);
+@background-colour: #2A3F54;
+@text-colour-primary: #ECF0F1;
+@text-colour-secondary: #73879C;
+@text-colour-tertiary: #2A3F54;
+@innerbackground-colour: white;
+@notification-colour: #E74C3C;
+@border-colour: #ddd;
 @spacing: 10px;
 @icon-width: 40px;
 @header-height: 40px;
@@ -19,83 +23,56 @@
     src: url('../../Content/fonts/Roboto-Regular.ttf') format('truetype');
 }
 
-.vertical-centre (@height) {
-    display: inline-block;
-    height: @height;
-    line-height: @height !important;
-    vertical-align: middle;
-}
-
 .bodyContainer {
-    background-image: url('../../Content/images/background.jpg');
-    background-size: cover;
-    border: 1px solid black;
     font-family: Roboto-Regular;
-    height: 70%;
+    height: 85%;
     width: 100%;
+    float: left;
+    color: @text-colour-primary;
 
     > .otherSpace {
         float: left;
-        font-size: 250%;
-        font-weight: bolder;
         height: 100%;
         line-height: 1;
         width: 40%;
+        position: relative;
 
         > infobox {
             > .infoBoxContainer {
-                background: rgba(0, 0, 0, 0.6);
-                border: 1px solid black;
-                height: 20%;
-                margin: 6%;
-                text-align: center;
+                background: @innerbackground-colour;
+                border: 1px solid @border-colour;
+                display: flex;
+                margin: 3% 5% 0 0;
 
-                > .infoBoxName {
-                    color: white;
-                    font-weight: normal;
-                    padding-top: 5%;
-                }
+                > .infoBoxSubContainer {
+                    text-align: center;
+                    padding: 5px;
+                    width: 25%;
 
-                > .infoBoxContainerTable {
-                    display: table;
-                    margin-top: 2%;
-                    width: 100%;
+                    > .infoBoxContainerValue {
+                        font-size: 40px;
 
-                    > .infoBoxContainerRow {
-                        display: table-row;
-
-                        > .infoBoxContainerCell {
-                            display: table-cell;
-                            padding-left: 5%;
-                            padding-right: 5%;
-                            width: 25%;
-
-                            > .infoBoxContainerValue {
-                                font-size: 40px;
-
-                                &#infoBoxPending {
-                                    color: @pendingHoliday-colour;
-                                }
-
-                                &#infoBoxCancelled {
-                                    color: @cancelledHoliday-colour;
-                                }
-
-                                &#infoBoxConfirmed {
-                                    color: @normalHoliday-colour;
-                                }
-
-                                &#infoBoxRemaining {
-                                    color: white;
-                                }
-                            }
-
-                            > .infoBoxContainerLabel {
-                                color: white;
-                                font-size: 12px;
-                                font-weight: normal;
-                            }
+                        &#infoBoxPending {
+                            color: @pendingHoliday-colour;
                         }
+
+                        &#infoBoxCancelled {
+                            color: @cancelledHoliday-colour;
+                        }
+
+                        &#infoBoxConfirmed {
+                            color: @normalHoliday-colour;
+                        }
+
+                        &#infoBoxRemaining {
+                            color: @text-colour-tertiary;
+                        }
+                    }
+
+                    > .infoBoxContainerLabel {
+                        font-size: 12px;
+                        font-weight: normal;
+                        color: @text-colour-tertiary;
                     }
                 }
             }
@@ -103,32 +80,31 @@
 
         > calendarcontrols {
 
-            > .teamMemberControlsContainer {
-                background: rgba(0, 0, 0, 0.6);
-                border: 1px solid black;
+            > .employeeControlsContainer {
+                background: @innerbackground-colour;
                 border-collapse: collapse;
-                color: white;
                 font-size: 15px;
                 font-weight: normal;
-                margin: 6%;
+                margin: 3% 5% 0 0;
                 text-align: center;
+                padding: 10px 17px;
+                border: 1px solid @border-colour;
 
                 > .nameOfTeam {
-                    color: white;
+                    color: @text-colour-tertiary;
                     font-size: 25px;
                     font-weight: normal;
                     padding-bottom: 2%;
-                    padding-top: 5%;
                 }
 
-                > .teamMemberHeaderRow {
-                    border-top: 1px solid black;
+                > .tableHeaderRow {
                     display: table;
                     width: 100%;
+                    border-right: 1px solid transparent;
+                    border-left: 1px solid transparent;
 
-                    > .teamMemberInfoHeader {
-                        border-bottom: 1px solid black;
-                        border-left: 1px solid black;
+                    > .tableHeader {
+                        background: @background-colour;
                         display: table-cell;
                         padding: 0 5px;
                         pointer-events: none;
@@ -137,8 +113,6 @@
                         width: 12%;
 
                         &:first-child {
-                            background: lighten(@background-colour,20%);
-                            border-left: 0;
                             cursor: pointer;
                             padding: 10px 15px;
                             pointer-events: all;
@@ -151,7 +125,7 @@
 
 
                         > .notification-counter {
-                            background-color: #d4130d;
+                            background-color: @notification-colour;
                             border-radius: 3px;
                             left: 33px;
                             padding: 1px 3px;
@@ -161,31 +135,149 @@
                     }
                 }
 
-                > .slimScrollDiv {
-                    > .teamMemberInfoContainerEmployee {
+                .tableSubTable {
+                    display: table;
+                    width: 100%;
+
+                    > .subTableRow {
+                        display: table-row;
+
+                        &:nth-of-type(even) {
+                            background: #f9f9f9;
+                        }
+
+                        > .subTableCell {
+                            color: @background-colour;
+                            border: 1px solid @border-colour;
+                            display: table-cell;
+                            width: 12%;
+
+                            &.teamMember {
+                                background: @background-colour;
+                                border: 1px solid @border-colour;
+                                color:@text-colour-primary;
+                                cursor: pointer;
+                                display: table-cell;
+                                padding: 10px 15px;
+                                transition: 1s;
+                                width: 30%;
+
+                                &.active {
+                                    background: lighten(@background-colour,40%);
+                                }
+
+                                &.dead {
+                                    background: lighten(@background-colour,40%);
+                                    pointer-events: none;
+                                }
+                            }
+
+                            @keyframes textpulsatepending {
+                                0% {
+                                }
+
+                                50% {
+                                    background: fade(@pendingHoliday-colour,40%);
+                                }
+
+                                100% {
+                                }
+                            }
+
+                            @keyframes textpulsatecancelled {
+                                0% {
+                                }
+
+                                50% {
+                                    background: fade(@cancelledHoliday-colour,40%);
+                                }
+
+                                100% {
+                                }
+                            }
+
+                            &.isPendingHoliday {
+                                animation: textpulsatepending 5s;
+                                animation-iteration-count: infinite;
+                                cursor: pointer;
+                            }
+
+                            &.isCancelledHoliday {
+                                animation: textpulsatecancelled 5s;
+                                animation-iteration-count: infinite;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+
+            > .managerControlsContainer {
+                height: 85%;
+                background: @innerbackground-colour;
+                padding: 10px 17px;
+                border: @border-colour;
+
+                > .teamMemberHeaderRow {
+                    background: @background-colour;
+                    display: table;
+                    text-align: center;
+                    width: 100%;
+
+                    > .teamMemberInfoHeader {
+                        display: table-cell;
+                        padding: 0 5px;
+                        pointer-events: none;
+                        position: relative;
+                        transition: 1s;
+                        width: 70%/5;
+
+                        &:first-child {
+                            cursor: pointer;
+                            padding: 10px 15px;
+                            pointer-events: all;
+                            width: 30%;
+
+                            &.active {
+                                background: lighten(@background-colour,50%);
+                            }
+                        }
+
+
+                        > .notification-counter {
+                            background-color: @notification-colour;
+                            border-radius: 3px;
+                            left: 33px;
+                            padding: 1px 3px;
+                            position: absolute;
+                            top: -7px;
+                        }
+                    }
+                }
+
+                .slimScrollDiv {
+                    > .teamMemberInfoContainer {
                         height: 100% !important;
                         overflow: hidden;
+                        text-align: center;
                         width: 100%;
 
                         .teamMemberTableInfoContainer {
                             display: table;
                             width: 100%;
+                            border-collapse: collapse;
 
                             > .teamMemberRow {
-                                border-bottom: 1px solid black;
                                 display: table-row;
 
                                 &:last-child {
-
-                                    > .teamMember {
-                                        border-bottom: 0;
-                                    }
                                 }
 
                                 > .teamMemberInfo {
-                                    border-left: 1px solid @border-colour;
+                                    border: 1px solid @border-colour;
+                                    color: @text-colour-tertiary;
                                     display: table-cell;
-                                    width: 12%;
+                                    width: 70%/5;
 
                                     @keyframes textpulsatepending {
                                         0% {
@@ -227,8 +319,7 @@
                         }
 
                         .teamMember {
-                            background: lighten(@background-colour,20%);
-                            border-right: 1px solid black;
+                            background: lighten(@background-colour,10%);
                             cursor: pointer;
                             display: table-cell;
                             padding: 10px 15px;
@@ -236,294 +327,75 @@
                             width: 30%;
 
                             &.active {
-                                background: lighten(@background-colour,50%);
+                                background: lighten(@background-colour,30%);
                             }
 
                             &.dead {
-                                background: darken(@background-colour,50%);
+                                background: darken(@background-colour,10%);
                                 pointer-events: none;
                             }
                         }
                     }
                 }
-            }
-        }
 
-        > tabs {
-            color: white;
-            font-size: 15px;
-            font-weight: normal;
+                > .tabHeaderHolidayRow {
+                    display: table !important;
+                    height: 7%;
+                    pointer-events: none;
+                    text-align: center;
+                    width: 100%;
 
-            > .navigationalTabsContainer {
-                border-collapse: collapse;
-                height: 100%;
-                padding: 6%;
-                width: 100%;
 
-                > ul.nav {
-                    height: 15%;
+                    > .tabHolidayHeaderCell {
+                        display: table-cell;
+                        padding: 5px 5px;
+                    }
 
-                    > .navigationalTab {
-                        border-right: 1px solid black;
-                        border-top: 1px solid black;
+                    > .tabHolidayHeader {
+                        background: lighten(@background-colour,10%);
+                        padding: 8px 5px;
 
                         &:last-child {
-                        }
-
-                        &:first-child {
-                            border-left: 1px solid black;
-                        }
-
-                        background: @background-colour;
-                        border-radius: 0;
-                        color: white;
-                        float: left;
-                        height: 100%;
-                        text-align: center;
-                        width: 25%;
-
-                        > a {
-                            background: @background-colour;
-                            border: 0;
-                            color: white;
-                            display: flex;
-                            flex-direction: column;
-                            height: 100%;
-                            justify-content: center;
-                            padding: 0;
-                        }
-                    }
-
-                    > .navigationalTab.active {
-                        > a {
-                            background: lighten(@background-colour-no-fade,30%);
+                            width: 25%;
                         }
                     }
                 }
 
-                > .tab-content {
-                    height: 85%;
-
-                    > .tab-pane {
-                        background: @background-colour;
-                        border-bottom: 1px solid black;
-                        border-left: 1px solid black;
-                        border-right: 1px solid black;
-
-                        > calendarcontrols {
-
-                            > .teamMemberHeaderRow {
-                                border-top: 1px solid black;
-                                display: table;
-                                text-align: center;
-                                width: 100%;
-
-                                > .teamMemberInfoHeader {
-                                    border-bottom: 1px solid black;
-                                    border-left: 1px solid black;
-                                    display: table-cell;
-                                    padding: 0 5px;
-                                    pointer-events: none;
-                                    position: relative;
-                                    transition: 1s;
-                                    width: 12%;
-
-                                    &:first-child {
-                                        background: lighten(@background-colour,20%);
-                                        border-left: 0;
-                                        cursor: pointer;
-                                        padding: 10px 15px;
-                                        pointer-events: all;
-                                        width: 30%;
-
-                                        &.active {
-                                            background: lighten(@background-colour,50%);
-                                        }
-                                    }
+                .slimScrollDiv {
 
 
-                                    > .notification-counter {
-                                        background-color: #d4130d;
-                                        border-radius: 3px;
-                                        left: 33px;
-                                        padding: 1px 3px;
-                                        position: absolute;
-                                        top: -7px;
-                                    }
-                                }
-                            }
+                    > .tabHolidayContainer {
+                        height: 100% !important;
+                        overflow-y: auto;
+                        text-align: center;
+                        width: 100%;
 
-                            .slimScrollDiv {
-                                > .teamMemberInfoContainer {
-                                    height: 100% !important;
-                                    overflow: hidden;
-                                    text-align: center;
-                                    width: 100%;
+                        > .tabTableHolidayContainer {
+                            display: table;
+                            width: 100%;
 
-                                    .teamMemberTableInfoContainer {
-                                        display: table;
-                                        width: 100%;
+                            > .tabHolidayRow {
+                                display: table-row;
 
-                                        > .teamMemberRow {
-                                            border-bottom: 1px solid @border-colour;
-                                            display: table-row;
 
-                                            &:last-child {
-
-                                                > .teamMember {
-                                                    border-bottom: 0;
-                                                }
-                                            }
-
-                                            > .teamMemberInfo {
-                                                border-left: 1px solid @border-colour;
-                                                display: table-cell;
-                                                width: 12%;
-
-                                                @keyframes textpulsatepending {
-                                                    0% {
-                                                    }
-
-                                                    50% {
-                                                        background: fade(@pendingHoliday-colour,40%);
-                                                    }
-
-                                                    100% {
-                                                    }
-                                                }
-
-                                                @keyframes textpulsatecancelled {
-                                                    0% {
-                                                    }
-
-                                                    50% {
-                                                        background: fade(@cancelledHoliday-colour,40%);
-                                                    }
-
-                                                    100% {
-                                                    }
-                                                }
-
-                                                &.isPendingHoliday {
-                                                    animation: textpulsatepending 5s;
-                                                    animation-iteration-count: infinite;
-                                                    cursor: pointer;
-                                                }
-
-                                                &.isCancelledHoliday {
-                                                    animation: textpulsatecancelled 5s;
-                                                    animation-iteration-count: infinite;
-                                                    cursor: pointer;
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    .teamMember {
-                                        background: lighten(@background-colour,20%);
-                                        border-right: 1px solid black;
-                                        cursor: pointer;
-                                        display: table-cell;
-                                        padding: 10px 15px;
-                                        transition: 1s;
-                                        width: 30%;
-
-                                        &.active {
-                                            background: lighten(@background-colour,50%);
-                                        }
-
-                                        &.dead {
-                                            background: darken(@background-colour,50%);
-                                            pointer-events: none;
-                                        }
-                                    }
-                                }
-                            }
-
-                            > .tabHeaderHolidayRow {
-                                display: table !important;
-                                height: 7%;
-                                pointer-events: none;
-                                text-align: center;
-                                width: 100%;
-
-                                &:last-child {
-                                    > .tabHolidayHeaderCell {
-                                        border-bottom: 0;
-                                    }
-                                }
-
-                                > .tabHolidayHeaderCell {
-                                    border-bottom: 1px solid black;
+                                > .tabHolidayCell {
+                                    background: rgba(255,255,255,0.15);
                                     display: table-cell;
                                     padding: 5px 5px;
 
                                     &:last-child {
-                                        border-left: 1px solid black;
-                                    }
-                                }
-
-                                > .tabHolidayHeader {
-                                    background: lighten(@background-colour,20%);
-                                    border-top: 1px black solid;
-                                    padding: 8px 5px;
-
-                                    &:last-child {
-                                        border-right: 0;
                                         width: 25%;
                                     }
 
-                                    &:first-child {
-                                        border-left: 0;
-                                    }
-                                }
-                            }
+                                    > .tabHolidayAction {
+                                        cursor: pointer;
 
-                            .slimScrollDiv {
+                                        &.fa-check {
+                                            color: #0f0;
+                                        }
 
-
-                                > .tabHolidayContainer {
-                                    height: 100% !important;
-                                    overflow-y: auto;
-                                    text-align: center;
-                                    width: 100%;
-
-                                    > .tabTableHolidayContainer {
-                                        display: table;
-                                        width: 100%;
-
-                                        > .tabHolidayRow {
-                                            display: table-row;
-
-                                            &:last-child {
-                                                > .tabHolidayCell {
-                                                    border-bottom: 0;
-                                                }
-                                            }
-
-                                            > .tabHolidayCell {
-                                                background: rgba(255,255,255,0.15);
-                                                border-bottom: 1px solid black;
-                                                display: table-cell;
-                                                padding: 5px 5px;
-
-                                                &:last-child {
-                                                    border-left: 1px solid black;
-                                                    width: 25%;
-                                                }
-
-                                                > .tabHolidayAction {
-                                                    cursor: pointer;
-
-                                                    &.fa-check {
-                                                        color: #0f0;
-                                                    }
-
-                                                    &.fa-times {
-                                                        color: red;
-                                                    }
-                                                }
-                                            }
+                                        &.fa-times {
+                                            color: red;
                                         }
                                     }
                                 }
@@ -536,14 +408,12 @@
 
         > .controls {
             bottom: 1px;
-            color: white;
             font-size: 15px;
             font-weight: normal;
             position: absolute;
 
             > button {
                 background-color: @background-colour;
-                color: rgba(255, 255, 255, 0.8);
             }
 
             > selectbox {
@@ -560,11 +430,10 @@
     }
 
     > calendar {
-        background: @background-colour;
-        border-left: 1px solid black;
-        border-right: 1px solid black;
+        background: @innerbackground-colour;
+        border: 1px solid @border-colour;
         float: left;
-        height: 100%;
+        height: 75%;
         position: relative;
         width: 50%;
 
@@ -572,7 +441,6 @@
             > .hoverTooltip {
                 background: rgba(0, 0, 0, 0.7);
                 border-spacing: 9px;
-                color: white;
                 outline: solid 1px black;
                 position: fixed;
                 text-align: center;
@@ -631,29 +499,33 @@
         }
 
         > .header {
-            color: white;
+            color: @text-colour-tertiary;
             float: left;
-            margin-top: 15%;
+            padding-top: 10%;
             width: 100%;
+            height: 20%;
 
             > * {
-                .vertical-centre(@header-height);
+                //.vertical-centre(@header-height);
             }
 
             > i {
                 cursor: pointer;
                 float: left;
-                padding: 0 @spacing;
                 position: relative;
                 width: 10%;
             }
 
             > .fa-angle-left {
                 text-align: left;
+                padding-left: 2%;
             }
 
             > .fa-angle-right {
                 text-align: right;
+                position: absolute;
+                right: 0;
+                padding-right: 2%;
             }
 
             > span {
@@ -668,39 +540,51 @@
         }
 
         > .month {
+            height: 50%;
 
             > .week {
-                padding-left: 10%;
-                padding-right: 10%;
-                width: 100%;
+                margin-left: 15%;
+                margin-right: 15%;
+                margin-top: 3px;
+                width: 70%;
+                height: 100%/7;
+                float: left;
 
-                &.names > span {
-                    margin-top: 30px;
-                    pointer-events: none;
+                &.names {
+                    margin-bottom: 20px;
+
+                    > span {
+                        background: rgba(255,255,255,0);
+                        color: @text-colour-tertiary;
+                        margin-top: 30px;
+                        pointer-events: none;
+                    }
                 }
 
                 > .day {
-                    .vertical-centre(5vh);
-                    background: rgba(255,255,255,0);
+                    display: table;
+                    height: 100%;
+                    line-height: 100% !important;
+                    height: 100%;
+                    background: @background-colour;
                     border-radius: 15%;
-                    color: white;
                     cursor: pointer;
                     float: left;
-                    margin: 2.5%/7;
+                    margin: 0 0.5% 0.5% 0;
                     position: relative;
                     text-align: center;
-                    width: 95%/7;
+                    width: 90%/7;
 
-                    &.nonName {
-                        background: rgba(255,255,255,0.05);
+                    > .dayNumber {
+                        display: table-cell;
+                        vertical-align: middle;
                     }
 
                     > .confirmedHolidayCount {
-                        background-color: #d4130d;
+                        background-color: @notification-colour;
                         border-bottom-left-radius: 5px;
                         border-top-right-radius: 5px;
-                        box-shadow: 0 0 0 1px @background-colour;
-                        color: white;
+                        box-shadow: 1px 0 1px 0 #2a3f54;
                         display: none;
                         font-size: 14px;
                         font-weight: normal;
@@ -715,7 +599,7 @@
 
 
                     &.isweekend {
-                        background: lighten(@background-colour,40%);
+                        background: #C5C7CB;
                         cursor: none;
                         pointer-events: none;
                     }
@@ -759,38 +643,34 @@
                     &.teamHoliday1 {
                         background: fade(@oneHoliday-colour, 80%);
                         border-radius: 15%;
-                        color: white;
                     }
 
                     &.teamHoliday2 {
                         background: fade(@twoHoliday-colour, 80%);
                         border-radius: 15%;
-                        color: white;
                     }
 
                     &.teamHoliday3 {
                         background: fade(@threeHoliday-colour, 80%);
                         border-radius: 15%;
-                        color: white;
                     }
 
                     &.teamHoliday4 {
                         background: fade(@fourHoliday-colour, 80%);
                         border-radius: 15%;
-                        color: white;
                     }
 
                     &.teamHoliday5 {
                         background: fade(@fiveHoliday-colour, 80%);
                         border-radius: 15%;
-                        color: white;
                     }
                 }
             }
         }
 
         > .key {
-            height: 13%;
+            color: @text-colour-tertiary;
+            height: 10%;
             padding-left: 5%;
             padding-right: 5%;
             pointer-events: none;
@@ -812,7 +692,6 @@
             }
 
             .keyLabel {
-                color: white;
                 display: flex;
                 flex-direction: column;
                 float: left;
@@ -824,7 +703,7 @@
             }
 
             .keyColor {
-                border: 1px solid black;
+                border: 1px solid #dddddd;
                 border-bottom: 0;
                 border-top-left-radius: 15px;
                 border-top-right-radius: 15px;
@@ -874,12 +753,10 @@
                 display: table;
                 float: left;
                 height: 100%;
-                line-height: 2;
                 width: 50%;
 
 
                 > .teamHolidayKeyLabel {
-                    color: white;
                     text-align: center;
                 }
 
@@ -900,7 +777,6 @@
                 }
 
                 > .teamHolidayKeyLabelValues {
-                    color: white;
                     display: table-footer-group;
                     float: left;
 

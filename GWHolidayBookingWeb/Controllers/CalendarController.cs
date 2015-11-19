@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
 using GWHolidayBookingWeb.DataAccess;
+using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.Models;
 using GWHolidayBookingWeb.Services.Employee;
 using Microsoft.Owin;
@@ -37,16 +38,21 @@ namespace GWHolidayBookingWeb.Controllers
             return employeeDataService.GetEmployeeById(Guid.Parse(staffIdClaim.Value));
         }
 
-        public void UpdateEmployee(EmployeeCalendar employee)
+        public void UpdateEmployee(EmployeeCalendarViewModel employeeCalendarViewModel)
         {
-            employeeDataService.Update(employee);
+            employeeDataService.UpdateEmployee(employeeCalendarViewModel);
         }
 
-        public void UpdateEmployees(List<EmployeeCalendar> employees)
+        public void UpdateHoliday(EmployeeCalendar employee)
+        {
+            employeeDataService.UpdateHolidays(employee);
+        }
+
+        public void UpdateHolidays(List<EmployeeCalendar> employees)
         {
             foreach (EmployeeCalendar employee in employees)
             {
-                employeeDataService.Update(employee);
+                employeeDataService.UpdateHolidays(employee);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.Models;
 
 namespace GWHolidayBookingWeb.Services.Employee
@@ -9,7 +10,8 @@ namespace GWHolidayBookingWeb.Services.Employee
         List<EmployeeCalendar> Get();
         EmployeeCalendar GetEmployeeById(Guid staffId);
         void Delete(Guid staffId);
-        void Update(EmployeeCalendar employee);
+        void UpdateEmployee(EmployeeCalendarViewModel employeeCalendarViewModel);
+        void UpdateHolidays(EmployeeCalendar employee);
         void Create(EmployeeCalendar employee);
         EmployeeCalendarHoldiayBooking GetHolidayBookingById(int holidayId);
     }
