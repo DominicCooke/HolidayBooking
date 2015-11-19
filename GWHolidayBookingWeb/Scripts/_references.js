@@ -17,7 +17,6 @@
 /// <reference path="app/services/dataservice.js" />
 /// <reference path="underscore/underscore-min.js" />
 /// <reference path="lodash/lodash.js" />
-/// <reference path="jquery/slimscroll/jquery.slimscroll.js" />
 /// <reference path="angular/calendar/shared/calendarcontrols.js" />
 /// <reference path="angular/calendar/shared/calendar.js" />
 /// <reference path="angular/calendar/employee/selectbox.js" />
@@ -30,3 +29,7 @@
 /// <reference path="app/services/tokenservice.js" />
 /// <reference path="app/controllers/usertablectrl.js" />
 /// <reference path="angular/xeditable/xeditable.js" />
+<<<<<<< HEAD
+/// <reference path="jquery/scrollbar/jquery.scrollbar.js" />
+=======
+>>>>>>> dd792c8b6518feca8d82f1f8119022f4ac2b3d5d

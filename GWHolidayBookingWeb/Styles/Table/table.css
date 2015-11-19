@@ -5,10 +5,17 @@
 .tableContainer > .table > tbody > .tableHead > th {
   border: 0;
   font-size: 13px;
+<<<<<<< HEAD
+  width: 15.33333333%;
+}
+.tableContainer > .table > tbody > .tableHead > th:first-child {
+  width: 8% !important;
+=======
   width: 15.5%;
 }
 .tableContainer > .table > tbody > .tableHead > th:first-child {
   width: 7% !important;
+>>>>>>> dd792c8b6518feca8d82f1f8119022f4ac2b3d5d
 }
 .tableContainer > .table > tbody > .tableRow > .actionsColumn {
   text-align: center;

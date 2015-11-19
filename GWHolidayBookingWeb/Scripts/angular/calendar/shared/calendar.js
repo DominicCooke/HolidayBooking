@@ -8,8 +8,8 @@
         scope: false,
         link: function($scope) {
             $scope.select = function(date) {
+                $scope.selected = date;
                 if ($scope.editMode == true) {
-                    $scope.selected = date;
                     if (isStatusHoliday(date, 0) == true || isStatusHoliday(date, 1) == true || isStatusHoliday(date, 2) == true) {
                         var isFound = true;
                     }

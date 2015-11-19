@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using GWHolidayBookingWeb.DataAccess.Identity;
-using GWHolidayBookingWeb.DataAccess.Repositories;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security.OAuth;
 
 namespace GWHolidayBookingWeb.DataAccess.Providers
@@ -17,7 +17,6 @@ namespace GWHolidayBookingWeb.DataAccess.Providers
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-
             var userManager = Startup.UserManagerFactory();
             IdentityEmployee user = await userManager.FindAsync(context.UserName, context.Password);
             if (user == null)

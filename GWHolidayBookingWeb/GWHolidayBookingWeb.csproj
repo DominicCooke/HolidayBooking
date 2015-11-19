@@ -191,7 +191,8 @@
     <Content Include="Scripts\app\Templates\employee\employeeCalendarInfoBoxTemplate.html" />
     <Content Include="Scripts\app\Templates\employee\employeeCalendarControlsTemplate.html" />
     <Content Include="Scripts\app\Templates\employee\employeeCalendarTooltipTemplate.html" />
-    <Content Include="Scripts\jquery\slimscroll\jquery.slimscroll.js" />
+    <Content Include="Scripts\jquery\scrollbar\jquery.scrollbar.css" />
+    <Content Include="Scripts\jquery\scrollbar\jquery.scrollbar.js" />
     <Content Include="Scripts\lodash\lodash.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="index.html" />

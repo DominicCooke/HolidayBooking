@@ -1,4 +1,4 @@
-﻿userTableCtrl = function ($scope, $http) {
+userTableCtrl = function ($scope, $http) {
 
     $scope.init = function () {
         $http({
@@ -7,13 +7,11 @@
         }).success(function (response) {
             $scope.data = response;
         });
-        $http({
-            method: "GET",
-            url: "http://localhost:57068/api/Employee/GetIdentityRoles"
-        }).success(function (response) {
-            $scope.roles = response;
-        });
-    }
+    };
+
+    $scope.delete = function () {
+
+    };
 
     $scope.delete = function () {
 
@@ -24,7 +22,7 @@
             url: "http://localhost:57068/api/Employee/Update",
             method: "POST",
             data: user
-        }).success(function(data, status, headers, config) {
+        }).success(function (data, status, headers, config) {
         });
     };
 

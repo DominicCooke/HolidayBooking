@@ -127,7 +127,6 @@ namespace GWHolidayBookingWeb.Controllers
         {
             return await roleManager.Roles.ToListAsync();
         }
-        
         [Route("Update")]
         public void Update(EmployeeCalendarViewModel employeeCalendarViewModel)
         {

@@ -8,12 +8,12 @@
         <div class="tableHeader">RA</div>
         <div class="tableHeader">HA</div>
     </div>
-        <div class="tableSubTable">
-            <div class="subTableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
-                <div class="subTableCell teamMember" value="{{user.StaffId}}" step="1" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
-                <div class="subTableCell">{{user.ConfirmedHolidays}}</div>
-                <div class="subTableCell">{{user.RemainingAllowance}}</div>
-                <div class="subTableCell">{{user.HolidayAllowance}}</div>
-            </div>
+    <div class="subTable">
+        <div class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
+            <div class="tableCell teamMember" value="{{user.StaffId}}" step="1" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
+            <div class="tableCell">{{user.ConfirmedHolidays}}</div>
+            <div class="tableCell">{{user.RemainingAllowance}}</div>
+            <div class="tableCell">{{user.HolidayAllowance}}</div>
         </div>
+    </div>
 </div>

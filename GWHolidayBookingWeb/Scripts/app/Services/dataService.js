@@ -41,6 +41,7 @@
             return $http({
                 method: 'GET',
                 params: {
+                
                 },
                 headers: {
                     "Authorization": "Bearer " + tokenService.getToken(),

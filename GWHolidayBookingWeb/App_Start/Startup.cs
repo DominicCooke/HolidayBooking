@@ -2,6 +2,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using GWHolidayBookingWeb;
 using GWHolidayBookingWeb.App_Start;
 using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.DataAccess.Providers;
@@ -11,7 +12,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using GWHolidayBookingWeb;
 
 [assembly: OwinStartup(typeof(Startup))]
 

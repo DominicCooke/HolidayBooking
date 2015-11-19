@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using AutoMapper;
 using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.Models;
-using AutoMapper;
 
 namespace GWHolidayBookingWeb.DataAccess.Repositories
 {

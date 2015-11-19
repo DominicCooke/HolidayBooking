@@ -72,15 +72,8 @@
             };
 
             $scope.addScrollBar = function() {
-                $('.teamMemberInfoContainer').slimScroll({
-                    height: '35%',
-                    alwaysVisible: true,
-                    color: 'rgba(255, 255, 255, 0.95)'
-                });
-                $('.tabHolidayContainer').slimScroll({
-                    height: '25%',
-                    color: 'rgba(255, 255, 255, 0.95)'
-                });
+                jQuery('.subTableBody').scrollbar();
+                jQuery('.subTabTableBody').scrollbar();
             };
 
             $scope.formatDate = function(date) {
@@ -90,7 +83,7 @@
                 return formattedDate;
             };
 
-            $scope.tabHolidayAction = function (date, staffId, typeOfHoliday, action) {
+            $scope.tabHolidayAction = function(date, staffId, typeOfHoliday, action) {
                 var tUHB = $scope.teamUserHolidayBookings;
                 for (var i = 0; i < tUHB.length; i++) {
                     if (tUHB[i].StaffId == staffId) {
@@ -125,7 +118,7 @@
                 $scope.teamHolidayCount();
             };
 
-            $scope.tabHolidaySelect = function (staffId, typeOfHoliday) {
+            $scope.tabHolidaySelect = function(staffId, typeOfHoliday) {
                 var tUHB = $scope.teamUserHolidayBookings;
                 var tabHolidays = [];
                 for (var i = 0; i < tUHB.length; i++) {
