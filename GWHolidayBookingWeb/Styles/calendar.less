@@ -1,19 +1,5 @@
-﻿@publicHoliday-colour: #73879C;
-@normalHoliday-colour: #1ABB9C;
-@pendingHoliday-colour: #3498DB;
-@cancelledHoliday-colour: #9B59B6;
-@oneHoliday-colour: #0f0;
-@twoHoliday-colour: #af0;
-@threeHoliday-colour: #fb0;
-@fourHoliday-colour: #f40;
-@fiveHoliday-colour: #f00;
-@background-colour: #2A3F54;
-@text-colour-primary: #ECF0F1;
-@text-colour-secondary: #73879C;
-@text-colour-tertiary: #2A3F54;
-@innerbackground-colour: white;
-@notification-colour: #E74C3C;
-@border-colour: #ddd;
+﻿@import "colours.less";
+
 @spacing: 10px;
 @icon-width: 40px;
 @header-height: 40px;
@@ -100,8 +86,9 @@
                 > .tableHeaderRow {
                     display: table;
                     width: 100%;
-                    border-right: 1px solid transparent;
-                    border-left: 1px solid transparent;
+                    border-top: 1px solid @border-colour;
+                    border-right: 1px solid @border-colour;
+                    border-left: 1px solid @border-colour;
 
                     > .tableHeader {
                         background: @background-colour;
@@ -119,7 +106,7 @@
                             width: 30%;
 
                             &.active {
-                                background: lighten(@background-colour,50%);
+                                background: @selected-colour;
                             }
                         }
                     }
@@ -153,11 +140,11 @@
                                 width: 30%;
 
                                 &.active {
-                                    background: lighten(@background-colour,40%);
+                                    background: @selected-colour;
                                 }
 
                                 &.dead {
-                                    background: lighten(@background-colour,40%);
+                                    background: @selected-colour;
                                     pointer-events: none;
                                 }
                             }
@@ -229,14 +216,13 @@
                             width: 30%;
 
                             &.active {
-                                background: lighten(@background-colour,50%);
+                                background: @selected-colour;
                             }
                         }
 
                         > .notification-counter {
                             background-color: @notification-colour;
                             border-bottom-left-radius: 5px;
-                            border-top-right-radius: 5px;
                             box-shadow: 1px 0 1px 0 #2a3f54;
                             font-size: 12px;
                             font-weight: normal;
@@ -284,11 +270,11 @@
                                         width: 30%;
 
                                         &.active {
-                                            background: lighten(@background-colour,40%);
+                                            background: @selected-colour;
                                         }
 
                                         &.dead {
-                                            background: lighten(@background-colour,40%);
+                                            background: @selected-colour;
                                             pointer-events: none;
                                         }
                                     }
@@ -495,10 +481,6 @@
             padding-top: 10%;
             width: 100%;
             height: 20%;
-
-            > * {
-                //.vertical-centre(@header-height);
-            }
 
             > i {
                 cursor: pointer;
@@ -757,7 +739,7 @@
                     width: 100%;
 
                     > #teamHolidayKeyColor {
-                        background: -webkit-gradient(linear, left top, right top, color-stop(0, @oneHoliday-colour), color-stop(50%, @threeHoliday-colour), color-stop(100%, @fiveHoliday-colour));
+                        background: -webkit-gradient(linear, left top, right top,color-stop(0, @oneHoliday-colour),color-stop(25%, @twoHoliday-colour), color-stop(50%, @threeHoliday-colour),color-stop(75%, @fourHoliday-colour), color-stop(100%, @fiveHoliday-colour));
                         border-bottom: 1px solid black;
                         border-radius: 15px;
                         display: table-cell;

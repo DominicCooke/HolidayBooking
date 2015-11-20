@@ -13,10 +13,6 @@ userTableCtrl = function ($scope, $http) {
 
     };
 
-    $scope.delete = function () {
-
-    };
-
     $scope.update = function (user, employee) {
         $http({
             url: "http://localhost:57068/api/Employee/Update",
@@ -27,7 +23,12 @@ userTableCtrl = function ($scope, $http) {
     };
 
     $scope.create = function () {
-
+        $scope.inserted = {
+            FirstName: '',
+            LastName: '',
+            EmailAddress: ''
+        };
+        $scope.data.push($scope.inserted);
     };
 
     $scope.init();

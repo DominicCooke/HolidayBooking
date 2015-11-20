@@ -1,17 +1,26 @@
 ﻿.loginContainer {
   width: 100%;
   height: 70%;
+  float: left;
 }
 .loginContainer > .loginBody {
   width: 30%;
   height: 40%;
   margin: 0 auto;
   display: flex;
+  padding: 10px 17px;
+  background: white;
+  border: solid 1px #dddddd;
   justify-content: center;
   flex-direction: column;
+}
+.loginContainer > .loginBody > form > .form-actions {
+  text-align: center;
+  margin: 0 auto;
 }
 .loginContainer > .loginBody > form > .form-actions > button {
   background-color: #2A3F54;
   border-color: transparent !important;
+  text-align: center;
 }
 /*# sourceMappingURL=login.css.map */

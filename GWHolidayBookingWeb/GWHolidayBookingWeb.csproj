@@ -240,24 +240,34 @@
     <Content Include="Scripts\moment\moment.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\underscore\underscore-min.js" />
-    <Content Include="Styles\Calendar\calendar.css" />
-    <Content Include="Styles\Calendar\calendar.min.css" />
+    <Content Include="Styles\calendar.css">
+      <DependentUpon>calendar.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\calendar.min.css">
+      <DependentUpon>calendar.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\colours.css">
+      <DependentUpon>colours.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\colours.min.css">
+      <DependentUpon>colours.css</DependentUpon>
+    </Content>
     <Content Include="Styles\Index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
     <Content Include="Styles\Index.min.css">
       <DependentUpon>Index.css</DependentUpon>
     </Content>
-    <Content Include="Styles\Login\login.css">
+    <Content Include="Styles\login.css">
       <DependentUpon>login.less</DependentUpon>
     </Content>
-    <Content Include="Styles\Login\login.min.css">
+    <Content Include="Styles\login.min.css">
       <DependentUpon>login.css</DependentUpon>
     </Content>
-    <Content Include="Styles\Table\table.css">
+    <Content Include="Styles\table.css">
       <DependentUpon>table.less</DependentUpon>
     </Content>
-    <Content Include="Styles\Table\table.min.css">
+    <Content Include="Styles\table.min.css">
       <DependentUpon>table.css</DependentUpon>
     </Content>
     <Content Include="Web.config" />
@@ -304,19 +314,25 @@
     <Content Include="Scripts\angular\chart\angular-chart.min.css.map" />
     <Content Include="Scripts\angular\chart\angular-chart.min.js.map" />
     <Content Include="Scripts\jquery\jquery-2.1.4.min.map" />
-    <Content Include="Styles\Calendar\calendar.css.map" />
-    <Content Include="Styles\Calendar\calendar.less" />
-    <Content Include="Styles\Login\login.less" />
-    <Content Include="Styles\Login\login.css.map">
+    <Content Include="Styles\calendar.less" />
+    <Content Include="Styles\login.less" />
+    <Content Include="Styles\login.css.map">
       <DependentUpon>login.css</DependentUpon>
     </Content>
-    <Content Include="Styles\Table\table.less" />
-    <Content Include="Styles\Table\table.css.map">
+    <Content Include="Styles\table.less" />
+    <Content Include="Styles\table.css.map">
       <DependentUpon>table.css</DependentUpon>
     </Content>
     <Content Include="Styles\index.less" />
     <Content Include="Styles\Index.css.map">
       <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\colours.less" />
+    <Content Include="Styles\colours.css.map">
+      <DependentUpon>colours.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\calendar.css.map">
+      <DependentUpon>calendar.css</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

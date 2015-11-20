@@ -29,7 +29,5 @@
 /// <reference path="app/services/tokenservice.js" />
 /// <reference path="app/controllers/usertablectrl.js" />
 /// <reference path="angular/xeditable/xeditable.js" />
-<<<<<<< HEAD
 /// <reference path="jquery/scrollbar/jquery.scrollbar.js" />
-=======
->>>>>>> dd792c8b6518feca8d82f1f8119022f4ac2b3d5d
+

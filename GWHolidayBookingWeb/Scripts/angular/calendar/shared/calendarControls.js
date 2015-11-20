@@ -6,40 +6,47 @@
         },
         controller: 'calendarCtrl',
         scope: false,
-        link: function($scope) {
-            $scope.$watch('tabHolidays', function() {
-                if (typeof $scope.tabHolidays !== "undefined") {
-                    $('.tabHolidayContainer').show();
-                    if (!$scope.tabHolidays.TabHolidays.length == 0 && $scope.tabHolidays.TypeOfHoliday == 0) {
-                        $('.pendingHolidayRow').show();
+        link: function ($scope) {
+            $scope.$watch('tabHolidays', function () {
+                if ($scope.mode == "manager") {
+                    if (typeof $scope.tabHolidays !== "undefined") {
+                        $('.tabTableHeaderRow').removeClass('hidden');
+                        if ($scope.tabHolidays.TabHolidays.length == 0) {
+                            $('.tabTableHeaderRow').addClass('hidden');
+                        } else {
+                            if ($scope.tabHolidays.TypeOfHoliday == 0) {
+                                $('.pendingHolidayRow').show();
+                            } else if ($scope.tabHolidays.TypeOfHoliday == 2) {
+                                $('.cancelledHolidayRow').show();
+                            }
+                        }
+                    } else {
+                        $('.tabTableHeaderRow').addClass('hidden');
                     }
-                    if (!$scope.tabHolidays.TabHolidays.length == 0 && $scope.tabHolidays.TypeOfHoliday == 2) {
-                        $('.cancelledHolidayRow').show();
-                    };
-                } else {
-                    $('.tabHolidayContainer').hide();
                 }
             }, true);
 
-            $scope.$watch('teamUserHolidayBookings', function() {
-                if (typeof $scope.teamUserHolidayBookings !== "undefined") {
-                    var tUHB = $scope.teamUserHolidayBookings;
-                    var pendingCount = 0, cancelledCount = 0;
-                    for (var i = 0; i < tUHB.length; i++) {
-                        pendingCount = pendingCount + tUHB[i].PendingHolidays;
-                        cancelledCount = cancelledCount + tUHB[i].CancelledHolidays;
-                    }
-                    $scope.pendingNotificationCount = pendingCount;
-                    $scope.cancelledNotificationCount = cancelledCount;
-                    if (pendingCount == 0) {
-                        $('.notification-counter-pending').hide();
-                    } else {
-                        $('.notification-counter-pending').show();
-                    }
-                    if (cancelledCount == 0) {
-                        $('.notification-counter-cancelled').hide();
-                    } else {
-                        $('.notification-counter-cancelled').show();
+            $scope.$watch('teamUserHolidayBookings', function () {
+                if ($scope.mode == "manager") {
+                    if (typeof $scope.teamUserHolidayBookings !== "undefined") {
+                        var tUHB = $scope.teamUserHolidayBookings;
+                        var pendingCount = 0, cancelledCount = 0;
+                        for (var i = 0; i < tUHB.length; i++) {
+                            pendingCount = pendingCount + tUHB[i].PendingHolidays;
+                            cancelledCount = cancelledCount + tUHB[i].CancelledHolidays;
+                        }
+                        $scope.pendingNotificationCount = pendingCount;
+                        $scope.cancelledNotificationCount = cancelledCount;
+                        if (pendingCount == 0) {
+                            $('.notification-counter-pending').hide();
+                        } else {
+                            $('.notification-counter-pending').show();
+                        }
+                        if (cancelledCount == 0) {
+                            $('.notification-counter-cancelled').hide();
+                        } else {
+                            $('.notification-counter-cancelled').show();
+                        }
                     }
                 }
             }, true);
@@ -143,7 +150,7 @@
 
             function setTeamSelected(userOptionChecked, event) {
                 var allSelected = false;
-                var teamMembers = $('.person');
+                var teamMembers = $('.teamMember');
                 var tUHB = $scope.teamUserHolidayBookings;
                 if (userOptionChecked == "all") {
                     if (event.target.classList.contains("active")) {

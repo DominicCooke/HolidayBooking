@@ -66,8 +66,9 @@
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .tableHeaderRow {
   display: table;
   width: 100%;
-  border-right: 1px solid transparent;
-  border-left: 1px solid transparent;
+  border-top: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .tableHeaderRow > .tableHeader {
   background: #2a3f54;
@@ -85,7 +86,7 @@
   width: 30%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .tableHeaderRow > .tableHeader:first-child.active {
-  background: #a9bed4;
+  background: #7fbfff;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer .subTable {
   display: table;
@@ -114,10 +115,10 @@
   width: 30%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer .subTable > .tableRow > .tableCell.teamMember.active {
-  background: #87a5c3;
+  background: #7fbfff;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer .subTable > .tableRow > .tableCell.teamMember.dead {
-  background: #87a5c3;
+  background: #7fbfff;
   pointer-events: none;
 }
 @keyframes textpulsatepending {
@@ -167,12 +168,11 @@
   width: 30%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .tableHeaderRow > .tableHeader:first-child.active {
-  background: #a9bed4;
+  background: #7fbfff;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .tableHeaderRow > .tableHeader > .notification-counter {
   background-color: #e74c3c;
   border-bottom-left-radius: 5px;
-  border-top-right-radius: 5px;
   box-shadow: 1px 0 1px 0 #2a3f54;
   font-size: 12px;
   font-weight: normal;
@@ -213,10 +213,10 @@
   width: 30%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .subTableBody > .subTableBody .subTable > .tableRow > .tableCell.teamMember.active {
-  background: #87a5c3;
+  background: #7fbfff;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .subTableBody > .subTableBody .subTable > .tableRow > .tableCell.teamMember.dead {
-  background: #87a5c3;
+  background: #7fbfff;
   pointer-events: none;
 }
 @keyframes textpulsatepending {
@@ -319,19 +319,19 @@
   z-index: 1;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip.teamHoliday1 {
-  border: solid 1px #00ff00;
+  border: solid 1px #22b265;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip.teamHoliday2 {
-  border: solid 1px #aaff00;
+  border: solid 1px #36f190;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip.teamHoliday3 {
-  border: solid 1px #ffbb00;
+  border: solid 1px #6dffb3;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip.teamHoliday4 {
-  border: solid 1px #ff4400;
+  border: solid 1px #e74c3c;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip.teamHoliday5 {
-  border: solid 1px #ff0000;
+  border: solid 1px #b22011;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip > .employeeWithHolidayName {
   display: table-row;
@@ -476,23 +476,23 @@
   background: #3498db !important;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday1 {
-  background: rgba(0, 255, 0, 0.8);
+  background: rgba(34, 178, 101, 0.8);
   border-radius: 15%;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday2 {
-  background: rgba(170, 255, 0, 0.8);
+  background: rgba(54, 241, 144, 0.8);
   border-radius: 15%;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday3 {
-  background: rgba(255, 187, 0, 0.8);
+  background: rgba(109, 255, 179, 0.8);
   border-radius: 15%;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday4 {
-  background: rgba(255, 68, 0, 0.8);
+  background: rgba(231, 76, 60, 0.8);
   border-radius: 15%;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday5 {
-  background: rgba(255, 0, 0, 0.8);
+  background: rgba(178, 32, 17, 0.8);
   border-radius: 15%;
 }
 .bodyContainer > calendar > .key {
@@ -576,7 +576,7 @@
   width: 100%;
 }
 .bodyContainer > calendar > .key > #teamHolidayKey > .colorContainer > #teamHolidayKeyColor {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #00ff00), color-stop(50%, #ffbb00), color-stop(100%, #ff0000));
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #22b265), color-stop(25%, #36f190), color-stop(50%, #6dffb3), color-stop(75%, #e74c3c), color-stop(100%, #b22011));
   border-bottom: 1px solid black;
   border-radius: 15px;
   display: table-cell;
