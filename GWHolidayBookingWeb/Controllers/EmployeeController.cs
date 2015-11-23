@@ -70,17 +70,25 @@ namespace GWHolidayBookingWeb.Controllers
         }
 
         [Route("SetRole")]
-        public async Task<IHttpActionResult> SetRole(IdentityRole employeeRoleViewModel)
+        public async Task<IHttpActionResult> SetRole(IdentityEmployeeRoleAddViewModel identityEmployeeRoleAddViewModel)
         {
-            IdentityUser user = userManager.Users.Where(u => u.StaffId == Guid.Parse(employeeRoleViewModel.Id)).First();
-            IdentityResult result = await userManager.AddToRoleAsync(user.Id, employeeRoleViewModel.Name);
+            IdentityResult result;
+            IdentityUser user = await userManager.FindByIdAsync(identityEmployeeRoleAddViewModel.IdentityId);
+            var exists = await userManager.IsInRoleAsync(user.Id, identityEmployeeRoleAddViewModel.RoleName);
+            if (exists == true)
+            {
+                result = await userManager.RemoveFromRoleAsync(user.Id, identityEmployeeRoleAddViewModel.RoleName);
+            }
+            else
+            {
+                result = await userManager.AddToRoleAsync(user.Id, identityEmployeeRoleAddViewModel.RoleName);
+            }
             IHttpActionResult errorResult = GetErrorResult(result);
 
             if (errorResult != null)
             {
                 return errorResult;
             }
-
             return Ok();
         }
 
@@ -126,7 +134,8 @@ namespace GWHolidayBookingWeb.Controllers
         [Route("GetIdentityRoles")]
         public async Task<List<IdentityRole>> GetIdentityRoles()
         {
-            return await roleManager.Roles.ToListAsync();
+            List<IdentityRole> result = await roleManager.Roles.ToListAsync();
+            return result;
         }
 
         [Route("Update")]
@@ -150,6 +159,7 @@ namespace GWHolidayBookingWeb.Controllers
 
             return Ok();
         }
+
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)

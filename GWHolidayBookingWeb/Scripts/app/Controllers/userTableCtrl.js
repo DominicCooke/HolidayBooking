@@ -1,50 +1,48 @@
-userTableCtrl = function ($scope, $http) {
+userTableCtrl = function ($scope, $http, dataService) {
 
     $scope.init = function () {
-        $http({
-            method: 'GET',
-            url: 'http://localhost:57068/api/Employee/GetIdentityEmployees'
-        }).success(function (response) {
-            $scope.data = response;
-        }).error(function (data, status) {
-
+        dataService.getIdentityEmployees().then(function (response) {
+            $scope.data = response.data;
+        });
+        dataService.getIdentityRoles().then(function (response) {
+            $scope.roles = response.data;
         });
     };
 
     $scope.delete = function (user) {
-        $http({
-            url: "http://localhost:57068/api/Employee/Delete",
-            method: "POST",
-            data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId }
-        }).success(function () {
-            $scope.init();
+        dataService.deleteUser(user).then(function (response) {
+            dataService.getIdentityEmployees().then(function (response) {
+                $scope.data = response.data;
+            });
         });
     };
 
     $scope.register = function (user) {
-        $http({
-            url: "http://localhost:57068/api/Employee/Register",
-            method: "POST",
-            data: user
-        }).success(function() {
+        dataService.registerUser(user).then(function () {
             $('.createContainer').toggleClass('hidden');
             $('.createUserForm').trigger("reset");
-            $scope.init();
+            dataService.getIdentityEmployees().then(function (response) {
+                $scope.data = response.data;
+            });
         });
     };
 
-    $scope.update = function (user, employee) {
-        $http({
-            url: "http://localhost:57068/api/Employee/Update",
-            method: "POST",
-            data: user
-        });
+    $scope.update = function (user) {
+        dataService.updateUser(user);
     };
 
     $scope.showCreate = function () {
         $('.createContainer').toggleClass('hidden');
     };
 
+    $scope.setRole = function (user, role) {
+        dataService.setRole(user, role).then(function (response) {
+            dataService.getIdentityEmployees().then(function (response) {
+                $scope.data = response.data;
+            });
+        });
+    };
+
     $scope.init();
 };
-userTableCtrl.$inject = ['$scope', '$http'];
+userTableCtrl.$inject = ['$scope', '$http', 'dataService'];

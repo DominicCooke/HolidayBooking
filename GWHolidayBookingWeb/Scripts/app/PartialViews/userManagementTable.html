@@ -7,6 +7,7 @@
 <div class="userManagementContainer" ng-controller='userTableCtrl'>
     <div class="tableContainer">
         <table id="Employee" class="table table-striped table-hover table-bordered">
+            
             <tr class="tableHead">
                 <th>Actions</th>
                 <th>First Name</th>
@@ -18,7 +19,7 @@
             </tr>
             <tr class="tableRow" ng-repeat="employee in data" ng-hide="employee.Deleted" data-id="{{employee.StaffId}}">
                 <td class="actionsColumn">
-                    <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" onaftersave="update($data, employee)" shown="employee.StaffId == ''">
+                    <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" onaftersave="update($data)" shown="employee.StaffId == ''">
                         <button type="submit" value="submit" ng-disabled="rowform.$waiting" class="btn btn-primary"><i class="fa fa-floppy-o"></i></button>
                         <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default"><i class="fa fa-ban"></i></button>
                     </form>
@@ -33,7 +34,7 @@
                             </a>
                             <ul class="uib-dropdown-menu" aria-labelledby="uib-simple-dropdown">
                                 <li ng-repeat="role in roles">
-                                    <a href ng-click="setRole(role.Id, employee.EmployeeId, employee)" id="{{role.Id}}">{{role.Name}}</a>
+                                    <a href ng-click="setRole(employee, role)" id="{{role.Id}}">{{role.Name}}</a>
                                 </li>
                             </ul>
                         </span>
@@ -46,10 +47,11 @@
                 <td><span ng-show="!rowform.$visible" e-name="RemainingAllowance" ng-model="user.RemainingAllowance" editable-text="employee.RemainingAllowance" e-form="rowform">{{employee.RemainingAllowance}}</span></td>
                 <td>
                     <div ng-repeat="employeeRoles in employee.UserViewModel.RoleViewModels">
-                        <span>{{employeeRoles.Name}}</span>
-                        <br />
+                        <span>{{employeeRoles.Name}} </span>
+                        <br/>
                     </div>
                 </td>
+                <td ng-hide="true"><span e-name="StaffId" ng-model="user.StaffId" editable-text="employee.StaffId" e-form="rowform">{{employee.StaffId}}</span></td>
             </tr>
         </table>
         <button class="btn btn-default" ng-click="showCreate(); rowform.$show()">Add employee</button>
