@@ -5,6 +5,7 @@ using System.Linq;
 using AutoMapper;
 using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.Models;
+using Microsoft.AspNet.Identity;
 
 namespace GWHolidayBookingWeb.DataAccess.Repositories
 {
@@ -35,7 +36,15 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
 
         public void Delete(Guid staffId)
         {
-            throw new NotImplementedException();
+            EmployeeCalendar employeeInDb = context.Employees.Find(staffId);
+
+            foreach (EmployeeCalendarHoldiayBooking holidayBooking in employeeInDb.HolidayBookings.ToList())
+            {
+                context.Entry(holidayBooking).State = EntityState.Deleted;
+                employeeInDb.HolidayBookings.Remove(holidayBooking);
+            }
+            context.Entry(employeeInDb).State = EntityState.Deleted;
+            context.SaveChanges();
         }
 
         public void UpdateEmployee(EmployeeCalendarViewModel employeeCalendarViewModel)
@@ -56,8 +65,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             {
                 if (!employee.HolidayBookings.Any(h => h.HolidayId == holidayBooking.HolidayId))
                 {
-                    context.Entry(
-                        employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
+                    context.Entry(employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
                         .State = EntityState.Deleted;
                     employeeInDb.HolidayBookings.Remove(holidayBooking);
                 }

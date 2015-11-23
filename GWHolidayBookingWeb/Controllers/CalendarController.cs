@@ -38,11 +38,6 @@ namespace GWHolidayBookingWeb.Controllers
             return employeeDataService.GetEmployeeById(Guid.Parse(staffIdClaim.Value));
         }
 
-        public void UpdateEmployee(EmployeeCalendarViewModel employeeCalendarViewModel)
-        {
-            employeeDataService.UpdateEmployee(employeeCalendarViewModel);
-        }
-
         public void UpdateHoliday(EmployeeCalendar employee)
         {
             employeeDataService.UpdateHolidays(employee);

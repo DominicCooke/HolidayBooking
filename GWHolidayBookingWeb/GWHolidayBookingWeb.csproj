@@ -288,6 +288,7 @@
     <Compile Include="DataAccess\Identity\ViewModels\EmployeeCalendarViewModel.cs" />
     <Compile Include="DataAccess\Identity\IdentityContext.cs" />
     <Compile Include="DataAccess\Identity\ViewModels\EmployeeCreateViewModel.cs" />
+    <Compile Include="DataAccess\Identity\ViewModels\EmployeeDeleteViewModel.cs" />
     <Compile Include="DataAccess\Identity\ViewModels\IdentityEmployeeViewModel.cs" />
     <Compile Include="DataAccess\Identity\IIdentityContext.cs" />
     <Compile Include="Migrations\Identity\ConfigIdentity.cs" />

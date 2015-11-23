@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using GWHol.Web.ViewModels;
 using GWHolidayBookingWeb.DataAccess.Identity;
+using GWHolidayBookingWeb.DataAccess.Identity.ViewModels;
 using GWHolidayBookingWeb.Models;
 using GWHolidayBookingWeb.Services.Employee;
 using Microsoft.AspNet.Identity;
@@ -100,25 +101,25 @@ namespace GWHolidayBookingWeb.Controllers
             });
 
             IEnumerable<EmployeeCalendarViewModel> joined = from RoleAndUsers in listOfAllIdentityRolesAndUsers
-                join Employee in listOfAllEmployees on RoleAndUsers.User.StaffId equals Employee.StaffId
-                select new EmployeeCalendarViewModel
-                {
-                    HolidayAllowance = Employee.HolidayAllowance,
-                    RemainingAllowance = Employee.RemainingAllowance,
-                    StaffId = Employee.StaffId,
-                    FirstName = Employee.FirstName,
-                    LastName = Employee.LastName,
-                    UserViewModel = new IdentityUserViewModel
-                    {
-                        IdentityId = RoleAndUsers.User.Id,
-                        Username = RoleAndUsers.User.UserName,
-                        RoleViewModels = RoleAndUsers.UserRoles.Select(Role => new IdentityRole
-                        {
-                            Id = Role.Id,
-                            Name = Role.name
-                        }).ToList()
-                    }
-                };
+                                                            join Employee in listOfAllEmployees on RoleAndUsers.User.StaffId equals Employee.StaffId
+                                                            select new EmployeeCalendarViewModel
+                                                            {
+                                                                HolidayAllowance = Employee.HolidayAllowance,
+                                                                RemainingAllowance = Employee.RemainingAllowance,
+                                                                StaffId = Employee.StaffId,
+                                                                FirstName = Employee.FirstName,
+                                                                LastName = Employee.LastName,
+                                                                UserViewModel = new IdentityUserViewModel
+                                                                {
+                                                                    IdentityId = RoleAndUsers.User.Id,
+                                                                    Username = RoleAndUsers.User.UserName,
+                                                                    RoleViewModels = RoleAndUsers.UserRoles.Select(Role => new IdentityRole
+                                                                    {
+                                                                        Id = Role.Id,
+                                                                        Name = Role.name
+                                                                    }).ToList()
+                                                                }
+                                                            };
             return joined.ToList();
         }
 
@@ -127,12 +128,28 @@ namespace GWHolidayBookingWeb.Controllers
         {
             return await roleManager.Roles.ToListAsync();
         }
+
         [Route("Update")]
         public void Update(EmployeeCalendarViewModel employeeCalendarViewModel)
         {
             employeeDataService.UpdateEmployee(employeeCalendarViewModel);
         }
 
+        [Route("Delete")]
+        [HttpPost]
+        public async Task<IHttpActionResult> Delete(EmployeeDeleteViewModel employeeDeleteViewModel)
+        {
+            employeeDataService.Delete(employeeDeleteViewModel.StaffId);
+            var user = await userManager.FindByIdAsync(employeeDeleteViewModel.IdentityId.ToString());
+            IdentityResult result = await userManager.DeleteAsync(user);
+            IHttpActionResult errorResult = GetErrorResult(result);
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            return Ok();
+        }
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)
