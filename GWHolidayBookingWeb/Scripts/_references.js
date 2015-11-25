@@ -18,7 +18,6 @@
 /// <reference path="lodash/lodash.js" />
 /// <reference path="angular/calendar/shared/calendarcontrols.js" />
 /// <reference path="angular/calendar/shared/calendar.js" />
-/// <reference path="angular/calendar/employee/selectbox.js" />
 /// <reference path="angular/angular/angular-mocks.js" />
 /// <reference path="angular/angular/angular.min.js" />
 /// <reference path="angular/calendar/employee/infobox.js" />
@@ -31,4 +30,8 @@
 /// <reference path="jquery/scrollbar/jquery.scrollbar.js" />
 /// <reference path="app/services/loginservice.js" />
 /// <reference path="app/services/userservice.js" />
+/// <reference path="app/controllers/controllers.js" />
+/// <reference path="angular/calendar/employee/directives.js" />
+/// <reference path="bundles/services.js" />
+/// <reference path="jquery/jquery-ui.js" />
 

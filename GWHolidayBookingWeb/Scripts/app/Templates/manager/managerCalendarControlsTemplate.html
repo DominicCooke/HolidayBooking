@@ -2,16 +2,16 @@
     <div class="tableHeaderRow">
         <div class="tableHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
         <div class="tableHeader">
-            <div class="fa fa-question"></div>
+            <div class="fa fa-question" title="Pending Holiday"></div>
             <span class="notification-counter-pending notification-counter">{{pendingNotificationCount}}</span>
         </div>
         <div class="tableHeader">
-            <div class="fa fa-times"></div>
+            <div class="fa fa-times" title="Cancelled Holiday"></div>
             <span class="notification-counter-cancelled notification-counter">{{cancelledNotificationCount}}</span>
         </div>
-        <div class="tableHeader fa fa-check"></div>
-        <div class="tableHeader">RA</div>
-        <div class="tableHeader">HA</div>
+        <div class="tableHeader fa fa-check" title="Confirmed Holiday"></div>
+        <div class="tableHeader" title="Remaining Allowance">RA</div>
+        <div class="tableHeader" title="Holiday Allowance">HA</div>
     </div>
     <div class="subTableBody">
         <div class="subTable">

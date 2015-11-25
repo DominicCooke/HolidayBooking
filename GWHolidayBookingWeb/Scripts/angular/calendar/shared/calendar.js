@@ -232,7 +232,7 @@
                 if ($scope.mode == "employee") {
                     $scope.userHolidayBookings = userService.getUser();
                     $scope.initData([$scope.userHolidayBookings]);
-                    $scope.userHolidayBookings.isVisible = !$scope.userHolidayBookings.isVisible;
+                    $scope.userHolidayBookings.isVisible = true;
                 };
                 $scope.reloadCalendar();
             };

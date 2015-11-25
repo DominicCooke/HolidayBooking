@@ -7,6 +7,7 @@
         controller: 'calendarCtrl',
         scope: false,
         link: function ($scope) {
+
             $scope.$watch('tabHolidays', function () {
                 if ($scope.mode == "manager") {
                     if (typeof $scope.tabHolidays !== "undefined") {

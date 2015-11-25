@@ -9,6 +9,12 @@
     src: url('../../Content/fonts/Roboto-Regular.ttf') format('truetype');
 }
 
+.selectedTemplate() {
+    border-bottom: 0;
+    border-right: 0;
+    box-shadow: inset -10px 0 0 0 #1ABB9C;
+}
+
 .bodyContainer {
     font-family: Roboto-Regular;
     height: 85%;
@@ -94,9 +100,9 @@
                         background: @background-colour;
                         display: table-cell;
                         padding: 0 5px;
-                        pointer-events: none;
                         position: relative;
-                        transition: 1s;
+                        cursor: context-menu;
+                        transition: 0.2s;
                         width: 12%;
 
                         &:first-child {
@@ -106,7 +112,8 @@
                             width: 30%;
 
                             &.active {
-                                background: @selected-colour;
+                                border-top: 1px solid transparent;
+                                .selectedTemplate()
                             }
                         }
                     }
@@ -136,11 +143,11 @@
                                 cursor: pointer;
                                 display: table-cell;
                                 padding: 10px 15px;
-                                transition: 1s;
+                                transition: 0.2s;
                                 width: 30%;
 
                                 &.active {
-                                    background: @selected-colour;
+                                   .selectedTemplate()
                                 }
 
                                 &.dead {
@@ -204,9 +211,9 @@
                     > .tableHeader {
                         display: table-cell;
                         padding: 0 5px;
-                        pointer-events: none;
                         position: relative;
-                        transition: 1s;
+                        transition: 0.2s;
+                        cursor: context-menu;
                         width: 70%/5;
 
                         &:first-child {
@@ -216,7 +223,7 @@
                             width: 30%;
 
                             &.active {
-                                background: @selected-colour;
+                               .selectedTemplate()
                             }
                         }
 
@@ -266,11 +273,11 @@
                                         cursor: pointer;
                                         display: table-cell;
                                         padding: 10px 15px;
-                                        transition: 1s;
+                                        transition: 0.2s;
                                         width: 30%;
 
                                         &.active {
-                                            background: @selected-colour;
+                                           .selectedTemplate()
                                         }
 
                                         &.dead {

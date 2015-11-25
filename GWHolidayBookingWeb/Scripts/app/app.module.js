@@ -19,7 +19,6 @@ app.controller('userTableCtrl', userTableCtrl);
 
 app.directive('calendar', calendarDirective);
 app.directive('calendarcontrols', calendarControlsDirective);
-app.directive('selectbox', selectboxDirective);
 app.directive('tooltip', tooltipDirective);
 app.directive('tabs', tabsDirective);
 app.directive('infobox', infoBoxDirective);

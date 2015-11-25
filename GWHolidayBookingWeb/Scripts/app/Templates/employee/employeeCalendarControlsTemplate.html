@@ -3,10 +3,10 @@
     <div class="tableHeaderRow">
         <div class="tableHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
         <div class="tableHeader">
-            <div class="fa fa-check"></div>
+            <div class="fa fa-check" title="Confirmed Holiday"></div>
         </div>
-        <div class="tableHeader">RA</div>
-        <div class="tableHeader">HA</div>
+        <div class="tableHeader" title="Remaining Allowance">RA</div>
+        <div class="tableHeader" title="Holiday Allowance">HA</div>
     </div>
     <div class="subTable">
         <div class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">

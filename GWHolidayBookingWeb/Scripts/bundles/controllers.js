@@ -1,4 +1,5 @@
-﻿calendarCtrl = function($scope, dataService, viewService) {
+﻿///#source 1 1 /Scripts/app/Controllers/calendarCtrl.js
+calendarCtrl = function($scope, dataService, viewService) {
     $scope.init = function(mode) {
         $scope.mode = mode;
         $scope.editMode = false;
@@ -171,3 +172,114 @@
     };
 };
 calendarCtrl.$inject = ['$scope', 'dataService', 'viewService'];
+///#source 1 1 /Scripts/app/Controllers/loginCtrl.js
+loginCtrl = function ($scope, dataService, userService) {
+    var vm = this;
+    $scope.login = function () {
+        dataService.getToken($scope.username, $scope.password).then(function() {
+            userService.setUser();
+        }, function() {
+            $('.alert').show();
+            $('#password').val('');
+        });
+    };
+};
+loginCtrl.$inject = ['$scope', 'dataService', 'userService'];
+///#source 1 1 /Scripts/app/Controllers/menuCtrl.js
+menuCtrl = function ($scope, viewService, tokenService, userService) {
+    var childScope;
+
+    function init() {
+        defaultViews();
+        $scope.$on("loggedIn", function () {
+            $scope.loginStatus = tokenService.getLoginStatus();
+            var user = userService.getUser();
+            $scope.loggedInUsername = user.FirstName + ' ' + user.LastName;
+            $scope.navigate('EmployeeCalendar');
+        });
+    };
+
+    function defaultViews()
+    {
+        viewService.menuGotoView($scope, views.Menu, '.side-bar-menu');
+        viewService.gotoView($scope, views.Login);
+        $scope.loginStatus = tokenService.getLoginStatus();
+    };
+
+    $scope.logOut = function () {
+        tokenService.setToken('', false);
+        defaultViews();
+    };
+
+    $scope.navigate = function (nameOfLink) {
+        if (typeof $scope.state === "undefined")
+            $scope.state = "New";
+        if ($scope.state == "New") {
+            $scope.state = 'Old';
+            childScope = $scope.$new();
+            viewService.gotoView(childScope, views[nameOfLink]);
+        } else {
+            childScope.$destroy();
+            $('.bodyContainer').empty();
+            $scope.state = "New";
+            $scope.navigate(nameOfLink);
+        }
+        var clickFrom = angular.element(document.getElementsByClassName("active"));
+        clickFrom.removeClass();
+        var clickTo = angular.element(document.getElementById(nameOfLink));
+        clickTo.addClass("active");
+    };
+
+    init();
+};
+menuCtrl.$inject = ['$scope', 'viewService', 'tokenService', 'userService'];
+///#source 1 1 /Scripts/app/Controllers/userTableCtrl.js
+userTableCtrl = function ($scope, $http, dataService) {
+
+    $scope.init = function () {
+        dataService.getIdentityEmployees().then(function (response) {
+            $scope.data = response.data;
+        });
+        dataService.getIdentityRoles().then(function (response) {
+            $scope.roles = response.data;
+        });
+    };
+
+    $scope.delete = function (user) {
+        dataService.deleteUser(user).then(function (response) {
+            dataService.getIdentityEmployees().then(function (response) {
+                $scope.data = response.data;
+            });
+        });
+    };
+
+    $scope.register = function (user) {
+        dataService.registerUser(user).then(function () {
+            $('.createContainer').toggleClass('hidden');
+            $('.createUserForm').trigger("reset");
+            dataService.getIdentityEmployees().then(function (response) {
+                $scope.data = response.data;
+            });
+        });
+    };
+
+    $scope.update = function (user) {
+        dataService.updateUser(user);
+    };
+
+    $scope.showCreate = function () {
+        $('.createContainer').toggleClass('hidden');
+    };
+
+    $scope.setRole = function (user, role) {
+        dataService.setRole(user, role).then(function (response) {
+            dataService.getIdentityEmployees().then(function (response) {
+                $scope.data = response.data;
+            });
+        });
+    };
+
+    $scope.init();
+};
+userTableCtrl.$inject = ['$scope', '$http', 'dataService'];
+

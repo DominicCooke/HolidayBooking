@@ -2,9 +2,7 @@
     var childScope;
 
     function init() {
-        viewService.menuGotoView($scope, views.Menu, '.side-bar-menu');
-        viewService.gotoView($scope, views.Login);
-        $scope.loginStatus = tokenService.getLoginStatus();
+        defaultViews();
         $scope.$on("loggedIn", function () {
             $scope.loginStatus = tokenService.getLoginStatus();
             var user = userService.getUser();
@@ -13,9 +11,16 @@
         });
     };
 
+    function defaultViews()
+    {
+        viewService.menuGotoView($scope, views.Menu, '.side-bar-menu');
+        viewService.gotoView($scope, views.Login);
+        $scope.loginStatus = tokenService.getLoginStatus();
+    };
+
     $scope.logOut = function () {
         tokenService.setToken('', false);
-        init();
+        defaultViews();
     };
 
     $scope.navigate = function (nameOfLink) {

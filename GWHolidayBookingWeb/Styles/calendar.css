@@ -74,9 +74,9 @@
   background: #2a3f54;
   display: table-cell;
   padding: 0 5px;
-  pointer-events: none;
   position: relative;
-  transition: 1s;
+  cursor: context-menu;
+  transition: 0.2s;
   width: 12%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .tableHeaderRow > .tableHeader:first-child {
@@ -86,7 +86,10 @@
   width: 30%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .tableHeaderRow > .tableHeader:first-child.active {
-  background: #7fbfff;
+  border-top: 1px solid transparent;
+  border-bottom: 0;
+  border-right: 0;
+  box-shadow: inset -10px 0 0 0 #1abb9c;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer .subTable {
   display: table;
@@ -111,14 +114,16 @@
   cursor: pointer;
   display: table-cell;
   padding: 10px 15px;
-  transition: 1s;
+  transition: 0.2s;
   width: 30%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer .subTable > .tableRow > .tableCell.teamMember.active {
-  background: #7fbfff;
+  border-bottom: 0;
+  border-right: 0;
+  box-shadow: inset -10px 0 0 0 #1abb9c;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer .subTable > .tableRow > .tableCell.teamMember.dead {
-  background: #7fbfff;
+  background: #1abb9c;
   pointer-events: none;
 }
 @keyframes textpulsatepending {
@@ -156,9 +161,9 @@
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .tableHeaderRow > .tableHeader {
   display: table-cell;
   padding: 0 5px;
-  pointer-events: none;
   position: relative;
-  transition: 1s;
+  transition: 0.2s;
+  cursor: context-menu;
   width: 14%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .tableHeaderRow > .tableHeader:first-child {
@@ -168,7 +173,9 @@
   width: 30%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .tableHeaderRow > .tableHeader:first-child.active {
-  background: #7fbfff;
+  border-bottom: 0;
+  border-right: 0;
+  box-shadow: inset -10px 0 0 0 #1abb9c;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .tableHeaderRow > .tableHeader > .notification-counter {
   background-color: #e74c3c;
@@ -209,14 +216,16 @@
   cursor: pointer;
   display: table-cell;
   padding: 10px 15px;
-  transition: 1s;
+  transition: 0.2s;
   width: 30%;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .subTableBody > .subTableBody .subTable > .tableRow > .tableCell.teamMember.active {
-  background: #7fbfff;
+  border-bottom: 0;
+  border-right: 0;
+  box-shadow: inset -10px 0 0 0 #1abb9c;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .subTableBody > .subTableBody .subTable > .tableRow > .tableCell.teamMember.dead {
-  background: #7fbfff;
+  background: #1abb9c;
   pointer-events: none;
 }
 @keyframes textpulsatepending {
@@ -325,7 +334,7 @@
   border: solid 1px #36f190;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip.teamHoliday3 {
-  border: solid 1px #6dffb3;
+  border: solid 1px #c46d4d;
 }
 .bodyContainer > calendar > tooltip > .hoverTooltip.teamHoliday4 {
   border: solid 1px #e74c3c;
@@ -484,7 +493,7 @@
   border-radius: 15%;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday3 {
-  background: rgba(109, 255, 179, 0.8);
+  background: rgba(196, 109, 77, 0.8);
   border-radius: 15%;
 }
 .bodyContainer > calendar > .month > .week > .day.teamHoliday4 {
@@ -576,7 +585,7 @@
   width: 100%;
 }
 .bodyContainer > calendar > .key > #teamHolidayKey > .colorContainer > #teamHolidayKeyColor {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #22b265), color-stop(25%, #36f190), color-stop(50%, #6dffb3), color-stop(75%, #e74c3c), color-stop(100%, #b22011));
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #22b265), color-stop(25%, #36f190), color-stop(50%, #c46d4d), color-stop(75%, #e74c3c), color-stop(100%, #b22011));
   border-bottom: 1px solid black;
   border-radius: 15px;
   display: table-cell;
