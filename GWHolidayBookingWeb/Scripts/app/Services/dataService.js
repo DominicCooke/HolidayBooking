@@ -60,7 +60,7 @@
                 data: $.param({ username: u, password: p, grant_type: "password" }),
                 url: 'http://localhost:57068/token'
             }).success(function (data) {
-                tokenService.setToken(data.access_token);
+                tokenService.setToken(data.access_token, true);
             });
         },
         getIdentityRoles: function () {

@@ -175,6 +175,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\background.jpg" />
+    <Content Include="Content\images\GradWeb-logo.png" />
     <Content Include="Content\images\img.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -187,7 +188,9 @@
     <Content Include="Scripts\app\PartialViews\login.html" />
     <Content Include="Scripts\app\PartialViews\userManagementTable.html" />
     <Content Include="Scripts\app\Services\dataService.js" />
+    <Content Include="Scripts\app\Services\loginService.js" />
     <Content Include="Scripts\app\Services\tokenService.js" />
+    <Content Include="Scripts\app\Services\userService.js" />
     <Content Include="Scripts\app\Templates\employee\employeeCalendarInfoBoxTemplate.html" />
     <Content Include="Scripts\app\Templates\employee\employeeCalendarControlsTemplate.html" />
     <Content Include="Scripts\app\Templates\employee\employeeCalendarTooltipTemplate.html" />
@@ -218,7 +221,6 @@
     <Content Include="Scripts\angular\chart\Chart.js" />
     <Content Include="Scripts\app\app.module.js" />
     <Content Include="Scripts\app\Controllers\calendarCtrl.js" />
-    <Content Include="Scripts\app\Controllers\dashboardCtrl.js" />
     <Content Include="Scripts\app\Controllers\menuCtrl.js" />
     <Content Include="Scripts\app\Enums\views.js" />
     <Content Include="Scripts\app\Services\templateService.js" />
@@ -230,7 +232,6 @@
     <Content Include="Scripts\app\Templates\manager\managerCalendarTabsTemplate.html" />
     <Content Include="Scripts\app\Templates\templates.js" />
     <Content Include="Scripts\app\Templates\manager\managerCalendarTooltipTemplate.html" />
-    <Content Include="Scripts\app\PartialViews\dashboard.html" />
     <Content Include="Scripts\app\PartialViews\calendar\employee\employeeCalendarContainer.html" />
     <Content Include="Scripts\app\PartialViews\calendar\manager\managerCalendarContainer.html" />
     <Content Include="Scripts\app\PartialViews\menu.html" />

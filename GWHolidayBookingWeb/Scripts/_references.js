@@ -5,7 +5,6 @@
 /// <reference path="angular/chart/Chart.js" />
 /// <reference path="app/app.module.js" />
 /// <reference path="app/Controllers/calendarCtrl.js" />
-/// <reference path="app/Controllers/dashboardCtrl.js" />
 /// <reference path="app/Controllers/menuCtrl.js" />
 /// <reference path="app/Enums/views.js" />
 /// <reference path="app/Services/templateService.js" />
@@ -30,4 +29,6 @@
 /// <reference path="app/controllers/usertablectrl.js" />
 /// <reference path="angular/xeditable/xeditable.js" />
 /// <reference path="jquery/scrollbar/jquery.scrollbar.js" />
+/// <reference path="app/services/loginservice.js" />
+/// <reference path="app/services/userservice.js" />
 

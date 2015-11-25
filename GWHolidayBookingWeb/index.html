@@ -11,13 +11,16 @@
     <div class="mainContainer" ng-controller="menuCtrl">
         <div class="menuContainer">
             <div class="side-bar">
-                <div class="profile">
+                <div class="logo">
+                    <img src="Content/images/GradWeb-logo.png" />
+                </div>
+                <div class="profile" ng-hide="loginStatus == false">
                     <div class="profilePic">
                         <img src="Content/images/img.jpg" alt="..." class="img-circle profileImg">
                     </div>
                     <div class="profileInfo">
                         <span>Welcome,</span>
-                        <h2>Anthony Fernando</h2>
+                        <h2>{{loggedInUsername}}</h2>
                     </div>
                 </div>
                 <div class="side-bar-menu"></div>
@@ -27,16 +30,13 @@
             <div class="navMenu">
                 <nav role="navigation">
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <li ng-hide="loginStatus == false">
                             <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="Content/images/img.jpg" alt="">John Doe
+                                <img src="Content/images/img.jpg" alt="">{{loggedInUsername}}
                                 <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#"><span>Settings</span></a></li>
-                                <li><a href="#">Help</a></li>
-                                <li><a href="#"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="#" ng-click="logOut()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -74,11 +74,12 @@
     <!-- Angular Controllers and Services -->
     <script src="Scripts/app/Enums/views.js"></script>
     <script src="Scripts/app/Services/viewService.js"></script>
+    <script src="Scripts/app/Services/loginService.js"></script>
+    <script src="Scripts/app/Services/userService.js"></script>
     <script src="Scripts/app/Services/templateService.js"></script>
     <script src="Scripts/app/Services/tokenService.js"></script>
     <script src="Scripts/app/Services/dataService.js"></script>
     <script src="Scripts/app/Controllers/menuCtrl.js"></script>
-    <script src="Scripts/app/Controllers/dashboardCtrl.js"></script>
     <script src="Scripts/app/Controllers/userTableCtrl.js"></script>
     <script src="Scripts/app/Controllers/calendarCtrl.js"></script>
     <script src="Scripts/app/Controllers/loginCtrl.js"></script>

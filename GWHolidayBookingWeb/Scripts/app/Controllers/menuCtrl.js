@@ -1,12 +1,24 @@
-﻿menuCtrl = function($scope, viewService) {
+﻿menuCtrl = function ($scope, viewService, tokenService, userService) {
     var childScope;
 
     function init() {
         viewService.menuGotoView($scope, views.Menu, '.side-bar-menu');
-        viewService.gotoView($scope, views.Dashboard);
+        viewService.gotoView($scope, views.Login);
+        $scope.loginStatus = tokenService.getLoginStatus();
+        $scope.$on("loggedIn", function () {
+            $scope.loginStatus = tokenService.getLoginStatus();
+            var user = userService.getUser();
+            $scope.loggedInUsername = user.FirstName + ' ' + user.LastName;
+            $scope.navigate('EmployeeCalendar');
+        });
     };
 
-    $scope.navigate = function(nameOfLink) {
+    $scope.logOut = function () {
+        tokenService.setToken('', false);
+        init();
+    };
+
+    $scope.navigate = function (nameOfLink) {
         if (typeof $scope.state === "undefined")
             $scope.state = "New";
         if ($scope.state == "New") {
@@ -27,4 +39,4 @@
 
     init();
 };
-menuCtrl.$inject = ['$scope', 'viewService'];
+menuCtrl.$inject = ['$scope', 'viewService', 'tokenService', 'userService'];

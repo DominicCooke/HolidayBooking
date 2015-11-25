@@ -1,6 +1,5 @@
 ﻿views = {
     Menu: "Scripts/app/PartialViews/menu.html",
-    Dashboard: "Scripts/app/PartialViews/dashboard.html",
     UserManagementTable: "Scripts/app/PartialViews/userManagementTable.html",
     Login: "Scripts/app/PartialViews/login.html",
     EmployeeCalendar: 'Scripts/app/PartialViews/calendar/employee/employeeCalendarContainer.html',

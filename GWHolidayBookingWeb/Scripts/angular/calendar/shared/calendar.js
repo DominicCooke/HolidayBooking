@@ -1,13 +1,13 @@
-﻿calendarDirective = function(templates, $timeout) {
+﻿calendarDirective = function (templates, $timeout, userService) {
     return {
         restrict: "E",
-        templateUrl: function($elem, $attr) {
+        templateUrl: function ($elem, $attr) {
             return templates[$attr.mode];
         },
         controller: 'calendarCtrl',
         scope: false,
-        link: function($scope) {
-            $scope.select = function(date) {
+        link: function ($scope) {
+            $scope.select = function (date) {
                 $scope.selected = date;
                 if ($scope.editMode == true) {
                     if (isStatusHoliday(date, 0) == true || isStatusHoliday(date, 1) == true || isStatusHoliday(date, 2) == true) {
@@ -47,7 +47,7 @@
                 }
             };
 
-            $scope.next = function() {
+            $scope.next = function () {
                 var next = $scope.month.clone();
                 removeTime(next.month(next.month() + 1).date(0));
                 $scope.month.month($scope.month.month() + 1);
@@ -56,7 +56,7 @@
                 $scope.teamHolidayCount();
             };
 
-            $scope.previous = function() {
+            $scope.previous = function () {
                 var previous = $scope.month.clone();
                 removeTime(previous.month(previous.month() - 1).date(0));
                 $scope.month.month($scope.month.month() - 1);
@@ -192,9 +192,9 @@
                 return days;
             }
 
-            $scope.teamHolidayCount = function() {
-                $timeout(function() {
-                    $('.day').each(function(index) {
+            $scope.teamHolidayCount = function () {
+                $timeout(function () {
+                    $('.day').each(function (index) {
                         var holidayCount = $(this)[0].getAttribute('amountofholiday');
                         var isFound = false;
                         for (var i = 0; i <= holidayCount; i++) {
@@ -216,7 +216,7 @@
                 });
             };
 
-            $scope.reloadCalendar = function(mode) {
+            $scope.reloadCalendar = function (mode) {
                 if (mode == true) {
                     var start = $scope.month.clone();
                 } else {
@@ -230,10 +230,11 @@
 
             function init() {
                 if ($scope.mode == "employee") {
-                    $scope.isSelect();
-                } else {
-                    $scope.reloadCalendar();
-                }
+                    $scope.userHolidayBookings = userService.getUser();
+                    $scope.initData([$scope.userHolidayBookings]);
+                    $scope.userHolidayBookings.isVisible = !$scope.userHolidayBookings.isVisible;
+                };
+                $scope.reloadCalendar();
             };
 
             init();
