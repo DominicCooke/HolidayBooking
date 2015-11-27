@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GWHolidayBookingWeb.DataAccess.Identity
+namespace GWHolidayBookingWeb.DataAccess.ViewModels
 {
     public class EmployeeCreateViewModel
     {

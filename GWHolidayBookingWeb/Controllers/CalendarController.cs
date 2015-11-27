@@ -4,25 +4,24 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
-using GWHolidayBookingWeb.DataAccess;
-using GWHolidayBookingWeb.DataAccess.Identity;
+using AutoMapper;
+using GWHolidayBookingWeb.Controllers.Filter;
+using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
 using GWHolidayBookingWeb.Services.Employee;
 using Microsoft.Owin;
 
 namespace GWHolidayBookingWeb.Controllers
 {
-    [RoutePrefix("api/Calendar")]
     [Authorize]
+    [RoutePrefix("api/Calendar")]
     public class CalendarController : ApiController
     {
-        private readonly IEmployeeContext context;
         private readonly IEmployeeDataService employeeDataService;
 
-        public CalendarController(IEmployeeDataService employeeDataService, IEmployeeContext context)
+        public CalendarController(IEmployeeDataService employeeDataService)
         {
             this.employeeDataService = employeeDataService;
-            this.context = context;
         }
 
         public List<EmployeeCalendar> GetEmployees()
@@ -30,12 +29,16 @@ namespace GWHolidayBookingWeb.Controllers
             return employeeDataService.Get();
         }
 
-        public EmployeeCalendar GetEmployeeById()
+        public UserStartupViewModel GetEmployeeById()
         {
             IOwinContext owinContext = ControllerContext.Request.GetOwinContext();
             var user = (ClaimsIdentity) owinContext.Authentication.User.Identity;
             Claim staffIdClaim = user.Claims.FirstOrDefault(c => c.Type == "id");
-            return employeeDataService.GetEmployeeById(Guid.Parse(staffIdClaim.Value));
+            Claim roleClaim = user.Claims.FirstOrDefault(c => c.Type == "role");
+            var userWithRole =
+                Mapper.Map<UserStartupViewModel>(employeeDataService.GetEmployeeById(Guid.Parse(staffIdClaim.Value)));
+            userWithRole.RoleName = roleClaim.Value;
+            return userWithRole;
         }
 
         public void UpdateHoliday(EmployeeCalendar employee)
@@ -43,6 +46,7 @@ namespace GWHolidayBookingWeb.Controllers
             employeeDataService.UpdateHolidays(employee);
         }
 
+        [ClaimsAuthorize(RoleName = "Admin")]
         public void UpdateHolidays(List<EmployeeCalendar> employees)
         {
             foreach (EmployeeCalendar employee in employees)

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
-using GWHolidayBookingWeb.DataAccess.Identity;
+using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
-using Microsoft.AspNet.Identity;
 
 namespace GWHolidayBookingWeb.DataAccess.Repositories
 {
@@ -65,7 +64,8 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             {
                 if (!employee.HolidayBookings.Any(h => h.HolidayId == holidayBooking.HolidayId))
                 {
-                    context.Entry(employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
+                    context.Entry(
+                        employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId))
                         .State = EntityState.Deleted;
                     employeeInDb.HolidayBookings.Remove(holidayBooking);
                 }

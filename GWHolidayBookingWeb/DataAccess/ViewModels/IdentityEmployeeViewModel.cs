@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Linq;
-using System.Web;
 
-namespace GWHol.Web.ViewModels
+namespace GWHolidayBookingWeb.DataAccess.ViewModels
 {
     public class IdentityUserViewModel
     {

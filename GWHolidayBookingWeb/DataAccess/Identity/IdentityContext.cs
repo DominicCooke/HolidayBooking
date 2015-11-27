@@ -8,6 +8,7 @@ namespace GWHolidayBookingWeb.DataAccess.Identity
         public IdentityContext()
             : base("ConnStringDb1")
         {
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public IdentityContext(DbConnection connection)

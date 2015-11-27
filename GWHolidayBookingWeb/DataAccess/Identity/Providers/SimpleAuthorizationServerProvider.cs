@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using GWHolidayBookingWeb.DataAccess.Identity;
 using Microsoft.AspNet.Identity;
@@ -15,9 +16,9 @@ namespace GWHolidayBookingWeb.DataAccess.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] {"*"});
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            var userManager = Startup.UserManagerFactory();
+            UserManager<IdentityEmployee> userManager = Startup.UserManagerFactory();
             IdentityEmployee user = await userManager.FindAsync(context.UserName, context.Password);
             if (user == null)
             {
@@ -25,7 +26,16 @@ namespace GWHolidayBookingWeb.DataAccess.Providers
                 return;
             }
             identity.AddClaim(new Claim("id", user.StaffId.ToString()));
-
+            identity.AddClaim(new Claim(ClaimTypes.Name, "d.c@gradweb.co.uk"));
+            IList<string> listOfRoles = await userManager.GetRolesAsync(user.Id);
+            if (listOfRoles.Contains("Admin"))
+            {
+                identity.AddClaim(new Claim("role", "Admin"));
+            }
+            else
+            {
+                identity.AddClaim(new Claim("role", "User"));
+            }
             context.Validated(identity);
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using GWHolidayBookingWeb.DataAccess.Identity;
 using GWHolidayBookingWeb.DataAccess.Repositories;
+using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
 
 namespace GWHolidayBookingWeb.Services.Employee
@@ -49,6 +49,5 @@ namespace GWHolidayBookingWeb.Services.Employee
         {
             employeeRepository.Create(employee);
         }
-
     }
 }

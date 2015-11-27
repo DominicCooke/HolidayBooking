@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GWHolidayBookingWeb.DataAccess.Identity;
+using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
 
 namespace GWHolidayBookingWeb.DataAccess.Repositories

@@ -66,16 +66,13 @@ dataService = function ($http, tokenService, guidService) {
 
             });
         },
-        getIdentityRoles: function () {
-            return $http({
-                method: 'GET',
-                url: 'http://localhost:57068/api/Employee/GetIdentityRoles'
-            });
-        },
         deleteUser: function (user) {
             return $http({
                 url: "http://localhost:57068/api/Employee/Delete",
                 method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getToken(),
+                },
                 data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId }
             });
         },
@@ -83,6 +80,9 @@ dataService = function ($http, tokenService, guidService) {
             return $http({
                 url: "http://localhost:57068/api/Employee/Register",
                 method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getToken(),
+                },
                 data: user
             });
         },
@@ -90,6 +90,9 @@ dataService = function ($http, tokenService, guidService) {
             return $http({
                 url: "http://localhost:57068/api/Employee/Update",
                 method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getToken(),
+                },
                 data: user
             });
         },
@@ -97,13 +100,19 @@ dataService = function ($http, tokenService, guidService) {
             return $http({
                 url: "http://localhost:57068/api/Employee/SetRole",
                 method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getToken(),
+                },
                 data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId }
             });
         },
         getIdentityEmployees: function () {
             return $http({
                 method: 'GET',
-                url: 'http://localhost:57068/api/Employee/GetIdentityEmployees'
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getToken(),
+                },
+                url: 'http://localhost:57068/api/Employee/GetIdentityEmployeesRoles'
             });
         }
     };

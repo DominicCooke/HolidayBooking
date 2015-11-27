@@ -194,6 +194,7 @@ menuCtrl = function ($scope, viewService, tokenService, userService) {
         $scope.$on("loggedIn", function () {
             $scope.loginStatus = tokenService.getLoginStatus();
             var user = userService.getUser();
+            $scope.role = user.RoleName.toLowerCase();
             $scope.loggedInUsername = user.FirstName + ' ' + user.LastName;
             $scope.navigate('EmployeeCalendar');
         });
@@ -238,17 +239,15 @@ userTableCtrl = function ($scope, $http, dataService) {
 
     $scope.init = function () {
         dataService.getIdentityEmployees().then(function (response) {
-            $scope.data = response.data;
-        });
-        dataService.getIdentityRoles().then(function (response) {
-            $scope.roles = response.data;
+            $scope.data = response.data.ListOfCalendarViewModels;
+            $scope.roles = response.data.ListOfIdentityRoles;
         });
     };
 
     $scope.delete = function (user) {
         dataService.deleteUser(user).then(function (response) {
             dataService.getIdentityEmployees().then(function (response) {
-                $scope.data = response.data;
+                $scope.data = response.data.ListOfCalendarViewModels;
             });
         });
     };
@@ -258,7 +257,7 @@ userTableCtrl = function ($scope, $http, dataService) {
             $('.createContainer').toggleClass('hidden');
             $('.createUserForm').trigger("reset");
             dataService.getIdentityEmployees().then(function (response) {
-                $scope.data = response.data;
+                $scope.data = response.data.ListOfCalendarViewModels;
             });
         });
     };
@@ -274,7 +273,7 @@ userTableCtrl = function ($scope, $http, dataService) {
     $scope.setRole = function (user, role) {
         dataService.setRole(user, role).then(function (response) {
             dataService.getIdentityEmployees().then(function (response) {
-                $scope.data = response.data;
+                $scope.data = response.data.ListOfCalendarViewModels;
             });
         });
     };

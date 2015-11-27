@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GWHolidayBookingWeb.DataAccess.Identity;
+using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
 
 namespace GWHolidayBookingWeb.App_Start
@@ -10,6 +10,9 @@ namespace GWHolidayBookingWeb.App_Start
         {
             Mapper.CreateMap<EmployeeCalendarViewModel, EmployeeCalendar>();
             Mapper.CreateMap<EmployeeCalendar, EmployeeCalendarViewModel>();
+
+            Mapper.CreateMap<UserStartupViewModel, EmployeeCalendar>();
+            Mapper.CreateMap<EmployeeCalendar, UserStartupViewModel>();
         }
     }
 }

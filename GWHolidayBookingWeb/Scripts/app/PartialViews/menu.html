@@ -4,13 +4,13 @@
             <a ng-show="loginStatus == false" ng-click="navigate('Login')">Login</a>
         </li>
         <li id="EmployeeCalendar">
-            <a ng-show="loginStatus == true" ng-click="navigate('EmployeeCalendar')">Employee Calendar</a>
+            <a ng-show="loginStatus == true" ng-click="navigate('EmployeeCalendar')">My Calendar</a>
         </li>
         <li id="ManagerCalendar">
-            <a ng-show="loginStatus == true" ng-click="navigate('ManagerCalendar')">Manager Calendar</a>
+            <a ng-show="loginStatus == true && role == 'admin'" ng-click="navigate('ManagerCalendar')">Manager Calendar</a>
         </li>
         <li id="UserManagementTable">
-            <a ng-show="loginStatus == true" ng-click="navigate('UserManagementTable')">User Management</a>
+            <a ng-show="loginStatus == true && role == 'admin'" ng-click="navigate('UserManagementTable')">User Management</a>
         </li>
     </ul>
 </div>
