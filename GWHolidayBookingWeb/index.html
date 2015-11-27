@@ -1,15 +1,12 @@
 ﻿<head>
     <title>Holiday Booking System</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link href="Scripts/jquery/jquery-ui.css" rel="stylesheet" />
-    <link href="Scripts/jquery/scrollbar/jquery.scrollbar.css" rel="stylesheet" />
+    <link href="Scripts/bundles/styles.css" rel="stylesheet" />
     <link href="Styles/index.css" rel="stylesheet" />
-    <link href="Scripts/angular/chart/angular-chart.css" rel="stylesheet" />
+
 </head>
 
 <body ng-app="holApp">
-    <div class="mainContainer" ng-controller="menuCtrl">
+    <div class="mainContainer" ng-controller="MenuController">
         <div class="menuContainer">
             <div class="side-bar">
                 <div class="logo">
@@ -46,33 +43,16 @@
         </div>
         <div class="pageBody"></div>
     </div>
+    
+    <script src="Scripts/bundles/lib.js"></script>
+    <script src="Scripts/app/views.js"></script>
+    <script src="Scripts/app/calendar/templates.js"></script>
 
-    <!-- Major javascript libaries -->
-    <script src="Scripts/jquery/jquery-2.1.4.js"></script>
-    <script src="Scripts/angular/angular/angular.js"></script>
-    <script src="Scripts/moment/moment.js"></script>
-    <script src="Scripts/jquery/jquery-ui.js"></script>
-
-    <!-- Bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="Scripts/angular/bootstrap/ui-bootstrap-tpls-0.14.0.js"></script>
-
-    <!-- Minor javascript/angular libaries -->
-    <script src="Scripts/angular/chart/Chart.js"></script>
-    <script src="Scripts/underscore/underscore-min.js"></script>
-    <script src="Scripts/lodash/lodash.js"></script>
-    <script src="Scripts/jquery/scrollbar/jquery.scrollbar.js"></script>
-    <script src="Scripts/angular/chart/angular-chart.js"></script>
-    <script src="Scripts/angular/xeditable/xeditable.js"></script>
-
-    <!-- My directives -->
     <script src="Scripts/bundles/directives.js"></script>
-
-    <!-- Angular Controllers and Services -->
-    <script src="Scripts/app/Enums/views.js"></script>
     <script src="Scripts/bundles/controllers.js"></script>
     <script src="Scripts/bundles/services.js"></script>
-    <script src="Scripts/app/Templates/templates.js"></script>
+    
     <script src="Scripts/app/app.module.js"></script>
+
 </body>
 

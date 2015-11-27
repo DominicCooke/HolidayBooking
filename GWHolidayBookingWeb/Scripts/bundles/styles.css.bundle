@@ -5,16 +5,17 @@
     <minify>true</minify>
     <!--Determine whether to generate/re-generate this bundle on building the solution.-->
     <runOnBuild>true</runOnBuild>
+    <!--Use absolute path in the generated CSS files. By default, the URLs are relative to generated bundled CSS file.-->
+    <adjustRelativePaths>true</adjustRelativePaths>
     <!--Specifies a custom subfolder to save files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
     <outputDirectory />
   </settings>
   <!--The order of the <file> elements determines the order of the files in the bundle.-->
   <files>
-    <file>/Scripts/app/services/dataService.js</file>
-    <file>/Scripts/app/login/loginService.js</file>
-    <file>/Scripts/app/services/templateService.js</file>
-    <file>/Scripts/app/login/tokenService.js</file>
-    <file>/Scripts/app/services/userService.js</file>
-    <file>/Scripts/app/services/viewService.js</file>
+    <file>/Scripts/lib/angular/chart/angular-chart.css</file>
+    <file>/Scripts/lib/jquery/scrollbar/jquery.scrollbar.css</file>
+    <file>/Content/fontawesome/font-awesome.css</file>
+    <file>/Scripts/lib/bootstrap/bootstrap.css</file>
+    <file>/Scripts/lib/jquery/jquery-ui.css</file>
   </files>
 </bundle>

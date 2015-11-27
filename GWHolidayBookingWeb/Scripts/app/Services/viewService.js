@@ -1,4 +1,5 @@
 ﻿viewService = function (templateService) {
+    'use strict';
     return {
         gotoView: function ($scope, view, target) {
             if (!target || target.length == 0)

@@ -1,26 +1,18 @@
 ﻿var app = angular.module("holApp", ['chart.js', 'ui.bootstrap', 'xeditable']);
 
-
-app.run(function (editableOptions) {
-    editableOptions.theme = 'bs3';
-});
-
-app.service('templateService', ['$http', '$compile', '$templateCache', templateService]);
-app.service('viewService', ['templateService', viewService]);
-app.service('tokenService', [tokenService]);
-app.service('userService', ['dataService', 'loginService', userService]);
-app.service('loginService', ['$rootScope', loginService]);
-app.service('dataService', ['$http', 'tokenService', dataService]);
-
-app.controller('menuCtrl', menuCtrl);
-app.controller('calendarCtrl', calendarCtrl);
-app.controller('loginCtrl', loginCtrl);
-app.controller('userTableCtrl', userTableCtrl);
-
-app.directive('calendar', calendarDirective);
-app.directive('calendarcontrols', calendarControlsDirective);
-app.directive('tooltip', tooltipDirective);
-app.directive('tabs', tabsDirective);
-app.directive('infobox', infoBoxDirective);
-
-app.factory('templates', templates);
+angular.module('holApp', ['chart.js', 'ui.bootstrap', 'xeditable'])
+    .service('templateService', ['$http', '$compile', '$templateCache', templateService])
+    .service('viewService', ['templateService', viewService])
+    .service('tokenService', [tokenService])
+    .service('userService', ['dataService', 'loginService', userService])
+    .service('loginService', ['$rootScope', loginService])
+    .service('dataService', ['$http', 'tokenService', dataService])
+    .controller('MenuController', MenuController)
+    .controller('CalendarController', CalendarController)
+    .controller('LoginController', LoginController)
+    .controller('UserTableController', UserTableController)
+    .directive('calendar', calendarDirective)
+    .directive('calendarcontrols', calendarControlsDirective)
+    .directive('tooltip', tooltipDirective)
+    .directive('infobox', infoBoxDirective)
+    .factory('templates', templates);

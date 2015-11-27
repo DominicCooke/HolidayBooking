@@ -1,9 +1,10 @@
-﻿///#source 1 1 /Scripts/angular/calendar/employee/infoBox.js
-infoBoxDirective = function() {
+﻿///#source 1 1 /Scripts/app/calendar/employee/infoBox.js
+infoBoxDirective = function () {
+    'use strict';
     return {
         restrict: "E",
-        templateUrl: "/Scripts/app/templates/employee/employeeCalendarInfoBoxTemplate.html",
-        controller: 'calendarCtrl',
+        templateUrl: "/Scripts/app/calendar/employee/infoBox.html",
+        controller: 'CalendarController',
         scope: true,
         link: function($scope) {
             $scope.$watch('userHolidayBookings', function() {
@@ -26,25 +27,15 @@ infoBoxDirective = function() {
         }
     };
 };
-///#source 1 1 /Scripts/angular/calendar/manager/tabs.js
-tabsDirective = function() {
-    return {
-        restrict: "E",
-        templateUrl: "/Scripts/app/templates/manager/managerCalendarTabsTemplate.html",
-        controller: 'calendarCtrl',
-        scope: true,
-        link: function($scope) {
-        }
-    };
-};
-///#source 1 1 /Scripts/angular/calendar/manager/tooltip.js
-tooltipDirective = function(templates) {
+///#source 1 1 /Scripts/app/calendar/shared/tooltip.js
+tooltipDirective = function (templates) {
+    'use strict';
     return {
         restrict: "E",
         templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
-        controller: 'calendarCtrl',
+        controller: 'CalendarController',
         scope: false,
         link: function($scope) {
             $scope.checkIsFound = function(isFoundState) {
@@ -89,7 +80,7 @@ tooltipDirective = function(templates) {
             }
 
             $scope.showTooltip = function(e, day) {
-                countAndNamesOfEmployeesWithHolidayOnDate = checkHowManyHolidaysAreOnEachDay(day.date);
+                var countAndNamesOfEmployeesWithHolidayOnDate = checkHowManyHolidaysAreOnEachDay(day.date);
                 if (day.isTeamHoliday == false || countAndNamesOfEmployeesWithHolidayOnDate.allCount == 0) {
                     $scope.tooltipIsVisible = false;
                     return;
@@ -117,14 +108,15 @@ tooltipDirective = function(templates) {
         }
     };
 };
-///#source 1 1 /Scripts/angular/calendar/shared/calendar.js
+///#source 1 1 /Scripts/app/calendar/shared/calendar.js
 calendarDirective = function (templates, $timeout, userService) {
+    'use strict';
     return {
         restrict: "E",
         templateUrl: function ($elem, $attr) {
             return templates[$attr.mode];
         },
-        controller: 'calendarCtrl',
+        controller: 'CalendarController',
         scope: false,
         link: function ($scope) {
             $scope.select = function (date) {
@@ -319,9 +311,9 @@ calendarDirective = function (templates, $timeout, userService) {
                         var isFound = false;
                         for (var i = 0; i <= holidayCount; i++) {
                             if ($(this).hasClass("employeeCalendar")) {
-                                className = "teamHolidayEmployee" + i;
+                                var className = "teamHolidayEmployee" + i;
                             } else {
-                                className = "teamHoliday" + i;
+                                var className = "teamHoliday" + i;
                             }
                             if ($(this).hasClass(className)) {
                                 isFound = true;
@@ -361,14 +353,15 @@ calendarDirective = function (templates, $timeout, userService) {
         }
     };
 };
-///#source 1 1 /Scripts/angular/calendar/shared/calendarControls.js
-calendarControlsDirective = function(dataService, templates) {
+///#source 1 1 /Scripts/app/calendar/shared/calendarControls.js
+calendarControlsDirective = function (dataService, templates) {
+    'use strict';
     return {
         restrict: "E",
         templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
-        controller: 'calendarCtrl',
+        controller: 'CalendarController',
         scope: false,
         link: function ($scope) {
 

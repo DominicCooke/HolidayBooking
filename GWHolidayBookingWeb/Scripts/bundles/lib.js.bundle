@@ -10,11 +10,21 @@
   </settings>
   <!--The order of the <file> elements determines the order of the files in the bundle.-->
   <files>
-    <file>/Scripts/app/services/dataService.js</file>
-    <file>/Scripts/app/login/loginService.js</file>
-    <file>/Scripts/app/services/templateService.js</file>
-    <file>/Scripts/app/login/tokenService.js</file>
-    <file>/Scripts/app/services/userService.js</file>
-    <file>/Scripts/app/services/viewService.js</file>
+    
+    <file>/Scripts/lib/jquery/jquery-2.1.4.js</file>
+    <file>/Scripts/lib/jquery/jquery-ui.js</file>
+    <file>/Scripts/lib/jquery/scrollbar/jquery.scrollbar.js</file>
+
+    <file>/Scripts/lib/angular/angular/angular.js</file>
+    <file>/Scripts/lib/angular/chart/Chart.js</file>
+    <file>/Scripts/lib/angular/chart/angular-chart.js</file>
+    <file>/Scripts/lib/angular/xeditable/xeditable.js</file>
+
+    <file>/Scripts/lib/angular/bootstrap/ui-bootstrap-tpls-0.14.0.js</file>
+    <file>/Scripts/lib/bootstrap/bootstrap.js</file>
+    
+    <file>/Scripts/lib/moment/moment.js</file>
+    <file>/Scripts/lib/underscore/underscore-min.js</file>
+    <file>/Scripts/lib/lodash/lodash.js</file>
   </files>
 </bundle>

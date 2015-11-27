@@ -1,4 +1,5 @@
-﻿templateService = function($http, $compile, $templateCache) {
+﻿templateService = function ($http, $compile, $templateCache) {
+    'use strict';
     return {
         getTemplate: function(templateUrl) {
             return $http.get(templateUrl, {

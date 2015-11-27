@@ -1,4 +1,5 @@
 ﻿userService = function (dataService, loginService) {
+    'use strict';
     var User;
     return {
         setUser: function () {

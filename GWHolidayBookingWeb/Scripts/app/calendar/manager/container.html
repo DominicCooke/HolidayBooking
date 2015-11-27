@@ -1,0 +1,14 @@
+﻿<link href="../../Styles/calendar.css" rel="stylesheet" />
+<div class="page-title">
+    <h3>
+        Manager Calendar
+    </h3>
+</div>
+<div class="bodyContainer" ng-controller="CalendarController" ng-init="init('manager')">
+    <div class="otherSpace">
+        <calendarcontrols mode="managerControls"></calendarcontrols>
+        <div class="controls">
+            <button ng-click="submitTeamUsersData()">Submit Data</button>
+        </div>
+    </div>
+</div>

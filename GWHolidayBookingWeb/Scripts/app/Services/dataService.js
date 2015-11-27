@@ -1,4 +1,5 @@
 ﻿dataService = function ($http, tokenService, guidService) {
+    'use strict';
     return {
         getLoginAuthToken: function (u, p) {
             return $http({

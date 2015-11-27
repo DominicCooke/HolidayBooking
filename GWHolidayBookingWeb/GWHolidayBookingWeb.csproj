@@ -172,12 +172,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\bundles\styles.css">
+      <DependentUpon>styles.css.bundle</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bundles\styles.min.css">
+      <DependentUpon>styles.css</DependentUpon>
+    </Content>
+    <Content Include="Content\fontawesome\font-awesome.css" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\GradWeb-logo.png" />
     <Content Include="Content\images\img.jpg" />
-    <Content Include="Content\Site.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\bundles\directives.js">
       <DependentUpon>directives.js.bundle</DependentUpon>
@@ -185,75 +190,89 @@
     <Content Include="Scripts\bundles\directives.min.js">
       <DependentUpon>directives.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\angular\calendar\employee\infoBox.js" />
-    <Content Include="Scripts\angular\xeditable\xeditable.css" />
-    <Content Include="Scripts\angular\xeditable\xeditable.js" />
+    <Content Include="Scripts\app\calendar\employee\infoBox.js" />
+    <Content Include="Scripts\bundles\lib.js">
+      <DependentUpon>lib.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bundles\lib.min.js">
+      <DependentUpon>lib.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\lib\angular\xeditable\xeditable.css" />
+    <Content Include="Scripts\lib\angular\xeditable\xeditable.js" />
     <Content Include="Scripts\bundles\controllers.js">
       <DependentUpon>controllers.js.bundle</DependentUpon>
     </Content>
     <Content Include="Scripts\bundles\controllers.min.js">
       <DependentUpon>controllers.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\app\Controllers\loginCtrl.js" />
-    <Content Include="Scripts\app\PartialViews\calendar\employee\employeeCalendarMode.html" />
-    <Content Include="Scripts\app\PartialViews\calendar\manager\managerCalendarMode.html" />
-    <Content Include="Scripts\app\PartialViews\login.html" />
-    <Content Include="Scripts\app\PartialViews\userManagementTable.html" />
-    <Content Include="Scripts\app\Services\dataService.js" />
-    <Content Include="Scripts\app\Services\loginService.js" />
-    <Content Include="Scripts\app\Services\tokenService.js" />
-    <Content Include="Scripts\app\Services\userService.js" />
-    <Content Include="Scripts\app\Templates\employee\employeeCalendarInfoBoxTemplate.html" />
-    <Content Include="Scripts\app\Templates\employee\employeeCalendarControlsTemplate.html" />
-    <Content Include="Scripts\app\Templates\employee\employeeCalendarTooltipTemplate.html" />
-    <Content Include="Scripts\jquery\jquery-ui.css" />
-    <Content Include="Scripts\jquery\jquery-ui.js" />
+    <Content Include="Scripts\app\login\LoginController.js" />
+    <Content Include="Scripts\app\calendar\employee\mode.html" />
+    <Content Include="Scripts\app\calendar\manager\mode.html" />
+    <Content Include="Scripts\app\login\login.html" />
+    <Content Include="Scripts\app\management\userManagementTable.html" />
+    <Content Include="Scripts\app\services\dataService.js" />
+    <Content Include="Scripts\app\login\loginService.js" />
+    <Content Include="Scripts\app\login\tokenService.js" />
+    <Content Include="Scripts\app\services\userService.js" />
+    <Content Include="Scripts\app\calendar\employee\infoBox.html" />
+    <Content Include="Scripts\app\calendar\employee\controls.html" />
+    <Content Include="Scripts\app\calendar\employee\tooltip.html" />
+    <Content Include="Scripts\lib\bootstrap\bootstrap.css" />
+    <Content Include="Scripts\lib\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\lib\jquery\jquery-ui.css" />
+    <Content Include="Scripts\lib\jquery\jquery-ui.js" />
     <Content Include="Scripts\bundles\services.js">
       <DependentUpon>services.js.bundle</DependentUpon>
     </Content>
     <Content Include="Scripts\bundles\services.min.js">
       <DependentUpon>services.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\jquery\scrollbar\jquery.scrollbar.css" />
-    <Content Include="Scripts\jquery\scrollbar\jquery.scrollbar.js" />
-    <Content Include="Scripts\lodash\lodash.js" />
+    <Content Include="Scripts\lib\jquery\scrollbar\jquery.scrollbar.css" />
+    <Content Include="Scripts\lib\jquery\scrollbar\jquery.scrollbar.js" />
+    <Content Include="Scripts\lib\lodash\lodash.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="index.html" />
-    <Content Include="Scripts\angular\angular\angular-mocks.js" />
+    <Content Include="Scripts\lib\angular\angular\angular-mocks.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="JSLintNet.json" />
-    <None Include="Scripts\angular\angular\angular.intellisense.js" />
-    <Content Include="Scripts\angular\angular\angular.js" />
-    <Content Include="Scripts\angular\angular\angular.min.js" />
-    <Content Include="Scripts\angular\bootstrap\ui-bootstrap-0.13.4.js" />
-    <Content Include="Scripts\angular\bootstrap\ui-bootstrap-tpls-0.14.0.js" />
-    <Content Include="Scripts\angular\calendar\shared\calendar.js" />
-    <Content Include="Scripts\angular\calendar\shared\calendarControls.js" />
-    <Content Include="Scripts\angular\calendar\manager\tabs.js" />
-    <Content Include="Scripts\angular\calendar\manager\tooltip.js" />
-    <Content Include="Scripts\angular\chart\angular-chart.css" />
-    <Content Include="Scripts\angular\chart\angular-chart.js" />
-    <Content Include="Scripts\angular\chart\angular-chart.min.css" />
-    <Content Include="Scripts\angular\chart\angular-chart.min.js" />
-    <Content Include="Scripts\angular\chart\Chart.js" />
+    <Content Include="Scripts\bundles\lib.js.bundle" />
+    <Content Include="Scripts\bundles\lib.min.js.map">
+      <DependentUpon>lib.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bundles\styles.css.bundle" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <None Include="Scripts\lib\angular\angular\angular.intellisense.js" />
+    <Content Include="Scripts\lib\angular\angular\angular.js" />
+    <Content Include="Scripts\lib\angular\angular\angular.min.js" />
+    <Content Include="Scripts\lib\angular\bootstrap\ui-bootstrap-0.13.4.js" />
+    <Content Include="Scripts\lib\angular\bootstrap\ui-bootstrap-tpls-0.14.0.js" />
+    <Content Include="Scripts\app\calendar\shared\calendar.js" />
+    <Content Include="Scripts\app\calendar\shared\calendarControls.js" />
+    <Content Include="Scripts\app\calendar\shared\tooltip.js" />
+    <Content Include="Scripts\lib\angular\chart\angular-chart.css" />
+    <Content Include="Scripts\lib\angular\chart\angular-chart.js" />
+    <Content Include="Scripts\lib\angular\chart\angular-chart.min.css" />
+    <Content Include="Scripts\lib\angular\chart\angular-chart.min.js" />
+    <Content Include="Scripts\lib\angular\chart\Chart.js" />
     <Content Include="Scripts\app\app.module.js" />
-    <Content Include="Scripts\app\Controllers\calendarCtrl.js" />
-    <Content Include="Scripts\app\Controllers\menuCtrl.js" />
-    <Content Include="Scripts\app\Enums\views.js" />
-    <Content Include="Scripts\app\Services\templateService.js" />
-    <Content Include="Scripts\app\Services\viewService.js" />
-    <Content Include="Scripts\app\Templates\manager\managerCalendarControlsTemplate.html" />
-    <Content Include="Scripts\app\Templates\employee\employeeCalendarTemplate.html" />
-    <Content Include="Scripts\app\Templates\manager\managerCalendarTemplate.html" />
-    <Content Include="Scripts\app\Templates\employee\selectboxTemplate.html" />
-    <Content Include="Scripts\app\Templates\manager\managerCalendarTabsTemplate.html" />
-    <Content Include="Scripts\app\Templates\templates.js" />
-    <Content Include="Scripts\app\Templates\manager\managerCalendarTooltipTemplate.html" />
-    <Content Include="Scripts\app\PartialViews\calendar\employee\employeeCalendarContainer.html" />
-    <Content Include="Scripts\app\PartialViews\calendar\manager\managerCalendarContainer.html" />
-    <Content Include="Scripts\app\PartialViews\menu.html" />
+    <Content Include="Scripts\app\calendar\CalendarController.js" />
+    <Content Include="Scripts\app\menu\MenuController.js" />
+    <Content Include="Scripts\app\views.js" />
+    <Content Include="Scripts\app\services\templateService.js" />
+    <Content Include="Scripts\app\services\viewService.js" />
+    <Content Include="Scripts\app\calendar\manager\controls.html" />
+    <Content Include="Scripts\app\calendar\employee\calendar.html" />
+    <Content Include="Scripts\app\calendar\manager\calendar.html" />
+    <Content Include="Scripts\app\calendar\templates.js" />
+    <Content Include="Scripts\app\calendar\manager\tooltip.html" />
+    <Content Include="Scripts\app\calendar\employee\container.html" />
+    <Content Include="Scripts\app\calendar\manager\container.html" />
+    <Content Include="Scripts\app\menu\menu.html" />
     <Content Include="Scripts\bundles\controllers.js.bundle" />
     <Content Include="Scripts\bundles\controllers.min.js.map">
       <DependentUpon>controllers.min.js</DependentUpon>
@@ -266,12 +285,12 @@
     <Content Include="Scripts\bundles\services.min.js.map">
       <DependentUpon>services.min.js</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\jquery\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\moment\moment.js" />
+    <None Include="Scripts\lib\jquery\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\lib\jquery\jquery-2.1.4.js" />
+    <Content Include="Scripts\lib\jquery\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\lib\moment\moment.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Scripts\underscore\underscore-min.js" />
+    <Content Include="Scripts\lib\underscore\underscore-min.js" />
     <Content Include="Styles\calendar.css">
       <DependentUpon>calendar.less</DependentUpon>
     </Content>
@@ -335,7 +354,7 @@
     <Compile Include="DataAccess\Identity\IdentityEmployee.cs" />
     <Compile Include="DataAccess\Identity\Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="DataAccess\Repositories\IEmployeeRepository.cs" />
-    <Content Include="Scripts\app\Controllers\userTableCtrl.js" />
+    <Content Include="Scripts\app\management\UserTableController.js" />
     <Compile Include="Services\IEmployeeDataService.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="DataAccess\EmployeeContext.cs" />
@@ -347,10 +366,10 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Content\fonts\Roboto-Regular.ttf" />
-    <Content Include="Scripts\angular\angular\angular.min.js.map" />
-    <Content Include="Scripts\angular\chart\angular-chart.min.css.map" />
-    <Content Include="Scripts\angular\chart\angular-chart.min.js.map" />
-    <Content Include="Scripts\jquery\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\lib\angular\angular\angular.min.js.map" />
+    <Content Include="Scripts\lib\angular\chart\angular-chart.min.css.map" />
+    <Content Include="Scripts\lib\angular\chart\angular-chart.min.js.map" />
+    <Content Include="Scripts\lib\jquery\jquery-2.1.4.min.map" />
     <Content Include="Styles\calendar.less" />
     <Content Include="Styles\login.less" />
     <Content Include="Styles\login.css.map">

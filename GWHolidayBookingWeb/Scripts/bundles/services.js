@@ -1,5 +1,6 @@
-﻿///#source 1 1 /Scripts/app/Services/dataService.js
+﻿///#source 1 1 /Scripts/app/services/dataService.js
 dataService = function ($http, tokenService, guidService) {
+    'use strict';
     return {
         getLoginAuthToken: function (u, p) {
             return $http({
@@ -119,16 +120,18 @@ dataService = function ($http, tokenService, guidService) {
         }
     };
 }
-///#source 1 1 /Scripts/app/Services/loginService.js
+///#source 1 1 /Scripts/app/login/loginService.js
 loginService = function ($rootScope) {
+    'use strict';
     return {
         broadcast: function () {
             $rootScope.$broadcast("loggedIn");
         }
     };
 }
-///#source 1 1 /Scripts/app/Services/templateService.js
-templateService = function($http, $compile, $templateCache) {
+///#source 1 1 /Scripts/app/services/templateService.js
+templateService = function ($http, $compile, $templateCache) {
+    'use strict';
     return {
         getTemplate: function(templateUrl) {
             return $http.get(templateUrl, {
@@ -161,8 +164,9 @@ templateService = function($http, $compile, $templateCache) {
         }
     };
 }
-///#source 1 1 /Scripts/app/Services/tokenService.js
-tokenService = function() {
+///#source 1 1 /Scripts/app/login/tokenService.js
+tokenService = function () {
+    'use strict';
     var loginAuthToken;
     var loginStatus = false;
     return {
@@ -178,8 +182,9 @@ tokenService = function() {
         }
     };
 }
-///#source 1 1 /Scripts/app/Services/userService.js
+///#source 1 1 /Scripts/app/services/userService.js
 userService = function (dataService, loginService) {
+    'use strict';
     var User;
     return {
         setUser: function () {
@@ -193,8 +198,9 @@ userService = function (dataService, loginService) {
         }
     };
 }
-///#source 1 1 /Scripts/app/Services/viewService.js
+///#source 1 1 /Scripts/app/services/viewService.js
 viewService = function (templateService) {
+    'use strict';
     return {
         gotoView: function ($scope, view, target) {
             if (!target || target.length == 0)
