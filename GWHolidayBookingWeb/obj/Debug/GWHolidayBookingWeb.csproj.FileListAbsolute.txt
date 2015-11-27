@@ -137,4 +137,3 @@ C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\System.W
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\System.Web.Mvc.xml
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\Newtonsoft.Json.xml
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\System.Web.Http.WebHost.xml
-C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.csprojResolveAssemblyReference.cache

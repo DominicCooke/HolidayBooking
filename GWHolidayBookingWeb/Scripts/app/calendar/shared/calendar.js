@@ -208,7 +208,7 @@
                                 isFound = true;
                                 $(this).children(".confirmedHolidayCount").text(holidayCount);
                                 if ($(this).children(".confirmedHolidayCount").css("display") == "none") {
-                                    $(this).children(".confirmedHolidayCount").fadeIn("slow");
+                                    $(this).children(".confirmedHolidayCount").fadeIn("fast");
                                 }
                                 break;
                             }
