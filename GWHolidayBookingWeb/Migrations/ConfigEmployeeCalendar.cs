@@ -3,7 +3,7 @@ using System.Data.Entity.Migrations;
 using GWHolidayBookingWeb.DataAccess;
 using GWHolidayBookingWeb.Models;
 
-namespace GWHolidayBookingWeb.Migrations.Employee
+namespace GWHolidayBookingWeb.Migrations
 {
     internal sealed class ConfigEmployeeCalendar : DbMigrationsConfiguration<EmployeeContext>
     {
@@ -15,7 +15,7 @@ namespace GWHolidayBookingWeb.Migrations.Employee
 
         protected override void Seed(EmployeeContext context)
         {
-            var users = new List<EmployeeCalendar>();
+            var users = new List<Employee>();
             //    new EmployeeCalendar
             //    {
             //        StaffId = Guid.NewGuid(),

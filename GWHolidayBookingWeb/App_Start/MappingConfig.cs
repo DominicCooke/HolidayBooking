@@ -8,11 +8,11 @@ namespace GWHolidayBookingWeb.App_Start
     {
         public static void RegisterMapping()
         {
-            Mapper.CreateMap<EmployeeCalendarViewModel, EmployeeCalendar>();
-            Mapper.CreateMap<EmployeeCalendar, EmployeeCalendarViewModel>();
+            Mapper.CreateMap<UpdateEmployeeViewModel, Employee>();
+            Mapper.CreateMap<Employee, UpdateEmployeeViewModel>();
 
-            Mapper.CreateMap<UserStartupViewModel, EmployeeCalendar>();
-            Mapper.CreateMap<EmployeeCalendar, UserStartupViewModel>();
+            Mapper.CreateMap<GetEmployeeByIdViewModel, Employee>();
+            Mapper.CreateMap<Employee, GetEmployeeByIdViewModel>();
         }
     }
 }

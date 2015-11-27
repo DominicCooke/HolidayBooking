@@ -5,7 +5,7 @@
         defaultViews();
         $scope.$on("loggedIn", function () {
             $scope.loginStatus = tokenService.getLoginStatus();
-            var user = userService.getUser();
+            var user = userService.employeeGetById();
             $scope.role = user.RoleName.toLowerCase();
             $scope.loggedInUsername = user.FirstName + ' ' + user.LastName;
             $scope.navigate('EmployeeCalendar');

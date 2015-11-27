@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using GWHolidayBookingWeb.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace GWHolidayBookingWeb.DataAccess.ViewModels
+namespace GWHolidayBookingWeb.Models
 {
-    public class UserStartupViewModel
+    public class Employee
     {
+        [Key]
         public Guid StaffId { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int HolidayAllowance { get; set; }
         public int RemainingAllowance { get; set; }
-        public virtual ICollection<EmployeeCalendarHoldiayBooking> HolidayBookings { get; set; }
-        public string RoleName { get; set; }
+        public virtual ICollection<EmployeeHolidayBooking> HolidayBookings { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace GWHolidayBookingWeb.DataAccess
 {
     public interface IEmployeeContext : IDbContext
     {
-        DbSet<EmployeeCalendar> Employees { get; set; }
-        DbSet<EmployeeCalendarHoldiayBooking> HolidayBookings { get; set; }
+        DbSet<Employee> Employees { get; set; }
+        DbSet<EmployeeHolidayBooking> HolidayBookings { get; set; }
     }
 }

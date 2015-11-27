@@ -4,7 +4,7 @@ using GWHolidayBookingWeb.DataAccess.Repositories;
 using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
 
-namespace GWHolidayBookingWeb.Services.Employee
+namespace GWHolidayBookingWeb.Services
 {
     public class EmployeeDataService : IEmployeeDataService
     {
@@ -15,17 +15,17 @@ namespace GWHolidayBookingWeb.Services.Employee
             this.employeeRepository = employeeRepository;
         }
 
-        public List<EmployeeCalendar> Get()
+        public List<Employee> Get()
         {
             return employeeRepository.Get();
         }
 
-        public EmployeeCalendar GetEmployeeById(Guid staffId)
+        public Employee GetEmployeeById(Guid staffId)
         {
             return employeeRepository.GetEmployeeById(staffId);
         }
 
-        public EmployeeCalendarHoldiayBooking GetHolidayBookingById(int holidayId)
+        public EmployeeHolidayBooking GetHolidayBookingById(int holidayId)
         {
             return employeeRepository.GetHolidayBookingById(holidayId);
         }
@@ -35,17 +35,17 @@ namespace GWHolidayBookingWeb.Services.Employee
             employeeRepository.Delete(staffId);
         }
 
-        public void UpdateEmployee(EmployeeCalendarViewModel employeeCalendarViewModel)
+        public void UpdateEmployee(UpdateEmployeeViewModel updateEmployeeViewModel)
         {
-            employeeRepository.UpdateEmployee(employeeCalendarViewModel);
+            employeeRepository.UpdateEmployee(updateEmployeeViewModel);
         }
 
-        public void UpdateHolidays(EmployeeCalendar employee)
+        public void UpdateHolidays(Employee employee)
         {
             employeeRepository.UpdateHolidays(employee);
         }
 
-        public void Create(EmployeeCalendar employee)
+        public void Create(Employee employee)
         {
             employeeRepository.Create(employee);
         }

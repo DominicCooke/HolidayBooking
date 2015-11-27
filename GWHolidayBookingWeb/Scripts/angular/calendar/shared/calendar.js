@@ -230,7 +230,7 @@
 
             function init() {
                 if ($scope.mode == "employee") {
-                    $scope.userHolidayBookings = userService.getUser();
+                    $scope.userHolidayBookings = userService.employeeGetById();
                     $scope.initData([$scope.userHolidayBookings]);
                     $scope.userHolidayBookings.isVisible = true;
                 };

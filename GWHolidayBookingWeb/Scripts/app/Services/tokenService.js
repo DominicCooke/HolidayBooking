@@ -1,16 +1,16 @@
 ﻿tokenService = function() {
-    var serviceToken;
-    var LoginStatus = false;
+    var loginAuthToken;
+    var loginStatus = false;
     return {
-        getToken: function() {
-            return serviceToken;
+        getLoginAuthToken: function() {
+            return loginAuthToken;
         },
-        setToken: function (token, loginStatus) {
-            serviceToken = token;
-            LoginStatus = loginStatus;
+        setToken: function (token, status) {
+            loginAuthToken = token;
+            loginStatus = status;
         },
         getLoginStatus: function() {
-            return LoginStatus;
+            return loginStatus;
         }
     };
 }

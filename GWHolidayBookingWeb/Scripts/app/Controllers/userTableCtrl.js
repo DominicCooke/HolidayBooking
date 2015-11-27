@@ -1,41 +1,41 @@
 userTableCtrl = function ($scope, $http, dataService) {
 
     $scope.init = function () {
-        dataService.getIdentityEmployees().then(function (response) {
+        dataService.userGet().then(function (response) {
             $scope.data = response.data.ListOfCalendarViewModels;
             $scope.roles = response.data.ListOfIdentityRoles;
         });
     };
 
     $scope.delete = function (user) {
-        dataService.deleteUser(user).then(function (response) {
-            dataService.getIdentityEmployees().then(function (response) {
+        dataService.userDelete(user).then(function (response) {
+            dataService.userGet().then(function (response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });
         });
     };
 
     $scope.register = function (user) {
-        dataService.registerUser(user).then(function () {
+        dataService.userRegister(user).then(function () {
             $('.createContainer').toggleClass('hidden');
             $('.createUserForm').trigger("reset");
-            dataService.getIdentityEmployees().then(function (response) {
+            dataService.userGet().then(function (response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });
         });
     };
 
     $scope.update = function (user) {
-        dataService.updateUser(user);
+        dataService.employeeUpdate(user);
     };
 
     $scope.showCreate = function () {
         $('.createContainer').toggleClass('hidden');
     };
 
-    $scope.setRole = function (user, role) {
-        dataService.setRole(user, role).then(function (response) {
-            dataService.getIdentityEmployees().then(function (response) {
+    $scope.userSetRole = function (user, role) {
+        dataService.userSetRole(user, role).then(function (response) {
+            dataService.userGet().then(function (response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });
         });

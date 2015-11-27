@@ -17,17 +17,17 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             this.context = context;
         }
 
-        public List<EmployeeCalendar> Get()
+        public List<Employee> Get()
         {
             return context.Employees.Include("HolidayBookings").ToList();
         }
 
-        public EmployeeCalendar GetEmployeeById(Guid staffId)
+        public Employee GetEmployeeById(Guid staffId)
         {
             return context.Employees.Include("HolidayBookings").FirstOrDefault(x => x.StaffId == staffId);
         }
 
-        public void Create(EmployeeCalendar employee)
+        public void Create(Employee employee)
         {
             context.Employees.Add(employee);
             context.SaveChanges();
@@ -35,9 +35,9 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
 
         public void Delete(Guid staffId)
         {
-            EmployeeCalendar employeeInDb = context.Employees.Find(staffId);
+            Employee employeeInDb = context.Employees.Find(staffId);
 
-            foreach (EmployeeCalendarHoldiayBooking holidayBooking in employeeInDb.HolidayBookings.ToList())
+            foreach (EmployeeHolidayBooking holidayBooking in employeeInDb.HolidayBookings.ToList())
             {
                 context.Entry(holidayBooking).State = EntityState.Deleted;
                 employeeInDb.HolidayBookings.Remove(holidayBooking);
@@ -46,21 +46,21 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             context.SaveChanges();
         }
 
-        public void UpdateEmployee(EmployeeCalendarViewModel employeeCalendarViewModel)
+        public void UpdateEmployee(UpdateEmployeeViewModel updateEmployeeViewModel)
         {
-            var employee = Mapper.Map<EmployeeCalendar>(employeeCalendarViewModel);
-            EmployeeCalendar employeeInDb = context.Employees.Find(employee.StaffId);
+            var employee = Mapper.Map<Employee>(updateEmployeeViewModel);
+            Employee employeeInDb = context.Employees.Find(employee.StaffId);
             context.Entry(employeeInDb).CurrentValues.SetValues(employee);
             context.SaveChanges();
         }
 
-        public void UpdateHolidays(EmployeeCalendar employee)
+        public void UpdateHolidays(Employee employee)
         {
-            EmployeeCalendar employeeInDb = context.Employees.Find(employee.StaffId);
+            Employee employeeInDb = context.Employees.Find(employee.StaffId);
 
             context.Entry(employeeInDb).CurrentValues.SetValues(employee);
 
-            foreach (EmployeeCalendarHoldiayBooking holidayBooking in employeeInDb.HolidayBookings.ToList())
+            foreach (EmployeeHolidayBooking holidayBooking in employeeInDb.HolidayBookings.ToList())
             {
                 if (!employee.HolidayBookings.Any(h => h.HolidayId == holidayBooking.HolidayId))
                 {
@@ -71,9 +71,9 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
                 }
             }
 
-            foreach (EmployeeCalendarHoldiayBooking holidayBooking in employee.HolidayBookings)
+            foreach (EmployeeHolidayBooking holidayBooking in employee.HolidayBookings)
             {
-                EmployeeCalendarHoldiayBooking holidayBookingInDb =
+                EmployeeHolidayBooking holidayBookingInDb =
                     employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId);
                 if (holidayBookingInDb != null)
                 {
@@ -92,7 +92,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             context.SaveChanges();
         }
 
-        public EmployeeCalendarHoldiayBooking GetHolidayBookingById(int holidayId)
+        public EmployeeHolidayBooking GetHolidayBookingById(int holidayId)
         {
             return context.HolidayBookings.FirstOrDefault(x => x.HolidayId == holidayId);
         }

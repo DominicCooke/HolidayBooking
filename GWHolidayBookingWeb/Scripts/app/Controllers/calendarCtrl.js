@@ -9,7 +9,7 @@
         };
         $scope.selected = moment();
         if (mode == 'manager') {
-            dataService.getAllUsers().then(function(response) {
+            dataService.employeesGet().then(function(response) {
                 $scope.teamUserHolidayBookings = response.data;
                 $scope.initData($scope.teamUserHolidayBookings);
                 $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
@@ -17,7 +17,7 @@
                 $scope.tabPendingHolidays = [];
             });
         } else {
-            dataService.getAllUsers().then(function(response) {
+            dataService.employeesGet().then(function(response) {
                 $scope.teamUserHolidayBookings = response.data;
                 $scope.initData($scope.teamUserHolidayBookings);
                 $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
@@ -100,7 +100,7 @@
             }
         }
         userHolidaysClone.isVisible = false;
-        dataService.sendUserData(userHolidaysClone);
+        dataService.employeeUpdateHoliday(userHolidaysClone);
     };
 
     $scope.submitTeamUsersData = function() {
@@ -120,7 +120,7 @@
             }
             arrayOfTeamUserHolidayBookings.push(userHolidaysClone);
         }
-        dataService.sendUsersData(arrayOfTeamUserHolidayBookings).then(function(response) {
+        dataService.employeesUpdateHolidays(arrayOfTeamUserHolidayBookings).then(function(response) {
             alert("woo");
         });
     };

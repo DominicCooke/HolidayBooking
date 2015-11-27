@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
 
-namespace GWHolidayBookingWeb.DataAccess.Repositories
+namespace GWHolidayBookingWeb.Services
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeDataService
     {
         List<Employee> Get();
         Employee GetEmployeeById(Guid staffId);
-        void Create(Employee employee);
         void Delete(Guid staffId);
         void UpdateEmployee(UpdateEmployeeViewModel updateEmployeeViewModel);
         void UpdateHolidays(Employee employee);
+        void Create(Employee employee);
         EmployeeHolidayBooking GetHolidayBookingById(int holidayId);
     }
 }

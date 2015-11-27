@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GWHolidayBookingWeb.Models
 {
-    public class EmployeeCalendarHoldiayBooking
+    public class EmployeeHolidayBooking
     {
         [Key]
         public int HolidayId { get; set; }

@@ -2,12 +2,12 @@
     var User;
     return {
         setUser: function () {
-            dataService.getUser().then(function (response) {
+            dataService.employeeGetById().then(function (response) {
                 User = response.data;
                 loginService.broadcast();
             });
         },
-        getUser: function() {
+        employeeGetById: function() {
             return User;
         }
     };

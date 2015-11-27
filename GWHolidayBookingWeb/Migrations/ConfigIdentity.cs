@@ -1,7 +1,7 @@
 using System.Data.Entity.Migrations;
 using GWHolidayBookingWeb.DataAccess.Identity;
 
-namespace GWHolidayBookingWeb.Migrations.Identity
+namespace GWHolidayBookingWeb.Migrations
 {
     internal sealed class ConfigIdentity : DbMigrationsConfiguration<IdentityContext>
     {

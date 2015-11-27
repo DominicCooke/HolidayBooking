@@ -1,58 +1,7 @@
 ﻿///#source 1 1 /Scripts/app/Services/dataService.js
 dataService = function ($http, tokenService, guidService) {
     return {
-        getAllUsers: function () {
-            return $http({
-                method: 'GET',
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getToken(),
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                url: 'http://localhost:57068/api/Calendar/GetEmployees'
-            });
-        },
-        sendUserData: function (userData) {
-            return $http({
-                method: 'POST',
-                contentType: "application/json",
-                data: userData,
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getToken(),
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                url: 'http://localhost:57068/api/Calendar/UpdateHoliday'
-            });
-        },
-        sendUsersData: function (userData) {
-            return $http({
-                method: 'POST',
-                contentType: "application/json",
-                data: userData,
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getToken(),
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                url: 'http://localhost:57068/api/Calendar/UpdateHolidays'
-            });
-        },
-        getUser: function () {
-            return $http({
-                method: 'GET',
-                params: {
-
-                },
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getToken(),
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                url: 'http://localhost:57068/api/Calendar/GetEmployeeById'
-            });
-        },
-        getToken: function (u, p) {
+        getLoginAuthToken: function (u, p) {
             return $http({
                 method: 'POST',
                 headers: {
@@ -60,59 +9,112 @@ dataService = function ($http, tokenService, guidService) {
                 },
                 data: $.param({ username: u, password: p, grant_type: "password" }),
                 url: 'http://localhost:57068/token'
-            }).success(function(data) {
+            }).success(function (data) {
                 tokenService.setToken(data.access_token, true);
-            }).error(function() {
+            }).error(function () {
 
             });
         },
-        deleteUser: function (user) {
+        employeeGetById: function () {
             return $http({
-                url: "http://localhost:57068/api/Employee/Delete",
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getToken(),
+                method: 'GET',
+                params: {
+
                 },
-                data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId }
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                url: 'http://localhost:57068/api/Employee/GetEmployeeById'
             });
         },
-        registerUser: function (user) {
-            return $http({
-                url: "http://localhost:57068/api/Employee/Register",
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getToken(),
-                },
-                data: user
-            });
-        },
-        updateUser: function (user) {
-            return $http({
-                url: "http://localhost:57068/api/Employee/Update",
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getToken(),
-                },
-                data: user
-            });
-        },
-        setRole: function (user, role) {
-            return $http({
-                url: "http://localhost:57068/api/Employee/SetRole",
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getToken(),
-                },
-                data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId }
-            });
-        },
-        getIdentityEmployees: function () {
+        employeesGet: function () {
             return $http({
                 method: 'GET',
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Employee/GetIdentityEmployeesRoles'
+                url: 'http://localhost:57068/api/Employee/GetEmployees'
+            });
+        },
+        employeeUpdate: function (employee) {
+            return $http({
+                data: employee,
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                },
+                url: "http://localhost:57068/api/Employee/UpdateEmployee"
+            });
+        },
+        employeeUpdateHoliday: function (employeeData) {
+            return $http({
+                data: employeeData,
+                method: 'POST',
+                contentType: "application/json",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                url: 'http://localhost:57068/api/Employee/UpdateEmployeeAndHoliday'
+            });
+        },
+        employeesUpdateHolidays: function (employeeData) {
+            return $http({
+                data: employeeData,
+                method: 'POST',
+                contentType: "application/json",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                url: 'http://localhost:57068/api/Employee/UpdateEmployeesAndHolidays'
+            });
+        },
+
+
+        userDelete: function (user) {
+            return $http({
+                data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId },
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                },
+                url: "http://localhost:57068/api/User/DeleteUserAndEmployee"
+            });
+        },
+        userRegister: function (user) {
+            return $http({
+                data: user,
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                },
+                url: "http://localhost:57068/api/User/RegisterUserAndEmployee"
+            });
+        },
+        userSetRole: function (user, role) {
+            return $http({
+                data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId },
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                },
+                url: "http://localhost:57068/api/User/UserSetRole"
+            });
+        },
+        userGet: function () {
+            return $http({
+                method: 'GET',
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                },
+                url: 'http://localhost:57068/api/User/GetUsersAndRoles'
             });
         }
     };
@@ -161,18 +163,18 @@ templateService = function($http, $compile, $templateCache) {
 }
 ///#source 1 1 /Scripts/app/Services/tokenService.js
 tokenService = function() {
-    var serviceToken;
-    var LoginStatus = false;
+    var loginAuthToken;
+    var loginStatus = false;
     return {
-        getToken: function() {
-            return serviceToken;
+        getLoginAuthToken: function() {
+            return loginAuthToken;
         },
-        setToken: function (token, loginStatus) {
-            serviceToken = token;
-            LoginStatus = loginStatus;
+        setToken: function (token, status) {
+            loginAuthToken = token;
+            loginStatus = status;
         },
         getLoginStatus: function() {
-            return LoginStatus;
+            return loginStatus;
         }
     };
 }
@@ -181,12 +183,12 @@ userService = function (dataService, loginService) {
     var User;
     return {
         setUser: function () {
-            dataService.getUser().then(function (response) {
+            dataService.employeeGetById().then(function (response) {
                 User = response.data;
                 loginService.broadcast();
             });
         },
-        getUser: function() {
+        employeeGetById: function() {
             return User;
         }
     };
