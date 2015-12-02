@@ -86,8 +86,9 @@ CalendarController = function ($scope, dataService, viewService) {
         $scope.listOfTeamMembers = listOfTeamMembers;
     };
 
-    $scope.toggleEditMode = function() {
+    $scope.toggleEditMode = function(e) {
         $scope.editMode = !$scope.editMode;
+        $(e.target).toggleClass("active");
     };
 
     $scope.submitHolidaySingleEmployee = function() {

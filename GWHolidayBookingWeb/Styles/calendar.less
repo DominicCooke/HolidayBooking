@@ -1,4 +1,5 @@
 ﻿@import "colours.less";
+@import "animations.less";
 
 @spacing: 10px;
 @icon-width: 40px;
@@ -13,6 +14,12 @@
     border-bottom: 0;
     border-right: 0;
     box-shadow: inset -10px 0 0 0 #1ABB9C;
+}
+
+.innerContainer() {
+    background: @innerbackground-colour;
+    padding: 10px 17px;
+    border: solid 1px @border-colour;
 }
 
 .bodyContainer {
@@ -32,6 +39,56 @@
         line-height: 1;
         width: 40%;
         position: relative;
+
+        .tableHeaderRow {
+            background: @background-colour;
+            display: table;
+            text-align: center;
+            width: 100%;
+            border: solid 1px@border-colour;
+            border-bottom: 0;
+
+            > .tableHeader {
+                display: table-cell;
+                padding: 0 5px;
+                position: relative;
+
+                &:first-child {
+                    padding: 10px 15px;
+                    cursor: pointer;
+                    pointer-events: all;
+                }
+            }
+        }
+
+        .subTable {
+            display: table;
+            border-collapse: collapse;
+            width: 100%;
+
+            .tableRow {
+                display: table-row;
+
+                &:last-child {
+                    border-bottom: 1px solid @border-colour;
+                }
+
+                > .tableCell {
+                    color: @background-colour;
+                    border: 1px solid @border-colour;
+                    border-bottom: 0;
+                    display: table-cell;
+
+                    &.teamMember {
+                        background: @background-colour;
+                        color: @text-colour-primary;
+                        cursor: pointer;
+                        padding: 10px 15px;
+                        transition: 0.2s;
+                    }
+                }
+            }
+        }
 
         > infobox {
             > .infoBoxContainer {
@@ -77,16 +134,14 @@
         > calendarcontrols {
 
             > .employeeControlsContainer {
-                background: @innerbackground-colour;
                 border-collapse: collapse;
                 font-size: 15px;
                 font-weight: normal;
                 margin: 3% 5% 0 0;
                 text-align: center;
-                padding: 10px 17px;
-                border: 1px solid @border-colour;
+                .innerContainer();
 
-                > div {
+                > .controlsTable {
                     > .nameOfTeam {
                         color: @text-colour-tertiary;
                         font-size: 25px;
@@ -95,30 +150,55 @@
                     }
 
                     > .tableHeaderRow {
-                        display: table;
-                        width: 100%;
-                        border-top: 1px solid @border-colour;
-                        border-right: 1px solid @border-colour;
-                        border-left: 1px solid @border-colour;
 
                         > .tableHeader {
-                            background: @background-colour;
-                            display: table-cell;
-                            padding: 0 5px;
-                            position: relative;
-                            cursor: context-menu;
-                            transition: 0.2s;
                             width: 12%;
 
                             &:first-child {
-                                cursor: pointer;
-                                padding: 10px 15px;
-                                pointer-events: all;
                                 width: 30%;
 
                                 &.active {
-                                    border-top: 1px solid transparent;
-                                    .selectedTemplate()
+                                    .selectedTemplate();
+                                }
+                            }
+                        }
+                    }
+
+                    > .subTable {
+
+                        > .tableRow {
+
+                            &:nth-of-type(even) {
+                                background: #f9f9f9;
+                            }
+
+                            > .tableCell {
+                                width: 12%;
+
+                                &.teamMember {
+                                    width: 30%;
+                                    border-bottom: 0;
+
+                                    &.active {
+                                        .selectedTemplate()
+                                    }
+
+                                    &.dead {
+                                        background: @selected-colour;
+                                        pointer-events: none;
+                                    }
+                                }
+
+                                &.isPendingHoliday {
+                                    animation: textpulsatepending 5s;
+                                    animation-iteration-count: infinite;
+                                    cursor: pointer;
+                                }
+
+                                &.isCancelledHoliday {
+                                    animation: textpulsatecancelled 5s;
+                                    animation-iteration-count: infinite;
+                                    cursor: pointer;
                                 }
                             }
                         }
@@ -126,57 +206,23 @@
                 }
 
                 > .controls {
-                    .cmn-toggle {
-                        position: absolute;
-                        margin-left: -9999px;
-                        visibility: hidden;
+                    .editModeToggle {
+                        padding: 2px;
+                        width: 100%;
+                        height: 60px;
+                        background-color: @background-colour;
+                        border: solid 1px@border-colour;
+                        border-top: 0;
+                        position: relative;
+                        cursor: pointer;
+                        outline: none;
+                        color: @text-colour-primary;
+                        font-size: 35px;
+                        line-height: 1.4;
+                        transition: box-shadow 0.4s;
 
-                        + label {
-                            padding: 2px;
-                            width: 100%;
-                            height: 60px;
-                            background-color: @border-colour;
-                            display: block;
-                            position: relative;
-                            cursor: pointer;
-                            outline: none;
-                            user-select: none;
-
-                            > span {
-                                color: @text-colour-primary;
-                                position: absolute;
-                                font-size: 35px;
-                                text-align: center;
-                                width: 100%;
-                                display: block;
-                                line-height: 1.4;
-                            }
-
-                            &:before {
-                                right: 1px;
-                                background-color: @background-colour;
-                                transition: box-shadow 0.4s;
-                            }
-
-                            &:before, &:after {
-                                display: block;
-                                position: absolute;
-                                top: 1px;
-                                left: 1px;
-                                bottom: 1px;
-                                content: "";
-                            }
-                        }
-
-                        &:checked {
-                            + label {
-                                > span {
-                                }
-
-                                &:before {
-                                    box-shadow: inset 0 -10px 0 0 @selected-colour;
-                                }
-                            }
+                        &.active {
+                            box-shadow: inset 0 -10px 0 0 #1abb9c;
                         }
                     }
 
@@ -189,219 +235,89 @@
                         text-align: center;
                     }
                 }
+            }
 
-                .subTable {
-                    display: table;
-                    width: 100%;
+            > .managerControlsContainer {
+                margin-right: 5%;
+                .innerContainer();
 
-                    > .tableRow {
-                        display: table-row;
+                > .controlsTable {
+                    > .tableHeaderRow {
 
-                        &:nth-of-type(even) {
-                            background: #f9f9f9;
-                        }
+                        > .tableHeader {
+                            width: 70%/5;
 
-                        > .tableCell {
-                            color: @background-colour;
-                            border: 1px solid @border-colour;
-                            border-bottom: 0;
-                            display: table-cell;
-                            width: 12%;
-
-                            &.teamMember {
-                                background: @background-colour;
-                                border: 1px solid @border-colour;
-                                border-bottom: 0;
-                                color: @text-colour-primary;
-                                cursor: pointer;
-                                display: table-cell;
-                                padding: 10px 15px;
-                                transition: 0.2s;
+                            &:first-child {
                                 width: 30%;
 
                                 &.active {
                                     .selectedTemplate()
                                 }
-
-                                &.dead {
-                                    background: @selected-colour;
-                                    pointer-events: none;
-                                }
                             }
 
-                            @keyframes textpulsatepending {
-                                0% {
-                                }
-
-                                50% {
-                                    background: fade(@pendingHoliday-colour,40%);
-                                }
-
-                                100% {
-                                }
-                            }
-
-                            @keyframes textpulsatecancelled {
-                                0% {
-                                }
-
-                                50% {
-                                    background: fade(@cancelledHoliday-colour,40%);
-                                }
-
-                                100% {
-                                }
-                            }
-
-                            &.isPendingHoliday {
-                                animation: textpulsatepending 5s;
-                                animation-iteration-count: infinite;
-                                cursor: pointer;
-                            }
-
-                            &.isCancelledHoliday {
-                                animation: textpulsatecancelled 5s;
-                                animation-iteration-count: infinite;
-                                cursor: pointer;
+                            > .notification-counter {
+                                background-color: @notification-colour;
+                                border-bottom-left-radius: 5px;
+                                box-shadow: 1px 0 1px 0 #2a3f54;
+                                font-size: 12px;
+                                font-weight: normal;
+                                height: 15px;
+                                line-height: 1;
+                                padding: 1px 3px;
+                                position: absolute;
+                                right: 0;
+                                top: 0;
                             }
                         }
                     }
-                }
-            }
 
-            > .managerControlsContainer {
-                background: @innerbackground-colour;
-                padding: 10px 17px;
-                border: solid 1px @border-colour;
-                margin-right: 5%;
-
-                > .tableHeaderRow {
-                    background: @background-colour;
-                    display: table;
-                    text-align: center;
-                    width: 100%;
-
-                    > .tableHeader {
-                        display: table-cell;
-                        padding: 0 5px;
-                        position: relative;
-                        transition: 0.2s;
-                        cursor: context-menu;
-                        width: 70%/5;
-
-                        &:first-child {
-                            cursor: pointer;
-                            padding: 10px 15px;
-                            pointer-events: all;
-                            width: 30%;
-
-                            &.active {
-                                .selectedTemplate()
-                            }
-                        }
-
-                        > .notification-counter {
-                            background-color: @notification-colour;
-                            border-bottom-left-radius: 5px;
-                            box-shadow: 1px 0 1px 0 #2a3f54;
-                            font-size: 12px;
-                            font-weight: normal;
-                            height: 15px;
-                            line-height: 1;
-                            padding: 1px 3px;
-                            position: absolute;
-                            right: 0;
-                            top: 0;
-                        }
-                    }
-                }
-
-                > .subTableBody {
                     > .subTableBody {
-                        max-height: 250px;
-                        overflow: hidden;
-                        text-align: center;
-                        width: 100%;
-
-                        .subTable {
-                            display: table;
+                        > .subTableBody {
+                            max-height: 250px;
+                            overflow: hidden;
+                            text-align: center;
                             width: 100%;
-                            border-collapse: collapse;
 
-                            > .tableRow {
-                                display: table-row;
+                            .subTable {
 
-                                &:last-child {
-                                }
+                                > .tableRow {
 
-                                > .tableCell {
-                                    border: 1px solid @border-colour;
-                                    color: @text-colour-tertiary;
-                                    display: table-cell;
-                                    width: 70%/5;
+                                    > .tableCell {
+                                        width: 70%/5;
 
-                                    &.teamMember {
-                                        background: @background-colour;
-                                        color: @text-colour-primary;
-                                        cursor: pointer;
-                                        display: table-cell;
-                                        padding: 10px 15px;
-                                        transition: 0.2s;
-                                        width: 30%;
+                                        &.teamMember {
+                                            width: 30%;
 
-                                        &.active {
-                                            .selectedTemplate()
+                                            &.active {
+                                                .selectedTemplate()
+                                            }
+
+                                            &.dead {
+                                                background: @selected-colour;
+                                                pointer-events: none;
+                                            }
                                         }
 
-                                        &.dead {
-                                            background: @selected-colour;
-                                            pointer-events: none;
-                                        }
-                                    }
+                                        &.isPendingHoliday {
+                                            animation: textpulsatepending 5s;
+                                            animation-iteration-count: infinite;
+                                            cursor: pointer;
 
-                                    @keyframes textpulsatepending {
-                                        0% {
-                                        }
-
-                                        50% {
-                                            background: fade(@pendingHoliday-colour,40%);
+                                            &.clicked {
+                                                background: fade(@pendingHoliday-colour,40%);
+                                                animation: none;
+                                            }
                                         }
 
-                                        100% {
-                                        }
-                                    }
+                                        &.isCancelledHoliday {
+                                            animation: textpulsatecancelled 5s;
+                                            animation-iteration-count: infinite;
+                                            cursor: pointer;
 
-                                    @keyframes textpulsatecancelled {
-                                        0% {
-                                        }
-
-                                        50% {
-                                            background: fade(@cancelledHoliday-colour,40%);
-                                        }
-
-                                        100% {
-                                        }
-                                    }
-
-                                    &.isPendingHoliday {
-                                        animation: textpulsatepending 5s;
-                                        animation-iteration-count: infinite;
-                                        cursor: pointer;
-
-                                        &.clicked {
-                                            background: fade(@pendingHoliday-colour,40%);
-                                            animation: none;
-                                        }
-                                    }
-
-                                    &.isCancelledHoliday {
-                                        animation: textpulsatecancelled 5s;
-                                        animation-iteration-count: infinite;
-                                        cursor: pointer;
-
-                                        &.clicked {
-                                            animation: none;
-                                            background: fade(@cancelledHoliday-colour,40%);
+                                            &.clicked {
+                                                animation: none;
+                                                background: fade(@cancelledHoliday-colour,40%);
+                                            }
                                         }
                                     }
                                 }
@@ -410,59 +326,51 @@
                     }
                 }
 
-                > .tabTableHeaderRow {
-                    display: table;
-                    pointer-events: none;
-                    text-align: center;
-                    width: 100%;
+                > .actionsTable {
+                    > .tabTableHeaderRow {
+                        border-top: 0;
 
-                    > .tableHeader {
-                        display: table-cell;
-                        background: @background-colour;
-                        padding: 8px 5px;
+                        > .tableHeader {
+                            padding: 8px 5px;
+                            cursor: default;
 
-                        &:last-child {
-                            width: 25%;
+                            &:last-child {
+                                width: 25%;
+                            }
                         }
                     }
-                }
 
-                > .subTabTableBody {
                     > .subTabTableBody {
-                        color: @text-colour-tertiary;
-                        max-height: 400px;
-                        overflow-y: auto;
-                        text-align: center;
-                        width: 100%;
-
-                        > .subTabTable {
-                            display: table;
-                            border-collapse: collapse;
+                        > .subTabTableBody {
+                            color: @text-colour-tertiary;
+                            max-height: 400px;
+                            overflow-y: auto;
+                            text-align: center;
                             width: 100%;
 
-                            > .tableRow {
-                                display: table-row;
+                            > .subTable {
 
+                                > .tableRow {
 
-                                > .tableCell {
-                                    background: rgba(255,255,255,0.15);
-                                    border: 1px solid @border-colour;
-                                    display: table-cell;
-                                    padding: 5px 5px;
+                                    > .tableCell {
+                                        background: rgba(255,255,255,0.15);
+                                        padding: 5px 5px;
+                                        border-bottom: 1px solid @border-colour;
 
-                                    &:last-child {
-                                        width: 25%;
-                                    }
-
-                                    > .tableCellAction {
-                                        cursor: pointer;
-
-                                        &.fa-check {
-                                            color: #0f0;
+                                        &:last-child {
+                                            width: 25%;
                                         }
 
-                                        &.fa-times {
-                                            color: red;
+                                        > .tableCellAction {
+                                            cursor: pointer;
+
+                                            &.fa-check {
+                                                color: #0f0;
+                                            }
+
+                                            &.fa-times {
+                                                color: red;
+                                            }
                                         }
                                     }
                                 }
@@ -482,19 +390,9 @@
             > button {
                 background-color: @background-colour;
             }
-
-            > selectbox {
-                > #selectContainer {
-                    background: @background-colour;
-                    vertical-align: bottom;
-
-                    > option {
-                        background-color: @background-colour;
-                    }
-                }
-            }
         }
     }
+
 
     > calendar {
         background: @innerbackground-colour;

@@ -291,6 +291,12 @@
     <Content Include="Scripts\lib\moment\moment.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\lib\underscore\underscore-min.js" />
+    <Content Include="Styles\animations.css">
+      <DependentUpon>animations.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\animations.min.css">
+      <DependentUpon>animations.css</DependentUpon>
+    </Content>
     <Content Include="Styles\calendar.css">
       <DependentUpon>calendar.less</DependentUpon>
     </Content>
@@ -390,6 +396,10 @@
     </Content>
     <Content Include="Styles\calendar.css.map">
       <DependentUpon>calendar.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\animations.less" />
+    <Content Include="Styles\animations.css.map">
+      <DependentUpon>animations.css</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

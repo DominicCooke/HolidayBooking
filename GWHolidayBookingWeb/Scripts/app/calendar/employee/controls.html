@@ -1,5 +1,5 @@
 ﻿<div class="employeeControlsContainer">
-    <div>
+    <div class="controlsTable">
         <div class="nameOfTeam">Technical Team</div>
         <div class="tableHeaderRow">
             <div class="tableHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
@@ -20,8 +20,25 @@
     </div>
     <div class="controls">
         <div class="switch">
-            <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
-            <label for="cmn-toggle-1" ng-click="toggleEditMode()"><span>EDIT</span></label>
+            <div class="editModeToggle" ng-click="toggleEditMode($event)">
+                EDIT
+            </div>
+        </div>
+        <div class="tableHeaderRow">
+            <div>Change #</div>
+            <div>Type</div>
+        </div>
+        <div
+            <div>1</div>
+            <div>Cancellation</div>
+        </div>
+        <div>
+            <div>2</div>
+            <div>Cancellation</div>
+        </div>
+        <div>
+            <div>3</div>
+            <div>Booking</div>
         </div>
         <button>SUBMIT</button>
     </div>
