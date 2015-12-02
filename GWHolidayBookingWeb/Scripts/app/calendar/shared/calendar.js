@@ -113,8 +113,8 @@
 
             function isPublicHoliday(date) {
                 var isFound;
-                for (var i = 0; i < $scope.publicHolidays.days.length; i++) {
-                    if ($scope.publicHolidays.days[i].isSame(date, 'day')) {
+                for (var i = 0; i < $scope.publicHolidays.length; i++) {
+                    if ($scope.publicHolidays[i].Date.isSame(date, 'day')) {
                         isFound = true;
                         break;
                     } else {

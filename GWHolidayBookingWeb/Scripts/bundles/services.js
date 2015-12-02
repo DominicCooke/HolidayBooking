@@ -16,6 +16,17 @@ dataService = function ($http, tokenService, guidService) {
 
             });
         },
+        publicHolidaysGet: function () {
+            return $http({
+                method: 'GET',
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                url: 'http://localhost:57068/api/Employee/GetPublicHolidays'
+            });
+        },
         employeeGetById: function () {
             return $http({
                 method: 'GET',

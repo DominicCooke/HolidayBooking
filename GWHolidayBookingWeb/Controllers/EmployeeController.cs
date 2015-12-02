@@ -23,10 +23,17 @@ namespace GWHolidayBookingWeb.Controllers
         {
             this.employeeDataService = employeeDataService;
         }
+        
         [Route("GetEmployees")]
         public List<Employee> GetEmployees()
         {
             return employeeDataService.Get();
+        }
+
+        [Route("GetPublicHolidays")]
+        public List<PublicHoliday> GetPublicHolidays()
+        {
+            return employeeDataService.GetPublicHolidays();
         }
 
         [Route("GetEmployeeById")]

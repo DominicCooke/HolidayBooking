@@ -8,6 +8,7 @@ namespace GWHolidayBookingWeb.Services
     public interface IEmployeeDataService
     {
         List<Employee> Get();
+        List<PublicHoliday> GetPublicHolidays();
         Employee GetEmployeeById(Guid staffId);
         void Delete(Guid staffId);
         void UpdateEmployee(UpdateEmployeeViewModel updateEmployeeViewModel);

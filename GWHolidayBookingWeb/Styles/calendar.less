@@ -21,6 +21,10 @@
     width: 100%;
     float: left;
     color: @text-colour-primary;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 
     > .otherSpace {
         float: left;
@@ -82,40 +86,107 @@
                 padding: 10px 17px;
                 border: 1px solid @border-colour;
 
-                > .nameOfTeam {
-                    color: @text-colour-tertiary;
-                    font-size: 25px;
-                    font-weight: normal;
-                    padding-bottom: 2%;
-                }
+                > div {
+                    > .nameOfTeam {
+                        color: @text-colour-tertiary;
+                        font-size: 25px;
+                        font-weight: normal;
+                        padding-bottom: 2%;
+                    }
 
-                > .tableHeaderRow {
-                    display: table;
-                    width: 100%;
-                    border-top: 1px solid @border-colour;
-                    border-right: 1px solid @border-colour;
-                    border-left: 1px solid @border-colour;
+                    > .tableHeaderRow {
+                        display: table;
+                        width: 100%;
+                        border-top: 1px solid @border-colour;
+                        border-right: 1px solid @border-colour;
+                        border-left: 1px solid @border-colour;
 
-                    > .tableHeader {
-                        background: @background-colour;
-                        display: table-cell;
-                        padding: 0 5px;
-                        position: relative;
-                        cursor: context-menu;
-                        transition: 0.2s;
-                        width: 12%;
+                        > .tableHeader {
+                            background: @background-colour;
+                            display: table-cell;
+                            padding: 0 5px;
+                            position: relative;
+                            cursor: context-menu;
+                            transition: 0.2s;
+                            width: 12%;
 
-                        &:first-child {
-                            cursor: pointer;
-                            padding: 10px 15px;
-                            pointer-events: all;
-                            width: 30%;
+                            &:first-child {
+                                cursor: pointer;
+                                padding: 10px 15px;
+                                pointer-events: all;
+                                width: 30%;
 
-                            &.active {
-                                border-top: 1px solid transparent;
-                                .selectedTemplate()
+                                &.active {
+                                    border-top: 1px solid transparent;
+                                    .selectedTemplate()
+                                }
                             }
                         }
+                    }
+                }
+
+                > .controls {
+                    .cmn-toggle {
+                        position: absolute;
+                        margin-left: -9999px;
+                        visibility: hidden;
+
+                        + label {
+                            padding: 2px;
+                            width: 100%;
+                            height: 60px;
+                            background-color: @border-colour;
+                            display: block;
+                            position: relative;
+                            cursor: pointer;
+                            outline: none;
+                            user-select: none;
+
+                            > span {
+                                color: @text-colour-primary;
+                                position: absolute;
+                                font-size: 35px;
+                                text-align: center;
+                                width: 100%;
+                                display: block;
+                                line-height: 1.4;
+                            }
+
+                            &:before {
+                                right: 1px;
+                                background-color: @background-colour;
+                                transition: box-shadow 0.4s;
+                            }
+
+                            &:before, &:after {
+                                display: block;
+                                position: absolute;
+                                top: 1px;
+                                left: 1px;
+                                bottom: 1px;
+                                content: "";
+                            }
+                        }
+
+                        &:checked {
+                            + label {
+                                > span {
+                                }
+
+                                &:before {
+                                    box-shadow: inset 0 -10px 0 0 @selected-colour;
+                                }
+                            }
+                        }
+                    }
+
+                    > button {
+                        width: 120px;
+                        height: 60px;
+                        background: @background-colour;
+                        font-size: 23px;
+                        display: flex;
+                        text-align: center;
                     }
                 }
 
@@ -133,12 +204,14 @@
                         > .tableCell {
                             color: @background-colour;
                             border: 1px solid @border-colour;
+                            border-bottom: 0;
                             display: table-cell;
                             width: 12%;
 
                             &.teamMember {
                                 background: @background-colour;
                                 border: 1px solid @border-colour;
+                                border-bottom: 0;
                                 color: @text-colour-primary;
                                 cursor: pointer;
                                 display: table-cell;
@@ -147,7 +220,7 @@
                                 width: 30%;
 
                                 &.active {
-                                   .selectedTemplate()
+                                    .selectedTemplate()
                                 }
 
                                 &.dead {
@@ -223,7 +296,7 @@
                             width: 30%;
 
                             &.active {
-                               .selectedTemplate()
+                                .selectedTemplate()
                             }
                         }
 
@@ -277,7 +350,7 @@
                                         width: 30%;
 
                                         &.active {
-                                           .selectedTemplate()
+                                            .selectedTemplate()
                                         }
 
                                         &.dead {
@@ -314,12 +387,22 @@
                                         animation: textpulsatepending 5s;
                                         animation-iteration-count: infinite;
                                         cursor: pointer;
+
+                                        &.clicked {
+                                            background: fade(@pendingHoliday-colour,40%);
+                                            animation: none;
+                                        }
                                     }
 
                                     &.isCancelledHoliday {
                                         animation: textpulsatecancelled 5s;
                                         animation-iteration-count: infinite;
                                         cursor: pointer;
+
+                                        &.clicked {
+                                            animation: none;
+                                            background: fade(@cancelledHoliday-colour,40%);
+                                        }
                                     }
                                 }
                             }
@@ -423,7 +506,7 @@
 
         > tooltip {
             > .hoverTooltip {
-                background: rgba(0, 0, 0, 0.7);
+                background: rgba(0,0,0,0.85);
                 border-spacing: 9px;
                 outline: solid 1px black;
                 position: fixed;

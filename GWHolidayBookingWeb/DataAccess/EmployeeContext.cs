@@ -13,6 +13,7 @@ namespace GWHolidayBookingWeb.DataAccess
 
         public DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeHolidayBooking> HolidayBookings { get; set; }
+        public DbSet<PublicHoliday> PublicHolidays { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

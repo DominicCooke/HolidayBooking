@@ -355,6 +355,7 @@
     <Compile Include="DataAccess\Identity\Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="DataAccess\Repositories\IEmployeeRepository.cs" />
     <Content Include="Scripts\app\management\UserTableController.js" />
+    <Compile Include="Models\PublicHoliday.cs" />
     <Compile Include="Services\IEmployeeDataService.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="DataAccess\EmployeeContext.cs" />

@@ -17,8 +17,8 @@
         <div class="subTable">
             <div class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
                 <div class="tableCell teamMember" step="1" value="{{user.StaffId}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
-                <div class="tableCell" ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 0)">{{user.PendingHolidays}}</div>
-                <div class="tableCell" ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 2)">{{user.CancelledHolidays}}</div>
+                <div class="tableCell" ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 0, $event)">{{user.PendingHolidays}}</div>
+                <div class="tableCell" ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 2, $event)">{{user.CancelledHolidays}}</div>
                 <div class="tableCell">{{user.ConfirmedHolidays}}</div>
                 <div class="tableCell">{{user.RemainingAllowance}}</div>
                 <div class="tableCell">{{user.HolidayAllowance}}</div>

@@ -8,6 +8,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
     public interface IEmployeeRepository
     {
         List<Employee> Get();
+        List<PublicHoliday> GetPublicHolidays();
         Employee GetEmployeeById(Guid staffId);
         void Create(Employee employee);
         void Delete(Guid staffId);

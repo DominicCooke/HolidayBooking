@@ -3,28 +3,29 @@
     $scope.init = function(mode) {
         $scope.mode = mode;
         $scope.editMode = false;
-        $scope.publicHolidays = {
-            days: [
-                moment("2015-10-4", "YYYY MM DD"), moment("2015-10-10", "YYYY MM DD"), moment("2015-10-17", "YYYY MM DD"), moment("2015-10-11", "YYYY MM DD"), moment("2015-10-18", "YYYY MM DD"), moment("2015-10-24", "YYYY MM DD")
-            ]
-        };
-        $scope.selected = moment();
-        if (mode == 'manager') {
-            dataService.employeesGet().then(function(response) {
-                $scope.teamUserHolidayBookings = response.data;
-                $scope.initData($scope.teamUserHolidayBookings);
-                $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
-                viewService.calendarGoToView($scope, views.CalendarModeManager);
-                $scope.tabPendingHolidays = [];
+        dataService.publicHolidaysGet().then(function(listOfPublicHolidays) {
+            listOfPublicHolidays.data.forEach(function (publicHoliday) {
+                publicHoliday.Date = moment(publicHoliday.Date, "YYYY-MM-DD-Z");
             });
-        } else {
-            dataService.employeesGet().then(function(response) {
-                $scope.teamUserHolidayBookings = response.data;
-                $scope.initData($scope.teamUserHolidayBookings);
-                $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
-                viewService.calendarGoToView($scope, views.CalendarModeEmployee);
-            });
-        }
+            $scope.publicHolidays = listOfPublicHolidays.data;
+            $scope.selected = moment();
+            if (mode == 'manager') {
+                dataService.employeesGet().then(function (response) {
+                    $scope.teamUserHolidayBookings = response.data;
+                    $scope.initData($scope.teamUserHolidayBookings);
+                    $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
+                    viewService.calendarGoToView($scope, views.CalendarModeManager);
+                    $scope.tabPendingHolidays = [];
+                });
+            } else {
+                dataService.employeesGet().then(function (response) {
+                    $scope.teamUserHolidayBookings = response.data;
+                    $scope.initData($scope.teamUserHolidayBookings);
+                    $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
+                    viewService.calendarGoToView($scope, views.CalendarModeEmployee);
+                });
+            }
+        });
     };
 
     $scope.initData = function(holidayArray) {

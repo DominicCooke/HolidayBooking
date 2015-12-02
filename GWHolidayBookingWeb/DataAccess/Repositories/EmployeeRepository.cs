@@ -22,6 +22,11 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             return context.Employees.Include("HolidayBookings").ToList();
         }
 
+        public List<PublicHoliday> GetPublicHolidays()
+        {
+            return context.PublicHolidays.ToList();
+        }
+
         public Employee GetEmployeeById(Guid staffId)
         {
             return context.Employees.Include("HolidayBookings").FirstOrDefault(x => x.StaffId == staffId);
