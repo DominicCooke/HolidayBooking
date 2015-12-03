@@ -12,8 +12,7 @@
         });
     };
 
-    function defaultViews()
-    {
+    function defaultViews() {
         viewService.menuGotoView($scope, views.Menu, '.side-bar-menu');
         viewService.gotoView($scope, views.Login);
         $scope.loginStatus = tokenService.getLoginStatus();
@@ -37,10 +36,14 @@
             $scope.state = "New";
             $scope.navigate(nameOfLink);
         }
-        var clickFrom = angular.element(document.getElementsByClassName("active"));
-        clickFrom.removeClass();
-        var clickTo = angular.element(document.getElementById(nameOfLink));
-        clickTo.addClass("active");
+        if (nameOfLink != 'Link') {
+            var allMenuLinks = $('.menuLink');
+            var targetMenuLink = $('#' + nameOfLink);
+            allMenuLinks.css("pointer-events", "all");
+            targetMenuLink.css("pointer-events", "none");
+            allMenuLinks.removeClass("active");
+            targetMenuLink.addClass("active");
+        }
     };
 
     init();

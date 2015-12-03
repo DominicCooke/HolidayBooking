@@ -18,11 +18,11 @@
             <div class="tableBody">
                 <div class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
                     <div class="tableCell teamMember" step="1" value="{{user.StaffId}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
-                    <div class="tableCell" ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 0, $event)">{{user.PendingHolidays}}</div>
-                    <div class="tableCell" ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 2, $event)">{{user.CancelledHolidays}}</div>
-                    <div class="tableCell">{{user.ConfirmedHolidays}}</div>
-                    <div class="tableCell">{{user.RemainingAllowance}}</div>
-                    <div class="tableCell">{{user.HolidayAllowance}}</div>
+                    <div class="tableCell default" ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 0, $event)">{{user.PendingHolidays}}</div>
+                    <div class="tableCell default" ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 2, $event)">{{user.CancelledHolidays}}</div>
+                    <div class="tableCell default">{{user.ConfirmedHolidays}}</div>
+                    <div class="tableCell default">{{user.RemainingAllowance}}</div>
+                    <div class="tableCell default">{{user.HolidayAllowance}}</div>
                 </div>
             </div>
         </div>
@@ -35,8 +35,8 @@
         <div class="scrollBar">
             <div class="tableBody">
                 <div class="tableRow" ng-repeat="tabHoliday in tabHolidays.TabHolidays" ng-init="$last ? addScrollBar() : null">
-                    <div class="tableCell">{{formatDate(tabHoliday.HolidayDate.StartDate)}}</div>
-                    <div class="tableCell">
+                    <div class="tableCell default">{{formatDate(tabHoliday.HolidayDate.StartDate, 1)}}</div>
+                    <div class="tableCell default">
                         <div class="fa fa-check tableCellAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffId,tabHoliday.TypeOfHoliday,'accept')"></div>
                         <div class="fa fa-times tableCellAction" ng-click="tabHolidayAction(tabHoliday.HolidayDate.StartDate,tabHoliday.StaffId,tabHoliday.TypeOfHoliday,'decline')"></div>
                         <div class="fa fa-comment tableCellAction" ng-click=""></div>

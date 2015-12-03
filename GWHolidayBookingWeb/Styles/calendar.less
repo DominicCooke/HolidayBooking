@@ -56,11 +56,8 @@
             display: table;
             text-align: center;
             width: 100%;
-            border: solid 1px@border-colour;
-            border-bottom: 0;
 
             &.secondary {
-                border-top: 0;
 
                 > .tableHead {
                     padding: 8px 5px !important;
@@ -95,16 +92,24 @@
                     background: #f9f9f9;
                 }
 
+                &:first-child {
+                    border-top: 1px solid @border-colour;
+                }
+
                 &:last-child {
                     border-bottom: 1px solid @border-colour;
                 }
 
                 > .tableCell {
                     color: @background-colour;
-                    border: 1px solid @border-colour;
-                    border-bottom: 0;
                     display: table-cell;
                     padding: 5px 5px;
+
+                    &.default {
+                        border-bottom: solid 1px @border-colour;
+                        border-right: solid 1px @border-colour;
+                        border-left: solid 1px #dddddd;
+                    }
 
                     &.teamMember {
                         background: @background-colour;
@@ -177,6 +182,8 @@
                     }
 
                     > .tableHeadRow {
+                        border-top: 0;
+
                         > .tableHead {
                             width: 12%;
 
@@ -217,16 +224,12 @@
                 }
 
                 > .controls {
-                    .editModeToggle {
-                        padding: 2px;
+                    > .editModeToggle {
                         width: 100%;
                         height: 60px;
+                        display: table;
                         background-color: @background-colour;
-                        border: solid 1px@border-colour;
-                        border-top: 0;
-                        position: relative;
                         cursor: pointer;
-                        outline: none;
                         color: @text-colour-primary;
                         font-size: 35px;
                         line-height: 1.4;
@@ -234,16 +237,15 @@
                         box-shadow: inset 0 -10px 0 0 rgba(255,255,255,0.3);
 
                         &.active {
-                            box-shadow: inset 0 -10px 0 0 #1abb9c;
+                            box-shadow: inset 0 -10px 0 0 @normalHoliday-colour;
                         }
                     }
 
                     .tableHeadRow {
                         .tableHead {
-                            width: 80%;
 
                             &:first-child {
-                                width: 25%;
+                                width: 45%;
                             }
                         }
                     }
@@ -251,10 +253,9 @@
                     .tableBody {
                         .tableRow {
                             .tableCell {
-                                width: 80%;
 
                                 &:first-child {
-                                    width: 25%;
+                                    width: 45%;
                                 }
                             }
                         }

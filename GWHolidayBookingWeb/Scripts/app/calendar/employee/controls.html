@@ -12,36 +12,25 @@
         <div class="tableBody">
             <div class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
                 <div class="tableCell teamMember" value="{{user.StaffId}}" step="1" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
-                <div class="tableCell">{{user.ConfirmedHolidays}}</div>
-                <div class="tableCell">{{user.RemainingAllowance}}</div>
-                <div class="tableCell">{{user.HolidayAllowance}}</div>
+                <div class="tableCell default">{{user.ConfirmedHolidays}}</div>
+                <div class="tableCell default">{{user.RemainingAllowance}}</div>
+                <div class="tableCell default">{{user.HolidayAllowance}}</div>
             </div>
         </div>
     </div>
     <div class="controls">
-        <div class="switch">
-            <div class="editModeToggle" ng-click="toggleEditMode($event)">
-                EDIT
-            </div>
+        <div class="editModeToggle" ng-click="toggleEditMode($event)">
+            EDIT
         </div>
         <div class="tableHeadRow secondary">
-            <div class="tableHead">Change #</div>
+            <div class="tableHead">Day</div>
             <div class="tableHead">Type</div>
         </div>
         <div class="tableBody">
-            <div class="tableRow">
-                <div class ="tableCell">1</div>
-                <div class ="tableCell">Cancellation</div>
-            </div>
-            <div class="tableRow">
-                <div class="tableCell">2</div>
-                <div class="tableCell">Cancellation</div>
-            </div>
-            <div class="tableRow">
-                <div class="tableCell">3</div>
-                <div class="tableCell">Booking</div>
+            <div class="tableRow" ng-repeat="entry in test">
+                <div class="tableCell default">{{formatDate(entry.datetest, 2)}}</div>
+                <div class="tableCell default">{{entry.statetest}}</div>
             </div>
         </div>
-        <button>SUBMIT</button>
     </div>
 </div>

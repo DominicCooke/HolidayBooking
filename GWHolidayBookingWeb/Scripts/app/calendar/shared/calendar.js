@@ -10,21 +10,26 @@
         link: function ($scope) {
             $scope.select = function (date) {
                 $scope.selected = date;
+                var pending = 0;
+                var confirmed = 1;
+                var cancelled = 2;
                 if ($scope.editMode == true) {
-                    if (isStatusHoliday(date, 0) == true || isStatusHoliday(date, 1) == true || isStatusHoliday(date, 2) == true) {
+                    if (isStatusHoliday(date, pending) == true || isStatusHoliday(date, confirmed) == true || isStatusHoliday(date, cancelled) == true) {
                         var isFound = true;
                     }
                     var hB = $scope.userHolidayBookings.HolidayBookings;
                     if (isFound == true) {
                         for (var i = 0; i < hB.length; i++) {
                             if (hB[i].StartDate.isSame(date, "day")) {
-                                if (hB[i].BookingStatus == 0) {
+                                if (hB[i].BookingStatus == pending) {
                                     hB.splice(i, 1);
                                     $scope.userHolidayBookings.RemainingAllowance++;
-                                } else if (hB[i].BookingStatus == 1) {
-                                    hB[i].BookingStatus = 2;
-                                } else if (hB[i].BookingStatus == 2) {
-                                    hB[i].BookingStatus = 1;
+                                } else if (hB[i].BookingStatus == confirmed) {
+                                    hB[i].BookingStatus = cancelled;
+                                    changeLogCreate(date, 'cancelled');
+                                } else if (hB[i].BookingStatus == cancelled) {
+                                    hB[i].BookingStatus = confirmed;
+                                    changeLogCreate(date, 'confirmed');
                                 }
                             }
                         }
@@ -39,9 +44,10 @@
                                 StartDate: sDate,
                                 EndDate: eDate,
                                 AllowanceDays: 1,
-                                BookingStatus: 0,
+                                BookingStatus: pending,
                                 HolidayId: 0
                             });
+                        changeLogCreate(date, 'pending');
                     }
                     $scope.reloadCalendar(true);
                     $scope.teamHolidayCount();
@@ -64,6 +70,10 @@
                 buildMonth($scope, previous, $scope.month);
                 $scope.selected = $scope.month.clone();
                 $scope.teamHolidayCount();
+            };
+
+            function changeLogCreate(date,state) {
+                $scope.test.push({ datetest: date, statetest: state })
             };
 
             function isWeekend(date) {

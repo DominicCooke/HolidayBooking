@@ -12,9 +12,9 @@
             $scope.$watch('tabHolidays', function () {
                 if ($scope.mode == "manager") {
                     if (typeof $scope.tabHolidays !== "undefined") {
-                        $('.tabTableHeaderRow').removeClass('hidden');
+                        $('.tableHeadRow.secondary').removeClass('hidden');
                         if ($scope.tabHolidays.TabHolidays.length == 0) {
-                            $('.tabTableHeaderRow').addClass('hidden');
+                            $('.tableHeadRow.secondary').addClass('hidden');
                         } else {
                             if ($scope.tabHolidays.TypeOfHoliday == 0) {
                                 $('.pendingHolidayRow').show();
@@ -23,7 +23,7 @@
                             }
                         }
                     } else {
-                        $('.tabTableHeaderRow').addClass('hidden');
+                        $('.tableHeadRow.secondary').addClass('hidden');
                     }
                 }
             }, true);
@@ -84,10 +84,16 @@
                 jQuery('.scrollBar').scrollbar();
             };
 
-            $scope.formatDate = function (date) {
+            $scope.formatDate = function (date, type) {
                 var dateObject = date.toObject();
                 var dateMoment = moment(dateObject);
-                var formattedDate = dateMoment.format("dddd, MMMM Do YYYY");
+                if (type == 1) {
+                    var formattedDate = dateMoment.format("dddd, MMM Do YYYY");
+                }
+                else if (type == 2) {
+                    var formattedDate = dateMoment.format("ddd MMM Do YYYY");
+                }
+                
                 return formattedDate;
             };
 
