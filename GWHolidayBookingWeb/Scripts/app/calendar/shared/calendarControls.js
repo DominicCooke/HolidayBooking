@@ -81,8 +81,7 @@
             };
 
             $scope.addScrollBar = function () {
-                jQuery('.subTableBody').scrollbar();
-                jQuery('.subTabTableBody').scrollbar();
+                jQuery('.scrollBar').scrollbar();
             };
 
             $scope.formatDate = function (date) {

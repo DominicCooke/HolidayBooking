@@ -1,15 +1,15 @@
 ﻿<div class="employeeControlsContainer">
     <div class="controlsTable">
         <div class="nameOfTeam">Technical Team</div>
-        <div class="tableHeaderRow">
-            <div class="tableHeader allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
-            <div class="tableHeader">
+        <div class="tableHeadRow">
+            <div class="tableHead allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
+            <div class="tableHead">
                 <div class="fa fa-check" title="Confirmed Holiday"></div>
             </div>
-            <div class="tableHeader" title="Remaining Allowance">RA</div>
-            <div class="tableHeader" title="Holiday Allowance">HA</div>
+            <div class="tableHead" title="Remaining Allowance">RA</div>
+            <div class="tableHead" title="Holiday Allowance">HA</div>
         </div>
-        <div class="subTable">
+        <div class="tableBody">
             <div class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
                 <div class="tableCell teamMember" value="{{user.StaffId}}" step="1" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
                 <div class="tableCell">{{user.ConfirmedHolidays}}</div>
@@ -24,21 +24,23 @@
                 EDIT
             </div>
         </div>
-        <div class="tableHeaderRow">
-            <div>Change #</div>
-            <div>Type</div>
+        <div class="tableHeadRow secondary">
+            <div class="tableHead">Change #</div>
+            <div class="tableHead">Type</div>
         </div>
-        <div
-            <div>1</div>
-            <div>Cancellation</div>
-        </div>
-        <div>
-            <div>2</div>
-            <div>Cancellation</div>
-        </div>
-        <div>
-            <div>3</div>
-            <div>Booking</div>
+        <div class="tableBody">
+            <div class="tableRow">
+                <div class ="tableCell">1</div>
+                <div class ="tableCell">Cancellation</div>
+            </div>
+            <div class="tableRow">
+                <div class="tableCell">2</div>
+                <div class="tableCell">Cancellation</div>
+            </div>
+            <div class="tableRow">
+                <div class="tableCell">3</div>
+                <div class="tableCell">Booking</div>
+            </div>
         </div>
         <button>SUBMIT</button>
     </div>
