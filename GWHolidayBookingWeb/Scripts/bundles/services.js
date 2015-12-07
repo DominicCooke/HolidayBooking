@@ -206,6 +206,11 @@ userService = function (dataService, loginService) {
         },
         employeeGetById: function() {
             return User;
+        },
+        refreshUser: function() {
+            dataService.employeeGetById().then(function (response) {
+                User = response.data;
+            });
         }
     };
 }

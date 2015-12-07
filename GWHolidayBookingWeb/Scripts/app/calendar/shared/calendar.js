@@ -24,12 +24,13 @@
                                 if (hB[i].BookingStatus == pending) {
                                     hB.splice(i, 1);
                                     $scope.userHolidayBookings.RemainingAllowance++;
+                                    changeLogCreate(date, 'Unbook Holiday');
                                 } else if (hB[i].BookingStatus == confirmed) {
                                     hB[i].BookingStatus = cancelled;
-                                    changeLogCreate(date, 'cancelled');
+                                    changeLogCreate(date, 'Cancel Holiday');
                                 } else if (hB[i].BookingStatus == cancelled) {
                                     hB[i].BookingStatus = confirmed;
-                                    changeLogCreate(date, 'confirmed');
+                                    changeLogCreate(date, 'Uncancel Holiday');
                                 }
                             }
                         }
@@ -47,7 +48,7 @@
                                 BookingStatus: pending,
                                 HolidayId: 0
                             });
-                        changeLogCreate(date, 'pending');
+                        changeLogCreate(date, 'Book Holiday');
                     }
                     $scope.reloadCalendar(true);
                     $scope.teamHolidayCount();
@@ -72,8 +73,18 @@
                 $scope.teamHolidayCount();
             };
 
-            function changeLogCreate(date,state) {
-                $scope.test.push({ datetest: date, statetest: state })
+            function changeLogCreate(date, state) {
+                var push = true;
+                $scope.changes.forEach(function (entry) {
+                    var test = $scope.changes.indexOf(entry);
+                    if (entry.dateChange.isSame(date, "day")) {
+                        $scope.changes.splice(test, 1);
+                        push = false;
+                    }
+                });
+                if (push) {
+                    $scope.changes.push({ dateChange: date, stateChange: state });
+                }
             };
 
             function isWeekend(date) {

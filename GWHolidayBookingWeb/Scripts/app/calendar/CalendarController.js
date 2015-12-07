@@ -3,7 +3,7 @@
     $scope.init = function (mode) {
         $scope.mode = mode;
         $scope.editMode = false;
-        $scope.test = [];
+        $scope.changes = [];
         dataService.publicHolidaysGet().then(function (listOfPublicHolidays) {
             listOfPublicHolidays.data.forEach(function (publicHoliday) {
                 publicHoliday.Date = moment(publicHoliday.Date, "YYYY-MM-DD-Z");
@@ -24,10 +24,12 @@
                     $scope.initData($scope.teamUserHolidayBookings);
                     $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
                     viewService.calendarGoToView($scope, views.CalendarModeEmployee);
+
                 });
-            }
+            };
         });
     };
+
 
     $scope.initData = function (holidayArray) {
         for (var i = 0; i < holidayArray.length; i++) {
@@ -104,7 +106,9 @@
             }
         }
         userHolidaysClone.isVisible = false;
+        $scope.changes = [];
         dataService.employeeUpdateHoliday(userHolidaysClone);
+
     };
 
     $scope.submitTeamUsersData = function () {

@@ -178,9 +178,12 @@
   cursor: pointer;
   color: #ecf0f1;
   font-size: 35px;
-  line-height: 1.4;
+  line-height: 50px;
   transition: box-shadow 0.4s;
   box-shadow: inset 0 -10px 0 0 rgba(255, 255, 255, 0.3);
+}
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .editModeToggle:hover {
+  background-color: #2d445b;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .editModeToggle.active {
   box-shadow: inset 0 -10px 0 0 #1abb9c;
@@ -188,16 +191,27 @@
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls .tableHeadRow .tableHead:first-child {
   width: 45%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls .tableBody .tableRow .tableCell:first-child {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .scrollBar > .scrollBar {
+  max-height: 250px;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+}
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .scrollBar > .scrollBar > .tableBody .tableRow .tableCell:first-child {
   width: 45%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > button {
-  width: 120px;
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .submit {
+  width: 100%;
   height: 60px;
-  background: #2a3f54;
-  font-size: 23px;
-  display: flex;
-  text-align: center;
+  display: table;
+  background-color: #2a3f54;
+  cursor: pointer;
+  color: #ecf0f1;
+  font-size: 35px;
+  line-height: 60px;
+}
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .submit:hover {
+  background-color: #2d445b;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer {
   margin-right: 5%;
@@ -293,15 +307,6 @@
 }
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsTable > .scrollBar > .scrollBar > .tableBody > .tableRow > .tableCell > .tableCellAction.fa-times {
   color: red;
-}
-.bodyContainer > .otherSpace > .controls {
-  bottom: 1px;
-  font-size: 15px;
-  font-weight: normal;
-  position: absolute;
-}
-.bodyContainer > .otherSpace > .controls > button {
-  background-color: #2a3f54;
 }
 .bodyContainer > calendar {
   background: white;

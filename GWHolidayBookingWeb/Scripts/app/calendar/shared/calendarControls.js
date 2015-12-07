@@ -27,7 +27,24 @@
                     }
                 }
             }, true);
-
+            $scope.$watch('changes', function () {
+                if ($scope.mode == "employee") {
+                    if (typeof $scope.changes !== "undefined") {
+                        $('.tableHeadRow.secondary').fadeIn("fast");
+                        $('.submit').fadeIn("fast");
+                        $('.scrollBar').fadeIn("fast");
+                        if ($scope.changes.length == 0) {
+                            $('.tableHeadRow.secondary').fadeOut("fast");
+                            $('.submit').fadeOut("fast");
+                            $('.scrollBar').fadeOut("fast");
+                        }
+                    } else {
+                        $('.tableHeadRow.secondary').fadeOut("fast");
+                        $('.submit').fadeOut("fast");
+                        $('.scrollBar').fadeIn("fast");
+                    }
+                }
+            }, true);
             $scope.$watch('teamUserHolidayBookings', function () {
                 if ($scope.mode == "manager") {
                     if (typeof $scope.teamUserHolidayBookings !== "undefined") {
@@ -93,7 +110,7 @@
                 else if (type == 2) {
                     var formattedDate = dateMoment.format("ddd MMM Do YYYY");
                 }
-                
+
                 return formattedDate;
             };
 
@@ -137,7 +154,7 @@
                 if (e.target.innerText > 0) {
                     $('.tableCell').removeClass("clicked");
                     $(e.target).addClass("clicked");
-                    $(e.target).effect("highlight", {color:"#2A3F54"}, 500);
+                    $(e.target).effect("highlight", { color: "#2A3F54" }, 500);
 
                     $timeout(function () {
                         if (!($(teamMemberElement).hasClass("active") || $(teamMemberElement).hasClass("dead"))) {

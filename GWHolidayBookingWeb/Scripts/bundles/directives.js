@@ -135,12 +135,13 @@ calendarDirective = function (templates, $timeout, userService) {
                                 if (hB[i].BookingStatus == pending) {
                                     hB.splice(i, 1);
                                     $scope.userHolidayBookings.RemainingAllowance++;
+                                    changeLogCreate(date, 'Unbook Holiday');
                                 } else if (hB[i].BookingStatus == confirmed) {
                                     hB[i].BookingStatus = cancelled;
-                                    changeLogCreate(date, 'cancelled');
+                                    changeLogCreate(date, 'Cancel Holiday');
                                 } else if (hB[i].BookingStatus == cancelled) {
                                     hB[i].BookingStatus = confirmed;
-                                    changeLogCreate(date, 'confirmed');
+                                    changeLogCreate(date, 'Uncancel Holiday');
                                 }
                             }
                         }
@@ -158,7 +159,7 @@ calendarDirective = function (templates, $timeout, userService) {
                                 BookingStatus: pending,
                                 HolidayId: 0
                             });
-                        changeLogCreate(date, 'pending');
+                        changeLogCreate(date, 'Book Holiday');
                     }
                     $scope.reloadCalendar(true);
                     $scope.teamHolidayCount();
@@ -183,8 +184,18 @@ calendarDirective = function (templates, $timeout, userService) {
                 $scope.teamHolidayCount();
             };
 
-            function changeLogCreate(date,state) {
-                $scope.test.push({ datetest: date, statetest: state })
+            function changeLogCreate(date, state) {
+                var push = true;
+                $scope.changes.forEach(function (entry) {
+                    var test = $scope.changes.indexOf(entry);
+                    if (entry.dateChange.isSame(date, "day")) {
+                        $scope.changes.splice(test, 1);
+                        push = false;
+                    }
+                });
+                if (push) {
+                    $scope.changes.push({ dateChange: date, stateChange: state });
+                }
             };
 
             function isWeekend(date) {
@@ -393,7 +404,24 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
                     }
                 }
             }, true);
-
+            $scope.$watch('changes', function () {
+                if ($scope.mode == "employee") {
+                    if (typeof $scope.changes !== "undefined") {
+                        $('.tableHeadRow.secondary').fadeIn("fast");
+                        $('.submit').fadeIn("fast");
+                        $('.scrollBar').fadeIn("fast");
+                        if ($scope.changes.length == 0) {
+                            $('.tableHeadRow.secondary').fadeOut("fast");
+                            $('.submit').fadeOut("fast");
+                            $('.scrollBar').fadeOut("fast");
+                        }
+                    } else {
+                        $('.tableHeadRow.secondary').fadeOut("fast");
+                        $('.submit').fadeOut("fast");
+                        $('.scrollBar').fadeIn("fast");
+                    }
+                }
+            }, true);
             $scope.$watch('teamUserHolidayBookings', function () {
                 if ($scope.mode == "manager") {
                     if (typeof $scope.teamUserHolidayBookings !== "undefined") {
@@ -459,7 +487,7 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
                 else if (type == 2) {
                     var formattedDate = dateMoment.format("ddd MMM Do YYYY");
                 }
-                
+
                 return formattedDate;
             };
 
@@ -503,7 +531,7 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
                 if (e.target.innerText > 0) {
                     $('.tableCell').removeClass("clicked");
                     $(e.target).addClass("clicked");
-                    $(e.target).effect("highlight", {color:"#2A3F54"}, 500);
+                    $(e.target).effect("highlight", { color: "#2A3F54" }, 500);
 
                     $timeout(function () {
                         if (!($(teamMemberElement).hasClass("active") || $(teamMemberElement).hasClass("dead"))) {

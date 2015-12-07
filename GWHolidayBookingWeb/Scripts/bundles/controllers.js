@@ -4,7 +4,7 @@ CalendarController = function ($scope, dataService, viewService) {
     $scope.init = function (mode) {
         $scope.mode = mode;
         $scope.editMode = false;
-        $scope.test = [];
+        $scope.changes = [];
         dataService.publicHolidaysGet().then(function (listOfPublicHolidays) {
             listOfPublicHolidays.data.forEach(function (publicHoliday) {
                 publicHoliday.Date = moment(publicHoliday.Date, "YYYY-MM-DD-Z");
@@ -25,10 +25,12 @@ CalendarController = function ($scope, dataService, viewService) {
                     $scope.initData($scope.teamUserHolidayBookings);
                     $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
                     viewService.calendarGoToView($scope, views.CalendarModeEmployee);
+
                 });
-            }
+            };
         });
     };
+
 
     $scope.initData = function (holidayArray) {
         for (var i = 0; i < holidayArray.length; i++) {
@@ -105,7 +107,9 @@ CalendarController = function ($scope, dataService, viewService) {
             }
         }
         userHolidaysClone.isVisible = false;
+        $scope.changes = [];
         dataService.employeeUpdateHoliday(userHolidaysClone);
+
     };
 
     $scope.submitTeamUsersData = function () {
@@ -236,6 +240,9 @@ MenuController = function ($scope, viewService, tokenService, userService) {
             targetMenuLink.css("pointer-events", "none");
             allMenuLinks.removeClass("active");
             targetMenuLink.addClass("active");
+        }
+        if (nameOfLink == 'EmployeeCalendar') {
+            userService.refreshUser();
         }
     };
 

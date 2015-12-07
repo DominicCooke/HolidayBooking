@@ -44,6 +44,9 @@
             allMenuLinks.removeClass("active");
             targetMenuLink.addClass("active");
         }
+        if (nameOfLink == 'EmployeeCalendar') {
+            userService.refreshUser();
+        }
     };
 
     init();
