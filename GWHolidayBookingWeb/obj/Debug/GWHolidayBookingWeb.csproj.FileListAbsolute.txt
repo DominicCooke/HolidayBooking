@@ -68,8 +68,6 @@ C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Deb
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\AutoMapper.dll
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\bin\AutoMapper.xml
 C:\Dev\Projects\GWHolidayBooking\GWHolidayBookingWeb\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.csprojResolveAssemblyReference.cache
-C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.dll
-C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.pdb
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\GWHolidayBookingWeb.dll.config
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\GWHolidayBookingWeb.dll
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\GWHolidayBookingWeb.pdb
@@ -85,6 +83,7 @@ C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\Microsof
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\Microsoft.Owin.Security.Cookies.dll
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\Microsoft.Owin.Security.dll
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\Microsoft.Web.Infrastructure.dll
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\MoreLinq.dll
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\Newtonsoft.Json.dll
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\Ninject.dll
@@ -137,4 +136,6 @@ C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\System.W
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\System.Web.Mvc.xml
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\Newtonsoft.Json.xml
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\bin\System.Web.Http.WebHost.xml
+C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.dll
+C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.pdb
 C:\Dev\Projects\GWHolidayBooking\HolidayBooking\GWHolidayBookingWeb\obj\Debug\GWHolidayBookingWeb.csprojResolveAssemblyReference.cache

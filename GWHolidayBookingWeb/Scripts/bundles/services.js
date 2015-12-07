@@ -1,4 +1,62 @@
-﻿///#source 1 1 /Scripts/app/services/dataService.js
+loginService = function ($rootScope) {
+    'use strict';
+    return {
+        broadcast: function () {
+            $rootScope.$broadcast("loggedIn");
+        }
+    };
+}
+tokenService = function () {
+    'use strict';
+    var loginAuthToken;
+    var loginStatus = false;
+    return {
+        getLoginAuthToken: function() {
+            return loginAuthToken;
+        },
+        setToken: function (token, status) {
+            loginAuthToken = token;
+            loginStatus = status;
+        },
+        getLoginStatus: function() {
+            return loginStatus;
+        }
+    };
+}
+templateService = function ($http, $compile, $templateCache) {
+    'use strict';
+    return {
+        getTemplate: function(templateUrl) {
+            return $http.get(templateUrl, {
+                cache: $templateCache
+            });
+        },
+        cacheTemplate: function(templateUrl, template) {
+            $templateCache.put(templateUrl, template);
+        },
+        compileTemplate: function(template, scope) {
+            var compiledTemplate = $compile(template);
+            return compiledTemplate(scope);
+        },
+        renderTemplate: function(target, html, append) {
+            var element = angular.element(target);
+            if (append == true)
+                element.append(html);
+            else
+                element.html(html);
+        },
+        addTemplate: function(templateUrl, target, scope, append) {
+            var service = this;
+            service.getTemplate(templateUrl).success(function(template) {
+                service.cacheTemplate(templateUrl, template);
+                var html = service.compileTemplate(template, scope);
+                service.renderTemplate(target, html, append);
+            }).error(function(data, status, headers, config) {
+                throw (data);
+            });
+        }
+    };
+}
 dataService = function ($http, tokenService, guidService) {
     'use strict';
     return {
@@ -131,69 +189,6 @@ dataService = function ($http, tokenService, guidService) {
         }
     };
 }
-///#source 1 1 /Scripts/app/login/loginService.js
-loginService = function ($rootScope) {
-    'use strict';
-    return {
-        broadcast: function () {
-            $rootScope.$broadcast("loggedIn");
-        }
-    };
-}
-///#source 1 1 /Scripts/app/services/templateService.js
-templateService = function ($http, $compile, $templateCache) {
-    'use strict';
-    return {
-        getTemplate: function(templateUrl) {
-            return $http.get(templateUrl, {
-                cache: $templateCache
-            });
-        },
-        cacheTemplate: function(templateUrl, template) {
-            $templateCache.put(templateUrl, template);
-        },
-        compileTemplate: function(template, scope) {
-            var compiledTemplate = $compile(template);
-            return compiledTemplate(scope);
-        },
-        renderTemplate: function(target, html, append) {
-            var element = angular.element(target);
-            if (append == true)
-                element.append(html);
-            else
-                element.html(html);
-        },
-        addTemplate: function(templateUrl, target, scope, append) {
-            var service = this;
-            service.getTemplate(templateUrl).success(function(template) {
-                service.cacheTemplate(templateUrl, template);
-                var html = service.compileTemplate(template, scope);
-                service.renderTemplate(target, html, append);
-            }).error(function(data, status, headers, config) {
-                throw (data);
-            });
-        }
-    };
-}
-///#source 1 1 /Scripts/app/login/tokenService.js
-tokenService = function () {
-    'use strict';
-    var loginAuthToken;
-    var loginStatus = false;
-    return {
-        getLoginAuthToken: function() {
-            return loginAuthToken;
-        },
-        setToken: function (token, status) {
-            loginAuthToken = token;
-            loginStatus = status;
-        },
-        getLoginStatus: function() {
-            return loginStatus;
-        }
-    };
-}
-///#source 1 1 /Scripts/app/services/userService.js
 userService = function (dataService, loginService) {
     'use strict';
     var User;
@@ -214,7 +209,6 @@ userService = function (dataService, loginService) {
         }
     };
 }
-///#source 1 1 /Scripts/app/services/viewService.js
 viewService = function (templateService) {
     'use strict';
     return {

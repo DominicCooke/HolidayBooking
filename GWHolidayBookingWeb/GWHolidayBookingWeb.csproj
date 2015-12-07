@@ -19,6 +19,9 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -173,6 +176,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\bundles\controllers.js" />
+    <Content Include="Scripts\bundles\controllers.min.js">
+      <DependentUpon>controllers.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bundles\directives.js" />
+    <Content Include="Scripts\bundles\directives.min.js">
+      <DependentUpon>directives.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bundles\services.js" />
+    <Content Include="Scripts\bundles\services.min.js">
+      <DependentUpon>services.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bundles\styles.css">
       <DependentUpon>styles.css.bundle</DependentUpon>
     </Content>
@@ -184,12 +199,6 @@
     <Content Include="Content\images\GradWeb-logo.png" />
     <Content Include="Content\images\img.jpg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Scripts\bundles\directives.js">
-      <DependentUpon>directives.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bundles\directives.min.js">
-      <DependentUpon>directives.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\app\calendar\employee\infoBox.js" />
     <Content Include="Scripts\bundles\lib.js">
       <DependentUpon>lib.js.bundle</DependentUpon>
@@ -199,12 +208,6 @@
     </Content>
     <Content Include="Scripts\lib\angular\xeditable\xeditable.css" />
     <Content Include="Scripts\lib\angular\xeditable\xeditable.js" />
-    <Content Include="Scripts\bundles\controllers.js">
-      <DependentUpon>controllers.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bundles\controllers.min.js">
-      <DependentUpon>controllers.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\app\login\LoginController.js" />
     <Content Include="Scripts\app\calendar\employee\mode.html" />
     <Content Include="Scripts\app\calendar\manager\mode.html" />
@@ -221,12 +224,6 @@
     <Content Include="Scripts\lib\bootstrap\bootstrap.js" />
     <Content Include="Scripts\lib\jquery\jquery-ui.css" />
     <Content Include="Scripts\lib\jquery\jquery-ui.js" />
-    <Content Include="Scripts\bundles\services.js">
-      <DependentUpon>services.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bundles\services.min.js">
-      <DependentUpon>services.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\lib\jquery\scrollbar\jquery.scrollbar.css" />
     <Content Include="Scripts\lib\jquery\scrollbar\jquery.scrollbar.js" />
     <Content Include="Scripts\lib\lodash\lodash.js" />
@@ -246,6 +243,11 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <None Include="bundleconfig.json" />
+    <None Include="compilerconfig.json" />
+    <Content Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </Content>
     <None Include="Scripts\lib\angular\angular\angular.intellisense.js" />
     <Content Include="Scripts\lib\angular\angular\angular.js" />
     <Content Include="Scripts\lib\angular\angular\angular.min.js" />
@@ -273,18 +275,6 @@
     <Content Include="Scripts\app\calendar\employee\container.html" />
     <Content Include="Scripts\app\calendar\manager\container.html" />
     <Content Include="Scripts\app\menu\menu.html" />
-    <Content Include="Scripts\bundles\controllers.js.bundle" />
-    <Content Include="Scripts\bundles\controllers.min.js.map">
-      <DependentUpon>controllers.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bundles\directives.js.bundle" />
-    <Content Include="Scripts\bundles\directives.min.js.map">
-      <DependentUpon>directives.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bundles\services.js.bundle" />
-    <Content Include="Scripts\bundles\services.min.js.map">
-      <DependentUpon>services.min.js</DependentUpon>
-    </Content>
     <None Include="Scripts\lib\jquery\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\lib\jquery\jquery-2.1.4.js" />
     <Content Include="Scripts\lib\jquery\jquery-2.1.4.min.js" />
@@ -436,6 +426,15 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\BuildBundlerMinifier.1.5.134\build\BuildBundlerMinifier.targets" Condition="Exists('..\packages\BuildBundlerMinifier.1.5.134\build\BuildBundlerMinifier.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\BuildBundlerMinifier.1.5.134\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildBundlerMinifier.1.5.134\build\BuildBundlerMinifier.targets'))" />
+    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.8.270\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.8.270\build\BuildWebCompiler.targets'))" />
+  </Target>
+  <Import Project="..\packages\BuildWebCompiler.1.8.270\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.8.270\build\BuildWebCompiler.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

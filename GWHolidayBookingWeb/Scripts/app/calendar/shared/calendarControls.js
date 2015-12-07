@@ -30,21 +30,29 @@
             $scope.$watch('changes', function () {
                 if ($scope.mode == "employee") {
                     if (typeof $scope.changes !== "undefined") {
-                        $('.tableHeadRow.secondary').fadeIn("fast");
-                        $('.submit').fadeIn("fast");
-                        $('.scrollBar').fadeIn("fast");
                         if ($scope.changes.length == 0) {
-                            $('.tableHeadRow.secondary').fadeOut("fast");
-                            $('.submit').fadeOut("fast");
-                            $('.scrollBar').fadeOut("fast");
+                            if (!$('.changesContainer').is(":hidden")) {
+                                $scope.hideChanges();
+                            }
+                        } else {
+                            $scope.showChanges();
                         }
-                    } else {
-                        $('.tableHeadRow.secondary').fadeOut("fast");
-                        $('.submit').fadeOut("fast");
-                        $('.scrollBar').fadeIn("fast");
                     }
                 }
             }, true);
+
+            $scope.hideChanges = function (callback) {
+                $('.changesContainer').slideUp(800, function () {
+                    $('.changesContainer').hide();
+                    if (typeof callback !== "undefined")
+                        callback();
+                });
+            };
+
+            $scope.showChanges = function () {
+                $('.changesContainer').slideDown(1000);
+            };
+
             $scope.$watch('teamUserHolidayBookings', function () {
                 if ($scope.mode == "manager") {
                     if (typeof $scope.teamUserHolidayBookings !== "undefined") {

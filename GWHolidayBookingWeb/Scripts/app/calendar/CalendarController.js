@@ -106,7 +106,8 @@
             }
         }
         userHolidaysClone.isVisible = false;
-        $scope.changes = [];
+        $scope.hideChanges(function () {           $scope.changes = [];
+        });
         dataService.employeeUpdateHoliday(userHolidaysClone);
 
     };

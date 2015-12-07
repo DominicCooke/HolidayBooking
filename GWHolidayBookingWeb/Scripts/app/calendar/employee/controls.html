@@ -22,20 +22,22 @@
         <div class="editModeToggle" ng-click="toggleEditMode($event)">
             EDIT
         </div>
-        <div class="tableHeadRow secondary">
-            <div class="tableHead">Day</div>
-            <div class="tableHead">Type</div>
-        </div>
-        <div class="scrollBar">
-            <div class="tableBody">
-                <div class="tableRow" ng-repeat="change in changes">
-                    <div class="tableCell default">{{formatDate(change.dateChange, 2)}}</div>
-                    <div class="tableCell default">{{change.stateChange}}</div>
+        <div class="changesContainer">
+            <div class="tableHeadRow secondary">
+                <div class="tableHead">Day</div>
+                <div class="tableHead">Type</div>
+            </div>
+            <div class="scrollBar">
+                <div class="tableBody">
+                    <div class="tableRow" ng-repeat="change in changes">
+                        <div class="tableCell default">{{formatDate(change.dateChange, 2)}}</div>
+                        <div class="tableCell default">{{change.stateChange}}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="submit" ng-click="submitHolidaySingleEmployee(selectedUser)" ng-model="selectedUser">
-            SUBMIT
+            <div class="submit" ng-click="submitHolidaySingleEmployee(selectedUser)" ng-model="selectedUser">
+                SUBMIT
+            </div>
         </div>
     </div>
 </div>
