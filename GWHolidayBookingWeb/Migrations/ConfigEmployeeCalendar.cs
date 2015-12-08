@@ -83,65 +83,65 @@ namespace GWHolidayBookingWeb.Migrations
             //};
             //users.ForEach(u => context.Employees.Add(u));
 
-            var publicHolidays = new List<PublicHoliday>()
+            var publicHolidays = new List<PublicHoliday>
             {
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2015,12,25)
+                    Date = new DateTime(2015, 12, 25)
                 },
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2015,12,26)
+                    Date = new DateTime(2015, 12, 26)
                 },
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2015,12,28)
+                    Date = new DateTime(2015, 12, 28)
                 },
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2016,1,1)
+                    Date = new DateTime(2016, 1, 1)
                 },
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2016,3,25)
+                    Date = new DateTime(2016, 3, 25)
                 },
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2016,3,28)
+                    Date = new DateTime(2016, 3, 28)
                 },
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2016,5,30)
+                    Date = new DateTime(2016, 5, 30)
                 },
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2016,8,29)
+                    Date = new DateTime(2016, 8, 29)
                 }
                 ,
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2016,12,25)
+                    Date = new DateTime(2016, 12, 25)
                 }
                 ,
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2016,12,26)
+                    Date = new DateTime(2016, 12, 26)
                 }
                 ,
-                new PublicHoliday()
+                new PublicHoliday
                 {
                     PublicHolidayId = Guid.NewGuid(),
-                    Date =new DateTime(2016,12,27)
+                    Date = new DateTime(2016, 12, 27)
                 }
             };
             publicHolidays.ForEach(p => context.PublicHolidays.Add(p));

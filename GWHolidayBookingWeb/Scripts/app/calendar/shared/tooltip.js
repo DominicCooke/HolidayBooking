@@ -1,11 +1,11 @@
-﻿tooltipDirective = function (templates) {
-    'use strict';
+﻿tooltipDirective = function(templates) {
+    "use strict";
     return {
         restrict: "E",
         templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
-        controller: 'CalendarController',
+        controller: "CalendarController",
         scope: false,
         link: function($scope) {
             $scope.checkIsFound = function(isFoundState) {
@@ -33,7 +33,7 @@
                 var tUHB = $scope.teamUserHolidayBookings;
                 for (var i = 0; i < tUHB.length; i++) {
                     for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
-                        if (tUHB[i].HolidayBookings[k].StartDate.isSame(date, 'day')) {
+                        if (tUHB[i].HolidayBookings[k].StartDate.isSame(date, "day")) {
                             employeeWithHolidayCount++;
                             if (tUHB[i].HolidayBookings[k].BookingStatus == "0") {
                                 employeeWithHolidayNames[i].isFoundState = "pending";

@@ -9,7 +9,6 @@ using GWHolidayBookingWeb.Controllers.Filter;
 using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
 using GWHolidayBookingWeb.Services;
-using Microsoft.Owin;
 
 namespace GWHolidayBookingWeb.Controllers
 {
@@ -23,7 +22,7 @@ namespace GWHolidayBookingWeb.Controllers
         {
             this.employeeDataService = employeeDataService;
         }
-        
+
         [Route("GetEmployees")]
         public List<Employee> GetEmployees()
         {
@@ -39,11 +38,12 @@ namespace GWHolidayBookingWeb.Controllers
         [Route("GetEmployeeById")]
         public GetEmployeeByIdViewModel GetEmployeeById()
         {
-            IOwinContext owinContext = ControllerContext.Request.GetOwinContext();
-            var user = (ClaimsIdentity)owinContext.Authentication.User.Identity;
-            Claim staffIdClaim = user.Claims.FirstOrDefault(c => c.Type == "id");
-            Claim roleClaim = user.Claims.FirstOrDefault(c => c.Type == "role");
-            var userWithRole = Mapper.Map<GetEmployeeByIdViewModel>(employeeDataService.GetEmployeeById(Guid.Parse(staffIdClaim.Value)));
+            var owinContext = ControllerContext.Request.GetOwinContext();
+            var user = (ClaimsIdentity) owinContext.Authentication.User.Identity;
+            var staffIdClaim = user.Claims.FirstOrDefault(c => c.Type == "id");
+            var roleClaim = user.Claims.FirstOrDefault(c => c.Type == "role");
+            var userWithRole =
+                Mapper.Map<GetEmployeeByIdViewModel>(employeeDataService.GetEmployeeById(Guid.Parse(staffIdClaim.Value)));
             userWithRole.RoleName = roleClaim.Value;
             return userWithRole;
         }
@@ -58,7 +58,7 @@ namespace GWHolidayBookingWeb.Controllers
         [Route("UpdateEmployeesAndHolidays")]
         public void UpdateEmployeesAndHolidays(List<Employee> employeesAndHolidays)
         {
-            foreach (Employee employeeAndHoliday in employeesAndHolidays)
+            foreach (var employeeAndHoliday in employeesAndHolidays)
             {
                 employeeDataService.UpdateHolidays(employeeAndHoliday);
             }

@@ -7,17 +7,12 @@ namespace GWHolidayBookingWeb.App_Start
 {
     public class NinjectDependencyResolver : IDependencyResolver
     {
-        private readonly IKernel kernel;
-
         public NinjectDependencyResolver(IKernel kernel)
         {
-            this.kernel = kernel;
+            Kernel = kernel;
         }
 
-        public IKernel Kernel
-        {
-            get { return kernel; }
-        }
+        public IKernel Kernel { get; }
 
         public IDependencyScope BeginScope()
         {
@@ -26,12 +21,12 @@ namespace GWHolidayBookingWeb.App_Start
 
         public object GetService(Type serviceType)
         {
-            return kernel.TryGet(serviceType);
+            return Kernel.TryGet(serviceType);
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return kernel.GetAll(serviceType);
+            return Kernel.GetAll(serviceType);
         }
 
         public void Dispose()

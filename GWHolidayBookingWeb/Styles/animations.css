@@ -1,11 +1,8 @@
 ﻿@keyframes textpulsatepending {
-  50% {
-    background: rgba(52, 152, 219, 0.4);
-  }
+    50% { background: rgba(52, 152, 219, 0.4); }
 }
+
 @keyframes textpulsatecancelled {
-  50% {
-    background: rgba(155, 89, 182, 0.4);
-  }
+    50% { background: rgba(155, 89, 182, 0.4); }
 }
 /*# sourceMappingURL=animations.css.map */

@@ -1,12 +1,12 @@
-infoBoxDirective = function () {
-    'use strict';
+infoBoxDirective = function() {
+    "use strict";
     return {
         restrict: "E",
         templateUrl: "/Scripts/app/calendar/employee/infoBox.html",
-        controller: 'CalendarController',
+        controller: "CalendarController",
         scope: true,
         link: function($scope) {
-            $scope.$watch('userHolidayBookings', function() {
+            $scope.$watch("userHolidayBookings", function() {
                 var pendingCount = 0, confirmedCount = 0, cancelledCount = 0;
                 if (typeof $scope.userHolidayBookings !== "undefined") {
                     var holidayBookings = $scope.userHolidayBookings.HolidayBookings;
@@ -26,17 +26,17 @@ infoBoxDirective = function () {
         }
     };
 };
-calendarDirective = function (templates, $timeout, userService) {
-    'use strict';
+calendarDirective = function(templates, $timeout, userService) {
+    "use strict";
     return {
         restrict: "E",
-        templateUrl: function ($elem, $attr) {
+        templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
-        controller: 'CalendarController',
+        controller: "CalendarController",
         scope: false,
-        link: function ($scope) {
-            $scope.select = function (date) {
+        link: function($scope) {
+            $scope.select = function(date) {
                 $scope.selected = date;
                 var pending = 0;
                 var confirmed = 1;
@@ -52,13 +52,13 @@ calendarDirective = function (templates, $timeout, userService) {
                                 if (hB[i].BookingStatus == pending) {
                                     hB.splice(i, 1);
                                     $scope.userHolidayBookings.RemainingAllowance++;
-                                    changeLogCreate(date, 'Unbook Holiday');
+                                    changeLogCreate(date, "Unbook Holiday");
                                 } else if (hB[i].BookingStatus == confirmed) {
                                     hB[i].BookingStatus = cancelled;
-                                    changeLogCreate(date, 'Cancel Holiday');
+                                    changeLogCreate(date, "Cancel Holiday");
                                 } else if (hB[i].BookingStatus == cancelled) {
                                     hB[i].BookingStatus = confirmed;
-                                    changeLogCreate(date, 'Uncancel Holiday');
+                                    changeLogCreate(date, "Uncancel Holiday");
                                 }
                             }
                         }
@@ -66,8 +66,8 @@ calendarDirective = function (templates, $timeout, userService) {
                         $scope.userHolidayBookings.RemainingAllowance--;
                         // add an hour to reflect the time zone GMT +1
                         var sDate, eDate;
-                        sDate = date.clone().add(1, 'h'),
-                            eDate = date.clone().add(1, 'h'),
+                        sDate = date.clone().add(1, "h"),
+                            eDate = date.clone().add(1, "h"),
                             hB.push(
                             {
                                 StartDate: sDate,
@@ -76,14 +76,14 @@ calendarDirective = function (templates, $timeout, userService) {
                                 BookingStatus: pending,
                                 HolidayId: 0
                             });
-                        changeLogCreate(date, 'Book Holiday');
+                        changeLogCreate(date, "Book Holiday");
                     }
                     $scope.reloadCalendar(true);
                     $scope.teamHolidayCount();
                 }
             };
 
-            $scope.next = function () {
+            $scope.next = function() {
                 var next = $scope.month.clone();
                 removeTime(next.month(next.month() + 1).date(0));
                 $scope.month.month($scope.month.month() + 1);
@@ -92,7 +92,7 @@ calendarDirective = function (templates, $timeout, userService) {
                 $scope.teamHolidayCount();
             };
 
-            $scope.previous = function () {
+            $scope.previous = function() {
                 var previous = $scope.month.clone();
                 removeTime(previous.month(previous.month() - 1).date(0));
                 $scope.month.month($scope.month.month() - 1);
@@ -103,7 +103,7 @@ calendarDirective = function (templates, $timeout, userService) {
 
             function changeLogCreate(date, state) {
                 var push = true;
-                $scope.changes.forEach(function (entry) {
+                $scope.changes.forEach(function(entry) {
                     var test = $scope.changes.indexOf(entry);
                     if (entry.dateChange.isSame(date, "day")) {
                         $scope.changes.splice(test, 1);
@@ -131,7 +131,7 @@ calendarDirective = function (templates, $timeout, userService) {
                     if (tUHB[i].isVisible == true) {
                         for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
                             var tHB = tUHB[i].HolidayBookings[k];
-                            if (tHB.StartDate.isSame(date, 'day') && tHB.BookingStatus == 1) {
+                            if (tHB.StartDate.isSame(date, "day") && tHB.BookingStatus == 1) {
                                 holidayCount++;
                                 break;
                             }
@@ -149,7 +149,7 @@ calendarDirective = function (templates, $timeout, userService) {
                 if ($scope.userHolidayBookings.isVisible == true) {
                     var hB = $scope.userHolidayBookings.HolidayBookings;
                     for (var k = 0; k < hB.length; k++) {
-                        if (hB[k].StartDate.isSame(date, 'day')) {
+                        if (hB[k].StartDate.isSame(date, "day")) {
                             if (hB[k].BookingStatus == state) {
                                 isFound = true;
                                 break;
@@ -163,7 +163,7 @@ calendarDirective = function (templates, $timeout, userService) {
             function isPublicHoliday(date) {
                 var isFound;
                 for (var i = 0; i < $scope.publicHolidays.length; i++) {
-                    if ($scope.publicHolidays[i].Date.isSame(date, 'day')) {
+                    if ($scope.publicHolidays[i].Date.isSame(date, "day")) {
                         isFound = true;
                         break;
                     } else {
@@ -179,7 +179,7 @@ calendarDirective = function (templates, $timeout, userService) {
                     if (tUHB[i].isVisible == true) {
                         for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
                             var tHB = tUHB[i].HolidayBookings[k];
-                            if (tHB.StartDate.isSame(date, 'day')) {
+                            if (tHB.StartDate.isSame(date, "day")) {
                                 if (tHB.BookingStatus == state) {
                                     return true;
                                 }
@@ -242,10 +242,10 @@ calendarDirective = function (templates, $timeout, userService) {
                 return days;
             }
 
-            $scope.teamHolidayCount = function () {
-                $timeout(function () {
-                    $('.day').each(function (index) {
-                        var holidayCount = $(this)[0].getAttribute('amountofholiday');
+            $scope.teamHolidayCount = function() {
+                $timeout(function() {
+                    $(".day").each(function(index) {
+                        var holidayCount = $(this)[0].getAttribute("amountofholiday");
                         var isFound = false;
                         for (var i = 0; i <= holidayCount; i++) {
                             if ($(this).hasClass("employeeCalendar")) {
@@ -266,7 +266,7 @@ calendarDirective = function (templates, $timeout, userService) {
                 });
             };
 
-            $scope.reloadCalendar = function (mode) {
+            $scope.reloadCalendar = function(mode) {
                 if (mode == true) {
                     var start = $scope.month.clone();
                 } else {
@@ -275,7 +275,7 @@ calendarDirective = function (templates, $timeout, userService) {
                 }
                 start.date(-3);
                 removeTime(start.day(0));
-                buildMonth($scope, removeTime(start.endOf('month')), $scope.month);
+                buildMonth($scope, removeTime(start.endOf("month")), $scope.month);
             };
 
             function init() {
@@ -291,40 +291,40 @@ calendarDirective = function (templates, $timeout, userService) {
         }
     };
 };
-calendarControlsDirective = function (dataService, templates, $timeout) {
-    'use strict';
+calendarControlsDirective = function(dataService, templates, $timeout) {
+    "use strict";
     return {
         restrict: "E",
-        templateUrl: function ($elem, $attr) {
+        templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
-        controller: 'CalendarController',
+        controller: "CalendarController",
         scope: false,
-        link: function ($scope) {
+        link: function($scope) {
 
-            $scope.$watch('tabHolidays', function () {
+            $scope.$watch("tabHolidays", function() {
                 if ($scope.mode == "manager") {
                     if (typeof $scope.tabHolidays !== "undefined") {
-                        $('.tableHeadRow.secondary').removeClass('hidden');
+                        $(".tableHeadRow.secondary").removeClass("hidden");
                         if ($scope.tabHolidays.TabHolidays.length == 0) {
-                            $('.tableHeadRow.secondary').addClass('hidden');
+                            $(".tableHeadRow.secondary").addClass("hidden");
                         } else {
                             if ($scope.tabHolidays.TypeOfHoliday == 0) {
-                                $('.pendingHolidayRow').show();
+                                $(".pendingHolidayRow").show();
                             } else if ($scope.tabHolidays.TypeOfHoliday == 2) {
-                                $('.cancelledHolidayRow').show();
+                                $(".cancelledHolidayRow").show();
                             }
                         }
                     } else {
-                        $('.tableHeadRow.secondary').addClass('hidden');
+                        $(".tableHeadRow.secondary").addClass("hidden");
                     }
                 }
             }, true);
-            $scope.$watch('changes', function () {
+            $scope.$watch("changes", function() {
                 if ($scope.mode == "employee") {
                     if (typeof $scope.changes !== "undefined") {
                         if ($scope.changes.length == 0) {
-                            if (!$('.changesContainer').is(":hidden")) {
+                            if (!$(".changesContainer").is(":hidden")) {
                                 $scope.hideChanges();
                             }
                         } else {
@@ -334,19 +334,19 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
                 }
             }, true);
 
-            $scope.hideChanges = function (callback) {
-                $('.changesContainer').slideUp(800, function () {
-                    $('.changesContainer').hide();
+            $scope.hideChanges = function(callback) {
+                $(".changesContainer").slideUp(600, function() {
+                    $(".changesContainer").hide();
                     if (typeof callback !== "undefined")
                         callback();
                 });
             };
 
-            $scope.showChanges = function () {
-                $('.changesContainer').slideDown(1000);
+            $scope.showChanges = function() {
+                $(".changesContainer").slideDown(500);
             };
 
-            $scope.$watch('teamUserHolidayBookings', function () {
+            $scope.$watch("teamUserHolidayBookings", function() {
                 if ($scope.mode == "manager") {
                     if (typeof $scope.teamUserHolidayBookings !== "undefined") {
                         var tUHB = $scope.teamUserHolidayBookings;
@@ -358,28 +358,28 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
                         $scope.pendingNotificationCount = pendingCount;
                         $scope.cancelledNotificationCount = cancelledCount;
                         if (pendingCount == 0) {
-                            $('.notification-counter-pending').hide();
+                            $(".notification-counter-pending").hide();
                         } else {
-                            $('.notification-counter-pending').show();
+                            $(".notification-counter-pending").show();
                         }
                         if (cancelledCount == 0) {
-                            $('.notification-counter-cancelled').hide();
+                            $(".notification-counter-cancelled").hide();
                         } else {
-                            $('.notification-counter-cancelled').show();
+                            $(".notification-counter-cancelled").show();
                         }
                     }
                 }
             }, true);
 
-            $scope.isChecked = function (event) {
-                var optionChecked = event.target.getAttribute('value');
+            $scope.isChecked = function(event) {
+                var optionChecked = event.target.getAttribute("value");
                 toggleClass(event.target, "active");
                 setTeamSelected(optionChecked, event);
                 $scope.reloadCalendar(true);
                 $scope.teamHolidayCount();
             };
 
-            $scope.populateTableCounts = function (user) {
+            $scope.populateTableCounts = function(user) {
                 var pendingCount = 0;
                 var confirmedCount = 0;
                 var cancelledCount = 0;
@@ -398,29 +398,28 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
                 user.CancelledHolidays = cancelledCount;
             };
 
-            $scope.addScrollBar = function () {
-                jQuery('.scrollBar').scrollbar();
+            $scope.addScrollBar = function() {
+                jQuery(".scrollBar").scrollbar();
             };
 
-            $scope.formatDate = function (date, type) {
+            $scope.formatDate = function(date, type) {
                 var dateObject = date.toObject();
                 var dateMoment = moment(dateObject);
                 if (type == 1) {
                     var formattedDate = dateMoment.format("dddd, MMM Do YYYY");
-                }
-                else if (type == 2) {
+                } else if (type == 2) {
                     var formattedDate = dateMoment.format("ddd MMM Do YYYY");
                 }
 
                 return formattedDate;
             };
 
-            $scope.tabHolidayAction = function (date, staffId, typeOfHoliday, action) {
+            $scope.tabHolidayAction = function(date, staffId, typeOfHoliday, action) {
                 var tUHB = $scope.teamUserHolidayBookings;
                 for (var i = 0; i < tUHB.length; i++) {
                     if (tUHB[i].StaffId == staffId) {
                         for (var j = 0; j < tUHB[i].HolidayBookings.length; j++) {
-                            if (tUHB[i].HolidayBookings[j].StartDate.isSame(date, 'day') && tUHB[i].StaffId == staffId) {
+                            if (tUHB[i].HolidayBookings[j].StartDate.isSame(date, "day") && tUHB[i].StaffId == staffId) {
                                 var tH = $scope.tabHolidays;
                                 for (var k = 0; k < tH.TabHolidays.length; k++) {
                                     if (tH.TabHolidays[k].StaffId == tUHB[i].StaffId && tH.TabHolidays[k].HolidayDate == tUHB[i].HolidayBookings[j]) {
@@ -448,16 +447,17 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
                 }
                 $scope.reloadCalendar();
                 $scope.teamHolidayCount();
+
             };
 
-            $scope.tabHolidaySelect = function (staffId, typeOfHoliday, e) {
+            $scope.tabHolidaySelect = function(staffId, typeOfHoliday, e) {
                 var teamMemberElement = e.target.parentElement.firstElementChild;
                 if (e.target.innerText > 0) {
-                    $('.tableCell').removeClass("clicked");
+                    $(".tableCell").removeClass("clicked");
                     $(e.target).addClass("clicked");
                     $(e.target).effect("highlight", { color: "#2A3F54" }, 500);
 
-                    $timeout(function () {
+                    $timeout(function() {
                         if (!($(teamMemberElement).hasClass("active") || $(teamMemberElement).hasClass("dead"))) {
                             $(teamMemberElement).trigger("click");
                         }
@@ -465,7 +465,9 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
                     var tUHB = $scope.teamUserHolidayBookings;
                     var tabHolidays = [];
                     for (var i = 0; i < tUHB.length; i++) {
-                        tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function (Booking) { return Booking.StartDate; });
+
+
+                        tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function(Booking) { return Booking.StartDate; });
                         if (tUHB[i].StaffId == staffId) {
                             for (var j = 0; j < tUHB[i].HolidayBookings.length; j++) {
                                 if (tUHB[i].HolidayBookings[j].BookingStatus == typeOfHoliday) {
@@ -487,7 +489,7 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
 
             function setTeamSelected(userOptionChecked, event) {
                 var allSelected = false;
-                var teamMembers = $('.teamMember');
+                var teamMembers = $(".teamMember");
                 var tUHB = $scope.teamUserHolidayBookings;
                 if (userOptionChecked == "all") {
                     if (event.target.classList.contains("active")) {
@@ -519,15 +521,14 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
         }
     };
 };
-
-tooltipDirective = function (templates) {
-    'use strict';
+tooltipDirective = function(templates) {
+    "use strict";
     return {
         restrict: "E",
         templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
-        controller: 'CalendarController',
+        controller: "CalendarController",
         scope: false,
         link: function($scope) {
             $scope.checkIsFound = function(isFoundState) {
@@ -555,7 +556,7 @@ tooltipDirective = function (templates) {
                 var tUHB = $scope.teamUserHolidayBookings;
                 for (var i = 0; i < tUHB.length; i++) {
                     for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
-                        if (tUHB[i].HolidayBookings[k].StartDate.isSame(date, 'day')) {
+                        if (tUHB[i].HolidayBookings[k].StartDate.isSame(date, "day")) {
                             employeeWithHolidayCount++;
                             if (tUHB[i].HolidayBookings[k].BookingStatus == "0") {
                                 employeeWithHolidayNames[i].isFoundState = "pending";

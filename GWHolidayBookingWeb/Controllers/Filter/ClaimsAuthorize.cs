@@ -2,7 +2,6 @@
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using Microsoft.Owin;
 
 namespace GWHolidayBookingWeb.Controllers.Filter
 {
@@ -12,20 +11,20 @@ namespace GWHolidayBookingWeb.Controllers.Filter
 
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
-            IOwinContext owinContext = HttpContext.Current.Request.GetOwinContext();
+            var owinContext = HttpContext.Current.Request.GetOwinContext();
             var user = (ClaimsIdentity) owinContext.Authentication.User.Identity;
             if (!(user is ClaimsIdentity))
             {
                 return false;
             }
 
-            Claim subIdClaims = user.FindFirst("role");
+            var subIdClaims = user.FindFirst("role");
             if (subIdClaims == null)
             {
                 return false;
             }
 
-            string userSubId = subIdClaims.Value;
+            var userSubId = subIdClaims.Value;
 
             if (!RoleName.Contains(userSubId))
             {

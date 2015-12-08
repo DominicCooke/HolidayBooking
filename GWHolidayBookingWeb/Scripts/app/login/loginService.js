@@ -1,7 +1,7 @@
-﻿loginService = function ($rootScope) {
-    'use strict';
+﻿loginService = function($rootScope) {
+    "use strict";
     return {
-        broadcast: function () {
+        broadcast: function() {
             $rootScope.$broadcast("loggedIn");
         }
     };

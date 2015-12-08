@@ -184,15 +184,13 @@
     <Content Include="Scripts\bundles\directives.min.js">
       <DependentUpon>directives.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\bundles\libs.js" />
+    <Content Include="Scripts\bundles\libs.min.js">
+      <DependentUpon>libs.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bundles\services.js" />
     <Content Include="Scripts\bundles\services.min.js">
       <DependentUpon>services.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bundles\styles.css">
-      <DependentUpon>styles.css.bundle</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bundles\styles.min.css">
-      <DependentUpon>styles.css</DependentUpon>
     </Content>
     <Content Include="Content\fontawesome\font-awesome.css" />
     <Content Include="Content\images\background.jpg" />
@@ -200,12 +198,11 @@
     <Content Include="Content\images\img.jpg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\app\calendar\employee\infoBox.js" />
-    <Content Include="Scripts\bundles\lib.js">
-      <DependentUpon>lib.js.bundle</DependentUpon>
+    <Content Include="Scripts\bundles\style.css" />
+    <Content Include="Scripts\bundles\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
     </Content>
-    <Content Include="Scripts\bundles\lib.min.js">
-      <DependentUpon>lib.js</DependentUpon>
-    </Content>
+    <Content Include="Scripts\lib\angular\angular\angular-animate.js" />
     <Content Include="Scripts\lib\angular\xeditable\xeditable.css" />
     <Content Include="Scripts\lib\angular\xeditable\xeditable.js" />
     <Content Include="Scripts\app\login\LoginController.js" />
@@ -234,11 +231,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="JSLintNet.json" />
-    <Content Include="Scripts\bundles\lib.js.bundle" />
-    <Content Include="Scripts\bundles\lib.min.js.map">
-      <DependentUpon>lib.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bundles\styles.css.bundle" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />

@@ -282,7 +282,31 @@
                                 width: 100%;
 
                                 > .tableBody {
+
                                     .tableRow {
+                                        &.ng-enter {
+                                            //> .tableCell {
+                                            //    .test {
+                                                    transition: 5s linear all;
+                                                    background-color: magenta ;
+                                                    //max-height: 0;
+                                                    //font-size: 0;
+                                                    //opacity: 0;
+                                             //   }
+                                            //}
+                                        }
+
+                                        &.ng-enter.ng-enter-active {
+                                           // > .tableCell {
+                                            //    .test {
+                                                    background-color: lime;
+                                                    //max-height: 27px;
+                                                    //font-size: 15px;
+                                                    //opacity: 1;
+                                            //    }
+                                            //}
+                                        }
+
                                         .tableCell {
                                             background: white;
 

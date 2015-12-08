@@ -1,84 +1,85 @@
-MenuController = function ($scope, viewService, tokenService, userService) {
-    'use strict';
+MenuController = function($scope, viewService, tokenService, userService) {
+    "use strict";
     var childScope;
+
     function init() {
         defaultViews();
-        $scope.$on("loggedIn", function () {
+        $scope.$on("loggedIn", function() {
             $scope.loginStatus = tokenService.getLoginStatus();
             var user = userService.employeeGetById();
             $scope.role = user.RoleName.toLowerCase();
-            $scope.loggedInUsername = user.FirstName + ' ' + user.LastName;
-            $scope.navigate('EmployeeCalendar');
+            $scope.loggedInUsername = user.FirstName + " " + user.LastName;
+            $scope.navigate("EmployeeCalendar");
         });
     };
 
     function defaultViews() {
-        viewService.menuGotoView($scope, views.Menu, '.side-bar-menu');
+        viewService.menuGotoView($scope, views.Menu, ".side-bar-menu");
         viewService.gotoView($scope, views.Login);
         $scope.loginStatus = tokenService.getLoginStatus();
     };
 
-    $scope.logOut = function () {
-        tokenService.setToken('', false);
+    $scope.logOut = function() {
+        tokenService.setToken("", false);
         defaultViews();
     };
 
-    $scope.navigate = function (nameOfLink) {
+    $scope.navigate = function(nameOfLink) {
         if (typeof $scope.state === "undefined")
             $scope.state = "New";
         if ($scope.state == "New") {
-            $scope.state = 'Old';
+            $scope.state = "Old";
             childScope = $scope.$new();
             viewService.gotoView(childScope, views[nameOfLink]);
         } else {
             childScope.$destroy();
-            $('.bodyContainer').empty();
+            $(".bodyContainer").empty();
             $scope.state = "New";
             $scope.navigate(nameOfLink);
         }
-        if (nameOfLink != 'Link') {
-            var allMenuLinks = $('.menuLink');
-            var targetMenuLink = $('#' + nameOfLink);
+        if (nameOfLink != "Link") {
+            var allMenuLinks = $(".menuLink");
+            var targetMenuLink = $("#" + nameOfLink);
             allMenuLinks.css("pointer-events", "all");
             targetMenuLink.css("pointer-events", "none");
             allMenuLinks.removeClass("active");
             targetMenuLink.addClass("active");
         }
-        if (nameOfLink == 'EmployeeCalendar') {
+        if (nameOfLink == "EmployeeCalendar") {
             userService.refreshUser();
         }
     };
 
     init();
 };
-MenuController.$inject = ['$scope', 'viewService', 'tokenService', 'userService'];
-LoginController = function ($scope, dataService, userService) {
-    'use strict';
+MenuController.$inject = ["$scope", "viewService", "tokenService", "userService"];
+LoginController = function($scope, dataService, userService) {
+    "use strict";
     var vm = this;
-    $scope.login = function () {
+    $scope.login = function() {
         dataService.getLoginAuthToken($scope.username, $scope.password).then(function() {
             userService.setUser();
         }, function() {
-            $('.alert').show();
-            $('#password').val('');
+            $(".alert").show();
+            $("#password").val("");
         });
     };
 };
-LoginController.$inject = ['$scope', 'dataService', 'userService'];
-CalendarController = function ($scope, dataService, viewService) {
-    'use strict';
-    $scope.init = function (mode) {
+LoginController.$inject = ["$scope", "dataService", "userService"];
+CalendarController = function($scope, dataService, viewService) {
+    "use strict";
+    $scope.init = function(mode) {
         $scope.mode = mode;
         $scope.editMode = false;
         $scope.changes = [];
-        dataService.publicHolidaysGet().then(function (listOfPublicHolidays) {
-            listOfPublicHolidays.data.forEach(function (publicHoliday) {
+        dataService.publicHolidaysGet().then(function(listOfPublicHolidays) {
+            listOfPublicHolidays.data.forEach(function(publicHoliday) {
                 publicHoliday.Date = moment(publicHoliday.Date, "YYYY-MM-DD-Z");
             });
             $scope.publicHolidays = listOfPublicHolidays.data;
             $scope.selected = moment();
-            if (mode == 'manager') {
-                dataService.employeesGet().then(function (response) {
+            if (mode == "manager") {
+                dataService.employeesGet().then(function(response) {
                     $scope.teamUserHolidayBookings = response.data;
                     $scope.initData($scope.teamUserHolidayBookings);
                     $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
@@ -86,7 +87,7 @@ CalendarController = function ($scope, dataService, viewService) {
                     $scope.tabPendingHolidays = [];
                 });
             } else {
-                dataService.employeesGet().then(function (response) {
+                dataService.employeesGet().then(function(response) {
                     $scope.teamUserHolidayBookings = response.data;
                     $scope.initData($scope.teamUserHolidayBookings);
                     $scope.getListOfTeamMembers($scope.teamUserHolidayBookings);
@@ -98,17 +99,17 @@ CalendarController = function ($scope, dataService, viewService) {
     };
 
 
-    $scope.initData = function (holidayArray) {
+    $scope.initData = function(holidayArray) {
         for (var i = 0; i < holidayArray.length; i++) {
             $scope.parseDateTimeToMoment(holidayArray[i].HolidayBookings);
         }
         $scope.unmergeHolidayBookings(holidayArray);
         for (var i = 0; i < holidayArray.length; i++) {
-            holidayArray[i].HolidayBookings = _.sortBy(holidayArray[i].HolidayBookings, function (Booking) { return Booking.StartDate; });
+            holidayArray[i].HolidayBookings = _.sortBy(holidayArray[i].HolidayBookings, function(Booking) { return Booking.StartDate; });
         }
     };
 
-    $scope.unmergeHolidayBookings = function (holidayArray) {
+    $scope.unmergeHolidayBookings = function(holidayArray) {
         for (var i = 0; i < holidayArray.length; i++) {
             var count = holidayArray[i].HolidayBookings.length;
             for (var j = 0; j < count; j++) {
@@ -117,7 +118,7 @@ CalendarController = function ($scope, dataService, viewService) {
                     copyOfHolidayBooking.EndDate = moment(copyOfHolidayBooking.EndDate);
                     copyOfHolidayBooking.StartDate = copyOfHolidayBooking.EndDate;
                     holidayArray[i].HolidayBookings.push(copyOfHolidayBooking);
-                    holidayArray[i].HolidayBookings[j].EndDate = holidayArray[i].HolidayBookings[j].EndDate.subtract(1, 'days');
+                    holidayArray[i].HolidayBookings[j].EndDate = holidayArray[i].HolidayBookings[j].EndDate.subtract(1, "days");
                 }
             }
             holidayArray[i].RemainingAllowance = holidayArray[i].HolidayAllowance - holidayArray[i].HolidayBookings.length;
@@ -125,13 +126,13 @@ CalendarController = function ($scope, dataService, viewService) {
 
     };
 
-    $scope.setAllowanceDaysOfUnmergedHolidays = function (holidayArray) {
+    $scope.setAllowanceDaysOfUnmergedHolidays = function(holidayArray) {
         for (var j = 0; j < holidayArray.HolidayBookings.length; j++) {
             holidayArray.HolidayBookings[j].AllowanceDays = 1;
         }
     };
 
-    $scope.parseDateTimeToMoment = function (holidayBookingsArray) {
+    $scope.parseDateTimeToMoment = function(holidayBookingsArray) {
         for (var j = 0; j < holidayBookingsArray.length; j++) {
             var teamHolidayBookings = holidayBookingsArray[j];
             if (typeof teamHolidayBookings.StartDate === "object") {
@@ -144,7 +145,7 @@ CalendarController = function ($scope, dataService, viewService) {
         }
     };
 
-    $scope.getListOfTeamMembers = function (holidayArray) {
+    $scope.getListOfTeamMembers = function(holidayArray) {
         var listOfTeamMembers = [];
         for (var i = 0; i < holidayArray.length; i++) {
             listOfTeamMembers.push({
@@ -155,13 +156,13 @@ CalendarController = function ($scope, dataService, viewService) {
         $scope.listOfTeamMembers = listOfTeamMembers;
     };
 
-    $scope.toggleEditMode = function (e) {
+    $scope.toggleEditMode = function(e) {
         $scope.editMode = !$scope.editMode;
         $(e.target).toggleClass("active");
     };
 
-    $scope.submitHolidaySingleEmployee = function () {
-        $scope.userHolidayBookings.HolidayBookings = _.sortBy($scope.userHolidayBookings.HolidayBookings, function (Booking) { return Booking.StartDate; });
+    $scope.submitHolidaySingleEmployee = function() {
+        $scope.userHolidayBookings.HolidayBookings = _.sortBy($scope.userHolidayBookings.HolidayBookings, function(Booking) { return Booking.StartDate; });
         $scope.setAllowanceDaysOfUnmergedHolidays($scope.userHolidayBookings);
         var userHolidaysClone = _.cloneDeep($scope.userHolidayBookings);
         var userHolidaysCloneHolidayBookings = userHolidaysClone.HolidayBookings;
@@ -173,17 +174,18 @@ CalendarController = function ($scope, dataService, viewService) {
             }
         }
         userHolidaysClone.isVisible = false;
-        $scope.hideChanges(function () {           $scope.changes = [];
+        $scope.hideChanges(function() {
+            $scope.changes = [];
         });
         dataService.employeeUpdateHoliday(userHolidaysClone);
 
     };
 
-    $scope.submitTeamUsersData = function () {
+    $scope.submitTeamUsersData = function() {
         var arrayOfTeamUserHolidayBookings = [];
         var tUHB = $scope.teamUserHolidayBookings;
         for (var i = 0; i < tUHB.length; i++) {
-            tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function (Booking) { return Booking.StartDate; });
+            tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function(Booking) { return Booking.StartDate; });
             $scope.setAllowanceDaysOfUnmergedHolidays(tUHB[i]);
             var userHolidaysClone = _.cloneDeep(tUHB[i]);
             var userHolidaysCloneHolidayBookings = userHolidaysClone.HolidayBookings;
@@ -196,7 +198,7 @@ CalendarController = function ($scope, dataService, viewService) {
             }
             arrayOfTeamUserHolidayBookings.push(userHolidaysClone);
         }
-        dataService.employeesUpdateHolidays(arrayOfTeamUserHolidayBookings).then(function (response) {
+        dataService.employeesUpdateHolidays(arrayOfTeamUserHolidayBookings).then(function(response) {
             alert("woo");
         });
     };
@@ -246,45 +248,45 @@ CalendarController = function ($scope, dataService, viewService) {
         return consolidatedHolidayBookings;
     };
 };
-CalendarController.$inject = ['$scope', 'dataService', 'viewService'];
-UserTableController = function ($scope, $http, dataService) {
-    'use strict';
-    $scope.init = function () {
-        dataService.userGet().then(function (response) {
+CalendarController.$inject = ["$scope", "dataService", "viewService"];
+UserTableController = function($scope, $http, dataService) {
+    "use strict";
+    $scope.init = function() {
+        dataService.userGet().then(function(response) {
             $scope.data = response.data.ListOfCalendarViewModels;
             $scope.roles = response.data.ListOfIdentityRoles;
         });
     };
 
-    $scope.delete = function (user) {
-        dataService.userDelete(user).then(function (response) {
-            dataService.userGet().then(function (response) {
+    $scope.delete = function(user) {
+        dataService.userDelete(user).then(function(response) {
+            dataService.userGet().then(function(response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });
         });
     };
 
-    $scope.register = function (user) {
-        dataService.userRegister(user).then(function () {
-            $('.createContainer').toggleClass('hidden');
-            $('.createUserForm').trigger("reset");
-            dataService.userGet().then(function (response) {
+    $scope.register = function(user) {
+        dataService.userRegister(user).then(function() {
+            $(".createContainer").toggleClass("hidden");
+            $(".createUserForm").trigger("reset");
+            dataService.userGet().then(function(response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });
         });
     };
 
-    $scope.update = function (user) {
+    $scope.update = function(user) {
         dataService.employeeUpdate(user);
     };
 
-    $scope.showCreate = function () {
-        $('.createContainer').toggleClass('hidden');
+    $scope.showCreate = function() {
+        $(".createContainer").toggleClass("hidden");
     };
 
-    $scope.userSetRole = function (user, role) {
-        dataService.userSetRole(user, role).then(function (response) {
-            dataService.userGet().then(function (response) {
+    $scope.userSetRole = function(user, role) {
+        dataService.userSetRole(user, role).then(function(response) {
+            dataService.userGet().then(function(response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });
         });
@@ -292,4 +294,4 @@ UserTableController = function ($scope, $http, dataService) {
 
     $scope.init();
 };
-UserTableController.$inject = ['$scope', '$http', 'dataService'];
+UserTableController.$inject = ["$scope", "$http", "dataService"];

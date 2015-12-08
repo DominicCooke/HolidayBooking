@@ -30,8 +30,16 @@
             <div class="scrollBar">
                 <div class="tableBody">
                     <div class="tableRow" ng-repeat="change in changes">
-                        <div class="tableCell default">{{formatDate(change.dateChange, 2)}}</div>
-                        <div class="tableCell default">{{change.stateChange}}</div>
+                        <div class="tableCell default">
+                            <div class="test">
+                                {{formatDate(change.dateChange, 2)}}
+                            </div>
+                        </div>
+                        <div class="tableCell default">
+                            <div class="test">
+                                {{change.stateChange}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

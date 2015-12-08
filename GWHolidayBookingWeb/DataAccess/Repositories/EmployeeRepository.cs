@@ -40,9 +40,9 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
 
         public void Delete(Guid staffId)
         {
-            Employee employeeInDb = context.Employees.Find(staffId);
+            var employeeInDb = context.Employees.Find(staffId);
 
-            foreach (EmployeeHolidayBooking holidayBooking in employeeInDb.HolidayBookings.ToList())
+            foreach (var holidayBooking in employeeInDb.HolidayBookings.ToList())
             {
                 context.Entry(holidayBooking).State = EntityState.Deleted;
                 employeeInDb.HolidayBookings.Remove(holidayBooking);
@@ -54,18 +54,18 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
         public void UpdateEmployee(UpdateEmployeeViewModel updateEmployeeViewModel)
         {
             var employee = Mapper.Map<Employee>(updateEmployeeViewModel);
-            Employee employeeInDb = context.Employees.Find(employee.StaffId);
+            var employeeInDb = context.Employees.Find(employee.StaffId);
             context.Entry(employeeInDb).CurrentValues.SetValues(employee);
             context.SaveChanges();
         }
 
         public void UpdateHolidays(Employee employee)
         {
-            Employee employeeInDb = context.Employees.Find(employee.StaffId);
+            var employeeInDb = context.Employees.Find(employee.StaffId);
 
             context.Entry(employeeInDb).CurrentValues.SetValues(employee);
 
-            foreach (EmployeeHolidayBooking holidayBooking in employeeInDb.HolidayBookings.ToList())
+            foreach (var holidayBooking in employeeInDb.HolidayBookings.ToList())
             {
                 if (!employee.HolidayBookings.Any(h => h.HolidayId == holidayBooking.HolidayId))
                 {
@@ -76,9 +76,9 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
                 }
             }
 
-            foreach (EmployeeHolidayBooking holidayBooking in employee.HolidayBookings)
+            foreach (var holidayBooking in employee.HolidayBookings)
             {
-                EmployeeHolidayBooking holidayBookingInDb =
+                var holidayBookingInDb =
                     employeeInDb.HolidayBookings.SingleOrDefault(h => h.HolidayId == holidayBooking.HolidayId);
                 if (holidayBookingInDb != null)
                 {

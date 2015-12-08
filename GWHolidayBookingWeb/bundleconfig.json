@@ -1,31 +1,59 @@
 [
-  {
-    "outputFileName": "Scripts/bundles/directives.js",
-    "inputFiles": [
-      "Scripts/app/calendar/employee/infoBox.js",
-      "Scripts/app/calendar/shared/calendar.js",
-      "Scripts/app/calendar/shared/calendarControls.js",
-      "Scripts/app/calendar/shared/tooltip.js"
-    ]
-  },
-  {
-    "outputFileName": "Scripts/bundles/controllers.js",
-    "inputFiles": [
-      "Scripts/app/menu/MenuController.js",
-      "Scripts/app/login/LoginController.js",
-      "Scripts/app/calendar/CalendarController.js",
-      "Scripts/app/management/UserTableController.js"
-    ]
-  },
-  {
-    "outputFileName": "Scripts/bundles/services.js",
-    "inputFiles": [
-      "Scripts/app/login/loginService.js",
-      "Scripts/app/login/tokenService.js",
-      "Scripts/app/services/templateService.js",
-      "Scripts/app/services/dataService.js",
-      "Scripts/app/services/userService.js",
-      "Scripts/app/services/viewService.js"
-    ]
-  }
+    {
+        "outputFileName": "Scripts/bundles/directives.js",
+        "inputFiles": [
+            "Scripts/app/calendar/employee/infoBox.js",
+            "Scripts/app/calendar/shared/calendar.js",
+            "Scripts/app/calendar/shared/calendarControls.js",
+            "Scripts/app/calendar/shared/tooltip.js"
+        ]
+    },
+    {
+        "outputFileName": "Scripts/bundles/controllers.js",
+        "inputFiles": [
+            "Scripts/app/menu/MenuController.js",
+            "Scripts/app/login/LoginController.js",
+            "Scripts/app/calendar/CalendarController.js",
+            "Scripts/app/management/UserTableController.js"
+        ]
+    },
+    {
+        "outputFileName": "Scripts/bundles/services.js",
+        "inputFiles": [
+            "Scripts/app/login/loginService.js",
+            "Scripts/app/login/tokenService.js",
+            "Scripts/app/services/templateService.js",
+            "Scripts/app/services/dataService.js",
+            "Scripts/app/services/userService.js",
+            "Scripts/app/services/viewService.js"
+        ]
+    },
+    {
+        "outputFileName": "Scripts/bundles/libs.js",
+        "inputFiles": [
+            "Scripts/lib/jquery/jquery-2.1.4.js",
+            "Scripts/lib/jquery/jquery-ui.js",
+            "Scripts/lib/jquery/scrollbar/jquery.scrollbar.js",
+            "Scripts/lib/angular/angular/angular.js",
+            "Scripts/lib/angular/chart/Chart.js",
+            "Scripts/lib/angular/chart/angular-chart.js",
+            "Scripts/lib/angular/angular/angular-animate.js",
+            "Scripts/lib/angular/xeditable/xeditable.js",
+            "Scripts/lib/angular/bootstrap/ui-bootstrap-tpls-0.14.0.js",
+            "Scripts/lib/bootstrap/bootstrap.js",
+            "Scripts/lib/moment/moment.js",
+            "Scripts/lib/underscore/underscore-min.js",
+            "Scripts/lib/lodash/lodash.js"
+        ]
+    },
+    {
+        "outputFileName": "Scripts/bundles/style.css",
+        "inputFiles": [
+            "Scripts/lib/angular/chart/angular-chart.css",
+            "Scripts/lib/jquery/scrollbar/jquery.scrollbar.css",
+            "Content/fontawesome/font-awesome.css",
+            "Scripts/lib/bootstrap/bootstrap.css",
+            "Scripts/lib/jquery/jquery-ui.css"
+        ]
+    }
 ]

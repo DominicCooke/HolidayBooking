@@ -1,12 +1,12 @@
-﻿infoBoxDirective = function () {
-    'use strict';
+﻿infoBoxDirective = function() {
+    "use strict";
     return {
         restrict: "E",
         templateUrl: "/Scripts/app/calendar/employee/infoBox.html",
-        controller: 'CalendarController',
+        controller: "CalendarController",
         scope: true,
         link: function($scope) {
-            $scope.$watch('userHolidayBookings', function() {
+            $scope.$watch("userHolidayBookings", function() {
                 var pendingCount = 0, confirmedCount = 0, cancelledCount = 0;
                 if (typeof $scope.userHolidayBookings !== "undefined") {
                     var holidayBookings = $scope.userHolidayBookings.HolidayBookings;

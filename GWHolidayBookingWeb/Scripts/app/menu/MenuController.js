@@ -1,54 +1,55 @@
-﻿MenuController = function ($scope, viewService, tokenService, userService) {
-    'use strict';
+﻿MenuController = function($scope, viewService, tokenService, userService) {
+    "use strict";
     var childScope;
+
     function init() {
         defaultViews();
-        $scope.$on("loggedIn", function () {
+        $scope.$on("loggedIn", function() {
             $scope.loginStatus = tokenService.getLoginStatus();
             var user = userService.employeeGetById();
             $scope.role = user.RoleName.toLowerCase();
-            $scope.loggedInUsername = user.FirstName + ' ' + user.LastName;
-            $scope.navigate('EmployeeCalendar');
+            $scope.loggedInUsername = user.FirstName + " " + user.LastName;
+            $scope.navigate("EmployeeCalendar");
         });
     };
 
     function defaultViews() {
-        viewService.menuGotoView($scope, views.Menu, '.side-bar-menu');
+        viewService.menuGotoView($scope, views.Menu, ".side-bar-menu");
         viewService.gotoView($scope, views.Login);
         $scope.loginStatus = tokenService.getLoginStatus();
     };
 
-    $scope.logOut = function () {
-        tokenService.setToken('', false);
+    $scope.logOut = function() {
+        tokenService.setToken("", false);
         defaultViews();
     };
 
-    $scope.navigate = function (nameOfLink) {
+    $scope.navigate = function(nameOfLink) {
         if (typeof $scope.state === "undefined")
             $scope.state = "New";
         if ($scope.state == "New") {
-            $scope.state = 'Old';
+            $scope.state = "Old";
             childScope = $scope.$new();
             viewService.gotoView(childScope, views[nameOfLink]);
         } else {
             childScope.$destroy();
-            $('.bodyContainer').empty();
+            $(".bodyContainer").empty();
             $scope.state = "New";
             $scope.navigate(nameOfLink);
         }
-        if (nameOfLink != 'Link') {
-            var allMenuLinks = $('.menuLink');
-            var targetMenuLink = $('#' + nameOfLink);
+        if (nameOfLink != "Link") {
+            var allMenuLinks = $(".menuLink");
+            var targetMenuLink = $("#" + nameOfLink);
             allMenuLinks.css("pointer-events", "all");
             targetMenuLink.css("pointer-events", "none");
             allMenuLinks.removeClass("active");
             targetMenuLink.addClass("active");
         }
-        if (nameOfLink == 'EmployeeCalendar') {
+        if (nameOfLink == "EmployeeCalendar") {
             userService.refreshUser();
         }
     };
 
     init();
 };
-MenuController.$inject = ['$scope', 'viewService', 'tokenService', 'userService'];
+MenuController.$inject = ["$scope", "viewService", "tokenService", "userService"];

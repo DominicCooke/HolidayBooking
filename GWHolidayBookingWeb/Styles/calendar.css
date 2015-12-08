@@ -216,6 +216,13 @@
   text-align: center;
   width: 100%;
 }
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .changesContainer .scrollBar > .scrollBar > .tableBody .tableRow.ng-enter {
+  transition: 5s linear all;
+  background-color: magenta ;
+}
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .changesContainer .scrollBar > .scrollBar > .tableBody .tableRow.ng-enter.ng-enter-active {
+  background-color: lime;
+}
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .changesContainer .scrollBar > .scrollBar > .tableBody .tableRow .tableCell {
   background: white;
 }

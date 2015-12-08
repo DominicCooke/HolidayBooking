@@ -1,12 +1,12 @@
-﻿tokenService = function () {
-    'use strict';
+﻿tokenService = function() {
+    "use strict";
     var loginAuthToken;
     var loginStatus = false;
     return {
         getLoginAuthToken: function() {
             return loginAuthToken;
         },
-        setToken: function (token, status) {
+        setToken: function(token, status) {
             loginAuthToken = token;
             loginStatus = status;
         },

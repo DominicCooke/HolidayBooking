@@ -1,14 +1,14 @@
-﻿calendarDirective = function (templates, $timeout, userService) {
-    'use strict';
+﻿calendarDirective = function(templates, $timeout, userService) {
+    "use strict";
     return {
         restrict: "E",
-        templateUrl: function ($elem, $attr) {
+        templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
-        controller: 'CalendarController',
+        controller: "CalendarController",
         scope: false,
-        link: function ($scope) {
-            $scope.select = function (date) {
+        link: function($scope) {
+            $scope.select = function(date) {
                 $scope.selected = date;
                 var pending = 0;
                 var confirmed = 1;
@@ -24,13 +24,13 @@
                                 if (hB[i].BookingStatus == pending) {
                                     hB.splice(i, 1);
                                     $scope.userHolidayBookings.RemainingAllowance++;
-                                    changeLogCreate(date, 'Unbook Holiday');
+                                    changeLogCreate(date, "Unbook Holiday");
                                 } else if (hB[i].BookingStatus == confirmed) {
                                     hB[i].BookingStatus = cancelled;
-                                    changeLogCreate(date, 'Cancel Holiday');
+                                    changeLogCreate(date, "Cancel Holiday");
                                 } else if (hB[i].BookingStatus == cancelled) {
                                     hB[i].BookingStatus = confirmed;
-                                    changeLogCreate(date, 'Uncancel Holiday');
+                                    changeLogCreate(date, "Uncancel Holiday");
                                 }
                             }
                         }
@@ -38,8 +38,8 @@
                         $scope.userHolidayBookings.RemainingAllowance--;
                         // add an hour to reflect the time zone GMT +1
                         var sDate, eDate;
-                        sDate = date.clone().add(1, 'h'),
-                            eDate = date.clone().add(1, 'h'),
+                        sDate = date.clone().add(1, "h"),
+                            eDate = date.clone().add(1, "h"),
                             hB.push(
                             {
                                 StartDate: sDate,
@@ -48,14 +48,14 @@
                                 BookingStatus: pending,
                                 HolidayId: 0
                             });
-                        changeLogCreate(date, 'Book Holiday');
+                        changeLogCreate(date, "Book Holiday");
                     }
                     $scope.reloadCalendar(true);
                     $scope.teamHolidayCount();
                 }
             };
 
-            $scope.next = function () {
+            $scope.next = function() {
                 var next = $scope.month.clone();
                 removeTime(next.month(next.month() + 1).date(0));
                 $scope.month.month($scope.month.month() + 1);
@@ -64,7 +64,7 @@
                 $scope.teamHolidayCount();
             };
 
-            $scope.previous = function () {
+            $scope.previous = function() {
                 var previous = $scope.month.clone();
                 removeTime(previous.month(previous.month() - 1).date(0));
                 $scope.month.month($scope.month.month() - 1);
@@ -75,7 +75,7 @@
 
             function changeLogCreate(date, state) {
                 var push = true;
-                $scope.changes.forEach(function (entry) {
+                $scope.changes.forEach(function(entry) {
                     var test = $scope.changes.indexOf(entry);
                     if (entry.dateChange.isSame(date, "day")) {
                         $scope.changes.splice(test, 1);
@@ -103,7 +103,7 @@
                     if (tUHB[i].isVisible == true) {
                         for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
                             var tHB = tUHB[i].HolidayBookings[k];
-                            if (tHB.StartDate.isSame(date, 'day') && tHB.BookingStatus == 1) {
+                            if (tHB.StartDate.isSame(date, "day") && tHB.BookingStatus == 1) {
                                 holidayCount++;
                                 break;
                             }
@@ -121,7 +121,7 @@
                 if ($scope.userHolidayBookings.isVisible == true) {
                     var hB = $scope.userHolidayBookings.HolidayBookings;
                     for (var k = 0; k < hB.length; k++) {
-                        if (hB[k].StartDate.isSame(date, 'day')) {
+                        if (hB[k].StartDate.isSame(date, "day")) {
                             if (hB[k].BookingStatus == state) {
                                 isFound = true;
                                 break;
@@ -135,7 +135,7 @@
             function isPublicHoliday(date) {
                 var isFound;
                 for (var i = 0; i < $scope.publicHolidays.length; i++) {
-                    if ($scope.publicHolidays[i].Date.isSame(date, 'day')) {
+                    if ($scope.publicHolidays[i].Date.isSame(date, "day")) {
                         isFound = true;
                         break;
                     } else {
@@ -151,7 +151,7 @@
                     if (tUHB[i].isVisible == true) {
                         for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
                             var tHB = tUHB[i].HolidayBookings[k];
-                            if (tHB.StartDate.isSame(date, 'day')) {
+                            if (tHB.StartDate.isSame(date, "day")) {
                                 if (tHB.BookingStatus == state) {
                                     return true;
                                 }
@@ -214,10 +214,10 @@
                 return days;
             }
 
-            $scope.teamHolidayCount = function () {
-                $timeout(function () {
-                    $('.day').each(function (index) {
-                        var holidayCount = $(this)[0].getAttribute('amountofholiday');
+            $scope.teamHolidayCount = function() {
+                $timeout(function() {
+                    $(".day").each(function(index) {
+                        var holidayCount = $(this)[0].getAttribute("amountofholiday");
                         var isFound = false;
                         for (var i = 0; i <= holidayCount; i++) {
                             if ($(this).hasClass("employeeCalendar")) {
@@ -238,7 +238,7 @@
                 });
             };
 
-            $scope.reloadCalendar = function (mode) {
+            $scope.reloadCalendar = function(mode) {
                 if (mode == true) {
                     var start = $scope.month.clone();
                 } else {
@@ -247,7 +247,7 @@
                 }
                 start.date(-3);
                 removeTime(start.day(0));
-                buildMonth($scope, removeTime(start.endOf('month')), $scope.month);
+                buildMonth($scope, removeTime(start.endOf("month")), $scope.month);
             };
 
             function init() {

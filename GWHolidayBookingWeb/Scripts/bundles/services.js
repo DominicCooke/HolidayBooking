@@ -1,20 +1,20 @@
-loginService = function ($rootScope) {
-    'use strict';
+loginService = function($rootScope) {
+    "use strict";
     return {
-        broadcast: function () {
+        broadcast: function() {
             $rootScope.$broadcast("loggedIn");
         }
     };
 }
-tokenService = function () {
-    'use strict';
+tokenService = function() {
+    "use strict";
     var loginAuthToken;
     var loginStatus = false;
     return {
         getLoginAuthToken: function() {
             return loginAuthToken;
         },
-        setToken: function (token, status) {
+        setToken: function(token, status) {
             loginAuthToken = token;
             loginStatus = status;
         },
@@ -23,8 +23,8 @@ tokenService = function () {
         }
     };
 }
-templateService = function ($http, $compile, $templateCache) {
-    'use strict';
+templateService = function($http, $compile, $templateCache) {
+    "use strict";
     return {
         getTemplate: function(templateUrl) {
             return $http.get(templateUrl, {
@@ -57,37 +57,37 @@ templateService = function ($http, $compile, $templateCache) {
         }
     };
 }
-dataService = function ($http, tokenService, guidService) {
-    'use strict';
+dataService = function($http, tokenService, guidService) {
+    "use strict";
     return {
-        getLoginAuthToken: function (u, p) {
+        getLoginAuthToken: function(u, p) {
             return $http({
-                method: 'POST',
+                method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 data: $.param({ username: u, password: p, grant_type: "password" }),
-                url: 'http://localhost:57068/token'
-            }).success(function (data) {
+                url: "http://localhost:57068/token"
+            }).success(function(data) {
                 tokenService.setToken(data.access_token, true);
-            }).error(function () {
+            }).error(function() {
 
             });
         },
-        publicHolidaysGet: function () {
+        publicHolidaysGet: function() {
             return $http({
-                method: 'GET',
+                method: "GET",
                 headers: {
                     "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Employee/GetPublicHolidays'
+                url: "http://localhost:57068/api/Employee/GetPublicHolidays"
             });
         },
-        employeeGetById: function () {
+        employeeGetById: function() {
             return $http({
-                method: 'GET',
+                method: "GET",
                 params: {
 
                 },
@@ -96,21 +96,21 @@ dataService = function ($http, tokenService, guidService) {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Employee/GetEmployeeById'
+                url: "http://localhost:57068/api/Employee/GetEmployeeById"
             });
         },
-        employeesGet: function () {
+        employeesGet: function() {
             return $http({
-                method: 'GET',
+                method: "GET",
                 headers: {
                     "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Employee/GetEmployees'
+                url: "http://localhost:57068/api/Employee/GetEmployees"
             });
         },
-        employeeUpdate: function (employee) {
+        employeeUpdate: function(employee) {
             return $http({
                 data: employee,
                 method: "POST",
@@ -120,35 +120,35 @@ dataService = function ($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Employee/UpdateEmployee"
             });
         },
-        employeeUpdateHoliday: function (employeeData) {
+        employeeUpdateHoliday: function(employeeData) {
             return $http({
                 data: employeeData,
-                method: 'POST',
+                method: "POST",
                 contentType: "application/json",
                 headers: {
                     "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Employee/UpdateEmployeeAndHoliday'
+                url: "http://localhost:57068/api/Employee/UpdateEmployeeAndHoliday"
             });
         },
-        employeesUpdateHolidays: function (employeeData) {
+        employeesUpdateHolidays: function(employeeData) {
             return $http({
                 data: employeeData,
-                method: 'POST',
+                method: "POST",
                 contentType: "application/json",
                 headers: {
                     "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: 'http://localhost:57068/api/Employee/UpdateEmployeesAndHolidays'
+                url: "http://localhost:57068/api/Employee/UpdateEmployeesAndHolidays"
             });
         },
 
 
-        userDelete: function (user) {
+        userDelete: function(user) {
             return $http({
                 data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
@@ -158,7 +158,7 @@ dataService = function ($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/User/DeleteUserAndEmployee"
             });
         },
-        userRegister: function (user) {
+        userRegister: function(user) {
             return $http({
                 data: user,
                 method: "POST",
@@ -168,7 +168,7 @@ dataService = function ($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/User/RegisterUserAndEmployee"
             });
         },
-        userSetRole: function (user, role) {
+        userSetRole: function(user, role) {
             return $http({
                 data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
@@ -178,23 +178,23 @@ dataService = function ($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/User/UserSetRole"
             });
         },
-        userGet: function () {
+        userGet: function() {
             return $http({
-                method: 'GET',
+                method: "GET",
                 headers: {
                     "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                 },
-                url: 'http://localhost:57068/api/User/GetUsersAndRoles'
+                url: "http://localhost:57068/api/User/GetUsersAndRoles"
             });
         }
     };
 }
-userService = function (dataService, loginService) {
-    'use strict';
+userService = function(dataService, loginService) {
+    "use strict";
     var User;
     return {
-        setUser: function () {
-            dataService.employeeGetById().then(function (response) {
+        setUser: function() {
+            dataService.employeeGetById().then(function(response) {
                 User = response.data;
                 loginService.broadcast();
             });
@@ -203,26 +203,26 @@ userService = function (dataService, loginService) {
             return User;
         },
         refreshUser: function() {
-            dataService.employeeGetById().then(function (response) {
+            dataService.employeeGetById().then(function(response) {
                 User = response.data;
             });
         }
     };
 }
-viewService = function (templateService) {
-    'use strict';
+viewService = function(templateService) {
+    "use strict";
     return {
-        gotoView: function ($scope, view, target) {
+        gotoView: function($scope, view, target) {
             if (!target || target.length == 0)
-                target = 'div.pageBody';
+                target = "div.pageBody";
             templateService.addTemplate(view, target, $scope, false);
         },
-        menuGotoView: function ($scope, view, target) {
+        menuGotoView: function($scope, view, target) {
             templateService.addTemplate(view, target, $scope, false);
         },
-        calendarGoToView: function ($scope, view, target) {
+        calendarGoToView: function($scope, view, target) {
             if (!target || target.length == 0)
-                target = 'div.bodyContainer';
+                target = "div.bodyContainer";
             templateService.addTemplate(view, target, $scope, true);
         }
     };
