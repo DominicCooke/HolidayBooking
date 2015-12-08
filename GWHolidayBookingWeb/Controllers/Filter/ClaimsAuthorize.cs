@@ -12,7 +12,7 @@ namespace GWHolidayBookingWeb.Controllers.Filter
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
             var owinContext = HttpContext.Current.Request.GetOwinContext();
-            var user = (ClaimsIdentity) owinContext.Authentication.User.Identity;
+            var user = (ClaimsIdentity)owinContext.Authentication.User.Identity;
             if (!(user is ClaimsIdentity))
             {
                 return false;

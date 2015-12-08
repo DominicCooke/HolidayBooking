@@ -31,6 +31,67 @@ namespace GWHolidayBookingWeb.Controllers
             roleManager.CreateAsync(new IdentityRole("User"));
         }
 
+        [Route("DeleteUserAndEmployee")]
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteUserAndEmployee(
+            DeleteUserAndEmployeeViewModel deleteUserAndEmployeeViewModel)
+        {
+            employeeDataService.Delete(deleteUserAndEmployeeViewModel.StaffId);
+            var user = await userManager.FindByIdAsync(deleteUserAndEmployeeViewModel.IdentityId);
+            var result = await userManager.DeleteAsync(user);
+            var errorResult = GetErrorResult(result);
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            return Ok();
+        }
+
+        [Route("GetUsersAndRoles")]
+        public async Task<GetUsersAndRolesViewModel> GetUsersAndRoles()
+        {
+            var listOfAllEmployees = employeeDataService.Get();
+            var listOfAllIdentityRoles = await roleManager.Roles.ToListAsync();
+            var listOfAllIdentityUsers = await userManager.Users.ToListAsync();
+            var listOfAllIdentityRolesAndUsers = listOfAllIdentityUsers.Select(User => new
+            {
+                User,
+                UserRoles = User.Roles.Select(Role => new
+                {
+                    Id = Role.RoleId,
+                    name = listOfAllIdentityRoles.First(IdentityRoleModel => IdentityRoleModel.Id == Role.RoleId).Name
+                })
+            });
+
+            var joined = from RoleAndUsers in listOfAllIdentityRolesAndUsers
+                         join Employee in listOfAllEmployees on RoleAndUsers.User.StaffId equals Employee.StaffId
+                         select new UpdateEmployeeViewModel
+                         {
+                             HolidayAllowance = Employee.HolidayAllowance,
+                             RemainingAllowance = Employee.RemainingAllowance,
+                             StaffId = Employee.StaffId,
+                             FirstName = Employee.FirstName,
+                             LastName = Employee.LastName,
+                             UserViewModel = new IdentityUserViewModel
+                             {
+                                 IdentityId = RoleAndUsers.User.Id,
+                                 Username = RoleAndUsers.User.UserName,
+                                 RoleViewModels = RoleAndUsers.UserRoles.Select(Role => new IdentityRole
+                                 {
+                                     Id = Role.Id,
+                                     Name = Role.name
+                                 }).ToList()
+                             }
+                         };
+            var getUsersAndRolesViewModel = new GetUsersAndRolesViewModel
+            {
+                ListOfCalendarViewModels = joined.ToList(),
+                ListOfIdentityRoles = listOfAllIdentityRoles
+            };
+            return getUsersAndRolesViewModel;
+        }
+
         [AllowAnonymous]
         [Route("RegisterUserAndEmployee")]
         public async Task<IHttpActionResult> RegisterUserAndEmployee(
@@ -92,68 +153,6 @@ namespace GWHolidayBookingWeb.Controllers
             }
             return Ok();
         }
-
-        [Route("GetUsersAndRoles")]
-        public async Task<GetUsersAndRolesViewModel> GetUsersAndRoles()
-        {
-            var listOfAllEmployees = employeeDataService.Get();
-            var listOfAllIdentityRoles = await roleManager.Roles.ToListAsync();
-            var listOfAllIdentityUsers = await userManager.Users.ToListAsync();
-            var listOfAllIdentityRolesAndUsers = listOfAllIdentityUsers.Select(User => new
-            {
-                User,
-                UserRoles = User.Roles.Select(Role => new
-                {
-                    Id = Role.RoleId,
-                    name = listOfAllIdentityRoles.First(IdentityRoleModel => IdentityRoleModel.Id == Role.RoleId).Name
-                })
-            });
-
-            var joined = from RoleAndUsers in listOfAllIdentityRolesAndUsers
-                join Employee in listOfAllEmployees on RoleAndUsers.User.StaffId equals Employee.StaffId
-                select new UpdateEmployeeViewModel
-                {
-                    HolidayAllowance = Employee.HolidayAllowance,
-                    RemainingAllowance = Employee.RemainingAllowance,
-                    StaffId = Employee.StaffId,
-                    FirstName = Employee.FirstName,
-                    LastName = Employee.LastName,
-                    UserViewModel = new IdentityUserViewModel
-                    {
-                        IdentityId = RoleAndUsers.User.Id,
-                        Username = RoleAndUsers.User.UserName,
-                        RoleViewModels = RoleAndUsers.UserRoles.Select(Role => new IdentityRole
-                        {
-                            Id = Role.Id,
-                            Name = Role.name
-                        }).ToList()
-                    }
-                };
-            var getUsersAndRolesViewModel = new GetUsersAndRolesViewModel
-            {
-                ListOfCalendarViewModels = joined.ToList(),
-                ListOfIdentityRoles = listOfAllIdentityRoles
-            };
-            return getUsersAndRolesViewModel;
-        }
-
-        [Route("DeleteUserAndEmployee")]
-        [HttpPost]
-        public async Task<IHttpActionResult> DeleteUserAndEmployee(
-            DeleteUserAndEmployeeViewModel deleteUserAndEmployeeViewModel)
-        {
-            employeeDataService.Delete(deleteUserAndEmployeeViewModel.StaffId);
-            var user = await userManager.FindByIdAsync(deleteUserAndEmployeeViewModel.IdentityId);
-            var result = await userManager.DeleteAsync(user);
-            var errorResult = GetErrorResult(result);
-            if (errorResult != null)
-            {
-                return errorResult;
-            }
-
-            return Ok();
-        }
-
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)

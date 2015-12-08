@@ -31,20 +31,23 @@
                 <div class="tableBody">
                     <div class="tableRow" ng-repeat="change in changes">
                         <div class="tableCell default">
-                            <div class="test">
-                                {{formatDate(change.dateChange, 2)}}
-                            </div>
+                            {{formatDate(change.dateChange, 2)}}
                         </div>
                         <div class="tableCell default">
-                            <div class="test">
-                                {{change.stateChange}}
-                            </div>
+                            {{change.stateChange}}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="submit" ng-click="submitHolidaySingleEmployee(selectedUser)" ng-model="selectedUser">
-                SUBMIT
+            <div class="submit" ng-model="selectedUser">
+                <div class="submitText" ng-click="toggleConfirm()">SUBMIT</div>
+                <div class="acceptSlider sliders">
+                    <div class="acceptText sliderText" ng-click="acceptChanges()">SAVE</div>
+                </div>
+
+                <div class="declineSlider sliders">
+                    <div class="declineText sliderText" ng-click="toggleConfirm()">CANCEL</div>
+                </div>
             </div>
         </div>
     </div>

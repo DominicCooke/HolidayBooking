@@ -19,9 +19,8 @@ namespace GWHolidayBookingWeb
 {
     public class Startup
     {
-        public static Func<UserManager<IdentityEmployee>> UserManagerFactory { get; private set; }
         public static Func<RoleManager<IdentityRole>> RoleManagerFactory { get; private set; }
-
+        public static Func<UserManager<IdentityEmployee>> UserManagerFactory { get; private set; }
         public void Configuration(IAppBuilder app)
         {
             AreaRegistration.RegisterAllAreas();

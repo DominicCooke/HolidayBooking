@@ -34,15 +34,15 @@
 }
 
 .bodyContainer {
-    font-family: Roboto-Regular;
-    height: 85%;
-    width: 100%;
-    float: left;
     color: @text-colour-primary;
     cursor: default;
-    -webkit-user-select: none;
+    float: left;
+    font-family: Roboto-Regular;
+    height: 85%;
     -moz-user-select: none;
     -ms-user-select: none;
+    -webkit-user-select: none;
+    width: 100%;
 
     > .otherSpace {
         float: left;
@@ -58,7 +58,6 @@
             width: 100%;
 
             &.secondary {
-
                 > .tableHead {
                     padding: 8px 5px !important;
                     cursor: default !important;
@@ -69,8 +68,6 @@
                 display: table-cell;
                 padding: 0 5px;
                 position: relative;
-
-
 
                 &:first-child {
                     padding: 10px 15px;
@@ -164,19 +161,64 @@
         }
 
         > calendarcontrols {
-
             .submit {
                 width: 100%;
                 height: 60px;
                 display: table;
                 background-color: @background-colour;
-                cursor: pointer;
                 color: @text-colour-primary;
                 font-size: 35px;
                 line-height: 60px;
+                position: relative;
 
                 &:hover {
                     background-color: lighten(@background-colour,2);
+                }
+
+                > .submittext {
+                    position: absolute;
+                    width: 100%;
+                    cursor: pointer;
+                    z-index: 10;
+
+                    &.active {
+                        cursor: none;
+                        pointer-events: none;
+                    }
+                }
+
+                > .sliders {
+                    position: absolute;
+                    width: 28%;
+                    top: 0;
+                    height: 100%;
+                    font-size: 23px;
+                    transition: 1s linear all;
+
+                    &.active {
+                        cursor: pointer;
+                    }
+
+                    > .sliderText {
+                        height: 100%;
+                        width: 100%;
+                        display: none;
+                    }
+                }
+
+                > .acceptSlider {
+
+                    &.active {
+                        background-color: @selected-colour;
+                    }
+                }
+
+                > .declineSlider {
+                    right: 0;
+
+                    &.active {
+                        background-color: @fourHoliday-colour;
+                    }
                 }
             }
 
@@ -265,7 +307,6 @@
 
                         .tableHeadRow {
                             .tableHead {
-
                                 &:first-child {
                                     width: 45%;
                                 }
@@ -282,31 +323,13 @@
                                 width: 100%;
 
                                 > .tableBody {
-
                                     .tableRow {
-                                        &.ng-enter {
-                                            //> .tableCell {
-                                            //    .test {
-                                                    transition: 5s linear all;
-                                                    background-color: magenta ;
-                                                    //max-height: 0;
-                                                    //font-size: 0;
-                                                    //opacity: 0;
-                                             //   }
-                                            //}
+                                        /*&.ng-enter {
+                                            transition: 5s linear all;
                                         }
 
                                         &.ng-enter.ng-enter-active {
-                                           // > .tableCell {
-                                            //    .test {
-                                                    background-color: lime;
-                                                    //max-height: 27px;
-                                                    //font-size: 15px;
-                                                    //opacity: 1;
-                                            //    }
-                                            //}
-                                        }
-
+                                        }*/
                                         .tableCell {
                                             background: white;
 
@@ -329,7 +352,6 @@
 
                 > .controlsTable {
                     > .tableHeadRow {
-
                         > .tableHead {
                             width: 70%/5;
 
@@ -365,9 +387,7 @@
                             width: 100%;
 
                             .tableBody {
-
                                 > .tableRow {
-
                                     > .tableCell {
                                         width: 70%/5;
 
@@ -422,9 +442,7 @@
                             width: 100%;
 
                             > .tableBody {
-
                                 > .tableRow {
-
                                     > .tableCell {
                                         background: rgba(255,255,255,0.15);
                                         border-bottom: 1px solid @border-colour;
@@ -453,7 +471,6 @@
             }
         }
     }
-
 
     > calendar {
         background: @innerbackground-colour;
@@ -618,7 +635,6 @@
                         width: 15px;
                     }
 
-
                     &.isweekend {
                         background: #C5C7CB;
                         cursor: none;
@@ -774,7 +790,6 @@
                 float: left;
                 height: 100%;
                 width: 50%;
-
 
                 > .teamHolidayKeyLabel {
                     text-align: center;

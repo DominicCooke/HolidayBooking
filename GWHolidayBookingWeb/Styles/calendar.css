@@ -13,15 +13,15 @@
   src: url('../../Content/fonts/Roboto-Regular.ttf') format('truetype');
 }
 .bodyContainer {
-  font-family: Roboto-Regular;
-  height: 85%;
-  width: 100%;
-  float: left;
   color: #ECF0F1;
   cursor: default;
-  -webkit-user-select: none;
+  float: left;
+  font-family: Roboto-Regular;
+  height: 85%;
   -moz-user-select: none;
   -ms-user-select: none;
+  -webkit-user-select: none;
+  width: 100%;
 }
 .bodyContainer > .otherSpace {
   float: left;
@@ -120,13 +120,48 @@
   height: 60px;
   display: table;
   background-color: #2A3F54;
-  cursor: pointer;
   color: #ECF0F1;
   font-size: 35px;
   line-height: 60px;
+  position: relative;
 }
 .bodyContainer > .otherSpace > calendarcontrols .submit:hover {
   background-color: #2d445b;
+}
+.bodyContainer > .otherSpace > calendarcontrols .submit > .submittext {
+  position: absolute;
+  width: 100%;
+  cursor: pointer;
+  z-index: 10;
+}
+.bodyContainer > .otherSpace > calendarcontrols .submit > .submittext.active {
+  cursor: none;
+  pointer-events: none;
+}
+.bodyContainer > .otherSpace > calendarcontrols .submit > .sliders {
+  position: absolute;
+  width: 28%;
+  top: 0;
+  height: 100%;
+  font-size: 23px;
+  transition: 1s linear all;
+}
+.bodyContainer > .otherSpace > calendarcontrols .submit > .sliders.active {
+  cursor: pointer;
+}
+.bodyContainer > .otherSpace > calendarcontrols .submit > .sliders > .sliderText {
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+.bodyContainer > .otherSpace > calendarcontrols .submit > .acceptSlider.active {
+  background-color: #1ABB9C;
+}
+.bodyContainer > .otherSpace > calendarcontrols .submit > .declineSlider {
+  right: 0;
+}
+.bodyContainer > .otherSpace > calendarcontrols .submit > .declineSlider.active {
+  background-color: #E74C3C;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer {
   border-collapse: collapse;
@@ -216,12 +251,13 @@
   text-align: center;
   width: 100%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .changesContainer .scrollBar > .scrollBar > .tableBody .tableRow.ng-enter {
-  transition: 5s linear all;
-  background-color: magenta ;
-}
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .changesContainer .scrollBar > .scrollBar > .tableBody .tableRow.ng-enter.ng-enter-active {
-  background-color: lime;
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .changesContainer .scrollBar > .scrollBar > .tableBody .tableRow {
+  /*&.ng-enter {
+                                            transition: 5s linear all;
+                                        }
+
+                                        &.ng-enter.ng-enter-active {
+                                        }*/
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controls > .changesContainer .scrollBar > .scrollBar > .tableBody .tableRow .tableCell {
   background: white;
