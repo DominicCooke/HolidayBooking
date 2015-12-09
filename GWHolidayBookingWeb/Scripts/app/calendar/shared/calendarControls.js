@@ -49,15 +49,28 @@
             };
 
             $scope.showChanges = function () {
-                $(".changesContainer").slideDown(500);
+                $(".changesContainer").slideDown(600);
+            };
+
+            $scope.test = function () {
+                $(".tableBody.test")
+                    .children('tbody')
+                    .children('tr:last')
+                    .removeClass('hidden')
+                    .children('td')
+                    .wrapInner('<div class="td-slider" style="display:none;"/>')
+                    .children(".td-slider")
+                    .slideDown(1200);
+            };
+
+            $scope.test2 = function () {
+
             };
 
             $scope.toggleConfirm = function () {
                 $(".submitText").toggleClass("active");
-                $(".acceptSlider").toggleClass("active");
-                $(".acceptText").toggle("slide", 1000);
-                $(".declineSlider").toggleClass("active");
-                $(".declineText").toggle("slide", { direction: "right" }, 1000);
+                $(".acceptSlider").toggleClass("active").children(".acceptText").toggle("slide", 1000);;
+                $(".declineSlider").toggleClass("active").children(".declineText").toggle("slide", { direction: "right" }, 1000);;
             };
 
             $scope.acceptChanges = function () {

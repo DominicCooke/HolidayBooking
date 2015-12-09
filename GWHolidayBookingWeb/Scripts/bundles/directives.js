@@ -26,17 +26,17 @@ infoBoxDirective = function() {
         }
     };
 };
-calendarDirective = function(templates, $timeout, userService) {
+calendarDirective = function (templates, $timeout, userService) {
     "use strict";
     return {
         restrict: "E",
-        templateUrl: function($elem, $attr) {
+        templateUrl: function ($elem, $attr) {
             return templates[$attr.mode];
         },
         controller: "CalendarController",
         scope: false,
-        link: function($scope) {
-            $scope.select = function(date) {
+        link: function ($scope) {
+            $scope.select = function (date) {
                 $scope.selected = date;
                 var pending = 0;
                 var confirmed = 1;
@@ -83,7 +83,7 @@ calendarDirective = function(templates, $timeout, userService) {
                 }
             };
 
-            $scope.next = function() {
+            $scope.next = function () {
                 var next = $scope.month.clone();
                 removeTime(next.month(next.month() + 1).date(0));
                 $scope.month.month($scope.month.month() + 1);
@@ -92,7 +92,7 @@ calendarDirective = function(templates, $timeout, userService) {
                 $scope.teamHolidayCount();
             };
 
-            $scope.previous = function() {
+            $scope.previous = function () {
                 var previous = $scope.month.clone();
                 removeTime(previous.month(previous.month() - 1).date(0));
                 $scope.month.month($scope.month.month() - 1);
@@ -103,7 +103,7 @@ calendarDirective = function(templates, $timeout, userService) {
 
             function changeLogCreate(date, state) {
                 var push = true;
-                $scope.changes.forEach(function(entry) {
+                $scope.changes.forEach(function (entry) {
                     var test = $scope.changes.indexOf(entry);
                     if (entry.dateChange.isSame(date, "day")) {
                         $scope.changes.splice(test, 1);
@@ -112,6 +112,13 @@ calendarDirective = function(templates, $timeout, userService) {
                 });
                 if (push) {
                     $scope.changes.push({ dateChange: date, stateChange: state });
+                    $timeout(function () {
+                        $scope.test();
+                    });
+                } else {
+                    $timeout(function () {
+                        $scope.test2();
+                    });
                 }
             };
 
@@ -242,9 +249,9 @@ calendarDirective = function(templates, $timeout, userService) {
                 return days;
             }
 
-            $scope.teamHolidayCount = function() {
-                $timeout(function() {
-                    $(".day").each(function(index) {
+            $scope.teamHolidayCount = function () {
+                $timeout(function () {
+                    $(".day").each(function (index) {
                         var holidayCount = $(this)[0].getAttribute("amountofholiday");
                         var isFound = false;
                         for (var i = 0; i <= holidayCount; i++) {
@@ -266,7 +273,7 @@ calendarDirective = function(templates, $timeout, userService) {
                 });
             };
 
-            $scope.reloadCalendar = function(mode) {
+            $scope.reloadCalendar = function (mode) {
                 if (mode == true) {
                     var start = $scope.month.clone();
                 } else {
@@ -342,15 +349,28 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
             };
 
             $scope.showChanges = function () {
-                $(".changesContainer").slideDown(500);
+                $(".changesContainer").slideDown(600);
+            };
+
+            $scope.test = function () {
+                $(".tableBody.test")
+                    .children('tbody')
+                    .children('tr:last')
+                    .removeClass('hidden')
+                    .children('td')
+                    .wrapInner('<div class="td-slider" style="display:none;"/>')
+                    .children(".td-slider")
+                    .slideDown(1200);
+            };
+
+            $scope.test2 = function () {
+
             };
 
             $scope.toggleConfirm = function () {
                 $(".submitText").toggleClass("active");
-                $(".acceptSlider").toggleClass("active");
-                $(".acceptText").toggle("slide", 1000);
-                $(".declineSlider").toggleClass("active");
-                $(".declineText").toggle("slide", { direction: "right" }, 1000);
+                $(".acceptSlider").toggleClass("active").children(".acceptText").toggle("slide", 1000);;
+                $(".declineSlider").toggleClass("active").children(".declineText").toggle("slide", { direction: "right" }, 1000);;
             };
 
             $scope.acceptChanges = function () {

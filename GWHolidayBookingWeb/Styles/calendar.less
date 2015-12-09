@@ -51,69 +51,69 @@
         width: 40%;
         position: relative;
 
-        .tableHeadRow {
-            background: @background-colour;
-            display: table;
-            text-align: center;
-            width: 100%;
-
-            &.secondary {
-                > .tableHead {
-                    padding: 8px 5px !important;
-                    cursor: default !important;
-                }
-            }
-
-            > .tableHead {
-                display: table-cell;
-                padding: 0 5px;
-                position: relative;
-
-                &:first-child {
-                    padding: 10px 15px;
-                    cursor: pointer;
-                    pointer-events: all;
-                }
-            }
-        }
-
         .tableBody {
-            display: table;
             border-collapse: collapse;
             width: 100%;
+            text-align: center;
 
-            .tableRow {
-                display: table-row;
+            > tbody {
+                font-size: 15px;
 
-                &:nth-of-type(even) {
-                    background: #f9f9f9;
-                }
-
-                &:first-child {
-                    border-top: 1px solid @border-colour;
-                }
-
-                &:last-child {
-                    border-bottom: 1px solid @border-colour;
-                }
-
-                > .tableCell {
-                    color: @background-colour;
-                    display: table-cell;
-                    padding: 5px 5px;
-
-                    &.default {
-                        border-bottom: solid 1px @border-colour;
-                        border-right: solid 1px @border-colour;
-                        border-left: solid 1px #dddddd;
+                .tableRow {
+                    &:nth-of-type(even) {
+                        background: #f9f9f9;
                     }
 
-                    &.teamMember {
-                        background: @background-colour;
+                    &:first-child {
+                        border-top: 1px solid @border-colour;
+                    }
+
+                    &:last-child {
+                        border-bottom: 1px solid @border-colour;
+                    }
+
+                    > .tableCell {
+                        color: @background-colour;
+
+                        &.default {
+                            border-bottom: solid 1px @border-colour;
+                            border-right: solid 1px @border-colour;
+                            border-left: solid 1px #dddddd;
+                        }
+
+                        &.teamMember {
+                            background: @background-colour;
+                            color: @text-colour-primary;
+                            cursor: pointer;
+                            padding: 8px 15px;
+                            transition: 0.2s;
+                        }
+                    }
+                }
+
+                .tableHeadRow {
+                    background: @background-colour;
+                    width: 100%;
+
+                    &.secondary {
+                        > .tableHead {
+                            padding: 8px 5px !important;
+                            cursor: default !important;
+                        }
+                    }
+
+                    > .tableHead {
+                        padding: 0 5px;
+                        position: relative;
                         color: @text-colour-primary;
-                        cursor: pointer;
-                        padding: 10px 15px;
-                        transition: 0.2s;
+                        font-weight: normal;
+                        text-align: center;
+
+                        &:first-child {
+                            padding: 10px 15px;
+                            cursor: pointer;
+                            pointer-events: all;
+                        }
                     }
                 }
             }
@@ -193,7 +193,7 @@
                     top: 0;
                     height: 100%;
                     font-size: 23px;
-                    transition: 1s linear all;
+                    transition: 1.2s linear all;
 
                     &.active {
                         cursor: pointer;
@@ -207,7 +207,6 @@
                 }
 
                 > .acceptSlider {
-
                     &.active {
                         background-color: @selected-colour;
                     }
@@ -238,42 +237,45 @@
                         padding-bottom: 2%;
                     }
 
-                    > .tableHeadRow {
-                        border-top: 0;
+                    > .tableBody {
+                        > tbody {
+                            > .tableHeadRow {
+                                border-top: 0;
 
-                        > .tableHead {
-                            width: 12%;
+                                > .tableHead {
+                                    width: 12%;
+                                    text-align: center;
 
-                            &:first-child {
-                                width: 30%;
+                                    &:first-child {
+                                        width: 30%;
 
-                                &.active {
-                                    .selectedTemplate();
+                                        &.active {
+                                            .selectedTemplate();
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    }
 
-                    > .tableBody {
-                        > .tableRow {
-                            > .tableCell {
-                                width: 12%;
+                            > .tableRow {
+                                > .tableCell {
+                                    width: 12%;
 
-                                &.teamMember {
-                                    width: 30%;
-                                    .activeAndDead();
-                                }
+                                    &.teamMember {
+                                        width: 30%;
+                                        .activeAndDead();
+                                    }
 
-                                &.isPendingHoliday {
-                                    animation: textpulsatepending 5s;
-                                    animation-iteration-count: infinite;
-                                    cursor: pointer;
-                                }
+                                    &.isPendingHoliday {
+                                        animation: textpulsatepending 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
+                                    }
 
-                                &.isCancelledHoliday {
-                                    animation: textpulsatecancelled 5s;
-                                    animation-iteration-count: infinite;
-                                    cursor: pointer;
+                                    &.isCancelledHoliday {
+                                        animation: textpulsatecancelled 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
+                                    }
                                 }
                             }
                         }
@@ -313,29 +315,23 @@
                             }
                         }
 
-                        .scrollBar {
+                        .tableContainer {
                             min-height: 27px;
+                            max-height: 280px;
+                            overflow-y: overlay;
 
-                            > .scrollBar {
-                                max-height: 250px;
-                                overflow: hidden;
-                                text-align: center;
-                                width: 100%;
+                            > .tableBody {
+                                .tableRow {
+                                    .tableCell {
+                                        background: white;
 
-                                > .tableBody {
-                                    .tableRow {
-                                        /*&.ng-enter {
-                                            transition: 5s linear all;
+                                        .td-slider {
+                                            display: none;
+                                            padding: 2px;
                                         }
 
-                                        &.ng-enter.ng-enter-active {
-                                        }*/
-                                        .tableCell {
-                                            background: white;
-
-                                            &:first-child {
-                                                width: 45%;
-                                            }
+                                        &:first-child {
+                                            width: 45%;
                                         }
                                     }
                                 }

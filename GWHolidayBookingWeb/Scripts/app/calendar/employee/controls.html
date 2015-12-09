@@ -1,53 +1,48 @@
 ﻿<div class="employeeControlsContainer">
     <div class="controlsTable">
         <div class="nameOfTeam">Technical Team</div>
-        <div class="tableHeadRow">
-            <div class="tableHead allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
-            <div class="tableHead">
-                <div class="fa fa-check" title="Confirmed Holiday"></div>
-            </div>
-            <div class="tableHead" title="Remaining Allowance">RA</div>
-            <div class="tableHead" title="Holiday Allowance">HA</div>
-        </div>
-        <div class="tableBody">
-            <div class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
-                <div class="tableCell teamMember" value="{{user.StaffId}}" step="1" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
-                <div class="tableCell default">{{user.ConfirmedHolidays}}</div>
-                <div class="tableCell default">{{user.RemainingAllowance}}</div>
-                <div class="tableCell default">{{user.HolidayAllowance}}</div>
-            </div>
-        </div>
+        <table class="tableBody">
+            <tr class="tableHeadRow">
+                <th class="tableHead allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</th>
+                <th class="tableHead">
+                    <div class="fa fa-check" title="Confirmed Holiday"></div>
+                </th>
+                <th class="tableHead" title="Remaining Allowance">RA</th>
+                <th class="tableHead" title="Holiday Allowance">HA</th>
+            </tr>
+        </table>
+        <table class="tableBody">
+            <tr class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
+                <td class="tableCell teamMember" value="{{user.StaffId}}" step="1" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</td>
+                <td class="tableCell default">{{user.ConfirmedHolidays}}</td>
+                <td class="tableCell default">{{user.RemainingAllowance}}</td>
+                <td class="tableCell default">{{user.HolidayAllowance}}</td>
+            </tr>
+        </table>
     </div>
     <div class="controls">
         <div class="editModeToggle" ng-click="toggleEditMode($event)">
             EDIT
         </div>
         <div class="changesContainer">
-            <div class="tableHeadRow secondary">
-                <div class="tableHead">Day</div>
-                <div class="tableHead">Type</div>
+            <table class="tableBody">
+                <tr class="tableHeadRow secondary">
+                    <th class="tableHead">Day</th>
+                    <th class="tableHead">Type</th>
+                </tr>
+            </table>
+            <div class="tableContainer">
+                <table class="tableBody test">
+                    <tr class="tableRow hidden" ng-repeat="change in changes">
+                        <td class="tableCell default">{{formatDate(change.dateChange, 2)}}</td>
+                        <td class="tableCell default">{{change.stateChange}}</td>
+                    </tr>
+                </table>
             </div>
-            <div class="scrollBar">
-                <div class="tableBody">
-                    <div class="tableRow" ng-repeat="change in changes">
-                        <div class="tableCell default">
-                            {{formatDate(change.dateChange, 2)}}
-                        </div>
-                        <div class="tableCell default">
-                            {{change.stateChange}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="submit" ng-model="selectedUser">
+            <div class="submit">
                 <div class="submitText" ng-click="toggleConfirm()">SUBMIT</div>
-                <div class="acceptSlider sliders">
-                    <div class="acceptText sliderText" ng-click="acceptChanges()">SAVE</div>
-                </div>
-
-                <div class="declineSlider sliders">
-                    <div class="declineText sliderText" ng-click="toggleConfirm()">CANCEL</div>
-                </div>
+                <div class="acceptSlider sliders"><div class="acceptText sliderText" ng-click="acceptChanges()">SAVE</div></div>
+                <div class="declineSlider sliders"><div class="declineText sliderText" ng-click="toggleConfirm()">CANCEL</div></div>
             </div>
         </div>
     </div>
