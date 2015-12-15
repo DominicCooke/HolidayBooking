@@ -1,7 +1,7 @@
 ﻿<div class="managerControlsContainer">
     <div class="controlsTable">
         <div class="tableHeadRow">
-            <div class="tableHead allPeople" value="all" id="personAll" ng-click="isChecked($event)">All</div>
+            <div class="tableHead allPeople" value="all" id="personAll" ng-click="teamMemberSelected($event)">All</div>
             <div class="tableHead">
                 <div class="fa fa-question" title="Pending Holiday"></div>
                 <span class="notification-counter-pending notification-counter">{{pendingNotificationCount}}</span>
@@ -16,13 +16,13 @@
         </div>
         <div class="scrollBar">
             <div class="tableBody">
-                <div class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
-                    <div class="tableCell teamMember" step="1" value="{{user.StaffId}}" ng-click="isChecked($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</div>
-                    <div class="tableCell default" ng-class="{isPendingHoliday: user.PendingHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 0, $event)">{{user.PendingHolidays}}</div>
-                    <div class="tableCell default" ng-class="{isCancelledHoliday: user.CancelledHolidays!=0}" ng-click="tabHolidaySelect(user.StaffId, 2, $event)">{{user.CancelledHolidays}}</div>
-                    <div class="tableCell default">{{user.ConfirmedHolidays}}</div>
-                    <div class="tableCell default">{{user.RemainingAllowance}}</div>
-                    <div class="tableCell default">{{user.HolidayAllowance}}</div>
+                <div class="tableRow" ng-class="populateTableCounts(teamMember)" ng-repeat="teamMember in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
+                    <div class="tableCell teamMember" step="1" value="{{teamMember.StaffId}}" ng-click="teamMemberSelected($event)">{{teamMember.FirstName}} {{teamMember.LastName | limitTo:1}}</div>
+                    <div class="tableCell default" ng-class="{isPendingHoliday: teamMember.PendingHolidays!=0}" ng-click="tabHolidaySelect(teamMember.StaffId, 0, $event)">{{teamMember.PendingHolidays}}</div>
+                    <div class="tableCell default" ng-class="{isCancelledHoliday: teamMember.CancelledHolidays!=0}" ng-click="tabHolidaySelect(teamMember.StaffId, 2, $event)">{{teamMember.CancelledHolidays}}</div>
+                    <div class="tableCell default">{{teamMember.ConfirmedHolidays}}</div>
+                    <div class="tableCell default">{{teamMember.RemainingAllowance}}</div>
+                    <div class="tableCell default">{{teamMember.HolidayAllowance}}</div>
                 </div>
             </div>
         </div>

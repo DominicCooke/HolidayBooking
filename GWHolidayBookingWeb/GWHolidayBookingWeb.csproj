@@ -175,6 +175,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\blahblah.png" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\bundles\controllers.js" />
     <Content Include="Scripts\bundles\controllers.min.js">
@@ -236,6 +237,9 @@
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <None Include="bundleconfig.json" />
+    <Content Include="bundleconfig.json.bindings">
+      <DependentUpon>bundleconfig.json</DependentUpon>
+    </Content>
     <None Include="compilerconfig.json" />
     <Content Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

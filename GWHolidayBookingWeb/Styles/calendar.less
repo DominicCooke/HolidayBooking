@@ -86,7 +86,7 @@
                             color: @text-colour-primary;
                             cursor: pointer;
                             padding: 8px 15px;
-                            transition: 0.2s;
+                            transition: 1.2s;
                         }
                     }
                 }
@@ -193,7 +193,7 @@
                     top: 0;
                     height: 100%;
                     font-size: 23px;
-                    transition: 1.2s linear all;
+                    transition: 0.2s linear all;
 
                     &.active {
                         cursor: pointer;
@@ -260,6 +260,8 @@
                                 > .tableCell {
                                     width: 12%;
 
+
+
                                     &.teamMember {
                                         width: 30%;
                                         .activeAndDead();
@@ -309,8 +311,14 @@
 
                         .tableHeadRow {
                             .tableHead {
+                                width: 40%;
+
                                 &:first-child {
                                     width: 45%;
+                                }
+
+                                &:last-child {
+                                    width: 15%;
                                 }
                             }
                         }
@@ -318,20 +326,42 @@
                         .tableContainer {
                             min-height: 27px;
                             max-height: 280px;
-                            overflow-y: overlay;
+                            overflow-y: auto;
+
+                            &:-webkit-scrollbar-track {
+                                background-color: #b46868;
+                            }
 
                             > .tableBody {
                                 .tableRow {
                                     .tableCell {
+                                        width: 40%;
+
+                                        &.tableCellAction {
+                                            color: red;
+                                            -webkit-text-stroke: 1px black;
+                                            border-bottom: solid 1px @border-colour;
+                                            border-right: solid 1px @border-colour;
+                                            border-left: solid 1px #dddddd;
+                                        }
+
+                                        .fa-times {
+                                            cursor: pointer;
+                                        }
+
                                         background: white;
 
                                         .td-slider {
                                             display: none;
-                                            padding: 2px;
+                                            //padding: 3px;
                                         }
 
                                         &:first-child {
                                             width: 45%;
+                                        }
+
+                                        &:last-child {
+                                            width: 15%;
                                         }
                                     }
                                 }

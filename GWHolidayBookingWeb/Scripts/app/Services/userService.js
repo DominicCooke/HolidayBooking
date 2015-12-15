@@ -1,19 +1,19 @@
 ﻿userService = function(dataService, loginService) {
     "use strict";
-    var User;
+    var user;
     return {
         setUser: function() {
             dataService.employeeGetById().then(function(response) {
-                User = response.data;
+                user = response.data;
                 loginService.broadcast();
             });
         },
         employeeGetById: function() {
-            return User;
+            return user;
         },
         refreshUser: function() {
             dataService.employeeGetById().then(function(response) {
-                User = response.data;
+                user = response.data;
             });
         }
     };

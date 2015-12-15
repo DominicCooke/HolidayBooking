@@ -27,7 +27,7 @@ MenuController = function($scope, viewService, tokenService, userService) {
     $scope.navigate = function(nameOfLink) {
         if (typeof $scope.state === "undefined")
             $scope.state = "New";
-        if ($scope.state == "New") {
+        if ($scope.state === "New") {
             $scope.state = "Old";
             childScope = $scope.$new();
             viewService.gotoView(childScope, views[nameOfLink]);
@@ -37,7 +37,7 @@ MenuController = function($scope, viewService, tokenService, userService) {
             $scope.state = "New";
             $scope.navigate(nameOfLink);
         }
-        if (nameOfLink != "Link") {
+        if (nameOfLink !== "Link") {
             var allMenuLinks = $(".menuLink");
             var targetMenuLink = $("#" + nameOfLink);
             allMenuLinks.css("pointer-events", "all");
@@ -45,7 +45,7 @@ MenuController = function($scope, viewService, tokenService, userService) {
             allMenuLinks.removeClass("active");
             targetMenuLink.addClass("active");
         }
-        if (nameOfLink == "EmployeeCalendar") {
+        if (nameOfLink === "EmployeeCalendar") {
             userService.refreshUser();
         }
     };
@@ -78,7 +78,7 @@ CalendarController = function($scope, dataService, viewService) {
             });
             $scope.publicHolidays = listOfPublicHolidays.data;
             $scope.selected = moment();
-            if (mode == "manager") {
+            if (mode === "manager") {
                 dataService.employeesGet().then(function(response) {
                     $scope.teamUserHolidayBookings = response.data;
                     $scope.initData($scope.teamUserHolidayBookings);
@@ -100,12 +100,13 @@ CalendarController = function($scope, dataService, viewService) {
 
 
     $scope.initData = function(holidayArray) {
-        for (var i = 0; i < holidayArray.length; i++) {
+        var i;
+        for (i = 0; i < holidayArray.length; i++) {
             $scope.parseDateTimeToMoment(holidayArray[i].HolidayBookings);
         }
         $scope.unmergeHolidayBookings(holidayArray);
-        for (var i = 0; i < holidayArray.length; i++) {
-            holidayArray[i].HolidayBookings = _.sortBy(holidayArray[i].HolidayBookings, function(Booking) { return Booking.StartDate; });
+        for (i = 0; i < holidayArray.length; i++) {
+            holidayArray[i].HolidayBookings = _.sortBy(holidayArray[i].HolidayBookings, function(booking) { return booking.StartDate; });
         }
     };
 
@@ -113,7 +114,7 @@ CalendarController = function($scope, dataService, viewService) {
         for (var i = 0; i < holidayArray.length; i++) {
             var count = holidayArray[i].HolidayBookings.length;
             for (var j = 0; j < count; j++) {
-                while (holidayArray[i].HolidayBookings[j].StartDate.day() != holidayArray[i].HolidayBookings[j].EndDate.day()) {
+                while (holidayArray[i].HolidayBookings[j].StartDate.day() !== holidayArray[i].HolidayBookings[j].EndDate.day()) {
                     var copyOfHolidayBooking = _.cloneDeep(holidayArray[i].HolidayBookings[j]);
                     copyOfHolidayBooking.EndDate = moment(copyOfHolidayBooking.EndDate);
                     copyOfHolidayBooking.StartDate = copyOfHolidayBooking.EndDate;
@@ -162,7 +163,7 @@ CalendarController = function($scope, dataService, viewService) {
     };
 
     $scope.submitHolidaySingleEmployee = function() {
-        $scope.userHolidayBookings.HolidayBookings = _.sortBy($scope.userHolidayBookings.HolidayBookings, function(Booking) { return Booking.StartDate; });
+        $scope.userHolidayBookings.HolidayBookings = _.sortBy($scope.userHolidayBookings.HolidayBookings, function(booking) { return booking.StartDate; });
         $scope.setAllowanceDaysOfUnmergedHolidays($scope.userHolidayBookings);
         var userHolidaysClone = _.cloneDeep($scope.userHolidayBookings);
         var userHolidaysCloneHolidayBookings = userHolidaysClone.HolidayBookings;
@@ -178,14 +179,13 @@ CalendarController = function($scope, dataService, viewService) {
             $scope.changes = [];
         });
         dataService.employeeUpdateHoliday(userHolidaysClone);
-
     };
 
     $scope.submitTeamUsersData = function() {
         var arrayOfTeamUserHolidayBookings = [];
         var tUHB = $scope.teamUserHolidayBookings;
         for (var i = 0; i < tUHB.length; i++) {
-            tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function(Booking) { return Booking.StartDate; });
+            tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function(booking) { return booking.StartDate; });
             $scope.setAllowanceDaysOfUnmergedHolidays(tUHB[i]);
             var userHolidaysClone = _.cloneDeep(tUHB[i]);
             var userHolidaysCloneHolidayBookings = userHolidaysClone.HolidayBookings;
@@ -207,38 +207,38 @@ CalendarController = function($scope, dataService, viewService) {
         var consolidatedHolidayBookings = [];
         var startFlag = true;
         var test = null;
-        while (holidayBooking.length != 1) {
-            if (holidayBooking[0].StartDate.day() + 1 == holidayBooking[1].StartDate.day() && startFlag == true && holidayBooking[0].BookingStatus == holidayBooking[1].BookingStatus) {
+        while (holidayBooking.length !== 1) {
+            if (holidayBooking[0].StartDate.day() + 1 === holidayBooking[1].StartDate.day() && startFlag === true && holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
                 holidayBooking[0].EndDate = holidayBooking[1].StartDate;
                 holidayBooking[0].AllowanceDays++;
-                if (holidayBooking.length == 2) {
+                if (holidayBooking.length === 2) {
                     consolidatedHolidayBookings.push(holidayBooking[0]);
                 }
                 holidayBooking.splice(1, 1);
                 startFlag = false;
-            } else if (holidayBooking[0].EndDate.day() + 1 == holidayBooking[1].StartDate.day() && startFlag == false && holidayBooking[0].BookingStatus == holidayBooking[1].BookingStatus) {
+            } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() && startFlag === false && holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
                 holidayBooking[0].EndDate = holidayBooking[1].StartDate;
                 holidayBooking[0].AllowanceDays++;
-                if (holidayBooking.length == 2) {
+                if (holidayBooking.length === 2) {
                     consolidatedHolidayBookings.push(holidayBooking[0]);
                 }
                 holidayBooking.splice(1, 1);
-            } else if (holidayBooking[0].EndDate.day() + 1 == holidayBooking[1].StartDate.day() && holidayBooking[0].BookingStatus != holidayBooking[1].BookingStatus) {
+            } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() && holidayBooking[0].BookingStatus !== holidayBooking[1].BookingStatus) {
                 holidayBooking[1].HolidayId = 0;
                 consolidatedHolidayBookings.push(holidayBooking[0]);
-                if (holidayBooking.length == 2) {
+                if (holidayBooking.length === 2) {
                     consolidatedHolidayBookings.push(holidayBooking[1]);
                 }
                 holidayBooking.splice(0, 1);
                 startFlag = true;
             } else {
-                if (test == holidayBooking[0].HolidayId) {
+                if (test === holidayBooking[0].HolidayId) {
                     holidayBooking[0].HolidayId = 0;
                 } else {
                     test = holidayBooking[0].HolidayId;
                 }
                 consolidatedHolidayBookings.push(holidayBooking[0]);
-                if (holidayBooking.length == 2) {
+                if (holidayBooking.length === 2) {
                     consolidatedHolidayBookings.push(holidayBooking[1]);
                 }
                 holidayBooking.splice(0, 1);

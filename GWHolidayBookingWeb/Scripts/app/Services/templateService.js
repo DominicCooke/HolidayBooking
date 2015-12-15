@@ -15,7 +15,7 @@
         },
         renderTemplate: function(target, html, append) {
             var element = angular.element(target);
-            if (append == true)
+            if (append === true)
                 element.append(html);
             else
                 element.html(html);

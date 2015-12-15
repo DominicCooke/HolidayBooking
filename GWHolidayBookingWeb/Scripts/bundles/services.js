@@ -40,7 +40,7 @@ templateService = function($http, $compile, $templateCache) {
         },
         renderTemplate: function(target, html, append) {
             var element = angular.element(target);
-            if (append == true)
+            if (append === true)
                 element.append(html);
             else
                 element.html(html);
@@ -115,7 +115,7 @@ dataService = function($http, tokenService, guidService) {
                 data: employee,
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/Employee/UpdateEmployee"
             });
@@ -153,7 +153,7 @@ dataService = function($http, tokenService, guidService) {
                 data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/User/DeleteUserAndEmployee"
             });
@@ -163,7 +163,7 @@ dataService = function($http, tokenService, guidService) {
                 data: user,
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/User/RegisterUserAndEmployee"
             });
@@ -173,7 +173,7 @@ dataService = function($http, tokenService, guidService) {
                 data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/User/UserSetRole"
             });
@@ -182,7 +182,7 @@ dataService = function($http, tokenService, guidService) {
             return $http({
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/User/GetUsersAndRoles"
             });
@@ -191,20 +191,20 @@ dataService = function($http, tokenService, guidService) {
 }
 userService = function(dataService, loginService) {
     "use strict";
-    var User;
+    var user;
     return {
         setUser: function() {
             dataService.employeeGetById().then(function(response) {
-                User = response.data;
+                user = response.data;
                 loginService.broadcast();
             });
         },
         employeeGetById: function() {
-            return User;
+            return user;
         },
         refreshUser: function() {
             dataService.employeeGetById().then(function(response) {
-                User = response.data;
+                user = response.data;
             });
         }
     };
@@ -213,7 +213,7 @@ viewService = function(templateService) {
     "use strict";
     return {
         gotoView: function($scope, view, target) {
-            if (!target || target.length == 0)
+            if (!target || target.length === 0)
                 target = "div.pageBody";
             templateService.addTemplate(view, target, $scope, false);
         },
@@ -221,7 +221,7 @@ viewService = function(templateService) {
             templateService.addTemplate(view, target, $scope, false);
         },
         calendarGoToView: function($scope, view, target) {
-            if (!target || target.length == 0)
+            if (!target || target.length === 0)
                 target = "div.bodyContainer";
             templateService.addTemplate(view, target, $scope, true);
         }

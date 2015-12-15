@@ -27,7 +27,7 @@
     $scope.navigate = function(nameOfLink) {
         if (typeof $scope.state === "undefined")
             $scope.state = "New";
-        if ($scope.state == "New") {
+        if ($scope.state === "New") {
             $scope.state = "Old";
             childScope = $scope.$new();
             viewService.gotoView(childScope, views[nameOfLink]);
@@ -37,7 +37,7 @@
             $scope.state = "New";
             $scope.navigate(nameOfLink);
         }
-        if (nameOfLink != "Link") {
+        if (nameOfLink !== "Link") {
             var allMenuLinks = $(".menuLink");
             var targetMenuLink = $("#" + nameOfLink);
             allMenuLinks.css("pointer-events", "all");
@@ -45,7 +45,7 @@
             allMenuLinks.removeClass("active");
             targetMenuLink.addClass("active");
         }
-        if (nameOfLink == "EmployeeCalendar") {
+        if (nameOfLink === "EmployeeCalendar") {
             userService.refreshUser();
         }
     };

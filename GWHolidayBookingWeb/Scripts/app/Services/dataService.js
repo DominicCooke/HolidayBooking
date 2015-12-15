@@ -56,7 +56,7 @@
                 data: employee,
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/Employee/UpdateEmployee"
             });
@@ -94,7 +94,7 @@
                 data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/User/DeleteUserAndEmployee"
             });
@@ -104,7 +104,7 @@
                 data: user,
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/User/RegisterUserAndEmployee"
             });
@@ -114,7 +114,7 @@
                 data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/User/UserSetRole"
             });
@@ -123,7 +123,7 @@
             return $http({
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
                 },
                 url: "http://localhost:57068/api/User/GetUsersAndRoles"
             });

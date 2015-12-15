@@ -7,8 +7,6 @@
       teamHoliday5: HolidayAmount >= 5}">
     <div class="employeeWithHolidayName" ng-repeat="user in holidayEmployeeNamesTooltip">
         <span class="tooltipName">{{user.name.Name}}</span>
-        <span class="tooltipIcon" ng-class="{
-               isFound : checkIsFound(user.isFoundState),
-               'fa fa-check':  isFoundValue == 'checked'}"></span>
+        <span class="tooltipIcon" ng-class="{isFound : checkIsFound(user.isFoundState),'fa fa-check':  isFoundValue == 'checked'}"></span>
     </div>
 </div>

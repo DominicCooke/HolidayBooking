@@ -13,10 +13,6 @@ namespace GWHolidayBookingWeb.Controllers.Filter
         {
             var owinContext = HttpContext.Current.Request.GetOwinContext();
             var user = (ClaimsIdentity)owinContext.Authentication.User.Identity;
-            if (!(user is ClaimsIdentity))
-            {
-                return false;
-            }
 
             var subIdClaims = user.FindFirst("role");
             if (subIdClaims == null)
