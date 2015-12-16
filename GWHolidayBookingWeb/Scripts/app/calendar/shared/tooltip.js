@@ -24,7 +24,7 @@
                 $scope.HolidayAmount = holidayCount;
             };
 
-            // checks how many holidays are on the given date
+            // populates the tooltip with whether or not the team member has a holiday request on a given date
             function checkHowManyHolidaysAreOnEachDay(date) {
                 var employeeWithHolidayNames = [];
                 var employeeWithHolidayCount = 0;
@@ -38,9 +38,9 @@
                     for (var k = 0; k < tUHB[i].HolidayBookings.length; k++) {
                         if (tUHB[i].HolidayBookings[k].StartDate.isSame(date, "day")) {
                             employeeWithHolidayCount++;
-                            if (tUHB[i].HolidayBookings[k].BookingStatus === "0") {
+                            if (tUHB[i].HolidayBookings[k].BookingStatus === 0) {
                                 employeeWithHolidayNames[i].isFoundState = "pending";
-                            } else if (tUHB[i].HolidayBookings[k].BookingStatus === "1") {
+                            } else if (tUHB[i].HolidayBookings[k].BookingStatus === 1) {
                                 employeeWithHolidayNames[i].isFoundState = "checked";
                                 employeeWithHolidayCountConfirmed++;
                             } else {

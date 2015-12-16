@@ -2,5 +2,9 @@
   {
     "outputFile": "Styles/calendar.css",
     "inputFile": "Styles/calendar.less"
+  },
+  {
+    "outputFile": "Scripts/bundles/directives.es5.js",
+    "inputFile": "Scripts/bundles/directives.js"
   }
 ]

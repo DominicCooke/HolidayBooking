@@ -175,11 +175,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\images\blahblah.png" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\bundles\controllers.js" />
     <Content Include="Scripts\bundles\controllers.min.js">
       <DependentUpon>controllers.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bundles\directives.es5.js">
+      <DependentUpon>directives.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bundles\directives.es5.min.js">
+      <DependentUpon>directives.es5.js</DependentUpon>
     </Content>
     <Content Include="Scripts\bundles\directives.js" />
     <Content Include="Scripts\bundles\directives.min.js">
@@ -194,7 +199,6 @@
       <DependentUpon>services.js</DependentUpon>
     </Content>
     <Content Include="Content\fontawesome\font-awesome.css" />
-    <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\GradWeb-logo.png" />
     <Content Include="Content\images\img.jpg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />

@@ -142,7 +142,7 @@
   top: 0;
   height: 100%;
   font-size: 23px;
-  transition: 0.2s linear all;
+  transition: 1.3s linear all;
 }
 .bodyContainer > .otherSpace > calendarcontrols .submit > .sliders.active {
   cursor: pointer;
@@ -171,48 +171,48 @@
   padding: 10px 17px;
   border: solid 1px #ddd;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .nameOfTeam {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .nameOfTeam {
   color: #2A3F54;
   font-size: 25px;
   font-weight: normal;
   padding-bottom: 2%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableHeadRow {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow {
   border-top: 0;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableHeadRow > .tableHead {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead {
   width: 12%;
   text-align: center;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableHeadRow > .tableHead:first-child {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child {
   width: 30%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableHeadRow > .tableHead:first-child.active {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child.active {
   border-bottom: 0;
   border-right: 0;
   box-shadow: inset -10px 0 0 0 #1ABB9C;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableRow > .tableCell {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell {
   width: 12%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableRow > .tableCell.teamMember {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember {
   width: 30%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableRow > .tableCell.teamMember.active {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.active {
   border-bottom: 0;
   border-right: 0;
   box-shadow: inset -10px 0 0 0 #1ABB9C;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableRow > .tableCell.teamMember.dead {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.dead {
   background: #1ABB9C;
   pointer-events: none;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableRow > .tableCell.isPendingHoliday {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isPendingHoliday {
   animation: textpulsatepending 5s;
   animation-iteration-count: infinite;
   cursor: pointer;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsTable > .tableBody > tbody > .tableRow > .tableCell.isCancelledHoliday {
+.bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isCancelledHoliday {
   animation: textpulsatecancelled 5s;
   animation-iteration-count: infinite;
   cursor: pointer;
@@ -285,18 +285,18 @@
   border: solid 1px #ddd;
   text-align: center;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .tableHeadRow > .tableHead {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead {
   width: 14%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .tableHeadRow > .tableHead:first-child {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child {
   width: 30%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .tableHeadRow > .tableHead:first-child.active {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child.active {
   border-bottom: 0;
   border-right: 0;
   box-shadow: inset -10px 0 0 0 #1ABB9C;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .tableHeadRow > .tableHead > .notification-counter {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead > .notification-counter {
   background-color: #E74C3C;
   border-bottom-left-radius: 5px;
   box-shadow: 1px 0 1px 0 #2a3f54;
@@ -309,70 +309,61 @@
   right: 0;
   top: 0;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .scrollBar > .scrollBar {
-  max-height: 250px;
-  overflow: hidden;
-  text-align: center;
-  width: 100%;
-}
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .scrollBar > .scrollBar .tableBody > .tableRow > .tableCell {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell {
   width: 14%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .scrollBar > .scrollBar .tableBody > .tableRow > .tableCell.teamMember {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember {
   width: 30%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .scrollBar > .scrollBar .tableBody > .tableRow > .tableCell.teamMember.active {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.active {
   border-bottom: 0;
   border-right: 0;
   box-shadow: inset -10px 0 0 0 #1ABB9C;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .scrollBar > .scrollBar .tableBody > .tableRow > .tableCell.teamMember.dead {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.dead {
   background: #1ABB9C;
   pointer-events: none;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .scrollBar > .scrollBar .tableBody > .tableRow > .tableCell.isPendingHoliday {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isPendingHoliday {
   animation: textpulsatepending 5s;
   animation-iteration-count: infinite;
   cursor: pointer;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .scrollBar > .scrollBar .tableBody > .tableRow > .tableCell.isPendingHoliday.clicked {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isPendingHoliday.clicked {
   background: rgba(52, 152, 219, 0.4);
   animation: none;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .scrollBar > .scrollBar .tableBody > .tableRow > .tableCell.isCancelledHoliday {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isCancelledHoliday {
   animation: textpulsatecancelled 5s;
   animation-iteration-count: infinite;
   cursor: pointer;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsTable > .scrollBar > .scrollBar .tableBody > .tableRow > .tableCell.isCancelledHoliday.clicked {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isCancelledHoliday.clicked {
   animation: none;
   background: rgba(155, 89, 182, 0.4);
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsTable > .tableHeadRow > .tableHead:last-child {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:last-child {
   width: 25%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsTable > .scrollBar > .scrollBar {
-  color: #2A3F54;
-  max-height: 400px;
-  overflow-y: auto;
-  text-align: center;
-  width: 100%;
-}
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsTable > .scrollBar > .scrollBar > .tableBody > .tableRow > .tableCell {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell {
   background: rgba(255, 255, 255, 0.15);
   border-bottom: 1px solid #ddd;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsTable > .scrollBar > .scrollBar > .tableBody > .tableRow > .tableCell:last-child {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell:last-child {
   width: 25%;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsTable > .scrollBar > .scrollBar > .tableBody > .tableRow > .tableCell > .tableCellAction {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell > .tableCellAction {
   cursor: pointer;
+  -webkit-text-stroke: 1px black;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsTable > .scrollBar > .scrollBar > .tableBody > .tableRow > .tableCell > .tableCellAction.fa-check {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell > .tableCellAction.fa-check {
   color: #0f0;
 }
-.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsTable > .scrollBar > .scrollBar > .tableBody > .tableRow > .tableCell > .tableCellAction.fa-times {
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell > .tableCellAction.fa-times {
   color: red;
+}
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell > .tableCellAction.fa-comment {
+  color: white;
 }
 .bodyContainer > calendar {
   background: white;

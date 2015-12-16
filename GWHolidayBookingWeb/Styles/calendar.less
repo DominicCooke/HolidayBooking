@@ -193,7 +193,7 @@
                     top: 0;
                     height: 100%;
                     font-size: 23px;
-                    transition: 0.2s linear all;
+                    transition: 1.3s linear all;
 
                     &.active {
                         cursor: pointer;
@@ -229,7 +229,7 @@
                 text-align: center;
                 .innerContainer();
 
-                > .controlsTable {
+                > .controlsContainer {
                     > .nameOfTeam {
                         color: @text-colour-tertiary;
                         font-size: 25px;
@@ -376,72 +376,65 @@
                 .innerContainer();
                 text-align: center;
 
-                > .controlsTable {
-                    > .tableHeadRow {
-                        > .tableHead {
-                            width: 70%/5;
+                > .controlsContainer {
+                    > .tableBody {
+                        > tbody {
+                            > .tableHeadRow {
+                                > .tableHead {
+                                    width: 70%/5;
 
-                            &:first-child {
-                                width: 30%;
+                                    &:first-child {
+                                        width: 30%;
 
-                                &.active {
-                                    .selectedTemplate()
+                                        &.active {
+                                            .selectedTemplate()
+                                        }
+                                    }
+
+                                    > .notification-counter {
+                                        background-color: @notification-colour;
+                                        border-bottom-left-radius: 5px;
+                                        box-shadow: 1px 0 1px 0 #2a3f54;
+                                        font-size: 12px;
+                                        font-weight: normal;
+                                        height: 15px;
+                                        line-height: 1;
+                                        padding: 1px 3px;
+                                        position: absolute;
+                                        right: 0;
+                                        top: 0;
+                                    }
                                 }
                             }
 
-                            > .notification-counter {
-                                background-color: @notification-colour;
-                                border-bottom-left-radius: 5px;
-                                box-shadow: 1px 0 1px 0 #2a3f54;
-                                font-size: 12px;
-                                font-weight: normal;
-                                height: 15px;
-                                line-height: 1;
-                                padding: 1px 3px;
-                                position: absolute;
-                                right: 0;
-                                top: 0;
-                            }
-                        }
-                    }
+                            > .tableRow {
+                                > .tableCell {
+                                    width: 70%/5;
 
-                    > .scrollBar {
-                        > .scrollBar {
-                            max-height: 250px;
-                            overflow: hidden;
-                            text-align: center;
-                            width: 100%;
+                                    &.teamMember {
+                                        width: 30%;
+                                        .activeAndDead();
+                                    }
 
-                            .tableBody {
-                                > .tableRow {
-                                    > .tableCell {
-                                        width: 70%/5;
+                                    &.isPendingHoliday {
+                                        animation: textpulsatepending 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
 
-                                        &.teamMember {
-                                            width: 30%;
-                                            .activeAndDead();
+                                        &.clicked {
+                                            background: fade(@pendingHoliday-colour,40%);
+                                            animation: none;
                                         }
+                                    }
 
-                                        &.isPendingHoliday {
-                                            animation: textpulsatepending 5s;
-                                            animation-iteration-count: infinite;
-                                            cursor: pointer;
+                                    &.isCancelledHoliday {
+                                        animation: textpulsatecancelled 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
 
-                                            &.clicked {
-                                                background: fade(@pendingHoliday-colour,40%);
-                                                animation: none;
-                                            }
-                                        }
-
-                                        &.isCancelledHoliday {
-                                            animation: textpulsatecancelled 5s;
-                                            animation-iteration-count: infinite;
-                                            cursor: pointer;
-
-                                            &.clicked {
-                                                animation: none;
-                                                background: fade(@cancelledHoliday-colour,40%);
-                                            }
+                                        &.clicked {
+                                            animation: none;
+                                            background: fade(@cancelledHoliday-colour,40%);
                                         }
                                     }
                                 }
@@ -450,43 +443,40 @@
                     }
                 }
 
-                > .actionsTable {
-                    > .tableHeadRow {
-                        > .tableHead {
-                            &:last-child {
-                                width: 25%;
+                > .actionsContainer {
+                    > .tableBody {
+                        > tbody {
+                            > .tableHeadRow {
+                                > .tableHead {
+                                    &:last-child {
+                                        width: 25%;
+                                    }
+                                }
                             }
-                        }
-                    }
 
-                    > .scrollBar {
-                        > .scrollBar {
-                            color: @text-colour-tertiary;
-                            max-height: 400px;
-                            overflow-y: auto;
-                            text-align: center;
-                            width: 100%;
+                            > .tableRow {
+                                > .tableCell {
+                                    background: rgba(255,255,255,0.15);
+                                    border-bottom: 1px solid @border-colour;
 
-                            > .tableBody {
-                                > .tableRow {
-                                    > .tableCell {
-                                        background: rgba(255,255,255,0.15);
-                                        border-bottom: 1px solid @border-colour;
+                                    &:last-child {
+                                        width: 25%;
+                                    }
 
-                                        &:last-child {
-                                            width: 25%;
+                                    > .tableCellAction {
+                                        cursor: pointer;
+                                        -webkit-text-stroke: 1px black;
+
+                                        &.fa-check {
+                                            color: #0f0;
                                         }
 
-                                        > .tableCellAction {
-                                            cursor: pointer;
+                                        &.fa-times {
+                                            color: red;
+                                        }
 
-                                            &.fa-check {
-                                                color: #0f0;
-                                            }
-
-                                            &.fa-times {
-                                                color: red;
-                                            }
+                                        &.fa-comment {
+                                            color: white;
                                         }
                                     }
                                 }
