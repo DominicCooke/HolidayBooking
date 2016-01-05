@@ -6,5 +6,25 @@
   {
     "outputFile": "Scripts/bundles/directives.es5.js",
     "inputFile": "Scripts/bundles/directives.js"
+  },
+  {
+    "outputFile": "Styles/index.css",
+    "inputFile": "Styles/index.less"
+  },
+  {
+    "outputFile": "Styles/colours.css",
+    "inputFile": "Styles/colours.less"
+  },
+  {
+    "outputFile": "Styles/animations.css",
+    "inputFile": "Styles/animations.less"
+  },
+  {
+    "outputFile": "Styles/login.css",
+    "inputFile": "Styles/login.less"
+  },
+  {
+    "outputFile": "Styles/table.css",
+    "inputFile": "Styles/table.less"
   }
 ]

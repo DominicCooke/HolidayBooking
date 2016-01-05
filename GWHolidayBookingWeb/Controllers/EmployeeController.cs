@@ -1,14 +1,14 @@
-﻿using AutoMapper;
-using GWHolidayBookingWeb.Controllers.Filter;
-using GWHolidayBookingWeb.DataAccess.ViewModels;
-using GWHolidayBookingWeb.Models;
-using GWHolidayBookingWeb.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
+using AutoMapper;
+using GWHolidayBookingWeb.Controllers.Filter;
+using GWHolidayBookingWeb.DataAccess.ViewModels;
+using GWHolidayBookingWeb.Models;
+using GWHolidayBookingWeb.Services;
 
 namespace GWHolidayBookingWeb.Controllers
 {
@@ -27,7 +27,7 @@ namespace GWHolidayBookingWeb.Controllers
         public GetEmployeeByIdViewModel GetEmployeeById()
         {
             var owinContext = ControllerContext.Request.GetOwinContext();
-            var user = (ClaimsIdentity)owinContext.Authentication.User.Identity;
+            var user = (ClaimsIdentity) owinContext.Authentication.User.Identity;
             var staffIdClaim = user.Claims.FirstOrDefault(c => c.Type == "id");
             var roleClaim = user.Claims.FirstOrDefault(c => c.Type == "role");
             var userWithRole =
@@ -47,6 +47,7 @@ namespace GWHolidayBookingWeb.Controllers
         {
             return employeeDataService.GetPublicHolidays();
         }
+
         [Route("UpdateEmployee")]
         public void UpdateEmployee(UpdateEmployeeViewModel updateEmployeeViewModel)
         {

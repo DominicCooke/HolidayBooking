@@ -1,4 +1,61 @@
-﻿div.mainContainer {
+﻿@import "colours.less";
+
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url('../Content/fonts/Roboto-Thin.ttf') format('truetype');
+}
+
+.mainContainer {
+    &.minimized {
+        > .menuContainer {
+            width: 110px;
+
+            .logo {
+                &.large {
+                    display: none !important;
+                }
+
+                &.small {
+                    display: block !important;
+                }
+            }
+
+            .profile {
+                display: none !important;
+            }
+
+            .side-menu {
+                color: magenta;
+
+                li {
+                    color: magenta;
+
+                    a {
+                        text-align: center !important;
+                        font-weight: 400;
+                        font-size: 10px;
+                        padding: 10px 5px;
+
+                        .fa {
+                            font-size: 25px !important;
+                            text-align: center;
+                            width: 100% !important;
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+            }
+        }
+
+        > .topNav {
+            margin-left: 110px;
+        }
+
+        > .pageBody {
+            padding-left: 110px;
+        }
+    }
+
     > .menuContainer {
         width: 230px;
         padding: 0;
@@ -18,9 +75,17 @@
             width: 100%;
 
             > .logo {
-                display: flex;
-                justify-content: center;
+                cursor: default;
+                -webkit-user-select: none;
+                text-align: center;
                 margin-top: 10px;
+                font-family: Roboto-Thin;
+                font-size: 50px;
+
+
+                &.small {
+                    display: none;
+                }
             }
 
             > .profile {
@@ -83,6 +148,11 @@
                             > a {
                                 color: #E7E7E7 !important;
 
+                                > .fa {
+                                    width: 1.3em;
+                                    font-size: 18px;
+                                }
+
                                 &:hover {
                                     color: #F2F5F7 !important;
                                 }
@@ -112,6 +182,19 @@
             height: 58px;
 
             > nav {
+
+                > .toggle {
+                    float: left;
+                    padding-top: 16px;
+                    width: 70px;
+
+                    > .menu-toggle {
+                        padding: 0 15px;
+                        margin: 0;
+                        font-size: 26px;
+                        cursor: pointer;
+                    }
+                }
 
                 > .navbar-right {
                     margin: 0;
@@ -156,6 +239,7 @@
                                     color: #5A738E;
                                     width: 100%;
                                     padding: 12px 20px;
+                                    line-height: 100%;
                                 }
                             }
                         }
@@ -167,14 +251,20 @@
 
     > .pageBody {
         background: #F7F7F7;
-        padding: 0 20px 0;
-        margin-left: 230px;
+        padding-left: 230px;
         min-height: 880px;
     }
 }
 
 .page-title {
-    width: 45%;
+    padding: 0 0 10px 10px;
+    width: 100%;
     float: left;
     display: block;
+    background: white;
+    border-bottom: 1px solid @border-colour !important;
+
+    > h3 {
+        padding-left: 15px;
+    }
 }

@@ -1,103 +1,111 @@
 ﻿@import "colours.less";
 
-.tableContainer {
-    > .table {
-        > tbody {
-            > .tableHead {
-                background: rgba(52, 73, 94, 0.94) !important;
-                color: #ECF0F1;
+.userManagementContainer {
+    float: left;
+    width: 100%;
+    padding: 10px;
+    
+    > .tableContainer {
+        > .table {
+            padding: 15px 0 0 15px;
 
-                > th {
-                    border: 0;
-                    font-size: 13px;
-                    width: 92%/6;
+            > tbody {
+                > .tableHead {
+                    background: rgba(52, 73, 94, 0.94) !important;
+                    color: #ECF0F1;
 
-                    &:first-child {
-                        width: 8% !important;
-                    }
-                }
-            }
+                    > th {
+                        border: 0;
+                        font-size: 13px;
+                        width: 92%/6;
 
-            > .tableRow {
-                > .actionsColumn {
-                    text-align: center;
-
-                    > form {
-                        > button {
-                            padding: 3px 6px;
-                            margin-bottom: 1px;
+                        &:first-child {
+                            width: 8% !important;
                         }
                     }
                 }
 
-                > td {
-                    color: #73879C;
-                    width: 92%/6;
-                    font-size: 13px;
+                > .tableRow {
+                    > .actionsColumn {
+                        text-align: center;
 
-                    &:first-child {
-                        width: 8% !important;
-                    }
-
-                    > form {
-                        margin: 0;
-                    }
-
-                    > span {
-                        > div {
-                            > input {
-                                width: 100%;
-                                height: 30px;
-                                padding: 6px 4px;
+                        > form {
+                            > button {
+                                padding: 3px 6px;
+                                margin-bottom: 1px;
                             }
                         }
                     }
-                }
 
-                &:hover {
                     > td {
-                        background: rgba(38, 185, 154, 0.07);
-                        border-top: 1px solid rgba(38, 185, 154, 0.11);
-                        border-bottom: 1px solid rgba(38, 185, 154, 0.11);
+                        color: #73879C;
+                        width: 92%/6;
+                        font-size: 13px;
+
+                        &:first-child {
+                            width: 8% !important;
+                        }
+
+                        > form {
+                            margin: 0;
+                        }
+
+                        > span {
+                            > div {
+                                > input {
+                                    width: 100%;
+                                    height: 30px;
+                                    padding: 6px 4px;
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        > td {
+                            background: rgba(38, 185, 154, 0.07);
+                            border-top: 1px solid rgba(38, 185, 154, 0.11);
+                            border-bottom: 1px solid rgba(38, 185, 154, 0.11);
+                        }
                     }
                 }
-            }
 
-            .form-group {
-                margin: 0 !important;
+                .form-group {
+                    margin: 0 !important;
+                }
             }
         }
     }
-}
 
-.createContainer {
-    margin-top: 20px;
-    background: @innerbackground-colour;
-    border: 1px solid @border-colour;
-    padding: 10px 17px;
-    width: 50%;
+    > .createContainer {
+        margin-top: 20px;
+        background: @innerbackground-colour;
+        border: 1px solid @border-colour;
+        padding: 10px 17px;
+        width: 50%;
 
-    > form {
-        > .form-group {
-            .control-label {
-                color: @text-colour-secondary;
-                text-align: right;
-                padding: 8px 10px 0 10px;
-                width: 40%;
-                float: left;
+        > form {
+            > .form-group {
+                .control-label {
+                    color: @text-colour-secondary;
+                    text-align: right;
+                    padding: 8px 10px 0 10px;
+                    width: 40%;
+                    float: left;
+                }
+
+                .form-control {
+                    border-radius: 0;
+                    line-height: 30px;
+                    width: 50%;
+                    float: left;
+                }
             }
 
-            .form-control {
-                border-radius: 0;
-                line-height: 30px;
-                width: 50%;
-                float: left;
-            }
-        }
-
-        > .form-actions {
-            > button {
-                margin-left: 40%;
+            > .form-actions {
+                > button {
+                    margin-left: 40%;
+                }
             }
         }
     }

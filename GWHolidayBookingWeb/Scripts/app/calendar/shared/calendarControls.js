@@ -15,14 +15,7 @@
                     if (typeof $scope.holidayRequests !== "undefined") {
                         var actionsContainer = $(".actionsContainer");
                         if ($scope.holidayRequests.HolidayRequests.length === 0) {
-                            actionsContainer.addClass("hidden");
-                        } else {
-                            actionsContainer.removeClass("hidden");
-                            if ($scope.holidayRequests.TypeOfHoliday === 0) {
-                                $(".pendingHolidayRow").show();
-                            } else if ($scope.holidayRequests.TypeOfHoliday === 2) {
-                                $(".cancelledHolidayRow").show();
-                            }
+                            //$scope.hideChanges(actionsContainer);
                         }
                     }
                 }
@@ -34,9 +27,7 @@
                     if (typeof $scope.changes !== "undefined") {
                         var changesContainer = $(".changesContainer");
                         if ($scope.changes.length === 0) {
-                            if (!changesContainer.is(":hidden")) {
-                                $scope.hideChanges();
-                            }
+                            $scope.hideChanges(changesContainer);
                         } else {
                             if (changesContainer.is(":hidden") || changesContainer.hasClass("hiding")) {
                                 changesContainer.clearQueue()
@@ -48,9 +39,8 @@
                 }
             }, true);
 
-            $scope.hideChanges = function (callback) {
-                var changesContainer = $(".changesContainer");
-                changesContainer.addClass("hiding")
+            $scope.hideChanges = function (container, callback) {
+                container.addClass("hiding")
                     .clearQueue()
                     .animate({ height: "hide" }, 600, function () {
                         $(this).hide();
@@ -139,8 +129,7 @@
                 declineSlider.toggleClass("active");
                 submitText.toggleClass("active");
                 acceptText.clearQueue().stop();
-                declineText.clearQueue().stop()
-
+                declineText.clearQueue().stop();
                 acceptText.fadeToggle(800);
                 declineText.fadeToggle(800);
 
@@ -269,6 +258,12 @@
                         HolidayRequests: holidayRequests,
                         TypeOfHoliday: typeOfHoliday
                     };
+                    var actionsContainer = $(".actionsContainer");
+                    if (actionsContainer.is(":hidden") || actionsContainer.hasClass("hiding")) {
+                        actionsContainer.clearQueue()
+                            .stop()
+                            .animate({ height: "show" }, 600);
+                    }
                 }
             };
 

@@ -10,6 +10,18 @@
             $scope.role = user.RoleName.toLowerCase();
             $scope.loggedInUsername = user.FirstName + " " + user.LastName;
             $scope.navigate("EmployeeCalendar");
+
+            $('.menu-toggle').click(function() {
+                $('.mainContainer').toggleClass('minimized');
+                if ($('.menu-toggle').hasClass('fa-caret-square-o-left')) {
+                    $('.menu-toggle').removeClass('fa-caret-square-o-left');
+                    $('.menu-toggle').addClass('fa-caret-square-o-right');
+                } else {
+                    $('.menu-toggle').removeClass('fa-caret-square-o-right');
+                    $('.menu-toggle').addClass('fa-caret-square-o-left');
+                }
+
+            });
         });
     };
 

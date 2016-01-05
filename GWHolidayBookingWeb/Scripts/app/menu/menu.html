@@ -1,16 +1,28 @@
 ﻿<div class="menuSection">
     <ul class="nav side-menu">
         <li class="active" id="Login" style="pointer-events: none">
-            <a ng-show="loginStatus == false" ng-click="navigate('Login')">Login</a>
+            <a ng-show="loginStatus == false" ng-click="navigate('Login')">
+                <div class="fa fa-sign-in"></div>
+                Login
+            </a>
         </li>
         <li id="EmployeeCalendar" class="menuLink">
-            <a ng-show="loginStatus == true" ng-click="navigate('EmployeeCalendar')">My Calendar</a>
+            <a ng-show="loginStatus == true" ng-click="navigate('EmployeeCalendar')">
+                <div class="fa fa-calendar"></div>
+                My Calendar
+            </a>
         </li>
         <li id="ManagerCalendar" class="menuLink">
-            <a ng-show="loginStatus == true && role == 'admin'" ng-click="navigate('ManagerCalendar')">Manager Calendar</a>
+            <a ng-show="loginStatus == true && role == 'admin'" ng-click="navigate('ManagerCalendar')">
+                <div class="fa fa-calendar-check-o"></div>
+                Manager Calendar
+            </a>
         </li>
         <li id="UserManagementTable" class="menuLink">
-            <a ng-show="loginStatus == true && role == 'admin'" ng-click="navigate('UserManagementTable')">User Management</a>
+            <a ng-show="loginStatus == true && role == 'admin'" ng-click="navigate('UserManagementTable')">
+                <div class="fa fa-users"></div>
+                User Management
+            </a>
         </li>
     </ul>
 </div>

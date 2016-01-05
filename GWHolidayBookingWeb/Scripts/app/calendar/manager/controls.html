@@ -29,8 +29,8 @@
             </tr>
         </table>
     </div>
-    <div class="actionsContainer hidden">
-        <table class="tableBody">
+    <div class="actionsContainer">
+        <table class="tableBody ">
             <tr class="tableHeadRow secondary">
                 <th class="tableHead">Date</th>
                 <th class="tableHead">Actions</th>
@@ -46,10 +46,14 @@
                 </td>
             </tr>
         </table>
-    </div>
-    <div class="submit">
-        <div class="submitText" ng-click="toggleSubmitStatus()">SUBMIT</div>
-        <div class="acceptSlider sliders"><div class="acceptText sliderText" ng-click="acceptChanges()">SAVE</div></div>
-        <div class="declineSlider sliders"><div class="declineText sliderText" ng-click="toggleSubmitStatus()">CANCEL</div></div>
+        <div class="submit">
+            <div class="submitText" ng-click="toggleSubmitStatus()">SUBMIT</div>
+            <div class="acceptSlider sliders">
+                <div class="acceptText sliderText" ng-click="acceptChanges()">SAVE</div>
+            </div>
+            <div class="declineSlider sliders">
+                <div class="declineText sliderText" ng-click="toggleSubmitStatus()">CANCEL</div>
+            </div>
+        </div>
     </div>
 </div>

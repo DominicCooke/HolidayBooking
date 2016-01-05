@@ -6,7 +6,7 @@
         controller: "CalendarController",
         scope: true,
         link: function($scope) {
-        // watches the users holiday booking array and updates the info box based on the details of the users holidays (such as remaining holiday)
+            // watches the users holiday booking array and updates the info box based on the details of the users holidays (such as remaining holiday)
             $scope.$watch("userHolidayBookings", function() {
                 var pendingCount = 0, confirmedCount = 0, cancelledCount = 0;
                 if (typeof $scope.userHolidayBookings !== "undefined") {

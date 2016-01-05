@@ -7,7 +7,6 @@
 <div class="userManagementContainer" ng-controller="UserTableController">
     <div class="tableContainer">
         <table id="Employee" class="table table-striped table-hover table-bordered">
-
             <tr class="tableHead">
                 <th>Actions</th>
                 <th>First Name</th>
@@ -33,12 +32,12 @@
                         <i ng-click="delete(employee)" class="fa fa-trash-o"></i>
                         |
                         <span uib-dropdown uib-dropdown-append-to-body>
-                            <a href id="simple-dropdown" uib-dropdown-toggle>
+                            <a id="simple-dropdown" uib-dropdown-toggle>
                                 <i class="fa fa-user"></i>
                             </a>
                             <ul class="uib-dropdown-menu" aria-labelledby="uib-simple-dropdown">
                                 <li ng-repeat="role in roles">
-                                    <a href ng-click="userSetRole(employee, role)" id="{{role.Id}}">{{role.Name}}</a>
+                                    <a  ng-click="userSetRole(employee, role)" id="{{role.Id}}">{{role.Name}}</a>
                                 </li>
                             </ul>
                         </span>

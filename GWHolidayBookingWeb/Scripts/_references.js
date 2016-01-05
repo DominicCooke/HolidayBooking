@@ -17,6 +17,7 @@
 /// <reference path="app/services/viewservice.js" />
 /// <reference path="app/views.js" />
 /// <reference path="bundles/controllers.js" />
+/// <reference path="bundles/directives.es5.js" />
 /// <reference path="bundles/directives.js" />
 /// <reference path="bundles/libs.js" />
 /// <reference path="bundles/services.js" />

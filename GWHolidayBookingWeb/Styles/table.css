@@ -1,69 +1,74 @@
-﻿.tableContainer > .table > tbody > .tableHead {
-    background: rgba(52, 73, 94, 0.94) !important;
-    color: #ECF0F1;
+﻿.userManagementContainer {
+  float: left;
+  width: 100%;
+  padding: 10px;
 }
-
-.tableContainer > .table > tbody > .tableHead > th {
-    border: 0;
-    font-size: 13px;
-    width: 15.33333333%;
+.userManagementContainer > .tableContainer > .table {
+  padding: 15px 0 0 15px;
 }
-
-.tableContainer > .table > tbody > .tableHead > th:first-child { width: 8% !important; }
-
-.tableContainer > .table > tbody > .tableRow > .actionsColumn { text-align: center; }
-
-.tableContainer > .table > tbody > .tableRow > .actionsColumn > form > button {
-    margin-bottom: 1px;
-    padding: 3px 6px;
+.userManagementContainer > .tableContainer > .table > tbody > .tableHead {
+  background: rgba(52, 73, 94, 0.94) !important;
+  color: #ECF0F1;
 }
-
-.tableContainer > .table > tbody > .tableRow > td {
-    color: #73879C;
-    font-size: 13px;
-    width: 15.33333333%;
+.userManagementContainer > .tableContainer > .table > tbody > .tableHead > th {
+  border: 0;
+  font-size: 13px;
+  width: 15.33333333%;
 }
-
-.tableContainer > .table > tbody > .tableRow > td:first-child { width: 8% !important; }
-
-.tableContainer > .table > tbody > .tableRow > td > form { margin: 0; }
-
-.tableContainer > .table > tbody > .tableRow > td > span > div > input {
-    height: 30px;
-    padding: 6px 4px;
-    width: 100%;
+.userManagementContainer > .tableContainer > .table > tbody > .tableHead > th:first-child {
+  width: 8% !important;
 }
-
-.tableContainer > .table > tbody > .tableRow:hover > td {
-    background: rgba(38, 185, 154, 0.07);
-    border-bottom: 1px solid rgba(38, 185, 154, 0.11);
-    border-top: 1px solid rgba(38, 185, 154, 0.11);
+.userManagementContainer > .tableContainer > .table > tbody > .tableRow > .actionsColumn {
+  text-align: center;
 }
-
-.tableContainer > .table > tbody .form-group { margin: 0 !important; }
-
-.createContainer {
-    background: white;
-    border: 1px solid #dddddd;
-    margin-top: 20px;
-    padding: 10px 17px;
-    width: 50%;
+.userManagementContainer > .tableContainer > .table > tbody > .tableRow > .actionsColumn > form > button {
+  padding: 3px 6px;
+  margin-bottom: 1px;
 }
-
-.createContainer > form > .form-group .control-label {
-    color: #73879c;
-    float: left;
-    padding: 8px 10px 0 10px;
-    text-align: right;
-    width: 40%;
+.userManagementContainer > .tableContainer > .table > tbody > .tableRow > td {
+  color: #73879C;
+  width: 15.33333333%;
+  font-size: 13px;
 }
-
-.createContainer > form > .form-group .form-control {
-    border-radius: 0;
-    float: left;
-    line-height: 30px;
-    width: 50%;
+.userManagementContainer > .tableContainer > .table > tbody > .tableRow > td:first-child {
+  width: 8% !important;
 }
-
-.createContainer > form > .form-actions > button { margin-left: 40%; }
-/*# sourceMappingURL=table.css.map */
+.userManagementContainer > .tableContainer > .table > tbody > .tableRow > td > form {
+  margin: 0;
+}
+.userManagementContainer > .tableContainer > .table > tbody > .tableRow > td > span > div > input {
+  width: 100%;
+  height: 30px;
+  padding: 6px 4px;
+}
+.userManagementContainer > .tableContainer > .table > tbody > .tableRow:hover > td {
+  background: rgba(38, 185, 154, 0.07);
+  border-top: 1px solid rgba(38, 185, 154, 0.11);
+  border-bottom: 1px solid rgba(38, 185, 154, 0.11);
+}
+.userManagementContainer > .tableContainer > .table > tbody .form-group {
+  margin: 0 !important;
+}
+.userManagementContainer > .createContainer {
+  margin-top: 20px;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px 17px;
+  width: 50%;
+}
+.userManagementContainer > .createContainer > form > .form-group .control-label {
+  color: #73879C;
+  text-align: right;
+  padding: 8px 10px 0 10px;
+  width: 40%;
+  float: left;
+}
+.userManagementContainer > .createContainer > form > .form-group .form-control {
+  border-radius: 0;
+  line-height: 30px;
+  width: 50%;
+  float: left;
+}
+.userManagementContainer > .createContainer > form > .form-actions > button {
+  margin-left: 40%;
+}

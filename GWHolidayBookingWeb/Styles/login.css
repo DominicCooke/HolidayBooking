@@ -1,36 +1,31 @@
 ﻿.loginContainer {
-    float: left;
-    height: 70%;
-    width: 100%;
+  width: 100%;
+  height: 70%;
+  float: left;
 }
-
 .loginContainer > .loginBody {
-    background: white;
-    border: solid 1px #dddddd;
-    display: flex;
-    flex-direction: column;
-    height: 40%;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 10px 17px;
-    width: 30%;
+  width: 30%;
+  height: 40%;
+  margin: 60px auto;
+  display: flex;
+  padding: 10px 17px;
+  background: white;
+  border: solid 1px #ddd;
+  justify-content: center;
+  flex-direction: column;
 }
-
 .loginContainer > .loginBody > .alert {
-    display: none;
-    margin: -25px -10px 20px -10px;
-    padding: 5px;
-    text-align: center;
+  display: none;
+  text-align: center;
+  margin: -25px -10px 20px -10px;
+  padding: 5px;
 }
-
 .loginContainer > .loginBody > form > .form-actions {
-    margin: 0 auto;
-    text-align: center;
+  text-align: center;
+  margin: 0 auto;
 }
-
 .loginContainer > .loginBody > form > .form-actions > button {
-    background-color: #2A3F54;
-    border-color: transparent !important;
-    text-align: center;
+  background-color: #2A3F54;
+  border-color: transparent !important;
+  text-align: center;
 }
-/*# sourceMappingURL=login.css.map */

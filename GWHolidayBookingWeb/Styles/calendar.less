@@ -5,11 +5,6 @@
 @icon-width: 40px;
 @header-height: 40px;
 
-@font-face {
-    font-family: 'Roboto-Regular';
-    src: url('../../Content/fonts/Roboto-Regular.ttf') format('truetype');
-}
-
 .selectedTemplate() {
     border-bottom: 0;
     border-right: 0;
@@ -37,12 +32,12 @@
     color: @text-colour-primary;
     cursor: default;
     float: left;
-    font-family: Roboto-Regular;
     height: 85%;
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
     width: 100%;
+    padding: 15px 0 0 15px;
 
     > .otherSpace {
         float: left;
@@ -86,7 +81,7 @@
                             color: @text-colour-primary;
                             cursor: pointer;
                             padding: 8px 15px;
-                            transition: 1.2s;
+                            transition: 0.5s;
                         }
                     }
                 }
@@ -259,8 +254,6 @@
                             > .tableRow {
                                 > .tableCell {
                                     width: 12%;
-
-
 
                                     &.teamMember {
                                         width: 30%;
@@ -444,6 +437,8 @@
                 }
 
                 > .actionsContainer {
+                    display: none;
+
                     > .tableBody {
                         > tbody {
                             > .tableHeadRow {
@@ -730,18 +725,14 @@
             position: absolute;
             width: 100%;
 
-            &.top {
-                top: 0;
-
-                > .holidayKey {
-                    > .keyColor {
-                        transform: rotate(180deg);
-                    }
-                }
-            }
-
             &.bottom {
                 bottom: 0;
+            }
+
+            &.manager {
+                bottom: 10%;
+                padding-left: 25%;
+                padding-right: 25%;
             }
 
             .keyLabel {
@@ -765,7 +756,7 @@
                 width: 21%;
             }
 
-            > #publicHolidayKey {
+            #publicHolidayKey {
                 float: left;
                 width: 25%;
 
@@ -774,7 +765,7 @@
                 }
             }
 
-            > #confirmedHolidayKey {
+            #confirmedHolidayKey {
                 float: left;
                 width: 25%;
 
@@ -783,7 +774,7 @@
                 }
             }
 
-            > #pendingHolidayKey {
+            #pendingHolidayKey {
                 float: left;
                 width: 25%;
 
@@ -792,7 +783,7 @@
                 }
             }
 
-            > #cancelledHolidayKey {
+            #cancelledHolidayKey {
                 float: left;
                 width: 25%;
 
@@ -801,11 +792,11 @@
                 }
             }
 
-            > #teamHolidayKey {
+            #teamHolidayKey {
                 display: table;
                 float: left;
                 height: 100%;
-                width: 50%;
+                width: 100%;
 
                 > .teamHolidayKeyLabel {
                     text-align: center;

@@ -16,7 +16,7 @@
 
     <div class="week" ng-repeat="week in weeks">
         <div class="day employeeCalendar" ng-class="{today: day.isToday,'different-month': !day.isCurrentMonth,selected: day.date.isSame(selected),isWeekend: day.isWeekend,isPublicHoliday: day.isPublicHoliday,isConfirmedHoliday: day.isConfirmedHoliday,isCancelledHoliday: day.isCancelledHoliday,isPendingHoliday: day.isPendingHoliday,teamHolidayEmployee1:  day.holidayCount == 1,teamHolidayEmployee2:  day.holidayCount == 2,teamHolidayEmployee3:  day.holidayCount == 3,teamHolidayEmployee4:  day.holidayCount == 4,teamHolidayEmployee5:  day.holidayCount >= 5}"
-            ng-click="select(day.date)" ng-repeat="day in week.days" amountofholiday="{{day.holidayCount}}">
+             ng-click="select(day.date)" ng-repeat="day in week.days" amountofholiday="{{day.holidayCount}}">
             <div class="dayNumber">
                 {{day.number}}
             </div>
@@ -27,20 +27,20 @@
 </div>
 <tooltip mode="employeeTooltip"></tooltip>
 <div class="key bottom">
-    <div id="publicHolidayKey" class="holidayKey">
-        <div class="keyColor" id="publicHolidayKeyColor"></div>
-        <div class="keyLabel" id="publicHolidayKeyColorLabel">Public Holiday</div>
-    </div>
     <div id="pendingHolidayKey" class="holidayKey">
         <div class="keyColor" id="pendingHolidayKeyColor"></div>
         <div class="keyLabel" id="pendingHolidayKeyColorLabel">Pending Holiday</div>
+    </div>
+    <div id="cancelledHolidayKey" class="holidayKey">
+        <div class="keyColor" id="cancelledHolidayKeyColor"></div>
+        <div class="keyLabel" id="cancelledHolidayKeyColorLabel">Cancelled Holiday</div>
     </div>
     <div id="confirmedHolidayKey" class="holidayKey">
         <div class="keyColor" id="confirmedHolidayKeyColor"></div>
         <div class="keyLabel" id="confirmedHolidayKeyColorLabel">Confirmed Holiday</div>
     </div>
-    <div id="cancelledHolidayKey" class="holidayKey">
-        <div class="keyColor" id="cancelledHolidayKeyColor"></div>
-        <div class="keyLabel" id="cancelledHolidayKeyColorLabel">Cancelled Holiday</div>
+    <div id="publicHolidayKey" class="holidayKey">
+        <div class="keyColor" id="publicHolidayKeyColor"></div>
+        <div class="keyLabel" id="publicHolidayKeyColorLabel">Public Holiday</div>
     </div>
 </div>

@@ -65,25 +65,25 @@ namespace GWHolidayBookingWeb.Controllers
             });
 
             var joined = from RoleAndUsers in listOfAllIdentityRolesAndUsers
-                         join Employee in listOfAllEmployees on RoleAndUsers.User.StaffId equals Employee.StaffId
-                         select new UpdateEmployeeViewModel
-                         {
-                             HolidayAllowance = Employee.HolidayAllowance,
-                             RemainingAllowance = Employee.RemainingAllowance,
-                             StaffId = Employee.StaffId,
-                             FirstName = Employee.FirstName,
-                             LastName = Employee.LastName,
-                             UserViewModel = new IdentityUserViewModel
-                             {
-                                 IdentityId = RoleAndUsers.User.Id,
-                                 Username = RoleAndUsers.User.UserName,
-                                 RoleViewModels = RoleAndUsers.UserRoles.Select(Role => new IdentityRole
-                                 {
-                                     Id = Role.Id,
-                                     Name = Role.name
-                                 }).ToList()
-                             }
-                         };
+                join Employee in listOfAllEmployees on RoleAndUsers.User.StaffId equals Employee.StaffId
+                select new UpdateEmployeeViewModel
+                {
+                    HolidayAllowance = Employee.HolidayAllowance,
+                    RemainingAllowance = Employee.RemainingAllowance,
+                    StaffId = Employee.StaffId,
+                    FirstName = Employee.FirstName,
+                    LastName = Employee.LastName,
+                    UserViewModel = new IdentityUserViewModel
+                    {
+                        IdentityId = RoleAndUsers.User.Id,
+                        Username = RoleAndUsers.User.UserName,
+                        RoleViewModels = RoleAndUsers.UserRoles.Select(Role => new IdentityRole
+                        {
+                            Id = Role.Id,
+                            Name = Role.name
+                        }).ToList()
+                    }
+                };
             var getUsersAndRolesViewModel = new GetUsersAndRolesViewModel
             {
                 ListOfCalendarViewModels = joined.ToList(),
@@ -153,6 +153,7 @@ namespace GWHolidayBookingWeb.Controllers
             }
             return Ok();
         }
+
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)

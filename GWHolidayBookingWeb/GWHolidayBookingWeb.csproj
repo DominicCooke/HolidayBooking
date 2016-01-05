@@ -176,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\icon-user-default.png" />
     <Content Include="Scripts\bundles\controllers.js" />
     <Content Include="Scripts\bundles\controllers.min.js">
       <DependentUpon>controllers.js</DependentUpon>
@@ -245,9 +246,10 @@
       <DependentUpon>bundleconfig.json</DependentUpon>
     </Content>
     <None Include="compilerconfig.json" />
-    <Content Include="compilerconfig.json.defaults">
+    <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
-    </Content>
+    </None>
+    <Content Include="Content\fonts\Roboto-Thin.ttf" />
     <None Include="Scripts\lib\angular\angular\angular.intellisense.js" />
     <Content Include="Scripts\lib\angular\angular\angular.js" />
     <Content Include="Scripts\lib\angular\angular\angular.min.js" />

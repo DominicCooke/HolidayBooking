@@ -8,20 +8,16 @@
     background: rgba(155, 89, 182, 0.4);
   }
 }
-@font-face {
-  font-family: 'Roboto-Regular';
-  src: url('../../Content/fonts/Roboto-Regular.ttf') format('truetype');
-}
 .bodyContainer {
   color: #ECF0F1;
   cursor: default;
   float: left;
-  font-family: Roboto-Regular;
   height: 85%;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
   width: 100%;
+  padding: 15px 0 0 15px;
 }
 .bodyContainer > .otherSpace {
   float: left;
@@ -60,7 +56,7 @@
   color: #ECF0F1;
   cursor: pointer;
   padding: 8px 15px;
-  transition: 1.2s;
+  transition: 0.5s;
 }
 .bodyContainer > .otherSpace .tableBody > tbody .tableHeadRow {
   background: #2A3F54;
@@ -342,6 +338,9 @@
   animation: none;
   background: rgba(155, 89, 182, 0.4);
 }
+.bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsContainer {
+  display: none;
+}
 .bodyContainer > .otherSpace > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:last-child {
   width: 25%;
 }
@@ -567,14 +566,13 @@
   position: absolute;
   width: 100%;
 }
-.bodyContainer > calendar > .key.top {
-  top: 0;
-}
-.bodyContainer > calendar > .key.top > .holidayKey > .keyColor {
-  transform: rotate(180deg);
-}
 .bodyContainer > calendar > .key.bottom {
   bottom: 0;
+}
+.bodyContainer > calendar > .key.manager {
+  bottom: 10%;
+  padding-left: 25%;
+  padding-right: 25%;
 }
 .bodyContainer > calendar > .key .keyLabel {
   display: flex;
@@ -595,50 +593,50 @@
   height: 100%;
   width: 21%;
 }
-.bodyContainer > calendar > .key > #publicHolidayKey {
+.bodyContainer > calendar > .key #publicHolidayKey {
   float: left;
   width: 25%;
 }
-.bodyContainer > calendar > .key > #publicHolidayKey > #publicHolidayKeyColor {
+.bodyContainer > calendar > .key #publicHolidayKey > #publicHolidayKeyColor {
   background-color: #73879C;
 }
-.bodyContainer > calendar > .key > #confirmedHolidayKey {
+.bodyContainer > calendar > .key #confirmedHolidayKey {
   float: left;
   width: 25%;
 }
-.bodyContainer > calendar > .key > #confirmedHolidayKey > #confirmedHolidayKeyColor {
+.bodyContainer > calendar > .key #confirmedHolidayKey > #confirmedHolidayKeyColor {
   background-color: #1ABB9C;
 }
-.bodyContainer > calendar > .key > #pendingHolidayKey {
+.bodyContainer > calendar > .key #pendingHolidayKey {
   float: left;
   width: 25%;
 }
-.bodyContainer > calendar > .key > #pendingHolidayKey > #pendingHolidayKeyColor {
+.bodyContainer > calendar > .key #pendingHolidayKey > #pendingHolidayKeyColor {
   background-color: #3498DB;
 }
-.bodyContainer > calendar > .key > #cancelledHolidayKey {
+.bodyContainer > calendar > .key #cancelledHolidayKey {
   float: left;
   width: 25%;
 }
-.bodyContainer > calendar > .key > #cancelledHolidayKey > #cancelledHolidayKeyColor {
+.bodyContainer > calendar > .key #cancelledHolidayKey > #cancelledHolidayKeyColor {
   background-color: #9B59B6;
 }
-.bodyContainer > calendar > .key > #teamHolidayKey {
+.bodyContainer > calendar > .key #teamHolidayKey {
   display: table;
   float: left;
   height: 100%;
-  width: 50%;
+  width: 100%;
 }
-.bodyContainer > calendar > .key > #teamHolidayKey > .teamHolidayKeyLabel {
+.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabel {
   text-align: center;
 }
-.bodyContainer > calendar > .key > #teamHolidayKey > .colorContainer {
+.bodyContainer > calendar > .key #teamHolidayKey > .colorContainer {
   display: table-row;
   height: 2vh;
   vertical-align: middle;
   width: 100%;
 }
-.bodyContainer > calendar > .key > #teamHolidayKey > .colorContainer > #teamHolidayKeyColor {
+.bodyContainer > calendar > .key #teamHolidayKey > .colorContainer > #teamHolidayKeyColor {
   background: -webkit-gradient(linear, left top, right top, color-stop(0, #22B265), color-stop(25%, #36F190), color-stop(50%, #C46D4D), color-stop(75%, #E74C3C), color-stop(100%, #B22011));
   border-bottom: 1px solid black;
   border-radius: 15px;
@@ -646,19 +644,19 @@
   height: 100%;
   width: 100%;
 }
-.bodyContainer > calendar > .key > #teamHolidayKey > .teamHolidayKeyLabelValues {
+.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues {
   display: table-footer-group;
   float: left;
 }
-.bodyContainer > calendar > .key > #teamHolidayKey > .teamHolidayKeyLabelValues.two {
+.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues.two {
   margin-left: 20%;
 }
-.bodyContainer > calendar > .key > #teamHolidayKey > .teamHolidayKeyLabelValues.three {
+.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues.three {
   margin-left: 20%;
 }
-.bodyContainer > calendar > .key > #teamHolidayKey > .teamHolidayKeyLabelValues.four {
+.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues.four {
   margin-left: 20%;
 }
-.bodyContainer > calendar > .key > #teamHolidayKey > .teamHolidayKeyLabelValues.five {
+.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues.five {
   float: right;
 }

@@ -1,10 +1,4 @@
-﻿<div class="key top">
-    <div id="publicHolidayKey" class=" holidaykey">
-        <div class="keyColor" id="publicHolidayKeyColor"></div>
-        <div class="keyLabel">Public Holiday</div>
-    </div>
-</div>
-<div class="header">
+﻿<div class="header">
     <i class="fa fa-angle-left" ng-click="previous()"></i>
     <span>{{month.format("MMMM YYYY")}}</span>
     <i class="fa fa-angle-right" ng-click="next()"></i>
@@ -21,18 +15,18 @@
     </div>
     <div class="week" ng-repeat="week in weeks">
         <div class="day managerCalendar" ng-class="{
-               today: day.isToday,
-               'different-month': !day.isCurrentMonth,
-               selected: day.date.isSame(selected),
-               isWeekend: day.isWeekend,
-               isPublicHoliday: day.isPublicHoliday,
-               isPendingHoliday: day.isPendingHoliday,
-               isCancelledHoliday: day.isCancelledHoliday,
-               teamHoliday1:  day.holidayCount == 1,
-               teamHoliday2: day.holidayCount == 2,
-               teamHoliday3:  day.holidayCount == 3,
-               teamHoliday4:  day.holidayCount == 4,
-               teamHoliday5:  day.holidayCount >= 5}" ng-repeat="day in week.days" amountofholiday="{{day.holidayCount}}">
+             today: day.isToday,
+             'different-month' : !day.isCurrentMonth,
+             selected: day.date.isSame(selected),
+             isWeekend: day.isWeekend,
+             isPublicHoliday: day.isPublicHoliday,
+             isPendingHoliday: day.isPendingHoliday,
+             isCancelledHoliday: day.isCancelledHoliday,
+             teamHoliday1:  day.holidayCount == 1,
+             teamHoliday2:  day.holidayCount == 2,
+             teamHoliday3:  day.holidayCount == 3,
+             teamHoliday4:  day.holidayCount == 4,
+             teamHoliday5:  day.holidayCount >= 5}" ng-repeat="day in week.days" amountofholiday="{{day.holidayCount}}">
             <div class="dayNumber">
                 {{day.number}}
             </div>
@@ -41,16 +35,8 @@
     </div>
 </div>
 <tooltip mode="managerTooltip"></tooltip>
-<div class="key bottom">
-    <div id="pendingHolidayKey" class=" holidaykey">
-        <div class="keyColor" id="pendingHolidayKeyColor"></div>
-        <div class="keyLabel" id="pendingHolidayKeyColorLabel">Pending Holiday</div>
-    </div>
-    <div id="cancelledHolidayKey" class=" holidaykey">
-        <div class="keyColor" id="cancelledHolidayKeyColor"></div>
-        <div class="keyLabel">Cancelled Holiday</div>
-    </div>
-    <div id="teamHolidayKey" class=" holidaykey">
+<div class="key manager">
+    <div id="teamHolidayKey" class="holidaykey">
         <div class="teamHolidayKeyLabel">Team Holidays</div>
         <div class="colorContainer">
             <div class="keyColor" id="teamHolidayKeyColor"></div>
@@ -60,5 +46,19 @@
         <div class="teamHolidayKeyLabelValues three">3</div>
         <div class="teamHolidayKeyLabelValues four">4</div>
         <div class="teamHolidayKeyLabelValues five">5+</div>
+    </div>
+</div>
+<div class="key bottom">
+    <div id="pendingHolidayKey" class="holidaykey">
+        <div class="keyColor" id="pendingHolidayKeyColor"></div>
+        <div class="keyLabel" id="pendingHolidayKeyColorLabel">Pending Holiday</div>
+    </div>
+    <div id="cancelledHolidayKey" class="holidaykey">
+        <div class="keyColor" id="cancelledHolidayKeyColor"></div>
+        <div class="keyLabel">Cancelled Holiday</div>
+    </div>
+    <div id="publicHolidayKey" class=" holidaykey">
+        <div class="keyColor" id="publicHolidayKeyColor"></div>
+        <div class="keyLabel">Public Holiday</div>
     </div>
 </div>
