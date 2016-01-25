@@ -14,7 +14,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GWHolidayBookingWeb.Controllers
 {
-    [ClaimsAuthorize(RoleName = "Admin")]
+    [ClaimsAuthorize(RoleName = "admin")]
     [RoutePrefix("api/User")]
     public class UserController : ApiController
     {
@@ -27,8 +27,6 @@ namespace GWHolidayBookingWeb.Controllers
             this.employeeDataService = employeeDataService;
             roleManager = Startup.RoleManagerFactory();
             userManager = Startup.UserManagerFactory();
-            roleManager.CreateAsync(new IdentityRole("Admin"));
-            roleManager.CreateAsync(new IdentityRole("User"));
         }
 
         [Route("DeleteUserAndEmployee")]
@@ -94,8 +92,7 @@ namespace GWHolidayBookingWeb.Controllers
 
         [AllowAnonymous]
         [Route("RegisterUserAndEmployee")]
-        public async Task<IHttpActionResult> RegisterUserAndEmployee(
-            RegisterUserAndEmployeeViewModel userAndEmployeeViewModel)
+        public async Task<IHttpActionResult> RegisterUserAndEmployee(RegisterUserAndEmployeeViewModel userAndEmployeeViewModel)
         {
             userAndEmployeeViewModel.StaffId = Guid.NewGuid();
             if (!ModelState.IsValid)

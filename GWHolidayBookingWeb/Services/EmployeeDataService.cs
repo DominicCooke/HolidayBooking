@@ -30,7 +30,7 @@ namespace GWHolidayBookingWeb.Services
             return employeeRepository.GetEmployeeById(staffId);
         }
 
-        public EmployeeHolidayBooking GetHolidayBookingById(int holidayId)
+        public EmployeeHolidayBooking GetHolidayBookingById(Guid holidayId)
         {
             return employeeRepository.GetHolidayBookingById(holidayId);
         }

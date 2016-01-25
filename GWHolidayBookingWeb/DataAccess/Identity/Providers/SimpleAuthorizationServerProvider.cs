@@ -23,15 +23,15 @@ namespace GWHolidayBookingWeb.DataAccess.Providers
                 return;
             }
             identity.AddClaim(new Claim("id", user.StaffId.ToString()));
-            identity.AddClaim(new Claim(ClaimTypes.Name, "d.c@gradweb.co.uk"));
+            identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
             var listOfRoles = await userManager.GetRolesAsync(user.Id);
-            if (listOfRoles.Contains("Admin"))
+            if (listOfRoles.Contains("admin"))
             {
-                identity.AddClaim(new Claim("role", "Admin"));
+                identity.AddClaim(new Claim("role", "admin"));
             }
             else
             {
-                identity.AddClaim(new Claim("role", "User"));
+                identity.AddClaim(new Claim("role", "user"));
             }
             context.Validated(identity);
         }

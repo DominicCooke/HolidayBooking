@@ -16,6 +16,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
+  user-select: none;
   width: 100%;
   padding: 15px 0 0 15px;
 }
@@ -150,12 +151,14 @@
 }
 .bodyContainer > .otherSpace > calendarcontrols .submit > .acceptSlider.active {
   background-color: #1ABB9C;
+  z-index: 11;
 }
 .bodyContainer > .otherSpace > calendarcontrols .submit > .declineSlider {
   right: 0;
 }
 .bodyContainer > .otherSpace > calendarcontrols .submit > .declineSlider.active {
   background-color: #E74C3C;
+  z-index: 11;
 }
 .bodyContainer > .otherSpace > calendarcontrols > .employeeControlsContainer {
   border-collapse: collapse;
@@ -574,7 +577,10 @@
   padding-left: 25%;
   padding-right: 25%;
 }
-.bodyContainer > calendar > .key .keyLabel {
+.bodyContainer > calendar > .key > .holidaykey {
+  height: 100%;
+}
+.bodyContainer > calendar > .key > .holidaykey > .keyLabel {
   display: flex;
   flex-direction: column;
   float: left;
@@ -584,7 +590,7 @@
   text-align: center;
   width: 79%;
 }
-.bodyContainer > calendar > .key .keyColor {
+.bodyContainer > calendar > .key > .holidaykey > .keyColor {
   border: 1px solid #dddddd;
   border-bottom: 0;
   border-top-left-radius: 15px;
@@ -637,26 +643,28 @@
   width: 100%;
 }
 .bodyContainer > calendar > .key #teamHolidayKey > .colorContainer > #teamHolidayKeyColor {
+  background: linear-gradient(to right, #22B265 0, #36F190 25%, #C46D4D 50%, #E74C3C 75%, #B22011 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0, #22B265), color-stop(25%, #36F190), color-stop(50%, #C46D4D), color-stop(75%, #E74C3C), color-stop(100%, #B22011));
+  background: -moz-linear-gradient(left, #22B265 0, #36F190 25%, #C46D4D 50%, #E74C3C 75%, #B22011 100%);
+  background: -ms-linear-gradient(left, #22B265 0, #36F190 25%, #C46D4D 50%, #E74C3C 75%, #B22011 100%);
   border-bottom: 1px solid black;
   border-radius: 15px;
-  display: table-cell;
   height: 100%;
   width: 100%;
 }
-.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues {
+.bodyContainer > calendar > .key #teamHolidayKey > div {
   display: table-footer-group;
   float: left;
 }
-.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues.two {
+.bodyContainer > calendar > .key #teamHolidayKey > div.two {
   margin-left: 20%;
 }
-.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues.three {
+.bodyContainer > calendar > .key #teamHolidayKey > div.three {
   margin-left: 20%;
 }
-.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues.four {
+.bodyContainer > calendar > .key #teamHolidayKey > div.four {
   margin-left: 20%;
 }
-.bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabelValues.five {
+.bodyContainer > calendar > .key #teamHolidayKey > div.five {
   float: right;
 }

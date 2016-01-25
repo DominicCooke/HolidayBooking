@@ -78,7 +78,7 @@ LoginController = function($scope, dataService, userService) {
     };
 };
 LoginController.$inject = ["$scope", "dataService", "userService"];
-CalendarController = function ($scope, dataService, viewService) {
+CalendarController = function ($scope, dataService, viewService, helperService) {
     "use strict";
     $scope.init = function (mode) {
         $scope.mode = mode;
@@ -218,7 +218,7 @@ CalendarController = function ($scope, dataService, viewService) {
     function combineHolidayBookings(holidayBooking) {
         var consolidatedHolidayBookings = [];
         var startFlag = true;
-        var test = null;
+        var duplicateHolidayId = null;
         while (holidayBooking.length !== 1) {
             if (holidayBooking[0].StartDate.day() + 1 === holidayBooking[1].StartDate.day() && startFlag === true && holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
                 holidayBooking[0].EndDate = holidayBooking[1].StartDate;
@@ -236,7 +236,7 @@ CalendarController = function ($scope, dataService, viewService) {
                 }
                 holidayBooking.splice(1, 1);
             } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() && holidayBooking[0].BookingStatus !== holidayBooking[1].BookingStatus) {
-                holidayBooking[1].HolidayId = 0;
+                holidayBooking[1].HolidayId = helperService.guid();
                 consolidatedHolidayBookings.push(holidayBooking[0]);
                 if (holidayBooking.length === 2) {
                     consolidatedHolidayBookings.push(holidayBooking[1]);
@@ -244,10 +244,10 @@ CalendarController = function ($scope, dataService, viewService) {
                 holidayBooking.splice(0, 1);
                 startFlag = true;
             } else {
-                if (test === holidayBooking[0].HolidayId) {
-                    holidayBooking[0].HolidayId = 0;
+                if (duplicateHolidayId === holidayBooking[0].HolidayId) {
+                    holidayBooking[0].HolidayId = helperService.guid();
                 } else {
-                    test = holidayBooking[0].HolidayId;
+                    duplicateHolidayId = holidayBooking[0].HolidayId;
                 }
                 consolidatedHolidayBookings.push(holidayBooking[0]);
                 if (holidayBooking.length === 2) {
@@ -259,9 +259,11 @@ CalendarController = function ($scope, dataService, viewService) {
         }
         return consolidatedHolidayBookings;
     };
+
+    
 };
-CalendarController.$inject = ["$scope", "dataService", "viewService"];
-UserTableController = function($scope, $http, dataService) {
+CalendarController.$inject = ["$scope", "dataService", "viewService", "helperService"];
+ManagementController = function($scope, $http, dataService) {
     "use strict";
     $scope.init = function() {
         dataService.userGet().then(function(response) {
@@ -306,4 +308,4 @@ UserTableController = function($scope, $http, dataService) {
 
     $scope.init();
 };
-UserTableController.$inject = ["$scope", "$http", "dataService"];
+ManagementController.$inject = ["$scope", "$http", "dataService"];

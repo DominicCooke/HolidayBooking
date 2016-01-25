@@ -177,6 +177,8 @@
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\icon-user-default.png" />
+    <Content Include="Scripts\app\management\teamManagement.html" />
+    <Content Include="Scripts\app\services\helperService.js" />
     <Content Include="Scripts\bundles\controllers.js" />
     <Content Include="Scripts\bundles\controllers.min.js">
       <DependentUpon>controllers.js</DependentUpon>
@@ -215,7 +217,7 @@
     <Content Include="Scripts\app\calendar\employee\mode.html" />
     <Content Include="Scripts\app\calendar\manager\mode.html" />
     <Content Include="Scripts\app\login\login.html" />
-    <Content Include="Scripts\app\management\userManagementTable.html" />
+    <Content Include="Scripts\app\management\userManagement.html" />
     <Content Include="Scripts\app\services\dataService.js" />
     <Content Include="Scripts\app\login\loginService.js" />
     <Content Include="Scripts\app\login\tokenService.js" />
@@ -313,11 +315,11 @@
     <Content Include="Styles\login.min.css">
       <DependentUpon>login.css</DependentUpon>
     </Content>
-    <Content Include="Styles\table.css">
-      <DependentUpon>table.less</DependentUpon>
+    <Content Include="Styles\management.css">
+      <DependentUpon>management.less</DependentUpon>
     </Content>
-    <Content Include="Styles\table.min.css">
-      <DependentUpon>table.css</DependentUpon>
+    <Content Include="Styles\management.min.css">
+      <DependentUpon>management.css</DependentUpon>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -344,15 +346,15 @@
     <Compile Include="DataAccess\Identity\IIdentityContext.cs" />
     <Compile Include="DataAccess\ViewModels\GetUsersAndRolesViewModel.cs" />
     <Compile Include="DataAccess\ViewModels\GetEmployeeByIdViewModel.cs" />
-    <Compile Include="Migrations\ConfigIdentity.cs" />
-    <Compile Include="Migrations\ConfigEmployeeCalendar.cs" />
+    <Compile Include="Migrations\ConfigIdentityInitial.cs" />
+    <Compile Include="Migrations\ConfigEmployeeCalendarInitial.cs" />
     <Compile Include="Models\EmployeeHolidayBooking.cs" />
     <Compile Include="DataAccess\IDbContext.cs" />
     <Compile Include="DataAccess\IEmployeeContext.cs" />
     <Compile Include="DataAccess\Identity\IdentityEmployee.cs" />
     <Compile Include="DataAccess\Identity\Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="DataAccess\Repositories\IEmployeeRepository.cs" />
-    <Content Include="Scripts\app\management\UserTableController.js" />
+    <Content Include="Scripts\app\management\ManagementController.js" />
     <Compile Include="Models\PublicHoliday.cs" />
     <Compile Include="Services\IEmployeeDataService.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -374,10 +376,7 @@
     <Content Include="Styles\login.css.map">
       <DependentUpon>login.css</DependentUpon>
     </Content>
-    <Content Include="Styles\table.less" />
-    <Content Include="Styles\table.css.map">
-      <DependentUpon>table.css</DependentUpon>
-    </Content>
+    <Content Include="Styles\management.less" />
     <Content Include="Styles\index.less" />
     <Content Include="Styles\Index.css.map">
       <DependentUpon>Index.css</DependentUpon>

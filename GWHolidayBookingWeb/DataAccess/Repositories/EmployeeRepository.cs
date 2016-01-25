@@ -97,7 +97,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             context.SaveChanges();
         }
 
-        public EmployeeHolidayBooking GetHolidayBookingById(int holidayId)
+        public EmployeeHolidayBooking GetHolidayBookingById(Guid holidayId)
         {
             return context.HolidayBookings.FirstOrDefault(x => x.HolidayId == holidayId);
         }

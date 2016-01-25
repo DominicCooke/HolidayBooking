@@ -6,7 +6,7 @@ namespace GWHolidayBookingWeb.Models
     public class EmployeeHolidayBooking
     {
         [Key]
-        public int HolidayId { get; set; }
+        public Guid HolidayId { get; set; }
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

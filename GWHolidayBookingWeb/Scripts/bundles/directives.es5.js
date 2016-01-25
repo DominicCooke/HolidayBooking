@@ -30,7 +30,7 @@ infoBoxDirective = function () {
         }
     };
 };
-calendarDirective = function (templates, $timeout, userService) {
+calendarDirective = function (templates, $timeout, userService, helperService) {
     "use strict";
     return {
         restrict: "E",
@@ -81,7 +81,7 @@ calendarDirective = function (templates, $timeout, userService) {
                             EndDate: eDate,
                             AllowanceDays: 1,
                             BookingStatus: pending,
-                            HolidayId: 0
+                            HolidayId: helperService.guid()
                         });
                         changeTableCreate(date, "Book Holiday");
                     }
@@ -111,7 +111,7 @@ calendarDirective = function (templates, $timeout, userService) {
             };
 
             // checks whether the change is already in the table, in which case it removes the entry from the table.
-            // otherwise the new row is slid down using a method.
+            // otherwise the new row is slid down using the slideDownChangesContainerTableRow method.
             function changeTableCreate(date, state) {
                 var push = true;
                 $scope.changes.forEach(function (entry) {
@@ -527,7 +527,7 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
             // populates the table of holiday requests
             $scope.holidayRequestSelect = function (staffId, typeOfHoliday, e) {
                 var teamMemberElement = e.target.parentElement.firstElementChild;
-                if (e.target.innerText > 0) {
+                if ($(e.target).text() > 0) {
                     $(".tableCell").removeClass("clicked");
                     $(e.target).addClass("clicked");
                     if ($(e.target).hasClass("isCancelledHoliday")) {

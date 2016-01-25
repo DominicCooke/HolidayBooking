@@ -1,4 +1,4 @@
-﻿calendarDirective = function(templates, $timeout, userService) {
+﻿calendarDirective = function(templates, $timeout, userService, helperService) {
     "use strict";
     return {
         restrict: "E",
@@ -50,7 +50,7 @@
                             EndDate: eDate,
                             AllowanceDays: 1,
                             BookingStatus: pending,
-                            HolidayId: 0
+                            HolidayId: helperService.guid()
                         });
                         changeTableCreate(date, "Book Holiday");
                     }
@@ -80,7 +80,7 @@
             };
 
             // checks whether the change is already in the table, in which case it removes the entry from the table.
-            // otherwise the new row is slid down using a method.
+            // otherwise the new row is slid down using the slideDownChangesContainerTableRow method.
             function changeTableCreate(date, state) {
                 var push = true;
                 $scope.changes.forEach(function(entry) {

@@ -14,7 +14,7 @@
             "Scripts/app/menu/MenuController.js",
             "Scripts/app/login/LoginController.js",
             "Scripts/app/calendar/CalendarController.js",
-            "Scripts/app/management/UserTableController.js"
+            "Scripts/app/management/ManagementController.js"
         ]
     },
     {
@@ -25,6 +25,7 @@
             "Scripts/app/services/templateService.js",
             "Scripts/app/services/dataService.js",
             "Scripts/app/services/userService.js",
+            "Scripts/app/services/helperService.js",
             "Scripts/app/services/viewService.js"
         ]
     },

@@ -24,7 +24,7 @@
     "inputFile": "Styles/login.less"
   },
   {
-    "outputFile": "Styles/table.css",
-    "inputFile": "Styles/table.less"
+    "outputFile": "Styles/management.css",
+    "inputFile": "Styles/management.less"
   }
 ]

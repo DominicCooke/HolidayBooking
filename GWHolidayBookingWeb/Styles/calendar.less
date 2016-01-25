@@ -36,6 +36,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
+    user-select: none;
     width: 100%;
     padding: 15px 0 0 15px;
 
@@ -204,6 +205,7 @@
                 > .acceptSlider {
                     &.active {
                         background-color: @selected-colour;
+                        z-index: 11;
                     }
                 }
 
@@ -212,6 +214,7 @@
 
                     &.active {
                         background-color: @fourHoliday-colour;
+                        z-index: 11;
                     }
                 }
             }
@@ -346,7 +349,6 @@
 
                                         .td-slider {
                                             display: none;
-                                            //padding: 3px;
                                         }
 
                                         &:first-child {
@@ -735,25 +737,29 @@
                 padding-right: 25%;
             }
 
-            .keyLabel {
-                display: flex;
-                flex-direction: column;
-                float: left;
+            > .holidaykey {
                 height: 100%;
-                justify-content: center;
-                padding: 12.5%;
-                text-align: center;
-                width: 79%;
-            }
 
-            .keyColor {
-                border: 1px solid #dddddd;
-                border-bottom: 0;
-                border-top-left-radius: 15px;
-                border-top-right-radius: 15px;
-                float: left;
-                height: 100%;
-                width: 21%;
+                > .keyLabel {
+                    display: flex;
+                    flex-direction: column;
+                    float: left;
+                    height: 100%;
+                    justify-content: center;
+                    padding: 12.5%;
+                    text-align: center;
+                    width: 79%;
+                }
+
+                > .keyColor {
+                    border: 1px solid #dddddd;
+                    border-bottom: 0;
+                    border-top-left-radius: 15px;
+                    border-top-right-radius: 15px;
+                    float: left;
+                    height: 100%;
+                    width: 21%;
+                }
             }
 
             #publicHolidayKey {
@@ -809,16 +815,18 @@
                     width: 100%;
 
                     > #teamHolidayKeyColor {
+                        background: linear-gradient(to right, @oneHoliday-colour 0, @twoHoliday-colour 25%, @threeHoliday-colour 50%, @fourHoliday-colour 75%, @fiveHoliday-colour 100%);
                         background: -webkit-gradient(linear, left top, right top,color-stop(0, @oneHoliday-colour),color-stop(25%, @twoHoliday-colour), color-stop(50%, @threeHoliday-colour),color-stop(75%, @fourHoliday-colour), color-stop(100%, @fiveHoliday-colour));
+                        background: -moz-linear-gradient(left, @oneHoliday-colour 0, @twoHoliday-colour 25%, @threeHoliday-colour 50%, @fourHoliday-colour 75%, @fiveHoliday-colour 100%);
+                        background: -ms-linear-gradient(left, @oneHoliday-colour 0, @twoHoliday-colour 25%, @threeHoliday-colour 50%,@fourHoliday-colour 75%, @fiveHoliday-colour 100%);
                         border-bottom: 1px solid black;
                         border-radius: 15px;
-                        display: table-cell;
                         height: 100%;
                         width: 100%;
                     }
                 }
 
-                > .teamHolidayKeyLabelValues {
+                > div {
                     display: table-footer-group;
                     float: left;
 

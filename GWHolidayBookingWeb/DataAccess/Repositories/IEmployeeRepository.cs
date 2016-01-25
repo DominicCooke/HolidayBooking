@@ -14,6 +14,6 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
         void Delete(Guid staffId);
         void UpdateEmployee(UpdateEmployeeViewModel updateEmployeeViewModel);
         void UpdateHolidays(Employee employee);
-        EmployeeHolidayBooking GetHolidayBookingById(int holidayId);
+        EmployeeHolidayBooking GetHolidayBookingById(Guid holidayId);
     }
 }

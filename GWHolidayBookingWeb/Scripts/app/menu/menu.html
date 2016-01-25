@@ -18,10 +18,16 @@
                 Manager Calendar
             </a>
         </li>
-        <li id="UserManagementTable" class="menuLink">
-            <a ng-show="loginStatus == true && role == 'admin'" ng-click="navigate('UserManagementTable')">
-                <div class="fa fa-users"></div>
+        <li id="UserManagement" class="menuLink">
+            <a ng-show="loginStatus == true && role == 'admin'" ng-click="navigate('UserManagement')">
+                <div class="fa fa-user"></div>
                 User Management
+            </a>
+        </li>
+        <li id="TeamManagement" class="menuLink">
+            <a ng-show="loginStatus == true && role == 'admin'" ng-click="navigate('TeamManagement')">
+                <div class="fa fa-users"></div>
+                Team Management
             </a>
         </li>
     </ul>

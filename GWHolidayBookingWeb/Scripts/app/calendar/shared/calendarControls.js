@@ -1,16 +1,16 @@
-﻿calendarControlsDirective = function (dataService, templates, $timeout) {
+﻿calendarControlsDirective = function(dataService, templates, $timeout) {
     "use strict";
     return {
         restrict: "E",
-        templateUrl: function ($elem, $attr) {
+        templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
         controller: "CalendarController",
         scope: false,
-        link: function ($scope) {
+        link: function($scope) {
 
             // watches the tab holidays table and hides it if there aren't any changes pending, but otherwise shows it if there are pending requests.
-            $scope.$watch("holidayRequests", function () {
+            $scope.$watch("holidayRequests", function() {
                 if ($scope.mode === "manager") {
                     if (typeof $scope.holidayRequests !== "undefined") {
                         var actionsContainer = $(".actionsContainer");
@@ -22,7 +22,7 @@
             }, true);
 
             // watches the user changes table and hides it if there aren't any changes pending, but otherwise shows it if there are outstanding changes.
-            $scope.$watch("changes", function () {
+            $scope.$watch("changes", function() {
                 if ($scope.mode === "employee") {
                     if (typeof $scope.changes !== "undefined") {
                         var changesContainer = $(".changesContainer");
@@ -39,10 +39,10 @@
                 }
             }, true);
 
-            $scope.hideChanges = function (container, callback) {
+            $scope.hideChanges = function(container, callback) {
                 container.addClass("hiding")
                     .clearQueue()
-                    .animate({ height: "hide" }, 600, function () {
+                    .animate({ height: "hide" }, 600, function() {
                         $(this).hide();
                         $(this).removeClass("hiding");
                         if (typeof (callback) == "function") {
@@ -52,7 +52,7 @@
             };
 
             // watches the team holiday bookings array and updates the notification divs based on whether or not there are pending requests
-            $scope.$watch("teamUserHolidayBookings", function () {
+            $scope.$watch("teamUserHolidayBookings", function() {
                 if ($scope.mode === "manager") {
                     if (typeof $scope.teamUserHolidayBookings !== "undefined") {
                         var tUHB = $scope.teamUserHolidayBookings;
@@ -78,7 +78,7 @@
             }, true);
 
             // slides the last row in the changes table downwards and shows it
-            $scope.slideDownChangesContainerTableRow = function () {
+            $scope.slideDownChangesContainerTableRow = function() {
                 var lastRow = $(".tableBody.changes").children("tbody").children("tr:last");
                 lastRow.children(".tableCellAction")
                     .wrapInner('<div class="td-slider fa fa-times" style="display:none;"/>');
@@ -93,14 +93,14 @@
             };
 
             // slides the corresponding row in the changes table upwards and hides it
-            $scope.slideUpChangesContainerTableRow = function (event, date) {
+            $scope.slideUpChangesContainerTableRow = function(event, date) {
                 var selectedRow = $(event.target).parent("td").parent("tr");
                 $(selectedRow)
                     .children("td")
                     .children(".td-slider")
                     .clearQueue()
                     .stop()
-                    .animate({ height: "hide", padding: "0" }, 700, function () {
+                    .animate({ height: "hide", padding: "0" }, 700, function() {
                         var cellIndex = this.parentNode.cellIndex;
                         if (cellIndex == 0) {
                             $scope.select(date);
@@ -109,7 +109,7 @@
             };
 
             // submits the changes that the user has made and hides the submit related divs
-            $scope.acceptChanges = function () {
+            $scope.acceptChanges = function() {
                 if ($scope.mode === "employee") {
                     $scope.submitHolidaySingleEmployee();
                 } else {
@@ -118,7 +118,7 @@
                 $scope.toggleSubmitStatus();
             };
 
-            $scope.toggleSubmitStatus = function () {
+            $scope.toggleSubmitStatus = function() {
                 var acceptSlider = $(".acceptSlider");
                 var acceptText = $(".acceptText");
                 var declineSlider = $(".declineSlider");
@@ -132,12 +132,10 @@
                 declineText.clearQueue().stop();
                 acceptText.fadeToggle(800);
                 declineText.fadeToggle(800);
-
             };
 
-
             // triggered when the user has clicked a team member/all in the first column of the controls table
-            $scope.teamMemberSelected = function (event) {
+            $scope.teamMemberSelected = function(event) {
                 var optionChecked = event.target.getAttribute("value");
                 $(event.target).toggleClass("active");
                 setTeamSelected(optionChecked, event);
@@ -146,7 +144,7 @@
             };
 
             // gathers the information on each team members holidays
-            $scope.populateTableCounts = function (teamMember) {
+            $scope.populateTableCounts = function(teamMember) {
                 var pendingCount = 0;
                 var confirmedCount = 0;
                 var cancelledCount = 0;
@@ -166,12 +164,12 @@
             };
 
             // adds a scroll bar to the table, called upon when it has finished initializing
-            $scope.addScrollBar = function () {
+            $scope.addScrollBar = function() {
                 jQuery(".scrollBar").scrollbar();
             };
 
             // formats the a moment date into one of three formats
-            $scope.formatDate = function (date, type) {
+            $scope.formatDate = function(date, type) {
                 if (typeof date !== "undefined") {
                     var dateObject = date.toObject();
                     var dateMoment = moment(dateObject);
@@ -186,7 +184,7 @@
             };
 
             // deals with the accepting/declining of holiday requests by managers
-            $scope.holidayRequestAction = function (date, staffId, typeOfHoliday, action) {
+            $scope.holidayRequestAction = function(date, staffId, typeOfHoliday, action) {
                 var tUHB = $scope.teamUserHolidayBookings;
                 for (var i = 0; i < tUHB.length; i++) {
                     if (tUHB[i].StaffId === staffId) {
@@ -222,9 +220,9 @@
             };
 
             // populates the table of holiday requests
-            $scope.holidayRequestSelect = function (staffId, typeOfHoliday, e) {
+            $scope.holidayRequestSelect = function(staffId, typeOfHoliday, e) {
                 var teamMemberElement = e.target.parentElement.firstElementChild;
-                if (e.target.innerText > 0) {
+                if ($(e.target).text() > 0) {
                     $(".tableCell").removeClass("clicked");
                     $(e.target).addClass("clicked");
                     if ($(e.target).hasClass("isCancelledHoliday")) {
@@ -233,7 +231,7 @@
                         $(e.target).effect("highlight", { color: "rgb(52, 152, 219);" }, 400);
                     }
 
-                    $timeout(function () {
+                    $timeout(function() {
                         if (!($(teamMemberElement).hasClass("active") || $(teamMemberElement).hasClass("dead"))) {
                             $(teamMemberElement).trigger("click");
                         }
@@ -241,7 +239,7 @@
                     var tUHB = $scope.teamUserHolidayBookings;
                     var holidayRequests = [];
                     for (var i = 0; i < tUHB.length; i++) {
-                        tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function (booking) { return booking.StartDate; });
+                        tUHB[i].HolidayBookings = _.sortBy(tUHB[i].HolidayBookings, function(booking) { return booking.StartDate; });
                         if (tUHB[i].StaffId === staffId) {
                             for (var j = 0; j < tUHB[i].HolidayBookings.length; j++) {
                                 if (tUHB[i].HolidayBookings[j].BookingStatus === typeOfHoliday) {

@@ -60,7 +60,7 @@ namespace GWHolidayBookingWeb.Controllers
             employeeDataService.UpdateHolidays(employeeAndHoliday);
         }
 
-        [ClaimsAuthorize(RoleName = "Admin")]
+        [ClaimsAuthorize(RoleName = "admin")]
         [Route("UpdateEmployeesAndHolidays")]
         public void UpdateEmployeesAndHolidays(List<Employee> employeesAndHolidays)
         {
