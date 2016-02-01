@@ -30,7 +30,7 @@ infoBoxDirective = function () {
         }
     };
 };
-calendarDirective = function (templates, $timeout, userService, helperService) {
+calendarDirective = function (templates, $timeout, userService, helperService, dataService) {
     "use strict";
     return {
         restrict: "E",
@@ -306,17 +306,35 @@ calendarDirective = function (templates, $timeout, userService, helperService) {
 
             // initializes on creation of a calendar, if the mode is employee then the users holidays are retrieved from the database
             // the data is then initialized (turning the dates into moment etc) and then the holiday is made visible
-            // otherwise the calendar is just loaded
-            function init() {
+            $scope.init = function () {
+                dataService.publicHolidaysGet().then(function (listOfPublicHolidays) {
+                    listOfPublicHolidays.data.forEach(function (publicHoliday) {
+                        publicHoliday.Date = moment(publicHoliday.Date, "YYYY-MM-DD-Z");
+                    });
+                    $scope.publicHolidays = listOfPublicHolidays.data;
+                    $scope.selected = moment();
+                    if ($scope.mode === "manager") {
+                        dataService.employeesGet().then(function (response) {
+                            $scope.teamUserHolidayBookings = response.data;
+                            $scope.initData($scope.teamUserHolidayBookings);
+                            $scope.reloadCalendar();
+                        });
+                    } else {
+                        dataService.employeesGet().then(function (response) {
+                            $scope.teamUserHolidayBookings = response.data;
+                            $scope.initData($scope.teamUserHolidayBookings);
+                            $scope.reloadCalendar();
+                        });
+                    };
+                });
                 if ($scope.mode === "employee") {
                     $scope.userHolidayBookings = userService.employeeGetById();
-                    $scope.initData([$scope.userHolidayBookings]);
+                    $scope.initData($scope.userHolidayBookings);
                     $scope.userHolidayBookings.isVisible = true;
                 };
-                $scope.reloadCalendar();
             };
 
-            init();
+            $scope.init();
         }
     };
 };
@@ -413,6 +431,11 @@ calendarControlsDirective = function (dataService, templates, $timeout) {
                         $scope.select(date);
                     }
                 });
+            };
+
+            $scope.toggleEditMode = function (e) {
+                $scope.editMode = !$scope.editMode;
+                $(e.target).toggleClass("active");
             };
 
             // submits the changes that the user has made and hides the submit related divs
@@ -681,6 +704,48 @@ tooltipDirective = function (templates) {
             $scope.hideTooltip = function () {
                 $scope.tooltipIsVisible = false;
             };
+        }
+    };
+};
+managementDirective = function (templates) {
+    "use strict";
+    return {
+        restrict: "E",
+        templateUrl: function templateUrl($elem, $attr) {
+            return templates[$attr.mode];
+        },
+        controller: "ManagementController",
+        scope: true,
+        link: function link($scope) {
+            $scope.showCreate = function showCreate() {
+                $(".createContainer").toggleClass("hidden");
+            };
+
+            $scope.resetRegister = function resetRegister() {
+                $(".createContainer").toggleClass("hidden");
+                $(".createUserForm").trigger("reset");
+            };
+        }
+    };
+};
+menuDirective = function () {
+    "use strict";
+    return {
+        restrict: "E",
+        templateUrl: "/Scripts/app/templates/menuTemplate.html",
+        controller: "MenuController",
+        scope: true,
+        link: function link($scope) {
+            $('.menu-toggle').click(function () {
+                $('.mainContainer').toggleClass('minimized');
+                if ($('.menu-toggle').hasClass('fa-caret-square-o-left')) {
+                    $('.menu-toggle').removeClass('fa-caret-square-o-left');
+                    $('.menu-toggle').addClass('fa-caret-square-o-right');
+                } else {
+                    $('.menu-toggle').removeClass('fa-caret-square-o-right');
+                    $('.menu-toggle').addClass('fa-caret-square-o-left');
+                }
+            });
         }
     };
 };

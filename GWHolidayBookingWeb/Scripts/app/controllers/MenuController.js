@@ -1,27 +1,15 @@
-﻿MenuController = function($scope, viewService, tokenService, userService) {
+﻿MenuController = function ($scope, viewService, tokenService, userService) {
     "use strict";
     var childScope;
 
     function init() {
         defaultViews();
-        $scope.$on("loggedIn", function() {
+        $scope.$on("loggedIn", function () {
             $scope.loginStatus = tokenService.getLoginStatus();
             var user = userService.employeeGetById();
             $scope.role = user.RoleName.toLowerCase();
             $scope.loggedInUsername = user.FirstName + " " + user.LastName;
             $scope.navigate("EmployeeCalendar");
-
-            $('.menu-toggle').click(function() {
-                $('.mainContainer').toggleClass('minimized');
-                if ($('.menu-toggle').hasClass('fa-caret-square-o-left')) {
-                    $('.menu-toggle').removeClass('fa-caret-square-o-left');
-                    $('.menu-toggle').addClass('fa-caret-square-o-right');
-                } else {
-                    $('.menu-toggle').removeClass('fa-caret-square-o-right');
-                    $('.menu-toggle').addClass('fa-caret-square-o-left');
-                }
-
-            });
         });
     };
 
@@ -31,12 +19,12 @@
         $scope.loginStatus = tokenService.getLoginStatus();
     };
 
-    $scope.logOut = function() {
+    $scope.logOut = function () {
         tokenService.setToken("", false);
         defaultViews();
     };
 
-    $scope.navigate = function(nameOfLink) {
+    $scope.navigate = function (nameOfLink) {
         if (typeof $scope.state === "undefined")
             $scope.state = "New";
         if ($scope.state === "New") {
@@ -49,14 +37,7 @@
             $scope.state = "New";
             $scope.navigate(nameOfLink);
         }
-        if (nameOfLink !== "Link") {
-            var allMenuLinks = $(".menuLink");
-            var targetMenuLink = $("#" + nameOfLink);
-            allMenuLinks.css("pointer-events", "all");
-            targetMenuLink.css("pointer-events", "none");
-            allMenuLinks.removeClass("active");
-            targetMenuLink.addClass("active");
-        }
+        $scope.setMenuLinkActive(nameOfLink);
         if (nameOfLink === "EmployeeCalendar") {
             userService.refreshUser();
         }

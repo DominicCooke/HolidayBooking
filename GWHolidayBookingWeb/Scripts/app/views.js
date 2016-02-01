@@ -1,10 +1,8 @@
 ﻿views = {
-    Menu: "Scripts/app/menu/menu.html",
-    TeamManagement: "Scripts/app/management/teamManagement.html",
-    UserManagement: "Scripts/app/management/userManagement.html",
-    Login: "Scripts/app/login/login.html",
-    EmployeeCalendar: "Scripts/app/calendar/employee/container.html",
-    ManagerCalendar: "Scripts/app/calendar/manager/container.html",
-    CalendarModeManager: "Scripts/app/calendar/manager/mode.html",
-    CalendarModeEmployee: "Scripts/app/calendar/employee/mode.html"
+    Login: "Scripts/app/views/login.html",
+    Menu: "Scripts/app/views/sideMenu.html",
+    EmployeeCalendar: "Scripts/app/views/employeeCalendar.html",
+    ManagerCalendar: "Scripts/app/views/managerCalendar.html",
+    TeamManagement: "Scripts/app/views/teamManagement.html",
+    UserManagement: "Scripts/app/views/userManagement.html"
 }

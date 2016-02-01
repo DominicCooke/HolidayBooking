@@ -2,26 +2,28 @@
     {
         "outputFileName": "Scripts/bundles/directives.js",
         "inputFiles": [
-            "Scripts/app/calendar/employee/infoBox.js",
-            "Scripts/app/calendar/shared/calendar.js",
-            "Scripts/app/calendar/shared/calendarControls.js",
-            "Scripts/app/calendar/shared/tooltip.js"
+            "Scripts/app/directives/infoBox.js",
+            "Scripts/app/directives/calendar.js",
+            "Scripts/app/directives/calendarControls.js",
+            "Scripts/app/directives/tooltip.js",
+            "Scripts/app/directives/management.js",
+            "Scripts/app/directives/sideMenu.js"
         ]
     },
     {
         "outputFileName": "Scripts/bundles/controllers.js",
         "inputFiles": [
-            "Scripts/app/menu/MenuController.js",
-            "Scripts/app/login/LoginController.js",
-            "Scripts/app/calendar/CalendarController.js",
-            "Scripts/app/management/ManagementController.js"
+            "Scripts/app/controllers/MenuController.js",
+            "Scripts/app/controllers/LoginController.js",
+            "Scripts/app/controllers/CalendarController.js",
+            "Scripts/app/controllers/ManagementController.js"
         ]
     },
     {
         "outputFileName": "Scripts/bundles/services.js",
         "inputFiles": [
-            "Scripts/app/login/loginService.js",
-            "Scripts/app/login/tokenService.js",
+            "Scripts/app/services/loginService.js",
+            "Scripts/app/services/tokenService.js",
             "Scripts/app/services/templateService.js",
             "Scripts/app/services/dataService.js",
             "Scripts/app/services/userService.js",

@@ -2,7 +2,7 @@
     "use strict";
     return {
         restrict: "E",
-        templateUrl: "/Scripts/app/calendar/employee/infoBox.html",
+        templateUrl: "/Scripts/app/templates/components/employeeCalendarInfoBoxTemplate.html",
         controller: "CalendarController",
         scope: true,
         link: function($scope) {

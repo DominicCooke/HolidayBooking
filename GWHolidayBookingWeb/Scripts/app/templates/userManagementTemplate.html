@@ -4,7 +4,7 @@
         User Management
     </h3>
 </div>
-<div class="userManagementContainer" ng-controller="ManagementController">
+<div class="userManagementContainer" ng-controller="ManagementController as managementCtrl">
     <div class="tableContainer">
         <table id="Employee" class="table table-striped table-hover table-bordered">
             <tr class="tableHead">
@@ -18,7 +18,7 @@
             </tr>
             <tr class="tableRow" ng-repeat="employee in data" ng-hide="employee.Deleted" data-id="{{employee.StaffId}}">
                 <td class="actionsColumn">
-                    <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" onaftersave="update($data)" shown="employee.StaffId == ''">
+                    <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" onaftersave="managementCtrl.update($data)" shown="employee.StaffId == ''">
                         <button type="submit" value="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                             <i class="fa fa-floppy-o"></i>
                         </button>
@@ -29,7 +29,7 @@
                     <div class="actionsOnData" ng-show="!rowform.$visible">
                         <i ng-click="rowform.$show()" class="fa fa-pencil"></i>
                         |
-                        <i ng-click="delete(employee)" class="fa fa-trash-o"></i>
+                        <i ng-click="managementCtrl.delete(employee)" class="fa fa-trash-o"></i>
                         |
                         <span uib-dropdown uib-dropdown-append-to-body>
                             <a id="simple-dropdown" uib-dropdown-toggle>
@@ -37,7 +37,7 @@
                             </a>
                             <ul class="uib-dropdown-menu" aria-labelledby="uib-simple-dropdown">
                                 <li ng-repeat="role in roles">
-                                    <a ng-click="userSetRole(employee, role)" id="{{role.Id}}">{{role.Name}}</a>
+                                    <a ng-click="managementCtrl.userSetRole(employee, role)" id="{{role.Id}}">{{role.Name}}</a>
                                 </li>
                             </ul>
                         </span>
@@ -86,7 +86,7 @@
                 <input class="form-control" type="text" id="email" ng-model="newUser.EmailAddress" />
             </div>
             <div class="form-actions">
-                <button type="submit" value="submit" class="btn btn-success" ng-click="register(newUser)">Submit</button>
+                <button type="submit" value="submit" class="btn btn-success" ng-click="managementCtrl.register(newUser)">Submit</button>
                 <button class="btn btn-danger" ng-click="showCreate()">Cancel</button>
             </div>
         </form>

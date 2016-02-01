@@ -108,6 +108,11 @@
                     });
             };
 
+            $scope.toggleEditMode = function (e) {
+                $scope.editMode = !$scope.editMode;
+                $(e.target).toggleClass("active");
+            };
+
             // submits the changes that the user has made and hides the submit related divs
             $scope.acceptChanges = function() {
                 if ($scope.mode === "employee") {

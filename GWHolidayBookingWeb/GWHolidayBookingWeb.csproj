@@ -177,7 +177,12 @@
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\icon-user-default.png" />
-    <Content Include="Scripts\app\management\teamManagement.html" />
+    <Content Include="Scripts\app\directives\management.js" />
+    <Content Include="Scripts\app\views\teamManagement.html" />
+    <Content Include="Scripts\app\templates\teamManagementTemplate.html" />
+    <Content Include="Scripts\app\views\userManagement.html" />
+    <Content Include="Scripts\app\directives\sideMenu.js" />
+    <Content Include="Scripts\app\views\sideMenu.html" />
     <Content Include="Scripts\app\services\helperService.js" />
     <Content Include="Scripts\bundles\controllers.js" />
     <Content Include="Scripts\bundles\controllers.min.js">
@@ -192,6 +197,12 @@
     <Content Include="Scripts\bundles\directives.js" />
     <Content Include="Scripts\bundles\directives.min.js">
       <DependentUpon>directives.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bundles\libs.es5.js">
+      <DependentUpon>libs.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bundles\libs.es5.min.js">
+      <DependentUpon>libs.es5.js</DependentUpon>
     </Content>
     <Content Include="Scripts\bundles\libs.js" />
     <Content Include="Scripts\bundles\libs.min.js">
@@ -213,14 +224,12 @@
     <Content Include="Scripts\lib\angular\angular\angular-animate.js" />
     <Content Include="Scripts\lib\angular\xeditable\xeditable.css" />
     <Content Include="Scripts\lib\angular\xeditable\xeditable.js" />
-    <Content Include="Scripts\app\login\LoginController.js" />
-    <Content Include="Scripts\app\calendar\employee\mode.html" />
-    <Content Include="Scripts\app\calendar\manager\mode.html" />
-    <Content Include="Scripts\app\login\login.html" />
-    <Content Include="Scripts\app\management\userManagement.html" />
+    <Content Include="Scripts\app\controllers\LoginController.js" />
+    <Content Include="Scripts\app\views\login.html" />
+    <Content Include="Scripts\app\templates\userManagementTemplate.html" />
     <Content Include="Scripts\app\services\dataService.js" />
-    <Content Include="Scripts\app\login\loginService.js" />
-    <Content Include="Scripts\app\login\tokenService.js" />
+    <Content Include="Scripts\app\services\loginService.js" />
+    <Content Include="Scripts\app\services\tokenService.js" />
     <Content Include="Scripts\app\services\userService.js" />
     <Content Include="Scripts\app\calendar\employee\infoBox.html" />
     <Content Include="Scripts\app\calendar\employee\controls.html" />
@@ -266,19 +275,19 @@
     <Content Include="Scripts\lib\angular\chart\angular-chart.min.js" />
     <Content Include="Scripts\lib\angular\chart\Chart.js" />
     <Content Include="Scripts\app\app.module.js" />
-    <Content Include="Scripts\app\calendar\CalendarController.js" />
-    <Content Include="Scripts\app\menu\MenuController.js" />
+    <Content Include="Scripts\app\controllers\CalendarController.js" />
+    <Content Include="Scripts\app\controllers\MenuController.js" />
     <Content Include="Scripts\app\views.js" />
     <Content Include="Scripts\app\services\templateService.js" />
     <Content Include="Scripts\app\services\viewService.js" />
     <Content Include="Scripts\app\calendar\manager\controls.html" />
     <Content Include="Scripts\app\calendar\employee\calendar.html" />
     <Content Include="Scripts\app\calendar\manager\calendar.html" />
-    <Content Include="Scripts\app\calendar\templates.js" />
+    <Content Include="Scripts\app\templates.js" />
     <Content Include="Scripts\app\calendar\manager\tooltip.html" />
-    <Content Include="Scripts\app\calendar\employee\container.html" />
-    <Content Include="Scripts\app\calendar\manager\container.html" />
-    <Content Include="Scripts\app\menu\menu.html" />
+    <Content Include="Scripts\app\views\employeeCalendar.html" />
+    <Content Include="Scripts\app\views\managerCalendar.html" />
+    <Content Include="Scripts\app\templates\menuTemplate.html" />
     <None Include="Scripts\lib\jquery\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\lib\jquery\jquery-2.1.4.js" />
     <Content Include="Scripts\lib\jquery\jquery-2.1.4.min.js" />
@@ -354,7 +363,7 @@
     <Compile Include="DataAccess\Identity\IdentityEmployee.cs" />
     <Compile Include="DataAccess\Identity\Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="DataAccess\Repositories\IEmployeeRepository.cs" />
-    <Content Include="Scripts\app\management\ManagementController.js" />
+    <Content Include="Scripts\app\controllers\ManagementController.js" />
     <Compile Include="Models\PublicHoliday.cs" />
     <Compile Include="Services\IEmployeeDataService.cs" />
     <Compile Include="Models\Employee.cs" />

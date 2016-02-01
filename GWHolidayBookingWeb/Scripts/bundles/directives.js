@@ -2,7 +2,7 @@ infoBoxDirective = function() {
     "use strict";
     return {
         restrict: "E",
-        templateUrl: "/Scripts/app/calendar/employee/infoBox.html",
+        templateUrl: "/Scripts/app/templates/components/employeeCalendarInfoBoxTemplate.html",
         controller: "CalendarController",
         scope: true,
         link: function($scope) {
@@ -27,21 +27,21 @@ infoBoxDirective = function() {
         }
     };
 };
-calendarDirective = function(templates, $timeout, userService, helperService) {
+calendarDirective = function (templates, $timeout, userService, helperService, dataService) {
     "use strict";
     return {
         restrict: "E",
-        templateUrl: function($elem, $attr) {
+        templateUrl: function ($elem, $attr) {
             return templates[$attr.mode];
         },
         controller: "CalendarController",
         scope: false,
-        link: function($scope) {
+        link: function ($scope) {
 
             // triggered when the user has selected a day on the calendar
             // checks whether or not the calendar is in edit mode, and then checks what state the day the user has chosen is in
             // creates a row in the changes table so the user can track the changes that they have made
-            $scope.select = function(date) {
+            $scope.select = function (date) {
                 $scope.selected = date;
                 var pending = 0;
                 var confirmed = 1;
@@ -89,7 +89,7 @@ calendarDirective = function(templates, $timeout, userService, helperService) {
             };
 
             // changes the calendar to the next month
-            $scope.next = function() {
+            $scope.next = function () {
                 var next = $scope.month.clone();
                 removeTime(next.month(next.month() + 1).date(0));
                 $scope.month.month($scope.month.month() + 1);
@@ -99,7 +99,7 @@ calendarDirective = function(templates, $timeout, userService, helperService) {
             };
 
             // changes the calendar to the previous month
-            $scope.previous = function() {
+            $scope.previous = function () {
                 var previous = $scope.month.clone();
                 removeTime(previous.month(previous.month() - 1).date(0));
                 $scope.month.month($scope.month.month() - 1);
@@ -112,7 +112,7 @@ calendarDirective = function(templates, $timeout, userService, helperService) {
             // otherwise the new row is slid down using the slideDownChangesContainerTableRow method.
             function changeTableCreate(date, state) {
                 var push = true;
-                $scope.changes.forEach(function(entry) {
+                $scope.changes.forEach(function (entry) {
                     var duplicateIndex = $scope.changes.indexOf(entry);
                     if (entry.dateChange.isSame(date, "day")) {
                         push = false;
@@ -121,7 +121,7 @@ calendarDirective = function(templates, $timeout, userService, helperService) {
                 });
                 if (push) {
                     $scope.changes.push({ dateChange: date, stateChange: state });
-                    $timeout(function() {
+                    $timeout(function () {
                         $scope.slideDownChangesContainerTableRow();
                     });
                 }
@@ -263,9 +263,9 @@ calendarDirective = function(templates, $timeout, userService, helperService) {
             }
 
             // iterates over all of the days in the calendar, and updates the mini-preview of how many team members have booked for each day
-            $scope.teamHolidayCount = function() {
-                $timeout(function() {
-                    $(".day").each(function(index) {
+            $scope.teamHolidayCount = function () {
+                $timeout(function () {
+                    $(".day").each(function (index) {
                         var holidayCount = $(this)[0].getAttribute("amountofholiday");
                         for (var i = 0; i <= holidayCount; i++) {
                             var className;
@@ -287,7 +287,7 @@ calendarDirective = function(templates, $timeout, userService, helperService) {
             };
 
             // reloads the calendar which has the effect of resetting all the classes on the days
-            $scope.reloadCalendar = function(mode) {
+            $scope.reloadCalendar = function (mode) {
                 var start;
                 if (mode === true) {
                     start = $scope.month.clone();
@@ -302,17 +302,36 @@ calendarDirective = function(templates, $timeout, userService, helperService) {
 
             // initializes on creation of a calendar, if the mode is employee then the users holidays are retrieved from the database 
             // the data is then initialized (turning the dates into moment etc) and then the holiday is made visible
-            // otherwise the calendar is just loaded
-            function init() {
+            $scope.init = function () {
+                dataService.publicHolidaysGet().then(function (listOfPublicHolidays) {
+                    listOfPublicHolidays.data.forEach(function (publicHoliday) {
+                        publicHoliday.Date = moment(publicHoliday.Date, "YYYY-MM-DD-Z");
+                    });
+                    $scope.publicHolidays = listOfPublicHolidays.data;
+                    $scope.selected = moment();
+                    if ($scope.mode === "manager") {
+                        dataService.employeesGet().then(function (response) {
+                            $scope.teamUserHolidayBookings = response.data;
+                            $scope.initData($scope.teamUserHolidayBookings);
+                            $scope.reloadCalendar();
+                        });
+                    } else {
+                        dataService.employeesGet().then(function (response) {
+                            $scope.teamUserHolidayBookings = response.data;
+                            $scope.initData($scope.teamUserHolidayBookings);
+                            $scope.reloadCalendar();
+                        });
+                    };
+                    
+                });
                 if ($scope.mode === "employee") {
                     $scope.userHolidayBookings = userService.employeeGetById();
-                    $scope.initData([$scope.userHolidayBookings]);
+                    $scope.initData($scope.userHolidayBookings);
                     $scope.userHolidayBookings.isVisible = true;
                 };
-                $scope.reloadCalendar();
             };
 
-            init();
+            $scope.init();
         }
     };
 };
@@ -424,6 +443,11 @@ calendarControlsDirective = function(dataService, templates, $timeout) {
                             $scope.select(date);
                         }
                     });
+            };
+
+            $scope.toggleEditMode = function (e) {
+                $scope.editMode = !$scope.editMode;
+                $(e.target).toggleClass("active");
             };
 
             // submits the changes that the user has made and hides the submit related divs
@@ -693,6 +717,55 @@ tooltipDirective = function (templates) {
             // hides the tooltip
             $scope.hideTooltip = function () {
                 $scope.tooltipIsVisible = false;
+            };
+        }
+    };
+};
+managementDirective = function (templates) {
+    "use strict";
+    return {
+        restrict: "E",
+        templateUrl: function ($elem, $attr) {
+            return templates[$attr.mode];
+        },
+        controller: "ManagementController",
+        scope: true,
+        link: function ($scope) {
+            $scope.showCreate = function showCreate() {
+                $(".createContainer").toggleClass("hidden");
+            };
+
+            $scope.resetRegister = function resetRegister() {
+                $(".createContainer").toggleClass("hidden");
+                $(".createUserForm").trigger("reset");
+            };
+        }
+    };
+};
+sideMenuDirective = function (templates) {
+    return {
+        restrict: "E",
+        templateUrl: templates.sideMenu,
+        controller: "",
+        scope: false,
+        link: function ($scope) {
+            $('.menu-toggle').click(function () {
+                $('.mainContainer').toggleClass('minimized');
+                if ($('.menu-toggle').hasClass('fa-caret-square-o-left')) {
+                    $('.menu-toggle').removeClass('fa-caret-square-o-left');
+                    $('.menu-toggle').addClass('fa-caret-square-o-right');
+                } else {
+                    $('.menu-toggle').removeClass('fa-caret-square-o-right');
+                    $('.menu-toggle').addClass('fa-caret-square-o-left');
+                }
+            });
+            $scope.setMenuLinkActive = function setMenuLinkActive(nameOfLink) {
+                var allMenuLinks = $(".menuLink");
+                var targetMenuLink = $("#" + nameOfLink);
+                allMenuLinks.css("pointer-events", "all");
+                targetMenuLink.css("pointer-events", "none");
+                allMenuLinks.removeClass("active");
+                targetMenuLink.addClass("active");
             };
         }
     };
