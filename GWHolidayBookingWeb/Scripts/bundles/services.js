@@ -146,8 +146,6 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Employee/UpdateEmployeesAndHolidays"
             });
         },
-
-
         userDelete: function(user) {
             return $http({
                 data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId },
@@ -168,7 +166,7 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/User/RegisterUserAndEmployee"
             });
         },
-        userSetRole: function(user, role) {
+        userSetRole: function (user, role) {
             return $http({
                 data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
@@ -186,7 +184,38 @@ dataService = function($http, tokenService, guidService) {
                 },
                 url: "http://localhost:57068/api/User/GetUsersAndRoles"
             });
+        },
+        teamRegister: function (team) {
+            return $http({
+                data: team,
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
+                },
+                url: "http://localhost:57068/api/Team/CreateTeam"
+            });
+        },
+        teamUpdate: function (team) {
+            return $http({
+                data: team,
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
+                },
+                url: "http://localhost:57068/api/Team/UpdateTeam"
+            });
+        },
+        teamSetEmployee: function (employee, team) {
+            return $http({
+                data: { Employee: employee, Team: team },
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
+                },
+                url: "http://localhost:57068/api/Employee/EmployeeSetTeam"
+            });
         }
+        
     };
 }
 userService = function(dataService, loginService) {

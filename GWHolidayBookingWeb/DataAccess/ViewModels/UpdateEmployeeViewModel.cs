@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GWHolidayBookingWeb.Models;
+using System;
 
 namespace GWHolidayBookingWeb.DataAccess.ViewModels
 {
@@ -9,6 +10,7 @@ namespace GWHolidayBookingWeb.DataAccess.ViewModels
         public string LastName { get; set; }
         public int HolidayAllowance { get; set; }
         public int RemainingAllowance { get; set; }
+        public TeamViewModel Team { get; set; }
         public IdentityUserViewModel UserViewModel { get; set; }
     }
 }

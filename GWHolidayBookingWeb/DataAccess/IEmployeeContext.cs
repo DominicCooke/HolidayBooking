@@ -8,5 +8,6 @@ namespace GWHolidayBookingWeb.DataAccess
         DbSet<Employee> Employees { get; set; }
         DbSet<EmployeeHolidayBooking> HolidayBookings { get; set; }
         DbSet<PublicHoliday> PublicHolidays { get; set; }
+        DbSet<Team> Teams { get; set; }
     }
 }

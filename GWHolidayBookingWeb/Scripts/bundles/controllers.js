@@ -133,6 +133,7 @@ ManagementController = function ($scope, dataService) {
         dataService.userGet().then(function (response) {
             $scope.data = response.data.ListOfCalendarViewModels;
             $scope.roles = response.data.ListOfIdentityRoles;
+            $scope.teams = response.data.ListOfTeams;
         });
     };
 
@@ -144,7 +145,7 @@ ManagementController = function ($scope, dataService) {
         });
     };
 
-    $scope.register = function (user) {
+    $scope.userRegister = function (user) {
         dataService.userRegister(user).then(function () {
             $scope.resetRegister();
             dataService.userGet().then(function (response) {
@@ -153,12 +154,33 @@ ManagementController = function ($scope, dataService) {
         });
     };
 
-    $scope.update = function (user) {
+    $scope.teamRegister = function (team) {
+        dataService.teamRegister(team).then(function () {
+            $scope.resetRegister();
+            dataService.userGet().then(function (response) {
+                $scope.teams = response.data.ListOfTeams;
+            });
+        });
+    };
+
+    $scope.updateUser = function (user) {
         dataService.employeeUpdate(user);
+    };
+
+    $scope.updateTeam = function (team) {
+        dataService.teamUpdate(team);
     };
 
     $scope.userSetRole = function (user, role) {
         dataService.userSetRole(user, role).then(function (response) {
+            dataService.userGet().then(function (response) {
+                $scope.data = response.data.ListOfCalendarViewModels;
+            });
+        });
+    };
+
+    $scope.teamSetEmployee = function (user, team) {
+        dataService.teamSetEmployee(user, team).then(function (response) {
             dataService.userGet().then(function (response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });

@@ -5,7 +5,7 @@
         templateUrl: function ($elem, $attr) {
             return templates[$attr.mode];
         },
-        controller: "ManagementController",
+        controller: "",
         scope: true,
         link: function ($scope) {
             $scope.showCreate = function showCreate() {
@@ -14,7 +14,7 @@
 
             $scope.resetRegister = function resetRegister() {
                 $(".createContainer").toggleClass("hidden");
-                $(".createUserForm").trigger("reset");
+                $(".createForm").trigger("reset");
             };
         }
     };

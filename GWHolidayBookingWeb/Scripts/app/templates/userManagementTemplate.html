@@ -4,21 +4,22 @@
         User Management
     </h3>
 </div>
-<div class="userManagementContainer" ng-controller="ManagementController as managementCtrl">
+<div class="userManagementContainer managementContainer" ng-controller="ManagementController">
     <div class="tableContainer">
-        <table id="Employee" class="table table-striped table-hover table-bordered">
+        <table class="table table-striped table-hover table-bordered">
             <tr class="tableHead">
                 <th>Actions</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>EmailAddress</th>
+                <th>Email / Login</th>
                 <th>Holiday Allowance</th>
                 <th>Remaining Allowance</th>
                 <th>Role</th>
+                <th>Team</th>
             </tr>
-            <tr class="tableRow" ng-repeat="employee in data" ng-hide="employee.Deleted" data-id="{{employee.StaffId}}">
+            <tr class="tableRow" ng-repeat="user in data" ng-hide="user.Deleted" data-id="{{user.StaffId}}">
                 <td class="actionsColumn">
-                    <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" onaftersave="managementCtrl.update($data)" shown="employee.StaffId == ''">
+                    <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" onaftersave="updateUser($data)" shown="user.StaffId == ''">
                         <button type="submit" value="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                             <i class="fa fa-floppy-o"></i>
                         </button>
@@ -27,67 +28,78 @@
                         </button>
                     </form>
                     <div class="actionsOnData" ng-show="!rowform.$visible">
-                        <i ng-click="rowform.$show()" class="fa fa-pencil"></i>
-                        |
-                        <i ng-click="managementCtrl.delete(employee)" class="fa fa-trash-o"></i>
-                        |
+                        <i ng-click="rowform.$show()" class="fa fa-pencil" title="Edit"></i>
+                        <i ng-click="delete(user)" class="fa fa-trash-o" title="Delete"></i>
                         <span uib-dropdown uib-dropdown-append-to-body>
                             <a id="simple-dropdown" uib-dropdown-toggle>
-                                <i class="fa fa-user"></i>
+                                <i class="fa fa-user" title="Edit Role"></i>
                             </a>
                             <ul class="uib-dropdown-menu" aria-labelledby="uib-simple-dropdown">
                                 <li ng-repeat="role in roles">
-                                    <a ng-click="managementCtrl.userSetRole(employee, role)" id="{{role.Id}}">{{role.Name}}</a>
+                                    <a ng-click="userSetRole(user, role)" id="{{role.Id}}">{{role.Name}}</a>
+                                </li>
+                            </ul>
+                        </span>
+                        <span uib-dropdown uib-dropdown-append-to-body>
+                            <a id="simple-dropdown" uib-dropdown-toggle>
+                                <i class="fa fa-users" title ="Edit Team"></i>
+                            </a>
+                            <ul class="uib-dropdown-menu" aria-labelledby="uib-simple-dropdown">
+                                <li ng-repeat="team in teams">
+                                    <a ng-click="teamSetEmployee(user, team)" id="{{team.TeamId}}">{{team.TeamName}}</a>
                                 </li>
                             </ul>
                         </span>
                     </div>
                 </td>
                 <td>
-                    <span ng-show="!rowform.$visible" e-name="FirstName" ng-model="user.FirstName" editable-text="employee.FirstName" e-form="rowform">{{employee.FirstName}}</span>
+                    <span ng-show="!rowform.$visible" e-name="FirstName" ng-model="user.FirstName" editable-text="user.FirstName" e-form="rowform">{{user.FirstName}}</span>
                 </td>
                 <td>
-                    <span ng-show="!rowform.$visible" e-name="LastName" ng-model="user.LastName" editable-text="employee.LastName" e-form="rowform">{{employee.LastName}}</span>
+                    <span ng-show="!rowform.$visible" e-name="LastName" ng-model="user.LastName" editable-text="user.LastName" e-form="rowform">{{user.LastName}}</span>
                 </td>
                 <td>
-                    <span ng-show="!rowform.$visible" e-name="EmailAddress" ng-model="user.EmailAddress" editable-text="employee.UserViewModel.Username" e-form="rowform">{{employee.UserViewModel.Username}}</span>
+                    <span ng-show="!rowform.$visible" e-name="EmailAddress" ng-model="user.EmailAddress" editable-text="user.UserViewModel.Username" e-form="rowform">{{user.UserViewModel.Username}}</span>
                 </td>
                 <td>
-                    <span ng-show="!rowform.$visible" e-name="HolidayAllowance" ng-model="user.HolidayAllowance" editable-text="employee.HolidayAllowance" e-form="rowform">{{employee.HolidayAllowance}}</span>
+                    <span ng-show="!rowform.$visible" e-name="HolidayAllowance" ng-model="user.HolidayAllowance" editable-text="user.HolidayAllowance" e-form="rowform">{{user.HolidayAllowance}}</span>
                 </td>
                 <td>
-                    <span ng-show="!rowform.$visible" e-name="RemainingAllowance" ng-model="user.RemainingAllowance" editable-text="employee.RemainingAllowance" e-form="rowform">{{employee.RemainingAllowance}}</span>
+                    <span ng-show="!rowform.$visible" e-name="RemainingAllowance" ng-model="user.RemainingAllowance" editable-text="user.RemainingAllowance" e-form="rowform">{{user.RemainingAllowance}}</span>
                 </td>
                 <td>
-                    <div ng-repeat="employeeRoles in employee.UserViewModel.RoleViewModels">
-                        <span>{{employeeRoles.Name}} </span>
-                        <br />
+                    <div ng-repeat="userRoles in user.UserViewModel.RoleViewModels">
+                        <span>{{userRoles.Name}} </span>
+                        <br/>
                     </div>
                 </td>
+                <td>
+                    <span ng-show="!rowform.$visible" e-name="Team" ng-model="user.Team.TeamId" editable-text="user.TeamId" e-form="rowform">{{user.Team.TeamName}}</span>
+                </td>
                 <td ng-hide="true">
-                    <span e-name="StaffId" ng-model="user.StaffId" editable-text="employee.StaffId" e-form="rowform">{{employee.StaffId}}</span>
+                    <span e-name="StaffId" ng-model="user.StaffId" editable-text="user.StaffId" e-form="rowform">{{user.StaffId}}</span>
                 </td>
             </tr>
         </table>
-        <button class="btn btn-default" ng-click="showCreate(); rowform.$show()">Add employee</button>
+        <button class="btn btn-default" ng-click="showCreate()">Add User</button>
     </div>
     <div class="createContainer ui-widget-content hidden">
-        <form class="form-horizontal form-label-left createUserForm">
+        <form class="form-horizontal form-label-left createForm">
             <div class="form-group">
                 <label class="control-label">First Name</label>
-                <input class="form-control" type="text" id="first-name" ng-model="newUser.FirstName" />
+                <input class="form-control" type="text" id="first-name" ng-model="newUser.FirstName"/>
             </div>
             <div class="form-group">
                 <label class="control-label">Last Name</label>
-                <input class="form-control" type="text" id="last-name" ng-model="newUser.LastName" />
+                <input class="form-control" type="text" id="last-name" ng-model="newUser.LastName"/>
             </div>
             <div class="form-group">
                 <label class="control-label">Email Address</label>
-                <input class="form-control" type="text" id="email" ng-model="newUser.EmailAddress" />
+                <input class="form-control" type="text" id="email" ng-model="newUser.EmailAddress"/>
             </div>
             <div class="form-actions">
-                <button type="submit" value="submit" class="btn btn-success" ng-click="managementCtrl.register(newUser)">Submit</button>
-                <button class="btn btn-danger" ng-click="showCreate()">Cancel</button>
+                <button type="submit" value="submit" class="btn btn-success" ng-click="userRegister(newUser)">Submit</button>
+                <button class="btn btn-danger" ng-click="showUserCreate()">Cancel</button>
             </div>
         </form>
     </div>

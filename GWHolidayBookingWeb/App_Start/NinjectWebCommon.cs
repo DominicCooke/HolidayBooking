@@ -73,8 +73,13 @@ namespace GWHolidayBookingWeb.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IEmployeeContext>().To<EmployeeContext>().InRequestScope();
+
             kernel.Bind<IEmployeeDataService>().To<EmployeeDataService>().InRequestScope();
             kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>().InRequestScope();
+
+            kernel.Bind<ITeamDataService>().To<TeamDataService>().InRequestScope();
+            kernel.Bind<ITeamRespository>().To<TeamRespository>().InRequestScope();
+
             kernel.Bind<IIdentityContext>().To<IdentityContext>().InRequestScope();
         }
     }

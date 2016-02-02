@@ -38,6 +38,14 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             context.SaveChanges();
         }
 
+        public void SetTeam(EmployeeSetTeamViewModel employeeSetTeamViewModel)
+        {
+            var employeeInDb = context.Employees.Find(employeeSetTeamViewModel.Employee.StaffId);
+            employeeSetTeamViewModel.Employee.TeamId = employeeSetTeamViewModel.Team.TeamId;
+            context.Entry(employeeInDb).CurrentValues.SetValues(employeeSetTeamViewModel.Employee);
+            context.SaveChanges();
+        }
+
         public void Delete(Guid staffId)
         {
             var employeeInDb = context.Employees.Find(staffId);

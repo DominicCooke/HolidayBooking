@@ -54,5 +54,10 @@ namespace GWHolidayBookingWeb.Services
         {
             employeeRepository.Create(employee);
         }
+
+        public void SetTeam(EmployeeSetTeamViewModel employeeSetTeamViewModel)
+        {
+            employeeRepository.SetTeam(employeeSetTeamViewModel);
+        }
     }
 }

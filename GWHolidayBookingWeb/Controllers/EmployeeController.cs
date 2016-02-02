@@ -48,6 +48,13 @@ namespace GWHolidayBookingWeb.Controllers
             return employeeDataService.GetPublicHolidays();
         }
 
+        [Route("EmployeeSetTeam")]
+        public IHttpActionResult EmployeeSetTeam(EmployeeSetTeamViewModel employeeSetTeamViewModel)
+        {
+            employeeDataService.SetTeam(employeeSetTeamViewModel);
+            return Ok();
+        }
+
         [Route("UpdateEmployee")]
         public void UpdateEmployee(UpdateEmployeeViewModel updateEmployeeViewModel)
         {

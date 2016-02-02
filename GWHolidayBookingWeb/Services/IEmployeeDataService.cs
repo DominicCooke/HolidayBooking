@@ -14,6 +14,7 @@ namespace GWHolidayBookingWeb.Services
         void UpdateEmployee(UpdateEmployeeViewModel updateEmployeeViewModel);
         void UpdateHolidays(Employee employee);
         void Create(Employee employee);
+        void SetTeam(EmployeeSetTeamViewModel employeeSetTeamViewModel);
         EmployeeHolidayBooking GetHolidayBookingById(Guid holidayId);
     }
 }
