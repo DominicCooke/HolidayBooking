@@ -280,28 +280,29 @@
                     });
                     $scope.publicHolidays = listOfPublicHolidays.data;
                     $scope.selected = moment();
+
+                    if ($scope.mode === "employee") {
+                        $scope.userHolidayBookings = userService.employeeGetById();
+                        $scope.teamName = $scope.userHolidayBookings.TeamName;
+                        $scope.initData($scope.userHolidayBookings);
+                        $scope.userHolidayBookings.isVisible = true;
+
+                        dataService.employeesGetTeam($scope.userHolidayBookings.TeamId).then(function (response) {
+                            $scope.teamUserHolidayBookings = response.data;
+                            $scope.initData($scope.teamUserHolidayBookings);
+                            $scope.reloadCalendar();
+                        });
+                    };
+
                     if ($scope.mode === "manager") {
                         dataService.employeesGet().then(function (response) {
                             $scope.teamUserHolidayBookings = response.data;
                             $scope.initData($scope.teamUserHolidayBookings);
                             $scope.reloadCalendar();
                         });
-                    } else {
-                        dataService.employeesGet().then(function (response) {
-                            $scope.teamUserHolidayBookings = response.data;
-                            $scope.initData($scope.teamUserHolidayBookings);
-                            $scope.reloadCalendar();
-                        });
                     };
-                    
                 });
-                if ($scope.mode === "employee") {
-                    $scope.userHolidayBookings = userService.employeeGetById();
-                    $scope.initData($scope.userHolidayBookings);
-                    $scope.userHolidayBookings.isVisible = true;
-                };
             };
-
             $scope.init();
         }
     };

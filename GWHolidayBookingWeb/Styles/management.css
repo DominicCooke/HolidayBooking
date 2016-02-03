@@ -72,6 +72,10 @@
   line-height: 30px;
   width: 50%;
   float: left;
+  height: 30px;
+}
+.managementContainer > .createContainer > form > .form-group .form-control.ng-dirty.ng-invalid {
+  background: rgba(217, 83, 79, 0.5);
 }
 .managementContainer > .createContainer > form > .form-actions > button:first-child {
   margin-left: 40%;

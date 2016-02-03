@@ -66,7 +66,6 @@ namespace GWHolidayBookingWeb.Controllers
             var joined = from RoleAndUsers in listOfAllIdentityRolesAndUsers
                 join Employee in listOfAllEmployees on RoleAndUsers.User.StaffId equals Employee.StaffId
                 let EmployeeTeam = listOfAllTeams.FirstOrDefault(Team => Team.TeamId == Employee.TeamId)
-                let CheckTeamNull = EmployeeTeam == null ? new Team() : EmployeeTeam
                          select new UpdateEmployeeViewModel
                          {
                              HolidayAllowance = Employee.HolidayAllowance,
@@ -76,8 +75,8 @@ namespace GWHolidayBookingWeb.Controllers
                              LastName = Employee.LastName,
                              Team = new TeamViewModel
                              {
-                                 TeamId = CheckTeamNull.TeamId,
-                                 TeamName = CheckTeamNull.TeamName
+                                 TeamId = EmployeeTeam.TeamId,
+                                 TeamName = EmployeeTeam.TeamName
                              },
                              UserViewModel = new IdentityUserViewModel
                              {
@@ -122,6 +121,10 @@ namespace GWHolidayBookingWeb.Controllers
             {
                 return errorResult;
             }
+            var userSetRoleViewModel = new UserSetRoleViewModel();
+            userSetRoleViewModel.IdentityId = user.Id;
+            userSetRoleViewModel.RoleName = "user";
+            await UserSetRole(userSetRoleViewModel);
 
             var employee = new Employee
             {
@@ -130,7 +133,8 @@ namespace GWHolidayBookingWeb.Controllers
                 HolidayAllowance = 25,
                 RemainingAllowance = 25,
                 HolidayBookings = new List<EmployeeHolidayBooking>(),
-                StaffId = userAndEmployeeViewModel.StaffId
+                StaffId = userAndEmployeeViewModel.StaffId,
+                TeamId = userAndEmployeeViewModel.TeamId
             };
             employeeDataService.Create(employee);
 

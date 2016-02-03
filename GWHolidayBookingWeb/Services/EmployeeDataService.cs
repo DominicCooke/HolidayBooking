@@ -15,11 +15,19 @@ namespace GWHolidayBookingWeb.Services
             this.employeeRepository = employeeRepository;
         }
 
+        public List<Employee> GetTeam(Guid teamId)
+        {
+            return employeeRepository.GetTeam(teamId);
+        }
         public List<Employee> Get()
         {
             return employeeRepository.Get();
         }
-
+        public List<Employee> GetEmployeesByTeamId(Guid teamId)
+        {
+            return employeeRepository.GetEmployeesByTeamId(teamId);
+        }
+        
         public List<PublicHoliday> GetPublicHolidays()
         {
             return employeeRepository.GetPublicHolidays();

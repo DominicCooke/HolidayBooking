@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using GWHolidayBookingWeb.DataAccess.Repositories;
 using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
@@ -27,9 +28,19 @@ namespace GWHolidayBookingWeb.Services
             return teamRepository.GetTeams();
         }
 
+        public Team GetTeamById(Guid teamId)
+        {
+            return teamRepository.GetTeamById(teamId);
+        }
+
         public void UpdateTeam(TeamViewModel teamViewModel)
         {
             teamRepository.UpdateTeam(teamViewModel);
+        }
+
+        public void DeleteTeam(Guid teamId)
+        {
+            teamRepository.DeleteTeam(teamId);
         }
     }
 }

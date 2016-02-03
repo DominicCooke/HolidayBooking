@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using GWHolidayBookingWeb.DataAccess.ViewModels;
@@ -11,13 +14,15 @@ namespace GWHolidayBookingWeb.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Team")]
-    public class TeamController: ApiController
+    public class TeamController : ApiController
     {
         private readonly ITeamDataService teamDataService;
+        private readonly IEmployeeDataService employeeDataService;
 
-        public TeamController(ITeamDataService teamDataService)
+        public TeamController(ITeamDataService teamDataService, IEmployeeDataService employeeDataService)
         {
             this.teamDataService = teamDataService;
+            this.employeeDataService = employeeDataService;
         }
 
         [Route("GetTeams")]
@@ -35,11 +40,28 @@ namespace GWHolidayBookingWeb.Controllers
             teamDataService.CreateTeam(team);
             return Ok();
         }
+
         [Route("UpdateTeam")]
         public IHttpActionResult UpdateTeam(TeamViewModel teamViewModel)
         {
             teamDataService.UpdateTeam(teamViewModel);
             return Ok();
+        }
+
+        [Route("DeleteTeam")]
+        [HttpPost]
+        public HttpResponseMessage DeleteTeam(TeamViewModel team)
+        {
+            var listOfEmployeesInTeam = employeeDataService.GetEmployeesByTeamId(team.TeamId);
+            if (listOfEmployeesInTeam.Count > 0)
+            {
+                var message = string.Format("The team {0} has {1} members in it. The team must be empty to be deleted.", team.TeamName, listOfEmployeesInTeam.Count());
+                return Request.CreateResponse(HttpStatusCode.OK, message);
+            }
+            else {
+                teamDataService.DeleteTeam(team.TeamId);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
         }
     }
 }

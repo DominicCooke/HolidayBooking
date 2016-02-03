@@ -28,6 +28,7 @@
             "Scripts/app/services/dataService.js",
             "Scripts/app/services/userService.js",
             "Scripts/app/services/helperService.js",
+            "Scripts/app/services/notificationService.js",
             "Scripts/app/services/viewService.js"
         ]
     },
@@ -46,7 +47,8 @@
             "Scripts/lib/bootstrap/bootstrap.js",
             "Scripts/lib/moment/moment.js",
             "Scripts/lib/underscore/underscore-min.js",
-            "Scripts/lib/lodash/lodash.js"
+            "Scripts/lib/lodash/lodash.js",
+            "Scripts/lib/toastr/toastr.js"
         ]
     },
     {
@@ -56,7 +58,8 @@
             "Scripts/lib/jquery/scrollbar/jquery.scrollbar.css",
             "Content/fontawesome/font-awesome.css",
             "Scripts/lib/bootstrap/bootstrap.css",
-            "Scripts/lib/jquery/jquery-ui.css"
+            "Scripts/lib/jquery/jquery-ui.css",
+            "Scripts/lib/toastr/toastr.css"
         ]
     }
 ]

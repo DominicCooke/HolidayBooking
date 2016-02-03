@@ -13,6 +13,7 @@
 /// <reference path="app/services/dataservice.js" />
 /// <reference path="app/services/helperservice.js" />
 /// <reference path="app/services/loginservice.js" />
+/// <reference path="app/services/notificationservice.js" />
 /// <reference path="app/services/templateservice.js" />
 /// <reference path="app/services/tokenservice.js" />
 /// <reference path="app/services/userservice.js" />
@@ -39,6 +40,7 @@
 /// <reference path="lib/jquery/scrollbar/jquery.scrollbar.js" />
 /// <reference path="lib/lodash/lodash.js" />
 /// <reference path="lib/moment/moment.js" />
+/// <reference path="lib/toastr/toastr.js" />
 /// <reference path="lib/underscore/underscore-min.js" />
 /// <reference path="modernizr-2.6.2.js" />
 

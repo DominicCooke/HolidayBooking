@@ -137,14 +137,20 @@ ManagementController = function ($scope, dataService) {
         });
     };
 
-    $scope.delete = function (user) {
-        dataService.userDelete(user).then(function (response) {
+    $scope.deleteUser = function (user) {
+        dataService.userDelete(user).then(function () {
             dataService.userGet().then(function (response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });
         });
     };
-
+    $scope.deleteTeam = function (team) {
+        dataService.teamDelete(team).then(function() {
+                dataService.userGet().then(function (response) {
+                    $scope.teams = response.data.ListOfTeams;
+                });
+        });
+    };
     $scope.userRegister = function (user) {
         dataService.userRegister(user).then(function () {
             $scope.resetRegister();
@@ -172,7 +178,7 @@ ManagementController = function ($scope, dataService) {
     };
 
     $scope.userSetRole = function (user, role) {
-        dataService.userSetRole(user, role).then(function (response) {
+        dataService.userSetRole(user, role).then(function () {
             dataService.userGet().then(function (response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });
@@ -180,7 +186,7 @@ ManagementController = function ($scope, dataService) {
     };
 
     $scope.teamSetEmployee = function (user, team) {
-        dataService.teamSetEmployee(user, team).then(function (response) {
+        dataService.teamSetEmployee(user, team).then(function () {
             dataService.userGet().then(function (response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
             });

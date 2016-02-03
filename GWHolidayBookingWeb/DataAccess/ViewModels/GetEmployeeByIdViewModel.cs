@@ -13,5 +13,7 @@ namespace GWHolidayBookingWeb.DataAccess.ViewModels
         public int RemainingAllowance { get; set; }
         public virtual ICollection<EmployeeHolidayBooking> HolidayBookings { get; set; }
         public string RoleName { get; set; }
+        public Guid TeamId { get; set; }
+        public string TeamName { get; set; }
     }
 }

@@ -17,9 +17,18 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             this.context = context;
         }
 
+        public List<Employee> GetTeam(Guid teamId)
+        {
+            return context.Employees.Include("HolidayBookings").Where(x => x.TeamId == teamId).ToList();
+        }
         public List<Employee> Get()
         {
             return context.Employees.Include("HolidayBookings").ToList();
+        }
+
+        public List<Employee> GetEmployeesByTeamId(Guid teamId)
+        {
+            return context.Employees.Where(x=>x.TeamId==teamId).ToList();
         }
 
         public List<PublicHoliday> GetPublicHolidays()

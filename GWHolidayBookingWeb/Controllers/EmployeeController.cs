@@ -17,10 +17,12 @@ namespace GWHolidayBookingWeb.Controllers
     public class EmployeeController : ApiController
     {
         private readonly IEmployeeDataService employeeDataService;
+        private readonly ITeamDataService teamDataService;
 
-        public EmployeeController(IEmployeeDataService employeeDataService)
+        public EmployeeController(IEmployeeDataService employeeDataService, ITeamDataService teamDataService)
         {
             this.employeeDataService = employeeDataService;
+            this.teamDataService = teamDataService;
         }
 
         [Route("GetEmployeeById")]
@@ -33,7 +35,14 @@ namespace GWHolidayBookingWeb.Controllers
             var userWithRole =
                 Mapper.Map<GetEmployeeByIdViewModel>(employeeDataService.GetEmployeeById(Guid.Parse(staffIdClaim.Value)));
             userWithRole.RoleName = roleClaim.Value;
+            userWithRole.TeamName = teamDataService.GetTeamById(userWithRole.TeamId).TeamName;
             return userWithRole;
+        }
+
+        [Route("GetEmployeesTeam")]
+        public List<Employee> GetEmployeesTeam(Guid teamId)
+        {
+            return employeeDataService.GetTeam(teamId);
         }
 
         [Route("GetEmployees")]

@@ -57,10 +57,10 @@ templateService = function($http, $compile, $templateCache) {
         }
     };
 }
-dataService = function($http, tokenService, guidService) {
+dataService = function ($http, tokenService, notificationService) {
     "use strict";
     return {
-        getLoginAuthToken: function(u, p) {
+        getLoginAuthToken: function (u, p) {
             return $http({
                 method: "POST",
                 headers: {
@@ -68,13 +68,11 @@ dataService = function($http, tokenService, guidService) {
                 },
                 data: $.param({ username: u, password: p, grant_type: "password" }),
                 url: "http://localhost:57068/token"
-            }).success(function(data) {
+            }).success(function (data) {
                 tokenService.setToken(data.access_token, true);
-            }).error(function() {
-
             });
         },
-        publicHolidaysGet: function() {
+        publicHolidaysGet: function () {
             return $http({
                 method: "GET",
                 headers: {
@@ -85,12 +83,9 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Employee/GetPublicHolidays"
             });
         },
-        employeeGetById: function() {
+        employeeGetById: function () {
             return $http({
                 method: "GET",
-                params: {
-                
-                },
                 headers: {
                     "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
@@ -99,7 +94,19 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Employee/GetEmployeeById"
             });
         },
-        employeesGet: function() {
+        employeesGetTeam: function (teamId) {
+            return $http({
+                method: "GET",
+                params: { teamId: teamId },
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                url: "http://localhost:57068/api/Employee/GetEmployeesTeam"
+            });
+        },
+        employeesGet: function () {
             return $http({
                 method: "GET",
                 headers: {
@@ -110,7 +117,7 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Employee/GetEmployees"
             });
         },
-        employeeUpdate: function(employee) {
+        employeeUpdate: function (employee) {
             return $http({
                 data: employee,
                 method: "POST",
@@ -120,7 +127,7 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Employee/UpdateEmployee"
             });
         },
-        employeeUpdateHoliday: function(employeeData) {
+        employeeUpdateHoliday: function (employeeData) {
             return $http({
                 data: employeeData,
                 method: "POST",
@@ -133,7 +140,7 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Employee/UpdateEmployeeAndHoliday"
             });
         },
-        employeesUpdateHolidays: function(employeeData) {
+        employeesUpdateHolidays: function (employeeData) {
             return $http({
                 data: employeeData,
                 method: "POST",
@@ -146,7 +153,7 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Employee/UpdateEmployeesAndHolidays"
             });
         },
-        userDelete: function(user) {
+        userDelete: function (user) {
             return $http({
                 data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
@@ -156,7 +163,7 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/User/DeleteUserAndEmployee"
             });
         },
-        userRegister: function(user) {
+        userRegister: function (user) {
             return $http({
                 data: user,
                 method: "POST",
@@ -176,7 +183,7 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/User/UserSetRole"
             });
         },
-        userGet: function() {
+        userGet: function () {
             return $http({
                 method: "GET",
                 headers: {
@@ -205,6 +212,19 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Team/UpdateTeam"
             });
         },
+        teamDelete: function (team) {
+            return $http({
+                data: team,
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
+                },
+                url: "http://localhost:57068/api/Team/DeleteTeam"
+            }).then(function (response) {
+                if (response.data.length > 0)
+                    notificationService.generateNotification("error", response.data);
+            });
+        },
         teamSetEmployee: function (employee, team) {
             return $http({
                 data: { Employee: employee, Team: team },
@@ -215,7 +235,7 @@ dataService = function($http, tokenService, guidService) {
                 url: "http://localhost:57068/api/Employee/EmployeeSetTeam"
             });
         }
-        
+
     };
 }
 userService = function(dataService, loginService) {
@@ -330,6 +350,37 @@ helperService = function () {
         setAllowanceDaysOfUnmergedHolidays: function (holidayArray) {
             for (var j = 0; j < holidayArray.HolidayBookings.length; j++) {
                 holidayArray.HolidayBookings[j].AllowanceDays = 1;
+            }
+        }
+    };
+}
+notificationService = function () {
+    "use strict";
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "5000",
+        "hideDuration": "1500",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    return {
+        generateNotification: function (type, message) {
+            if (type == "success") {
+                toastr.success(message);
+            } else if (type == "warning") {
+                toastr.warning(message);
+            } else if (type == "error") {
+                toastr.error(message);
             }
         }
     };

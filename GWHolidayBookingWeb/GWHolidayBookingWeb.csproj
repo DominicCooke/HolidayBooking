@@ -178,6 +178,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\icon-user-default.png" />
     <Content Include="Scripts\app\directives\management.js" />
+    <Content Include="Scripts\app\services\notificationService.js" />
     <Content Include="Scripts\app\views\teamManagement.html" />
     <Content Include="Scripts\app\templates\teamManagementTemplate.html" />
     <Content Include="Scripts\app\views\userManagement.html" />
@@ -241,6 +242,8 @@
     <Content Include="Scripts\lib\jquery\scrollbar\jquery.scrollbar.css" />
     <Content Include="Scripts\lib\jquery\scrollbar\jquery.scrollbar.js" />
     <Content Include="Scripts\lib\lodash\lodash.js" />
+    <Content Include="Scripts\lib\toastr\toastr.css" />
+    <Content Include="Scripts\lib\toastr\toastr.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="index.html" />
     <Content Include="Scripts\lib\angular\angular\angular-mocks.js" />

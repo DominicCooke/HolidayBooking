@@ -29,7 +29,7 @@
                     </form>
                     <div class="actionsOnData" ng-show="!rowform.$visible">
                         <i ng-click="rowform.$show()" class="fa fa-pencil" title="Edit"></i>
-                        <i ng-click="delete(user)" class="fa fa-trash-o" title="Delete"></i>
+                        <i ng-click="deleteUser(user)" class="fa fa-trash-o" title="Delete"></i>
                         <span uib-dropdown uib-dropdown-append-to-body>
                             <a id="simple-dropdown" uib-dropdown-toggle>
                                 <i class="fa fa-user" title="Edit Role"></i>
@@ -84,22 +84,26 @@
         <button class="btn btn-default" ng-click="showCreate()">Add User</button>
     </div>
     <div class="createContainer ui-widget-content hidden">
-        <form class="form-horizontal form-label-left createForm">
+        <form class="form-horizontal form-label-left createForm" name="form" ng-submit="userRegister(newUser)">
             <div class="form-group">
                 <label class="control-label">First Name</label>
-                <input class="form-control" type="text" id="first-name" ng-model="newUser.FirstName"/>
+                <input class="form-control" type="text" ng-model="newUser.FirstName" required autofocus/>
             </div>
             <div class="form-group">
                 <label class="control-label">Last Name</label>
-                <input class="form-control" type="text" id="last-name" ng-model="newUser.LastName"/>
+                <input class="form-control" type="text" ng-model="newUser.LastName" required/>
             </div>
             <div class="form-group">
                 <label class="control-label">Email Address</label>
-                <input class="form-control" type="text" id="email" ng-model="newUser.EmailAddress"/>
+                <input class="form-control" type="text" ng-model="newUser.EmailAddress" required/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Team</label>
+                <select class="form-control" ng-model="newUser.TeamId" ng-options="team.TeamId as team.TeamName for team in teams" required></select>
             </div>
             <div class="form-actions">
-                <button type="submit" value="submit" class="btn btn-success" ng-click="userRegister(newUser)">Submit</button>
-                <button class="btn btn-danger" ng-click="showUserCreate()">Cancel</button>
+                <button type="submit" class="btn btn-success" ng-disabled="form.$invalid || dataLoading">Submit</button>
+                <button type="reset" class="btn btn-danger" ng-click="showCreate()">Cancel</button>
             </div>
         </form>
     </div>

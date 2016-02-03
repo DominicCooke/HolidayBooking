@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Http;
 using AutoMapper;
 using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
+using System.Net;
+using System.Net.Http;
+using System.Web;
+using System.Web.Http.Results;
 
 namespace GWHolidayBookingWeb.DataAccess.Repositories
 {
@@ -15,6 +20,11 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
         public TeamRespository(IEmployeeContext context)
         {
             this.context = context;
+        }
+
+        public Team GetTeamById(Guid teamId)
+        {
+            return context.Teams.FirstOrDefault(x => x.TeamId == teamId);
         }
 
         public List<Team> GetTeams()
@@ -32,6 +42,13 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             var employeeInDb = context.Employees.Find(employeeSetTeamViewModel.Employee.StaffId);
             employeeSetTeamViewModel.Employee.TeamId = employeeSetTeamViewModel.Team.TeamId;
             context.Entry(employeeInDb).CurrentValues.SetValues(employeeSetTeamViewModel.Employee);
+            context.SaveChanges();
+        }
+
+        public void DeleteTeam(Guid teamId)
+        {
+            var teamInDb = context.Teams.Find(teamId);
+            context.Entry(teamInDb).State = EntityState.Deleted;
             context.SaveChanges();
         }
 
