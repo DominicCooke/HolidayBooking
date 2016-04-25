@@ -336,7 +336,7 @@ calendarDirective = function (templates, $timeout, userService, helperService, d
         }
     };
 };
-calendarControlsDirective = function(dataService, templates, $timeout) {
+calendarControlsDirective = function(templates, $timeout) {
     "use strict";
     return {
         restrict: "E",

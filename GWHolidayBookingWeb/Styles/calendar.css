@@ -635,6 +635,7 @@
 }
 .bodyContainer > calendar > .key #teamHolidayKey > .teamHolidayKeyLabel {
   text-align: center;
+  width: 100%;
 }
 .bodyContainer > calendar > .key #teamHolidayKey > .colorContainer {
   display: table-row;

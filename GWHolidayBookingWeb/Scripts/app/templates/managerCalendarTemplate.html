@@ -14,19 +14,7 @@
         <span class="day dayTitle">Sun</span>
     </div>
     <div class="week" ng-repeat="week in weeks">
-        <div class="day managerCalendar" ng-class="{
-             today: day.isToday,
-             'different-month' : !day.isCurrentMonth,
-             selected: day.date.isSame(selected),
-             isWeekend: day.isWeekend,
-             isPublicHoliday: day.isPublicHoliday,
-             isPendingHoliday: day.isPendingHoliday,
-             isCancelledHoliday: day.isCancelledHoliday,
-             teamHoliday1:  day.holidayCount == 1,
-             teamHoliday2:  day.holidayCount == 2,
-             teamHoliday3:  day.holidayCount == 3,
-             teamHoliday4:  day.holidayCount == 4,
-             teamHoliday5:  day.holidayCount >= 5}" ng-repeat="day in week.days" amountofholiday="{{day.holidayCount}}">
+        <div class="day managerCalendar" ng-repeat="day in week.days" amountofholiday="{{day.holidayCount}}" ng-class="{today: day.isToday,'different-month' : !day.isCurrentMonth,selected: day.date.isSame(selected),isWeekend: day.isWeekend,isPublicHoliday: day.isPublicHoliday,isPendingHoliday: day.isPendingHoliday,isCancelledHoliday: day.isCancelledHoliday,teamHoliday1:  day.holidayCount == 1,teamHoliday2:  day.holidayCount == 2,teamHoliday3:  day.holidayCount == 3,teamHoliday4:  day.holidayCount == 4,teamHoliday5:  day.holidayCount >= 5}">
             <div class="dayNumber">
                 {{day.number}}
             </div>
@@ -57,7 +45,7 @@
         <div class="keyColor" id="cancelledHolidayKeyColor"></div>
         <div class="keyLabel">Cancelled Holiday</div>
     </div>
-    <div id="publicHolidayKey" class=" holidaykey">
+    <div id="publicHolidayKey" class="holidaykey">
         <div class="keyColor" id="publicHolidayKeyColor"></div>
         <div class="keyLabel">Public Holiday</div>
     </div>

@@ -25,22 +25,17 @@
     };
 
     $scope.navigate = function (nameOfLink) {
-        if (typeof $scope.state === "undefined")
-            $scope.state = "New";
-        if ($scope.state === "New") {
-            $scope.state = "Old";
-            childScope = $scope.$new();
-            viewService.gotoView(childScope, views[nameOfLink]);
-        } else {
+        if (typeof childScope !== "undefined")
             childScope.$destroy();
-            $(".bodyContainer").empty();
-            $scope.state = "New";
-            $scope.navigate(nameOfLink);
-        }
+
+        $(".bodyContainer").empty();
+        childScope = $scope.$new();
+        viewService.gotoView(childScope, views[nameOfLink]);
         $scope.setMenuLinkActive(nameOfLink);
-        if (nameOfLink === "EmployeeCalendar") {
+
+        if (nameOfLink === "EmployeeCalendar")
             userService.refreshUser();
-        }
+
     };
 
     init();

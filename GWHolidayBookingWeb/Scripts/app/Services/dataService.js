@@ -166,6 +166,15 @@
                     notificationService.generateNotification("error", response.data);
             });
         },
+        teamsGet: function () {
+            return $http({
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
+                },
+                url: "http://localhost:57068/api/Team/GetTeams"
+            });
+        },
         teamSetEmployee: function (employee, team) {
             return $http({
                 data: { Employee: employee, Team: team },

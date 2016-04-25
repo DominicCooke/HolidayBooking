@@ -55,7 +55,7 @@ namespace GWHolidayBookingWeb.Controllers
             var listOfEmployeesInTeam = employeeDataService.GetEmployeesByTeamId(team.TeamId);
             if (listOfEmployeesInTeam.Count > 0)
             {
-                var message = string.Format("The team {0} has {1} members in it. The team must be empty to be deleted.", team.TeamName, listOfEmployeesInTeam.Count());
+                var message = string.Format("The team {0} has {1} member (s) in it. The team must be empty to be deleted.", team.TeamName, listOfEmployeesInTeam.Count());
                 return Request.CreateResponse(HttpStatusCode.OK, message);
             }
             else {
