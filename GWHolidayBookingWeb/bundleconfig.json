@@ -39,7 +39,7 @@
             "Scripts/lib/jquery/jquery-ui.js",
             "Scripts/lib/jquery/scrollbar/jquery.scrollbar.js",
             "Scripts/lib/angular/angular/angular.js",
-            "Scripts/lib/angular/chart/Chart.js",
+            "Scripts/lib/angular/chart/chart.js",
             "Scripts/lib/angular/chart/angular-chart.js",
             "Scripts/lib/angular/angular/angular-animate.js",
             "Scripts/lib/angular/xeditable/xeditable.js",

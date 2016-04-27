@@ -5,6 +5,7 @@
         controller: "",
         scope: false,
         link: function ($scope) {
+
             $('.menu-toggle').click(function () {
                 $('.mainContainer').toggleClass('minimized');
                 if ($('.menu-toggle').hasClass('fa-caret-square-o-left')) {
@@ -15,6 +16,7 @@
                     $('.menu-toggle').addClass('fa-caret-square-o-left');
                 }
             });
+
             $scope.setMenuLinkActive = function setMenuLinkActive(nameOfLink) {
                 var allMenuLinks = $(".menuLink");
                 var targetMenuLink = $("#" + nameOfLink);

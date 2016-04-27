@@ -225,6 +225,15 @@ dataService = function ($http, tokenService, notificationService) {
                     notificationService.generateNotification("error", response.data);
             });
         },
+        teamsGet: function () {
+            return $http({
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
+                },
+                url: "http://localhost:57068/api/Team/GetTeams"
+            });
+        },
         teamSetEmployee: function (employee, team) {
             return $http({
                 data: { Employee: employee, Team: team },
@@ -291,7 +300,7 @@ helperService = function () {
                     }
                     holidayBooking.splice(1, 1);
                 } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() && holidayBooking[0].BookingStatus !== holidayBooking[1].BookingStatus) {
-                    holidayBooking[1].HolidayId = helperService.guid();
+                    holidayBooking[1].HolidayId = this.guid();
                     consolidatedHolidayBookings.push(holidayBooking[0]);
                     if (holidayBooking.length === 2) {
                         consolidatedHolidayBookings.push(holidayBooking[1]);
@@ -300,7 +309,7 @@ helperService = function () {
                     startFlag = true;
                 } else {
                     if (duplicateHolidayId === holidayBooking[0].HolidayId) {
-                        holidayBooking[0].HolidayId = helperService.guid();
+                        holidayBooking[0].HolidayId = this.guid();
                     } else {
                         duplicateHolidayId = holidayBooking[0].HolidayId;
                     }

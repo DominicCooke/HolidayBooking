@@ -31,7 +31,7 @@
                     }
                     holidayBooking.splice(1, 1);
                 } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() && holidayBooking[0].BookingStatus !== holidayBooking[1].BookingStatus) {
-                    holidayBooking[1].HolidayId = helperService.guid();
+                    holidayBooking[1].HolidayId = this.guid();
                     consolidatedHolidayBookings.push(holidayBooking[0]);
                     if (holidayBooking.length === 2) {
                         consolidatedHolidayBookings.push(holidayBooking[1]);
@@ -40,7 +40,7 @@
                     startFlag = true;
                 } else {
                     if (duplicateHolidayId === holidayBooking[0].HolidayId) {
-                        holidayBooking[0].HolidayId = helperService.guid();
+                        holidayBooking[0].HolidayId = this.guid();
                     } else {
                         duplicateHolidayId = holidayBooking[0].HolidayId;
                     }

@@ -17,46 +17,40 @@
                 var pending = 0;
                 var confirmed = 1;
                 var cancelled = 2;
-                if ($scope.editMode === true) {
-                    var isFound;
-                    if (isStatusHoliday(date, pending) === true || isStatusHoliday(date, confirmed) === true || isStatusHoliday(date, cancelled) === true) {
-                        isFound = true;
-                    }
-                    var hB = $scope.userHolidayBookings.HolidayBookings;
-                    if (isFound === true) {
-                        for (var i = 0; i < hB.length; i++) {
-                            if (hB[i].StartDate.isSame(date, "day")) {
-                                if (hB[i].BookingStatus === pending) {
-                                    hB.splice(i, 1);
-                                    $scope.userHolidayBookings.RemainingAllowance++;
-                                    changeTableCreate(date, "Unbook Holiday");
-                                } else if (hB[i].BookingStatus === confirmed) {
-                                    hB[i].BookingStatus = cancelled;
-                                    changeTableCreate(date, "Cancel Holiday");
-                                } else if (hB[i].BookingStatus === cancelled) {
-                                    hB[i].BookingStatus = confirmed;
-                                    changeTableCreate(date, "Uncancel Holiday");
-                                }
+                var hB = $scope.userHolidayBookings.HolidayBookings;
+                if ($scope.editMode === true && (isStatusHoliday(date, pending) === true || isStatusHoliday(date, confirmed) === true || isStatusHoliday(date, cancelled) === true)) {
+                    for (var i = 0; i < hB.length; i++) {
+                        if (hB[i].StartDate.isSame(date, "day")) {
+                            if (hB[i].BookingStatus === pending) {
+                                hB.splice(i, 1);
+                                $scope.userHolidayBookings.RemainingAllowance++;
+                                changeTableCreate(date, "Unbook Holiday");
+                            } else if (hB[i].BookingStatus === confirmed) {
+                                hB[i].BookingStatus = cancelled;
+                                changeTableCreate(date, "Cancel Holiday");
+                            } else if (hB[i].BookingStatus === cancelled) {
+                                hB[i].BookingStatus = confirmed;
+                                changeTableCreate(date, "Uncancel Holiday");
                             }
                         }
-                    } else {
-                        $scope.userHolidayBookings.RemainingAllowance--;
-                        // add an hour to reflect the time zone GMT +1
-                        var sDate = date.clone().add(1, "h");
-                        var eDate = date.clone().add(1, "h");
-                        hB.push(
-                        {
-                            StartDate: sDate,
-                            EndDate: eDate,
-                            AllowanceDays: 1,
-                            BookingStatus: pending,
-                            HolidayId: helperService.guid()
-                        });
-                        changeTableCreate(date, "Book Holiday");
                     }
-                    $scope.reloadCalendar(true);
-                    $scope.teamHolidayCount();
+                } else {
+                    $scope.userHolidayBookings.RemainingAllowance--;
+                    // add an hour to reflect the time zone GMT +1
+                    var sDate = date.clone().add(1, "h");
+                    var eDate = date.clone().add(1, "h");
+                    hB.push(
+                    {
+                        StartDate: sDate,
+                        EndDate: eDate,
+                        AllowanceDays: 1,
+                        BookingStatus: pending,
+                        HolidayId: helperService.guid()
+                    });
+                    changeTableCreate(date, "Book Holiday");
                 }
+                $scope.reloadCalendar(true);
+                $scope.teamHolidayCount();
             };
 
             // changes the calendar to the next month
@@ -238,21 +232,24 @@
                 $timeout(function () {
                     $(".day").each(function (index) {
                         var holidayCount = $(this)[0].getAttribute("amountofholiday");
-                        for (var i = 0; i <= holidayCount; i++) {
-                            var className;
-                            if ($(this).hasClass("employeeCalendar")) {
-                                className = "teamHolidayEmployee" + i;
-                            } else {
-                                className = "teamHoliday" + i;
-                            }
-                            if ($(this).hasClass(className)) {
-                                $(this).children(".confirmedHolidayCount").text(holidayCount);
-                                if ($(this).children(".confirmedHolidayCount").css("display") === "none") {
-                                    $(this).children(".confirmedHolidayCount").fadeIn("fast");
+                        if (holidayCount > 0) {
+                            for (var i = 0; i <= holidayCount; i++) {
+                                var className;
+                                if ($(this).hasClass("employeeCalendar")) {
+                                    className = "teamHolidayEmployee" + i;
+                                } else {
+                                    className = "teamHoliday" + i;
                                 }
-                                break;
+                                if ($(this).hasClass(className)) {
+                                    $(this).children(".confirmedHolidayCount").text(holidayCount);
+                                    if ($(this).children(".confirmedHolidayCount").css("display") === "none") {
+                                        //$(this).children(".confirmedHolidayCount").css("display", "inline");
+                                        $(this).children(".confirmedHolidayCount").fadeIn();
+                                    }
+                                    break;
+                                }
                             }
-                        }
+                        };
                     });
                 });
             };
@@ -299,6 +296,9 @@
                             $scope.teamUserHolidayBookings = response.data;
                             $scope.initData($scope.teamUserHolidayBookings);
                             $scope.reloadCalendar();
+                        });
+                        dataService.teamsGet().then(function (response) {
+                            $scope.teams = response.data;
                         });
                     };
                 });

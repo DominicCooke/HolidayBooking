@@ -186,7 +186,7 @@
 .bodyContainer > .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child {
   width: 30%;
 }
-.bodyContainer > .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child.active {
+.bodyContainer > .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child.selected {
   border-bottom: 0;
   border-right: 0;
   box-shadow: inset -10px 0 0 0 #1ABB9C;
@@ -197,12 +197,12 @@
 .bodyContainer > .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember {
   width: 30%;
 }
-.bodyContainer > .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.active {
+.bodyContainer > .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.selected {
   border-bottom: 0;
   border-right: 0;
   box-shadow: inset -10px 0 0 0 #1ABB9C;
 }
-.bodyContainer > .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.dead {
+.bodyContainer > .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.all-selected {
   background: #1ABB9C;
   pointer-events: none;
 }
@@ -284,13 +284,17 @@
   border: solid 1px #ddd;
   text-align: center;
 }
+.bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .filtersContainer > select {
+  width: 100%;
+  background: #2A3F54;
+}
 .bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead {
   width: 14%;
 }
 .bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child {
   width: 30%;
 }
-.bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child.active {
+.bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child.selected {
   border-bottom: 0;
   border-right: 0;
   box-shadow: inset -10px 0 0 0 #1ABB9C;
@@ -314,12 +318,12 @@
 .bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember {
   width: 30%;
 }
-.bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.active {
+.bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.selected {
   border-bottom: 0;
   border-right: 0;
   box-shadow: inset -10px 0 0 0 #1ABB9C;
 }
-.bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.dead {
+.bodyContainer > .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.all-selected {
   background: #1ABB9C;
   pointer-events: none;
 }

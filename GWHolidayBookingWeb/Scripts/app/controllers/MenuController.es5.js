@@ -1,7 +1,9 @@
-﻿MenuController = function ($scope, viewService, tokenService, userService) {
+﻿"use strict";
+
+MenuController = function ($scope, viewService, tokenService, userService) {
     "use strict";
     var childScope;
-    
+
     init();
 
     function init() {
@@ -27,17 +29,15 @@
     };
 
     $scope.navigate = function (nameOfLink) {
-        if (typeof childScope !== "undefined")
-            childScope.$destroy();
+        if (typeof childScope !== "undefined") childScope.$destroy();
 
         $(".bodyContainer").empty();
         childScope = $scope.$new();
         viewService.gotoView(childScope, views[nameOfLink]);
-        $scope.setMenuLinkActive(nameOfLink);
+        //$scope.setMenuLinkActive(nameOfLink);
 
-        if (nameOfLink === "EmployeeCalendar")
-            userService.refreshUser();
+        if (nameOfLink === "EmployeeCalendar") userService.refreshUser();
     };
-
 };
 MenuController.$inject = ["$scope", "viewService", "tokenService", "userService"];
+

@@ -20,6 +20,7 @@
                 helperService.unmergeHolidayBookings(holidayArray[i].HolidayBookings);
                 holidayArray[i].HolidayBookings = _.sortBy(holidayArray[i].HolidayBookings, function (booking) { return booking.StartDate; });
             }
+            $scope.listOfTeamMembers = helperService.getListOfTeamMembers(holidayArray);
         }
     };
 

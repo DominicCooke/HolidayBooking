@@ -1,6 +1,8 @@
 MenuController = function ($scope, viewService, tokenService, userService) {
     "use strict";
     var childScope;
+    
+    init();
 
     function init() {
         defaultViews();
@@ -35,10 +37,8 @@ MenuController = function ($scope, viewService, tokenService, userService) {
 
         if (nameOfLink === "EmployeeCalendar")
             userService.refreshUser();
-
     };
 
-    init();
 };
 MenuController.$inject = ["$scope", "viewService", "tokenService", "userService"];
 LoginController = function ($scope, dataService, userService) {
@@ -76,6 +76,7 @@ CalendarController = function ($scope, dataService, helperService) {
                 helperService.unmergeHolidayBookings(holidayArray[i].HolidayBookings);
                 holidayArray[i].HolidayBookings = _.sortBy(holidayArray[i].HolidayBookings, function (booking) { return booking.StartDate; });
             }
+            $scope.listOfTeamMembers = helperService.getListOfTeamMembers(holidayArray);
         }
     };
 

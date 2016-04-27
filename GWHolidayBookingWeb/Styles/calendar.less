@@ -18,11 +18,11 @@
 }
 
 .activeAndDead() {
-    &.active {
+    &.selected {
         .selectedTemplate()
     }
 
-    &.dead {
+    &.all-selected {
         background: @selected-colour;
         pointer-events: none;
     }
@@ -247,7 +247,7 @@
                                     &:first-child {
                                         width: 30%;
 
-                                        &.active {
+                                        &.selected {
                                             .selectedTemplate();
                                         }
                                     }
@@ -371,6 +371,16 @@
                 .innerContainer();
                 text-align: center;
 
+                > .filtersContainer {
+                    > select {
+                        width: 100%;
+                        background: #2A3F54;
+
+                        > option {
+                        }
+                    }
+                }
+
                 > .controlsContainer {
                     > .tableBody {
                         > tbody {
@@ -381,7 +391,7 @@
                                     &:first-child {
                                         width: 30%;
 
-                                        &.active {
+                                        &.selected {
                                             .selectedTemplate()
                                         }
                                     }

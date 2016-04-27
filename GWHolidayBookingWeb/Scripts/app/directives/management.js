@@ -8,6 +8,7 @@
         controller: "",
         scope: true,
         link: function ($scope) {
+
             $scope.showCreate = function showCreate() {
                 $(".createContainer").toggleClass("hidden");
             };
