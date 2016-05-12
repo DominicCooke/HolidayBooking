@@ -1,8 +1,8 @@
 ﻿<div class="managerControlsContainer">
     <div class="filtersContainer">
         <select ng-change="updateFilter()" ng-model="selection">
-            <option value="" disabled selected>Select your filter</option>
-            <option value="">No filter</option>
+            <option value="" disabled selected>Select your team filter</option>
+            <option value="">No team filter</option>
             <option ng-repeat="team in teams" value="{{team.TeamId}}">{{team.TeamName}}</option>
         </select>
     </div>

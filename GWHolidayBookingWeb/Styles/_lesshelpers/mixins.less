@@ -1,0 +1,22 @@
+﻿.selectedTemplate() {
+    border-bottom: 0;
+    border-right: 0;
+    box-shadow: inset -10px 0 0 0 #1ABB9C;
+}
+
+.innerContainer() {
+    background: @innerbackground-colour;
+    padding: 10px 17px;
+    border: solid 1px @border-colour;
+}
+
+.activeAndDead() {
+    &.selected {
+        .selectedTemplate()
+    }
+
+    &.all-selected {
+        background: @selected-colour;
+        pointer-events: none;
+    }
+}

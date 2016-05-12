@@ -1,26 +1,6 @@
 ﻿[
   {
-    "outputFile": "Styles/calendar.css",
-    "inputFile": "Styles/calendar.less"
-  },
-  {
-    "outputFile": "Styles/index.css",
-    "inputFile": "Styles/index.less"
-  },
-  {
-    "outputFile": "Styles/colours.css",
-    "inputFile": "Styles/colours.less"
-  },
-  {
-    "outputFile": "Styles/animations.css",
-    "inputFile": "Styles/animations.less"
-  },
-  {
-    "outputFile": "Styles/login.css",
-    "inputFile": "Styles/login.less"
-  },
-  {
-    "outputFile": "Styles/management.css",
-    "inputFile": "Styles/management.less"
+    "outputFile": "Styles/_bundled.css",
+    "inputFile": "Styles/_bundled.less"
   }
 ]

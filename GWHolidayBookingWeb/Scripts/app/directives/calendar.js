@@ -8,6 +8,43 @@
         controller: "CalendarController",
         scope: false,
         link: function ($scope) {
+            init();
+
+            // initializes on creation of a calendar, if the mode is employee then the users holidays are retrieved from the database 
+            // the data is then initialized (turning the dates into moment etc) and then the holiday is made visible
+            function init() {
+                dataService.publicHolidaysGet().then(function (listOfPublicHolidays) {
+                    listOfPublicHolidays.data.forEach(function (publicHoliday) {
+                        publicHoliday.Date = moment(publicHoliday.Date, "YYYY-MM-DD-Z");
+                    });
+                    $scope.publicHolidays = listOfPublicHolidays.data;
+                    $scope.selected = moment();
+
+                    if ($scope.mode === "employee") {
+                        $scope.userHolidayBookings = userService.employeeGetById();
+                        $scope.teamName = $scope.userHolidayBookings.TeamName;
+                        $scope.initData($scope.userHolidayBookings);
+                        $scope.userHolidayBookings.isVisible = true;
+
+                        dataService.employeesGetTeam($scope.userHolidayBookings.TeamId).then(function (response) {
+                            $scope.teamUserHolidayBookings = response.data;
+                            $scope.initData($scope.teamUserHolidayBookings);
+                            $scope.reloadCalendar();
+                        });
+                    };
+
+                    if ($scope.mode === "manager") {
+                        dataService.employeesGet().then(function (response) {
+                            $scope.teamUserHolidayBookings = response.data;
+                            $scope.initData($scope.teamUserHolidayBookings);
+                            $scope.reloadCalendar();
+                        });
+                        dataService.teamsGet().then(function (response) {
+                            $scope.teams = response.data;
+                        });
+                    };
+                });
+            };
 
             // triggered when the user has selected a day on the calendar
             // checks whether or not the calendar is in edit mode, and then checks what state the day the user has chosen is in
@@ -254,7 +291,7 @@
                 });
             };
 
-            // reloads the calendar which has the effect of resetting all the classes on the days
+            // reloads the calendar which has the effect of resetting all the classes on the days, if mode is set to false then the calendar is reset without centering on the current day
             $scope.reloadCalendar = function (mode) {
                 var start;
                 if (mode === true) {
@@ -267,43 +304,6 @@
                 removeTime(start.day(0));
                 buildMonth($scope, removeTime(start.endOf("month")), $scope.month);
             };
-
-            // initializes on creation of a calendar, if the mode is employee then the users holidays are retrieved from the database 
-            // the data is then initialized (turning the dates into moment etc) and then the holiday is made visible
-            $scope.init = function () {
-                dataService.publicHolidaysGet().then(function (listOfPublicHolidays) {
-                    listOfPublicHolidays.data.forEach(function (publicHoliday) {
-                        publicHoliday.Date = moment(publicHoliday.Date, "YYYY-MM-DD-Z");
-                    });
-                    $scope.publicHolidays = listOfPublicHolidays.data;
-                    $scope.selected = moment();
-
-                    if ($scope.mode === "employee") {
-                        $scope.userHolidayBookings = userService.employeeGetById();
-                        $scope.teamName = $scope.userHolidayBookings.TeamName;
-                        $scope.initData($scope.userHolidayBookings);
-                        $scope.userHolidayBookings.isVisible = true;
-
-                        dataService.employeesGetTeam($scope.userHolidayBookings.TeamId).then(function (response) {
-                            $scope.teamUserHolidayBookings = response.data;
-                            $scope.initData($scope.teamUserHolidayBookings);
-                            $scope.reloadCalendar();
-                        });
-                    };
-
-                    if ($scope.mode === "manager") {
-                        dataService.employeesGet().then(function (response) {
-                            $scope.teamUserHolidayBookings = response.data;
-                            $scope.initData($scope.teamUserHolidayBookings);
-                            $scope.reloadCalendar();
-                        });
-                        dataService.teamsGet().then(function (response) {
-                            $scope.teams = response.data;
-                        });
-                    };
-                });
-            };
-            $scope.init();
         }
     };
 };

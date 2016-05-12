@@ -35,7 +35,7 @@
     {
         "outputFileName": "Scripts/bundles/libs.js",
         "inputFiles": [
-            "Scripts/lib/jquery/jquery-2.1.4.js",
+            "Scripts/lib/jquery/jquery-2.2.3.js",
             "Scripts/lib/jquery/jquery-ui.js",
             "Scripts/lib/jquery/scrollbar/jquery.scrollbar.js",
             "Scripts/lib/angular/angular/angular.js",
@@ -52,7 +52,7 @@
         ]
     },
     {
-        "outputFileName": "Scripts/bundles/style.css",
+        "outputFileName": "Scripts/bundles/libs.css",
         "inputFiles": [
             "Scripts/lib/angular/chart/angular-chart.css",
             "Scripts/lib/jquery/scrollbar/jquery.scrollbar.css",

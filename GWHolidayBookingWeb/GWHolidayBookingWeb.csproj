@@ -41,8 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -53,8 +54,9 @@
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
@@ -73,29 +75,37 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="MoreLinq">
-      <HintPath>..\packages\morelinq.1.4.0\lib\net35\MoreLinq.dll</HintPath>
+    <Reference Include="MoreLinq, Version=2.0.19309.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.2.0.0-beta03\lib\net35\MoreLinq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <HintPath>..\packages\Ninject.3.2.3-unstable-012\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject.Extensions.ContextPreservation">
-      <HintPath>..\packages\Ninject.Extensions.ContextPreservation.3.2.0.0\lib\net45-full\Ninject.Extensions.ContextPreservation.dll</HintPath>
+    <Reference Include="Ninject.Extensions.ContextPreservation, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.ContextPreservation.3.2.1-unstable-004\lib\net45-full\Ninject.Extensions.ContextPreservation.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject.Extensions.Conventions">
-      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.1-unstable-005\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <HintPath>..\packages\Ninject.Web.Common.3.2.4-unstable-004\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC3.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
@@ -112,8 +122,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Cors">
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -138,8 +149,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="WebActivatorEx">
-      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebApiContrib.IoC.Ninject">
       <HintPath>..\packages\WebApiContrib.IoC.Ninject.0.9.3.0\lib\net40\WebApiContrib.IoC.Ninject.dll</HintPath>
@@ -167,14 +179,13 @@
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Http.WebHost">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\icon-user-default.png" />
     <Content Include="Scripts\app\controllers\MenuController.es5.js">
@@ -191,6 +202,7 @@
     <Content Include="Scripts\app\directives\sideMenu.js" />
     <Content Include="Scripts\app\views\sideMenu.html" />
     <Content Include="Scripts\app\services\helperService.js" />
+    <Content Include="Scripts\lib\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bundles\controllers.js" />
     <Content Include="Scripts\bundles\controllers.min.js">
       <DependentUpon>controllers.js</DependentUpon>
@@ -205,6 +217,7 @@
     <Content Include="Scripts\bundles\directives.min.js">
       <DependentUpon>directives.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\bundles\libs.css" />
     <Content Include="Scripts\bundles\libs.es5.js">
       <DependentUpon>libs.js</DependentUpon>
     </Content>
@@ -212,6 +225,9 @@
       <DependentUpon>libs.es5.js</DependentUpon>
     </Content>
     <Content Include="Scripts\bundles\libs.js" />
+    <Content Include="Scripts\bundles\libs.min.css">
+      <DependentUpon>libs.css</DependentUpon>
+    </Content>
     <Content Include="Scripts\bundles\libs.min.js">
       <DependentUpon>libs.js</DependentUpon>
     </Content>
@@ -224,10 +240,10 @@
     <Content Include="Content\images\img.jpg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\app\directives\infoBox.js" />
-    <Content Include="Scripts\bundles\style.css" />
-    <Content Include="Scripts\bundles\style.min.css">
-      <DependentUpon>style.css</DependentUpon>
-    </Content>
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Scripts\lib\jquery\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\lib\jquery\jquery-2.2.3.js" />
     <Content Include="Scripts\lib\angular\angular\angular-animate.js" />
     <Content Include="Scripts\lib\angular\chart\angular-chart.css" />
     <Content Include="Scripts\lib\angular\chart\angular-chart.js" />
@@ -244,7 +260,6 @@
     <Content Include="Scripts\app\templates\components\employeeCalendarControlsTemplate.html" />
     <Content Include="Scripts\app\templates\components\employeeCalendarTooltipTemplate.html" />
     <Content Include="Scripts\lib\bootstrap\bootstrap.css" />
-    <Content Include="Scripts\lib\bootstrap\bootstrap.js" />
     <Content Include="Scripts\lib\jquery\jquery-ui.css" />
     <Content Include="Scripts\lib\jquery\jquery-ui.js" />
     <Content Include="Scripts\lib\jquery\scrollbar\jquery.scrollbar.css" />
@@ -252,7 +267,6 @@
     <Content Include="Scripts\lib\lodash\lodash.js" />
     <Content Include="Scripts\lib\toastr\toastr.css" />
     <Content Include="Scripts\lib\toastr\toastr.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="index.html" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -293,46 +307,14 @@
     <Content Include="Scripts\app\views\employeeCalendar.html" />
     <Content Include="Scripts\app\views\managerCalendar.html" />
     <Content Include="Scripts\app\templates\sideMenuTemplate.html" />
-    <None Include="Scripts\lib\jquery\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\lib\jquery\jquery-2.1.4.js" />
     <Content Include="Scripts\lib\moment\moment.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\lib\underscore\underscore-min.js" />
-    <Content Include="Styles\animations.css">
-      <DependentUpon>animations.less</DependentUpon>
+    <Content Include="Styles\_bundled.css">
+      <DependentUpon>_bundled.less</DependentUpon>
     </Content>
-    <Content Include="Styles\animations.min.css">
-      <DependentUpon>animations.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\calendar.css">
-      <DependentUpon>calendar.less</DependentUpon>
-    </Content>
-    <Content Include="Styles\calendar.min.css">
-      <DependentUpon>calendar.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\colours.css">
-      <DependentUpon>colours.less</DependentUpon>
-    </Content>
-    <Content Include="Styles\colours.min.css">
-      <DependentUpon>colours.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\Index.css">
-      <DependentUpon>index.less</DependentUpon>
-    </Content>
-    <Content Include="Styles\Index.min.css">
-      <DependentUpon>Index.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\login.css">
-      <DependentUpon>login.less</DependentUpon>
-    </Content>
-    <Content Include="Styles\login.min.css">
-      <DependentUpon>login.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\management.css">
-      <DependentUpon>management.less</DependentUpon>
-    </Content>
-    <Content Include="Styles\management.min.css">
-      <DependentUpon>management.css</DependentUpon>
+    <Content Include="Styles\_bundled.min.css">
+      <DependentUpon>_bundled.css</DependentUpon>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -389,27 +371,18 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Content\fonts\Roboto-Regular.ttf" />
-    <Content Include="Styles\calendar.less" />
+    <Content Include="Styles\calendar\calendar.less" />
     <Content Include="Styles\login.less" />
-    <Content Include="Styles\login.css.map">
-      <DependentUpon>login.css</DependentUpon>
-    </Content>
     <Content Include="Styles\management.less" />
     <Content Include="Styles\index.less" />
-    <Content Include="Styles\Index.css.map">
-      <DependentUpon>Index.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\colours.less" />
-    <Content Include="Styles\colours.css.map">
-      <DependentUpon>colours.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\calendar.css.map">
-      <DependentUpon>calendar.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\animations.less" />
-    <Content Include="Styles\animations.css.map">
-      <DependentUpon>animations.css</DependentUpon>
-    </Content>
+    <Content Include="Styles\_lesshelpers\colours.less" />
+    <Content Include="Styles\_lesshelpers\animations.less" />
+    <Content Include="Styles\calendar\key.less" />
+    <Content Include="Styles\calendar\tooltip.less" />
+    <Content Include="Styles\calendar\controls.less" />
+    <Content Include="Styles\_lesshelpers\__imports.less" />
+    <Content Include="Styles\_lesshelpers\mixins.less" />
+    <Content Include="Styles\_bundled.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -445,15 +418,15 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\packages\BuildBundlerMinifier.1.5.134\build\BuildBundlerMinifier.targets" Condition="Exists('..\packages\BuildBundlerMinifier.1.5.134\build\BuildBundlerMinifier.targets')" />
+  <Import Project="..\packages\BuildBundlerMinifier.1.9.155\build\BuildBundlerMinifier.targets" Condition="Exists('..\packages\BuildBundlerMinifier.1.9.155\build\BuildBundlerMinifier.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\BuildBundlerMinifier.1.5.134\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildBundlerMinifier.1.5.134\build\BuildBundlerMinifier.targets'))" />
-    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.8.270\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.8.270\build\BuildWebCompiler.targets'))" />
+    <Error Condition="!Exists('..\packages\BuildBundlerMinifier.1.9.155\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildBundlerMinifier.1.9.155\build\BuildBundlerMinifier.targets'))" />
+    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.11.312\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.11.312\build\BuildWebCompiler.targets'))" />
   </Target>
-  <Import Project="..\packages\BuildWebCompiler.1.8.270\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.8.270\build\BuildWebCompiler.targets')" />
+  <Import Project="..\packages\BuildWebCompiler.1.11.312\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.11.312\build\BuildWebCompiler.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
