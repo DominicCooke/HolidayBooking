@@ -19,8 +19,8 @@ namespace GWHolidayBookingWeb.Controllers
     public class UserController : ApiController
     {
         private readonly IEmployeeDataService employeeDataService;
-        private readonly ITeamDataService teamDataService;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly ITeamDataService teamDataService;
         private readonly UserManager<IdentityEmployee> userManager;
 
         public UserController(IEmployeeDataService employeeDataService, ITeamDataService teamDataService)
@@ -33,7 +33,8 @@ namespace GWHolidayBookingWeb.Controllers
 
         [Route("DeleteUserAndEmployee")]
         [HttpPost]
-        public async Task<IHttpActionResult> DeleteUserAndEmployee(DeleteUserAndEmployeeViewModel deleteUserAndEmployeeViewModel)
+        public async Task<IHttpActionResult> DeleteUserAndEmployee(
+            DeleteUserAndEmployeeViewModel deleteUserAndEmployeeViewModel)
         {
             employeeDataService.Delete(deleteUserAndEmployeeViewModel.StaffId);
             var user = await userManager.FindByIdAsync(deleteUserAndEmployeeViewModel.IdentityId);
@@ -66,29 +67,29 @@ namespace GWHolidayBookingWeb.Controllers
             var joined = from RoleAndUsers in listOfAllIdentityRolesAndUsers
                 join Employee in listOfAllEmployees on RoleAndUsers.User.StaffId equals Employee.StaffId
                 let EmployeeTeam = listOfAllTeams.FirstOrDefault(Team => Team.TeamId == Employee.TeamId)
-                         select new UpdateEmployeeViewModel
-                         {
-                             HolidayAllowance = Employee.HolidayAllowance,
-                             RemainingAllowance = Employee.RemainingAllowance,
-                             StaffId = Employee.StaffId,
-                             FirstName = Employee.FirstName,
-                             LastName = Employee.LastName,
-                             Team = new TeamViewModel
-                             {
-                                 TeamId = EmployeeTeam.TeamId,
-                                 TeamName = EmployeeTeam.TeamName
-                             },
-                             UserViewModel = new IdentityUserViewModel
-                             {
-                                 IdentityId = RoleAndUsers.User.Id,
-                                 Username = RoleAndUsers.User.UserName,
-                                 RoleViewModels = RoleAndUsers.UserRoles.Select(Role => new IdentityRole
-                                 {
-                                     Id = Role.Id,
-                                     Name = Role.name
-                                 }).ToList()
-                             }
-                         };
+                select new UpdateEmployeeViewModel
+                {
+                    HolidayAllowance = Employee.HolidayAllowance,
+                    RemainingAllowance = Employee.RemainingAllowance,
+                    StaffId = Employee.StaffId,
+                    FirstName = Employee.FirstName,
+                    LastName = Employee.LastName,
+                    Team = new TeamViewModel
+                    {
+                        TeamId = EmployeeTeam.TeamId,
+                        TeamName = EmployeeTeam.TeamName
+                    },
+                    UserViewModel = new IdentityUserViewModel
+                    {
+                        IdentityId = RoleAndUsers.User.Id,
+                        Username = RoleAndUsers.User.UserName,
+                        RoleViewModels = RoleAndUsers.UserRoles.Select(Role => new IdentityRole
+                        {
+                            Id = Role.Id,
+                            Name = Role.name
+                        }).ToList()
+                    }
+                };
             var getUsersAndRolesViewModel = new GetUsersAndRolesViewModel
             {
                 ListOfCalendarViewModels = joined.ToList(),
@@ -97,10 +98,11 @@ namespace GWHolidayBookingWeb.Controllers
             };
             return getUsersAndRolesViewModel;
         }
-        
+
         [AllowAnonymous]
         [Route("RegisterUserAndEmployee")]
-        public async Task<IHttpActionResult> RegisterUserAndEmployee(RegisterUserAndEmployeeViewModel userAndEmployeeViewModel)
+        public async Task<IHttpActionResult> RegisterUserAndEmployee(
+            RegisterUserAndEmployeeViewModel userAndEmployeeViewModel)
         {
             userAndEmployeeViewModel.StaffId = Guid.NewGuid();
             if (!ModelState.IsValid)
@@ -140,7 +142,7 @@ namespace GWHolidayBookingWeb.Controllers
 
             return Ok();
         }
-        
+
         [Route("UserSetRole")]
         public async Task<IHttpActionResult> UserSetRole(UserSetRoleViewModel userSetRoleViewModel)
         {

@@ -26,7 +26,9 @@
             "Scripts/app/services/tokenService.js",
             "Scripts/app/services/templateService.js",
             "Scripts/app/services/dataService.js",
+            "Scripts/app/services/authService.js",
             "Scripts/app/services/userService.js",
+            "Scripts/app/services/authservice.js",
             "Scripts/app/services/helperService.js",
             "Scripts/app/services/notificationService.js",
             "Scripts/app/services/viewService.js"

@@ -184,6 +184,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
@@ -195,6 +197,7 @@
       <DependentUpon>MenuController.es5.js</DependentUpon>
     </Content>
     <Content Include="Scripts\app\directives\management.js" />
+    <Content Include="Scripts\app\services\authService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
     <Content Include="Scripts\app\views\teamManagement.html" />
     <Content Include="Scripts\app\templates\teamManagementTemplate.html" />
@@ -202,6 +205,10 @@
     <Content Include="Scripts\app\directives\sideMenu.js" />
     <Content Include="Scripts\app\views\sideMenu.html" />
     <Content Include="Scripts\app\services\helperService.js" />
+    <Content Include="Scripts\bundles\services.js" />
+    <Content Include="Scripts\bundles\services.min.js">
+      <DependentUpon>services.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\lib\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bundles\controllers.js" />
     <Content Include="Scripts\bundles\controllers.min.js">
@@ -231,17 +238,11 @@
     <Content Include="Scripts\bundles\libs.min.js">
       <DependentUpon>libs.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\bundles\services.js" />
-    <Content Include="Scripts\bundles\services.min.js">
-      <DependentUpon>services.js</DependentUpon>
-    </Content>
     <Content Include="Content\fontawesome\font-awesome.css" />
     <Content Include="Content\images\GradWeb-logo.png" />
     <Content Include="Content\images\img.jpg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\app\directives\infoBox.js" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\lib\jquery\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\lib\jquery\jquery-2.2.3.js" />
     <Content Include="Scripts\lib\angular\angular\angular-animate.js" />
@@ -254,7 +255,6 @@
     <Content Include="Scripts\app\templates\userManagementTemplate.html" />
     <Content Include="Scripts\app\services\dataService.js" />
     <Content Include="Scripts\app\services\loginService.js" />
-    <Content Include="Scripts\app\services\tokenService.js" />
     <Content Include="Scripts\app\services\userService.js" />
     <Content Include="Scripts\app\templates\components\employeeCalendarInfoBoxTemplate.html" />
     <Content Include="Scripts\app\templates\components\employeeCalendarControlsTemplate.html" />
@@ -325,6 +325,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -332,6 +333,7 @@
     <Compile Include="DataAccess\Repositories\TeamRepository.cs" />
     <Compile Include="DataAccess\Repositories\ITeamRespository.cs" />
     <Compile Include="DataAccess\ViewModels\CreateTeamViewModel.cs" />
+    <Compile Include="DataAccess\ViewModels\LoginViewModel.cs" />
     <Compile Include="DataAccess\ViewModels\TeamViewModel.cs" />
     <Compile Include="DataAccess\ViewModels\UpdateEmployeeViewModel.cs" />
     <Compile Include="DataAccess\Identity\IdentityContext.cs" />

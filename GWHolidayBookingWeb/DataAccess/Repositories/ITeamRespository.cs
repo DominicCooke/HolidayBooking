@@ -1,10 +1,7 @@
-﻿using GWHolidayBookingWeb.DataAccess.ViewModels;
-using GWHolidayBookingWeb.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+using GWHolidayBookingWeb.DataAccess.ViewModels;
+using GWHolidayBookingWeb.Models;
 
 namespace GWHolidayBookingWeb.DataAccess.Repositories
 {

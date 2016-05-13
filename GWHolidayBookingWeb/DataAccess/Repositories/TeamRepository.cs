@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web.Http;
-using AutoMapper;
 using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
-using System.Net;
-using System.Net.Http;
-using System.Web;
-using System.Web.Http.Results;
 
 namespace GWHolidayBookingWeb.DataAccess.Repositories
 {
@@ -37,6 +31,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
             context.Teams.Add(team);
             context.SaveChanges();
         }
+
         public void SetTeam(EmployeeSetTeamViewModel employeeSetTeamViewModel)
         {
             var employeeInDb = context.Employees.Find(employeeSetTeamViewModel.Employee.StaffId);

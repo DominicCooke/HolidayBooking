@@ -2,7 +2,8 @@
     "use strict";
     return {
         getTemplate: function(templateUrl) {
-            return $http.get(templateUrl, {
+            return $http.get(templateUrl,
+            {
                 cache: $templateCache
             });
         },
@@ -22,13 +23,15 @@
         },
         addTemplate: function(templateUrl, target, scope, append) {
             var service = this;
-            service.getTemplate(templateUrl).success(function(template) {
-                service.cacheTemplate(templateUrl, template);
-                var html = service.compileTemplate(template, scope);
-                service.renderTemplate(target, html, append);
-            }).error(function(data, status, headers, config) {
-                throw (data);
-            });
+            service.getTemplate(templateUrl)
+                .success(function(template) {
+                    service.cacheTemplate(templateUrl, template);
+                    var html = service.compileTemplate(template, scope);
+                    service.renderTemplate(target, html, append);
+                })
+                .error(function(data, status, headers, config) {
+                    throw (data);
+                });
         }
     };
 }

@@ -1,13 +1,13 @@
-﻿managementDirective = function (templates) {
+﻿managementDirective = function(templates) {
     "use strict";
     return {
         restrict: "E",
-        templateUrl: function ($elem, $attr) {
+        templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
         controller: "",
         scope: true,
-        link: function ($scope) {
+        link: function($scope) {
 
             $scope.showCreate = function showCreate() {
                 $(".createContainer").toggleClass("hidden");

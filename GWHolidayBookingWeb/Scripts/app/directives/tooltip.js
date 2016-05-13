@@ -1,15 +1,15 @@
-﻿tooltipDirective = function (templates) {
+﻿tooltipDirective = function(templates) {
     "use strict";
     return {
         restrict: "E",
-        templateUrl: function ($elem, $attr) {
+        templateUrl: function($elem, $attr) {
             return templates[$attr.mode];
         },
         controller: "CalendarController",
         scope: false,
-        link: function ($scope) {
+        link: function($scope) {
 
-            $scope.checkIsFound = function (isFoundState) {
+            $scope.checkIsFound = function(isFoundState) {
                 $scope.isFoundValue = null;
                 if (isFoundState === "checked") {
                     $scope.isFoundValue = "checked";
@@ -20,7 +20,7 @@
                 }
             };
 
-            $scope.getHolidayAmount = function (holidayCount) {
+            $scope.getHolidayAmount = function(holidayCount) {
                 $scope.HolidayAmount = holidayCount;
             };
 
@@ -49,11 +49,15 @@
                         }
                     }
                 }
-                return { allCount: employeeWithHolidayCount, names: employeeWithHolidayNames, confirmedCount: employeeWithHolidayCountConfirmed };
+                return {
+                    allCount: employeeWithHolidayCount,
+                    names: employeeWithHolidayNames,
+                    confirmedCount: employeeWithHolidayCountConfirmed
+                };
             }
 
             // shows the tooltip and gathers the required info on the day that is being hovered upon
-            $scope.showTooltip = function (e, day) {
+            $scope.showTooltip = function(e, day) {
                 var countAndNamesOfEmployeesWithHolidayOnDate = checkHowManyHolidaysAreOnEachDay(day.date);
                 if (day.isTeamHoliday === false || countAndNamesOfEmployeesWithHolidayOnDate.allCount === 0) {
                     $scope.tooltipIsVisible = false;
@@ -71,7 +75,7 @@
             };
 
             // moves the tooltip
-            $scope.moveTooltip = function (e) {
+            $scope.moveTooltip = function(e) {
                 var left = e.clientX + 40 + "px";
                 var top = e.clientY + "px";
                 var divTooltip = $(".hoverTooltip")[0];
@@ -80,7 +84,7 @@
             };
 
             // hides the tooltip
-            $scope.hideTooltip = function () {
+            $scope.hideTooltip = function() {
                 $scope.tooltipIsVisible = false;
             };
         }

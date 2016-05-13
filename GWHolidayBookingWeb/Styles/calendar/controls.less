@@ -1,6 +1,7 @@
 ﻿@import "../_lesshelpers/__imports.less";
-.bodyContainer{    
-.controls {
+
+.bodyContainer {
+    .controls {
         float: left;
         height: 100%;
         line-height: 1;
@@ -415,6 +416,10 @@
                         > tbody {
                             > .tableHeadRow {
                                 > .tableHead {
+                                    &:first-child {
+                                        width: 22%;
+                                    }
+
                                     &:last-child {
                                         width: 25%;
                                     }
@@ -425,6 +430,10 @@
                                 > .tableCell {
                                     background: rgba(255,255,255,0.15);
                                     border-bottom: 1px solid @border-colour;
+
+                                    &:first-child {
+                                        width: 22%;
+                                    }
 
                                     &:last-child {
                                         width: 25%;
@@ -454,4 +463,4 @@
             }
         }
     }
-    }
+}

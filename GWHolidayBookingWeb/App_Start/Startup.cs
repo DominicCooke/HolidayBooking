@@ -10,10 +10,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 
-[assembly: OwinStartup(typeof (Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
 namespace GWHolidayBookingWeb
 {
@@ -21,12 +22,14 @@ namespace GWHolidayBookingWeb
     {
         public static Func<RoleManager<IdentityRole>> RoleManagerFactory { get; private set; }
         public static Func<UserManager<IdentityEmployee>> UserManagerFactory { get; private set; }
+
         public void Configuration(IAppBuilder app)
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MappingConfig.RegisterMapping();
+
             ConfigureOAuth(app);
             app.UseCors(CorsOptions.AllowAll);
 
@@ -61,6 +64,12 @@ namespace GWHolidayBookingWeb
 
             app.UseOAuthAuthorizationServer(oAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                CookieName = "Login Cookie"
+            });
         }
     }
 }

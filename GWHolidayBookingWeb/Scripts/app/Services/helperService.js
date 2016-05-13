@@ -1,21 +1,34 @@
-﻿helperService = function () {
+﻿helperService = function() {
     "use strict";
     return {
-        guid: function () {
+        guid: function() {
             function s4() {
                 return Math.floor((1 + Math.random()) * 0x10000)
-                  .toString(16)
-                  .substring(1);
+                    .toString(16)
+                    .substring(1);
             }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-              s4() + '-' + s4() + s4() + s4();
+
+            return s4() +
+                s4() +
+                "-" +
+                s4() +
+                "-" +
+                s4() +
+                "-" +
+                s4() +
+                "-" +
+                s4() +
+                s4() +
+                s4();
         },
-        combineHolidayBookings: function (holidayBooking) {
+        combineHolidayBookings: function(holidayBooking) {
             var consolidatedHolidayBookings = [];
             var startFlag = true;
             var duplicateHolidayId = null;
             while (holidayBooking.length !== 1) {
-                if (holidayBooking[0].StartDate.day() + 1 === holidayBooking[1].StartDate.day() && startFlag === true && holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
+                if (holidayBooking[0].StartDate.day() + 1 === holidayBooking[1].StartDate.day() &&
+                    startFlag === true &&
+                    holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
                     holidayBooking[0].EndDate = holidayBooking[1].StartDate;
                     holidayBooking[0].AllowanceDays++;
                     if (holidayBooking.length === 2) {
@@ -23,14 +36,17 @@
                     }
                     holidayBooking.splice(1, 1);
                     startFlag = false;
-                } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() && startFlag === false && holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
+                } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() &&
+                    startFlag === false &&
+                    holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
                     holidayBooking[0].EndDate = holidayBooking[1].StartDate;
                     holidayBooking[0].AllowanceDays++;
                     if (holidayBooking.length === 2) {
                         consolidatedHolidayBookings.push(holidayBooking[0]);
                     }
                     holidayBooking.splice(1, 1);
-                } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() && holidayBooking[0].BookingStatus !== holidayBooking[1].BookingStatus) {
+                } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() &&
+                    holidayBooking[0].BookingStatus !== holidayBooking[1].BookingStatus) {
                     holidayBooking[1].HolidayId = this.guid();
                     consolidatedHolidayBookings.push(holidayBooking[0]);
                     if (holidayBooking.length === 2) {
@@ -54,7 +70,7 @@
             }
             return consolidatedHolidayBookings;
         },
-        getListOfTeamMembers: function (holidayArray) {
+        getListOfTeamMembers: function(holidayArray) {
             var listOfTeamMembers = [];
             for (var i = 0; i < holidayArray.length; i++) {
                 listOfTeamMembers.push({
@@ -64,7 +80,7 @@
             }
             return listOfTeamMembers;
         },
-        unmergeHolidayBookings: function (holidayBookingsArray) {
+        unmergeHolidayBookings: function(holidayBookingsArray) {
             for (var j = 0; j < holidayBookingsArray.length; j++) {
                 while (holidayBookingsArray[j].StartDate.day() !== holidayBookingsArray[j].EndDate.day()) {
                     var copyOfHolidayBooking = _.cloneDeep(holidayBookingsArray[j]);
@@ -75,7 +91,7 @@
                 }
             }
         },
-        parseDateTimeToMoment: function (holidayBookingsArray) {
+        parseDateTimeToMoment: function(holidayBookingsArray) {
             for (var j = 0; j < holidayBookingsArray.length; j++) {
                 var teamHolidayBookings = holidayBookingsArray[j];
                 if (typeof teamHolidayBookings.StartDate === "object") {
@@ -87,7 +103,7 @@
                 }
             }
         },
-        setAllowanceDaysOfUnmergedHolidays: function (holidayArray) {
+        setAllowanceDaysOfUnmergedHolidays: function(holidayArray) {
             for (var j = 0; j < holidayArray.HolidayBookings.length; j++) {
                 holidayArray.HolidayBookings[j].AllowanceDays = 1;
             }

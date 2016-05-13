@@ -7,7 +7,6 @@ using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using GWHolidayBookingWeb.Services;
 
 namespace GWHolidayBookingWeb.Migrations
 {
@@ -24,7 +23,7 @@ namespace GWHolidayBookingWeb.Migrations
         {
             var userManager = new UserManager<IdentityEmployee>(new UserStore<IdentityEmployee>(context));
             var rolemanager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new IdentityContext()));
-            
+
             if (!rolemanager.RoleExists("admin"))
             {
                 var adminRole = new IdentityRole("admin");
@@ -37,7 +36,7 @@ namespace GWHolidayBookingWeb.Migrations
             }
             if (userManager.FindByName("d.c@gradweb.co.uk") == null)
             {
-                RegisterUserAndEmployeeViewModel test = new RegisterUserAndEmployeeViewModel();
+                var test = new RegisterUserAndEmployeeViewModel();
                 test.StaffId = Guid.NewGuid();
 
                 var user = new IdentityEmployee

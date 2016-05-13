@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
-using System.Collections.Generic;
-using System.Web.Http;
 
 namespace GWHolidayBookingWeb.Services
 {

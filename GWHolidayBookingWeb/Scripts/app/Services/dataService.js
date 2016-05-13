@@ -1,187 +1,140 @@
-﻿dataService = function ($http, tokenService, notificationService) {
+﻿dataService = function($http, notificationService) {
     "use strict";
     return {
-        getLoginAuthToken: function (u, p) {
-            return $http({
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                data: $.param({ username: u, password: p, grant_type: "password" }),
-                url: "http://localhost:57068/token"
-            }).success(function (data) {
-                tokenService.setToken(data.access_token, true);
-            });
-        },
-        publicHolidaysGet: function () {
+        publicHolidaysGet: function() {
             return $http({
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/GetPublicHolidays"
             });
         },
-        employeeGetById: function () {
+        employeeGetById: function() {
             return $http({
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/GetEmployeeById"
             });
         },
-        employeesGetTeam: function (teamId) {
+        employeesGetTeam: function(teamId) {
             return $http({
                 method: "GET",
                 params: { teamId: teamId },
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/GetEmployeesTeam"
             });
         },
-        employeesGet: function () {
+        employeesGet: function() {
             return $http({
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/GetEmployees"
             });
         },
-        employeeUpdate: function (employee) {
+        employeeUpdate: function(employee) {
             return $http({
                 data: employee,
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Employee/UpdateEmployee"
             });
         },
-        employeeUpdateHoliday: function (employeeData) {
+        employeeUpdateHoliday: function(employeeData) {
             return $http({
                 data: employeeData,
                 method: "POST",
                 contentType: "application/json",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/UpdateEmployeeAndHoliday"
             });
         },
-        employeesUpdateHolidays: function (employeeData) {
+        employeesUpdateHolidays: function(employeeData) {
             return $http({
                 data: employeeData,
                 method: "POST",
                 contentType: "application/json",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/UpdateEmployeesAndHolidays"
             });
         },
-        userDelete: function (user) {
+        userDelete: function(user) {
             return $http({
                 data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/User/DeleteUserAndEmployee"
             });
         },
-        userRegister: function (user) {
+        userRegister: function(user) {
             return $http({
                 data: user,
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/User/RegisterUserAndEmployee"
             });
         },
-        userSetRole: function (user, role) {
+        userSetRole: function(user, role) {
             return $http({
                 data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/User/UserSetRole"
             });
         },
-        userGet: function () {
+        userGet: function() {
             return $http({
                 method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/User/GetUsersAndRoles"
             });
         },
-        teamRegister: function (team) {
+        teamRegister: function(team) {
             return $http({
                 data: team,
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Team/CreateTeam"
             });
         },
-        teamUpdate: function (team) {
+        teamUpdate: function(team) {
             return $http({
                 data: team,
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Team/UpdateTeam"
             });
         },
-        teamDelete: function (team) {
+        teamDelete: function(team) {
             return $http({
-                data: team,
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
-                url: "http://localhost:57068/api/Team/DeleteTeam"
-            }).then(function (response) {
-                if (response.data.length > 0)
-                    notificationService.generateNotification("error", response.data);
-            });
+                    data: team,
+                    method: "POST",
+                    url: "http://localhost:57068/api/Team/DeleteTeam"
+                })
+                .then(function(response) {
+                    if (response.data.length > 0)
+                        notificationService.generateNotification("error", response.data);
+                });
         },
-        teamsGet: function () {
+        teamsGet: function() {
             return $http({
                 method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Team/GetTeams"
             });
         },
-        teamSetEmployee: function (employee, team) {
+        teamSetEmployee: function(employee, team) {
             return $http({
                 data: { Employee: employee, Team: team },
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Employee/EmployeeSetTeam"
             });
         }

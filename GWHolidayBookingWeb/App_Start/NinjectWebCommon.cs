@@ -11,8 +11,8 @@ using Ninject;
 using Ninject.Web.Common;
 using WebActivatorEx;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof (NinjectWebCommon), "Start")]
-[assembly: ApplicationShutdownMethod(typeof (NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
 
 namespace GWHolidayBookingWeb.App_Start
 {
@@ -30,8 +30,8 @@ namespace GWHolidayBookingWeb.App_Start
         /// </summary>
         public static void Start()
         {
-            DynamicModuleUtility.RegisterModule(typeof (OnePerRequestHttpModule));
-            DynamicModuleUtility.RegisterModule(typeof (NinjectHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(Kernel);
         }

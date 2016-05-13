@@ -1,5 +1,4 @@
-﻿using GWHolidayBookingWeb.Models;
-using System;
+﻿using System;
 
 namespace GWHolidayBookingWeb.DataAccess.ViewModels
 {

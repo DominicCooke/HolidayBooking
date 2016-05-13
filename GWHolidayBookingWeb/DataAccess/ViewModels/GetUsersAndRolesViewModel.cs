@@ -8,6 +8,6 @@ namespace GWHolidayBookingWeb.DataAccess.ViewModels
     {
         public List<UpdateEmployeeViewModel> ListOfCalendarViewModels { get; set; }
         public List<IdentityRole> ListOfIdentityRoles { get; set; }
-        public List<Team> ListOfTeams { get; set; } 
+        public List<Team> ListOfTeams { get; set; }
     }
 }

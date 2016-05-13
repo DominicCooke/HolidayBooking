@@ -39,17 +39,19 @@
     <div class="actionsContainer">
         <table class="tableBody ">
             <tr class="tableHeadRow secondary">
+                <th class="tableHead">Name</th>
                 <th class="tableHead">Date</th>
                 <th class="tableHead">Actions</th>
             </tr>
         </table>
         <table class="tableBody">
             <tr class="tableRow" ng-repeat="holidayRequest in holidayRequests.HolidayRequests" ng-init="$last ? addScrollBar() : null">
+                <td class="tableCell default">{{holidayRequest.StaffName}}</td>
                 <td class="tableCell default">{{formatDate(holidayRequest.HolidayDate.StartDate, 1)}}</td>
                 <td class="tableCell default">
                     <div class="fa fa-check tableCellAction" ng-click="holidayRequestAction(holidayRequest.HolidayDate.StartDate,holidayRequest.StaffId,holidayRequest.TypeOfHoliday,'accept')"></div>
                     <div class="fa fa-times tableCellAction" ng-click="holidayRequestAction(holidayRequest.HolidayDate.StartDate,holidayRequest.StaffId,holidayRequest.TypeOfHoliday,'decline')"></div>
-                    <div class="fa fa-comment tableCellAction" ng-click=""></div>
+                    <!--<div class="fa fa-comment tableCellAction" ng-click=""></div>-->
                 </td>
             </tr>
         </table>

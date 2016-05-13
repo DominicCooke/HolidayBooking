@@ -1,5 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security.OAuth;
 
 namespace GWHolidayBookingWeb.DataAccess.Providers
@@ -14,7 +16,7 @@ namespace GWHolidayBookingWeb.DataAccess.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] {"*"});
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            var identity = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
             var userManager = Startup.UserManagerFactory();
             var user = await userManager.FindAsync(context.UserName, context.Password);
             if (user == null)
@@ -34,6 +36,11 @@ namespace GWHolidayBookingWeb.DataAccess.Providers
                 identity.AddClaim(new Claim("role", "user"));
             }
             context.Validated(identity);
+
+
+            var ctx = HttpContext.Current.GetOwinContext();
+            var authManager = ctx.Authentication;
+            authManager.SignIn(identity);
         }
     }
 }

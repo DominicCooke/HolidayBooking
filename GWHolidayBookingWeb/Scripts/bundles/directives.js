@@ -602,6 +602,7 @@ calendarControlsDirective = function (templates, $timeout, dataService) {
                                 if (tUHB[i].HolidayBookings[j].BookingStatus === typeOfHoliday) {
                                     holidayRequests.push({
                                         StaffId: staffId,
+                                        StaffName: tUHB[i].FirstName + ' ' + tUHB[i].LastName.charAt(0),
                                         HolidayDate: tUHB[i].HolidayBookings[j],
                                         TypeOfHoliday: typeOfHoliday
                                     });

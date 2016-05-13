@@ -1,21 +1,11 @@
 loginService = function($rootScope) {
     "use strict";
+    var loginStatus = false;
     return {
         broadcast: function() {
             $rootScope.$broadcast("loggedIn");
-        }
-    };
-}
-tokenService = function() {
-    "use strict";
-    var loginAuthToken;
-    var loginStatus = false;
-    return {
-        getLoginAuthToken: function() {
-            return loginAuthToken;
         },
-        setToken: function(token, status) {
-            loginAuthToken = token;
+        setLoginStatus: function(status) {
             loginStatus = status;
         },
         getLoginStatus: function() {
@@ -27,7 +17,8 @@ templateService = function($http, $compile, $templateCache) {
     "use strict";
     return {
         getTemplate: function(templateUrl) {
-            return $http.get(templateUrl, {
+            return $http.get(templateUrl,
+            {
                 cache: $templateCache
             });
         },
@@ -47,244 +38,256 @@ templateService = function($http, $compile, $templateCache) {
         },
         addTemplate: function(templateUrl, target, scope, append) {
             var service = this;
-            service.getTemplate(templateUrl).success(function(template) {
-                service.cacheTemplate(templateUrl, template);
-                var html = service.compileTemplate(template, scope);
-                service.renderTemplate(target, html, append);
-            }).error(function(data, status, headers, config) {
-                throw (data);
-            });
+            service.getTemplate(templateUrl)
+                .success(function(template) {
+                    service.cacheTemplate(templateUrl, template);
+                    var html = service.compileTemplate(template, scope);
+                    service.renderTemplate(target, html, append);
+                })
+                .error(function(data, status, headers, config) {
+                    throw (data);
+                });
         }
     };
 }
-dataService = function ($http, tokenService, notificationService) {
+dataService = function($http, notificationService) {
     "use strict";
     return {
-        getLoginAuthToken: function (u, p) {
-            return $http({
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                data: $.param({ username: u, password: p, grant_type: "password" }),
-                url: "http://localhost:57068/token"
-            }).success(function (data) {
-                tokenService.setToken(data.access_token, true);
-            });
-        },
-        publicHolidaysGet: function () {
+        publicHolidaysGet: function() {
             return $http({
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/GetPublicHolidays"
             });
         },
-        employeeGetById: function () {
+        employeeGetById: function() {
             return $http({
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/GetEmployeeById"
             });
         },
-        employeesGetTeam: function (teamId) {
+        employeesGetTeam: function(teamId) {
             return $http({
                 method: "GET",
                 params: { teamId: teamId },
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/GetEmployeesTeam"
             });
         },
-        employeesGet: function () {
+        employeesGet: function() {
             return $http({
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/GetEmployees"
             });
         },
-        employeeUpdate: function (employee) {
+        employeeUpdate: function(employee) {
             return $http({
                 data: employee,
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Employee/UpdateEmployee"
             });
         },
-        employeeUpdateHoliday: function (employeeData) {
+        employeeUpdateHoliday: function(employeeData) {
             return $http({
                 data: employeeData,
                 method: "POST",
                 contentType: "application/json",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/UpdateEmployeeAndHoliday"
             });
         },
-        employeesUpdateHolidays: function (employeeData) {
+        employeesUpdateHolidays: function(employeeData) {
             return $http({
                 data: employeeData,
                 method: "POST",
                 contentType: "application/json",
                 headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken(),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 url: "http://localhost:57068/api/Employee/UpdateEmployeesAndHolidays"
             });
         },
-        userDelete: function (user) {
+        userDelete: function(user) {
             return $http({
                 data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/User/DeleteUserAndEmployee"
             });
         },
-        userRegister: function (user) {
+        userRegister: function(user) {
             return $http({
                 data: user,
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/User/RegisterUserAndEmployee"
             });
         },
-        userSetRole: function (user, role) {
+        userSetRole: function(user, role) {
             return $http({
                 data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/User/UserSetRole"
             });
         },
-        userGet: function () {
+        userGet: function() {
             return $http({
                 method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/User/GetUsersAndRoles"
             });
         },
-        teamRegister: function (team) {
+        teamRegister: function(team) {
             return $http({
                 data: team,
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Team/CreateTeam"
             });
         },
-        teamUpdate: function (team) {
+        teamUpdate: function(team) {
             return $http({
                 data: team,
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Team/UpdateTeam"
             });
         },
-        teamDelete: function (team) {
+        teamDelete: function(team) {
             return $http({
-                data: team,
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
-                url: "http://localhost:57068/api/Team/DeleteTeam"
-            }).then(function (response) {
-                if (response.data.length > 0)
-                    notificationService.generateNotification("error", response.data);
-            });
+                    data: team,
+                    method: "POST",
+                    url: "http://localhost:57068/api/Team/DeleteTeam"
+                })
+                .then(function(response) {
+                    if (response.data.length > 0)
+                        notificationService.generateNotification("error", response.data);
+                });
         },
-        teamsGet: function () {
+        teamsGet: function() {
             return $http({
                 method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Team/GetTeams"
             });
         },
-        teamSetEmployee: function (employee, team) {
+        teamSetEmployee: function(employee, team) {
             return $http({
                 data: { Employee: employee, Team: team },
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + tokenService.getLoginAuthToken()
-                },
                 url: "http://localhost:57068/api/Employee/EmployeeSetTeam"
             });
         }
 
     };
 }
+authService = function($http) {
+    return {
+        authenticateAccount: function(u, p) {
+            return $http({
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: { username: u, password: p },
+                    url: "http://localhost:57068/api/Account/Login"
+                })
+                .success(function(data) {
+                    if (data == false) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+        }
+    };
+};
 userService = function(dataService, loginService) {
     "use strict";
     var user;
     return {
         setUser: function() {
-            dataService.employeeGetById().then(function(response) {
-                user = response.data;
-                loginService.broadcast();
-            });
+            dataService.employeeGetById()
+                .then(function(response) {
+                    user = response.data;
+                    loginService.broadcast();
+                });
         },
         employeeGetById: function() {
             return user;
         },
         refreshUser: function() {
-            dataService.employeeGetById().then(function(response) {
-                user = response.data;
-            });
+            dataService.employeeGetById()
+                .then(function(response) {
+                    user = response.data;
+                });
         }
     };
 }
-helperService = function () {
+authService = function($http) {
+    return {
+        authenticateAccount: function(u, p) {
+            return $http({
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: { username: u, password: p },
+                    url: "http://localhost:57068/api/Account/Login"
+                })
+                .success(function(data) {
+                    if (data == false) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+        }
+    };
+};
+helperService = function() {
     "use strict";
     return {
-        guid: function () {
+        guid: function() {
             function s4() {
                 return Math.floor((1 + Math.random()) * 0x10000)
-                  .toString(16)
-                  .substring(1);
+                    .toString(16)
+                    .substring(1);
             }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-              s4() + '-' + s4() + s4() + s4();
+
+            return s4() +
+                s4() +
+                "-" +
+                s4() +
+                "-" +
+                s4() +
+                "-" +
+                s4() +
+                "-" +
+                s4() +
+                s4() +
+                s4();
         },
-        combineHolidayBookings: function (holidayBooking) {
+        combineHolidayBookings: function(holidayBooking) {
             var consolidatedHolidayBookings = [];
             var startFlag = true;
             var duplicateHolidayId = null;
             while (holidayBooking.length !== 1) {
-                if (holidayBooking[0].StartDate.day() + 1 === holidayBooking[1].StartDate.day() && startFlag === true && holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
+                if (holidayBooking[0].StartDate.day() + 1 === holidayBooking[1].StartDate.day() &&
+                    startFlag === true &&
+                    holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
                     holidayBooking[0].EndDate = holidayBooking[1].StartDate;
                     holidayBooking[0].AllowanceDays++;
                     if (holidayBooking.length === 2) {
@@ -292,14 +295,17 @@ helperService = function () {
                     }
                     holidayBooking.splice(1, 1);
                     startFlag = false;
-                } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() && startFlag === false && holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
+                } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() &&
+                    startFlag === false &&
+                    holidayBooking[0].BookingStatus === holidayBooking[1].BookingStatus) {
                     holidayBooking[0].EndDate = holidayBooking[1].StartDate;
                     holidayBooking[0].AllowanceDays++;
                     if (holidayBooking.length === 2) {
                         consolidatedHolidayBookings.push(holidayBooking[0]);
                     }
                     holidayBooking.splice(1, 1);
-                } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() && holidayBooking[0].BookingStatus !== holidayBooking[1].BookingStatus) {
+                } else if (holidayBooking[0].EndDate.day() + 1 === holidayBooking[1].StartDate.day() &&
+                    holidayBooking[0].BookingStatus !== holidayBooking[1].BookingStatus) {
                     holidayBooking[1].HolidayId = this.guid();
                     consolidatedHolidayBookings.push(holidayBooking[0]);
                     if (holidayBooking.length === 2) {
@@ -323,7 +329,7 @@ helperService = function () {
             }
             return consolidatedHolidayBookings;
         },
-        getListOfTeamMembers: function (holidayArray) {
+        getListOfTeamMembers: function(holidayArray) {
             var listOfTeamMembers = [];
             for (var i = 0; i < holidayArray.length; i++) {
                 listOfTeamMembers.push({
@@ -333,7 +339,7 @@ helperService = function () {
             }
             return listOfTeamMembers;
         },
-        unmergeHolidayBookings: function (holidayBookingsArray) {
+        unmergeHolidayBookings: function(holidayBookingsArray) {
             for (var j = 0; j < holidayBookingsArray.length; j++) {
                 while (holidayBookingsArray[j].StartDate.day() !== holidayBookingsArray[j].EndDate.day()) {
                     var copyOfHolidayBooking = _.cloneDeep(holidayBookingsArray[j]);
@@ -344,7 +350,7 @@ helperService = function () {
                 }
             }
         },
-        parseDateTimeToMoment: function (holidayBookingsArray) {
+        parseDateTimeToMoment: function(holidayBookingsArray) {
             for (var j = 0; j < holidayBookingsArray.length; j++) {
                 var teamHolidayBookings = holidayBookingsArray[j];
                 if (typeof teamHolidayBookings.StartDate === "object") {
@@ -356,14 +362,14 @@ helperService = function () {
                 }
             }
         },
-        setAllowanceDaysOfUnmergedHolidays: function (holidayArray) {
+        setAllowanceDaysOfUnmergedHolidays: function(holidayArray) {
             for (var j = 0; j < holidayArray.HolidayBookings.length; j++) {
                 holidayArray.HolidayBookings[j].AllowanceDays = 1;
             }
         }
     };
 }
-notificationService = function () {
+notificationService = function() {
     "use strict";
     toastr.options = {
         "closeButton": true,
@@ -381,9 +387,9 @@ notificationService = function () {
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-    }
+    };
     return {
-        generateNotification: function (type, message) {
+        generateNotification: function(type, message) {
             if (type == "success") {
                 toastr.success(message);
             } else if (type == "warning") {

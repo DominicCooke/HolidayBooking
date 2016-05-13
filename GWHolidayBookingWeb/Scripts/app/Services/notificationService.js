@@ -1,4 +1,4 @@
-﻿notificationService = function () {
+﻿notificationService = function() {
     "use strict";
     toastr.options = {
         "closeButton": true,
@@ -16,9 +16,9 @@
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-    }
+    };
     return {
-        generateNotification: function (type, message) {
+        generateNotification: function(type, message) {
             if (type == "success") {
                 toastr.success(message);
             } else if (type == "warning") {

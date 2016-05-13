@@ -21,6 +21,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
         {
             return context.Employees.Include("HolidayBookings").Where(x => x.TeamId == teamId).ToList();
         }
+
         public List<Employee> Get()
         {
             return context.Employees.Include("HolidayBookings").ToList();
@@ -28,7 +29,7 @@ namespace GWHolidayBookingWeb.DataAccess.Repositories
 
         public List<Employee> GetEmployeesByTeamId(Guid teamId)
         {
-            return context.Employees.Where(x=>x.TeamId==teamId).ToList();
+            return context.Employees.Where(x => x.TeamId == teamId).ToList();
         }
 
         public List<PublicHoliday> GetPublicHolidays()

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using GWHolidayBookingWeb.DataAccess.ViewModels;
 using GWHolidayBookingWeb.Models;
@@ -16,8 +14,8 @@ namespace GWHolidayBookingWeb.Controllers
     [RoutePrefix("api/Team")]
     public class TeamController : ApiController
     {
-        private readonly ITeamDataService teamDataService;
         private readonly IEmployeeDataService employeeDataService;
+        private readonly ITeamDataService teamDataService;
 
         public TeamController(ITeamDataService teamDataService, IEmployeeDataService employeeDataService)
         {
@@ -34,7 +32,7 @@ namespace GWHolidayBookingWeb.Controllers
         [Route("CreateTeam")]
         public IHttpActionResult CreateTeam(CreateTeamViewModel createTeamViewModel)
         {
-            Team team = new Team();
+            var team = new Team();
             team.TeamId = Guid.NewGuid();
             team.TeamName = createTeamViewModel.TeamName;
             teamDataService.CreateTeam(team);
@@ -55,13 +53,13 @@ namespace GWHolidayBookingWeb.Controllers
             var listOfEmployeesInTeam = employeeDataService.GetEmployeesByTeamId(team.TeamId);
             if (listOfEmployeesInTeam.Count > 0)
             {
-                var message = string.Format("The team {0} has {1} member (s) in it. The team must be empty to be deleted.", team.TeamName, listOfEmployeesInTeam.Count());
+                var message =
+                    string.Format("The team {0} has {1} member (s) in it. The team must be empty to be deleted.",
+                        team.TeamName, listOfEmployeesInTeam.Count());
                 return Request.CreateResponse(HttpStatusCode.OK, message);
             }
-            else {
-                teamDataService.DeleteTeam(team.TeamId);
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
+            teamDataService.DeleteTeam(team.TeamId);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }
