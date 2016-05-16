@@ -22,7 +22,7 @@
                         $scope.selected = moment();
 
                         if ($scope.mode === "employee") {
-                            $scope.userHolidayBookings = userService.employeeGetById();
+                            $scope.userHolidayBookings = userService.getUser();
                             $scope.teamName = $scope.userHolidayBookings.TeamName;
                             $scope.initData($scope.userHolidayBookings);
                             $scope.userHolidayBookings.isVisible = true;

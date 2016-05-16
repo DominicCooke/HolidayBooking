@@ -1,6 +1,6 @@
 ﻿CalendarController = function($scope, dataService, helperService) {
     "use strict";
-    $scope.init = function(mode) {
+    $scope.initCalendar = function(mode) {
         $scope.mode = mode;
         $scope.editMode = false;
         $scope.changes = [];

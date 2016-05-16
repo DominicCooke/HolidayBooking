@@ -7,9 +7,13 @@
         },
         setLoginStatus: function(status) {
             loginStatus = status;
+            localStorage.setItem("loggedIn", status);
         },
         getLoginStatus: function() {
             return loginStatus;
+        },
+        checkLoginStatus: function() {
+            return localStorage.getItem("loggedIn");
         }
     };
 }

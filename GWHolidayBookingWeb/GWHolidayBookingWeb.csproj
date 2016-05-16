@@ -190,12 +190,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\icon-user-default.png" />
-    <Content Include="Scripts\app\controllers\MenuController.es5.js">
-      <DependentUpon>MenuController.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\app\controllers\MenuController.es5.min.js">
-      <DependentUpon>MenuController.es5.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\app\directives\management.js" />
     <Content Include="Scripts\app\services\authService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
@@ -205,15 +199,15 @@
     <Content Include="Scripts\app\directives\sideMenu.js" />
     <Content Include="Scripts\app\views\sideMenu.html" />
     <Content Include="Scripts\app\services\helperService.js" />
+    <Content Include="Scripts\bundles\controllers.js" />
+    <Content Include="Scripts\bundles\controllers.min.js">
+      <DependentUpon>controllers.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bundles\services.js" />
     <Content Include="Scripts\bundles\services.min.js">
       <DependentUpon>services.js</DependentUpon>
     </Content>
     <Content Include="Scripts\lib\bootstrap\bootstrap.js" />
-    <Content Include="Scripts\bundles\controllers.js" />
-    <Content Include="Scripts\bundles\controllers.min.js">
-      <DependentUpon>controllers.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\bundles\directives.es5.js">
       <DependentUpon>directives.js</DependentUpon>
     </Content>
@@ -294,7 +288,7 @@
     <Content Include="Scripts\lib\angular\chart\chart.js" />
     <Content Include="Scripts\app\app.module.js" />
     <Content Include="Scripts\app\controllers\CalendarController.js" />
-    <Content Include="Scripts\app\controllers\MenuController.js" />
+    <Content Include="Scripts\app\controllers\MainController.js" />
     <Content Include="Scripts\app\views.js" />
     <Content Include="Scripts\app\services\templateService.js" />
     <Content Include="Scripts\app\services\viewService.js" />

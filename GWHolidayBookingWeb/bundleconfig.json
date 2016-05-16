@@ -13,7 +13,7 @@
     {
         "outputFileName": "Scripts/bundles/controllers.js",
         "inputFiles": [
-            "Scripts/app/controllers/MenuController.js",
+            "Scripts/app/controllers/MainController.js",
             "Scripts/app/controllers/LoginController.js",
             "Scripts/app/controllers/CalendarController.js",
             "Scripts/app/controllers/ManagementController.js"
@@ -23,7 +23,6 @@
         "outputFileName": "Scripts/bundles/services.js",
         "inputFiles": [
             "Scripts/app/services/loginService.js",
-            "Scripts/app/services/tokenService.js",
             "Scripts/app/services/templateService.js",
             "Scripts/app/services/dataService.js",
             "Scripts/app/services/authService.js",

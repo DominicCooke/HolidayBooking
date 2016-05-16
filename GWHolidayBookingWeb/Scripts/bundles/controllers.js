@@ -1,33 +1,39 @@
-MenuController = function($scope, viewService, tokenService, userService) {
+MainController = function ($scope, viewService, loginService, userService, $timeout) {
     "use strict";
     var childScope;
 
     init();
 
     function init() {
-        defaultViews();
         $scope.$on("loggedIn",
-            function() {
-                $scope.loginStatus = tokenService.getLoginStatus();
-                var user = userService.employeeGetById();
+            function () {
+                $scope.loginStatus = loginService.getLoginStatus();
+                var user = userService.getUser();
                 $scope.role = user.RoleName.toLowerCase();
                 $scope.loggedInUsername = user.FirstName + " " + user.LastName;
                 $scope.navigate("EmployeeCalendar");
             });
+        $timeout(function () {
+            if (loginService.checkLoginStatus()) {
+                userService.setUser();
+                loginService.setLoginStatus(true);
+            } else {
+                defaultViews();
+            }
+        });
     };
 
     function defaultViews() {
-        viewService.menuGotoView($scope, views.Menu, ".side-bar-menu");
         viewService.gotoView($scope, views.Login);
-        $scope.loginStatus = tokenService.getLoginStatus();
+        $scope.loginStatus = loginService.getLoginStatus();
     };
 
-    $scope.logOut = function() {
-        tokenService.setToken("", false);
+    $scope.logOut = function () {
+        loginService.setLoginStatus(false);
         defaultViews();
     };
 
-    $scope.navigate = function(nameOfLink) {
+    $scope.navigate = function (nameOfLink) {
         if (typeof childScope !== "undefined")
             childScope.$destroy();
 
@@ -41,16 +47,15 @@ MenuController = function($scope, viewService, tokenService, userService) {
     };
 
 };
-MenuController.$inject = ["$scope", "viewService", "tokenService", "userService"];
-LoginController = function($scope, dataService, authService, userService) {
+MainController.$inject = ["$scope", "viewService", "loginService", "userService", "$timeout"];
+LoginController = function ($scope, loginService, authService, userService, viewService, $timeout) {
     "use strict";
-    var vm = this;
-    $scope.login = function() {
+    $scope.login = function () {
         authService.authenticateAccount($scope.username, $scope.password)
-            .then(function(result) {
+            .then(function (result) {
                 if (result.data == true) {
-                    userService.setUser();
                     loginService.setLoginStatus(true);
+                    userService.setUser();
                 } else {
                     $(".alert").show();
                     $("#password").val("");
@@ -58,10 +63,10 @@ LoginController = function($scope, dataService, authService, userService) {
             });
     };
 };
-LoginController.$inject = ["$scope", "dataService", "authService", "userService"];
+LoginController.$inject = ["$scope", "loginService", "authService", "userService", "viewService",  "$timeout"];
 CalendarController = function($scope, dataService, helperService) {
     "use strict";
-    $scope.init = function(mode) {
+    $scope.initCalendar = function(mode) {
         $scope.mode = mode;
         $scope.editMode = false;
         $scope.changes = [];
@@ -138,7 +143,10 @@ CalendarController = function($scope, dataService, helperService) {
 CalendarController.$inject = ["$scope", "dataService", "helperService"];
 ManagementController = function($scope, dataService) {
     "use strict";
-    $scope.init = function() {
+
+    init();
+
+    function init() {
         dataService.userGet()
             .then(function(response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
@@ -214,7 +222,5 @@ ManagementController = function($scope, dataService) {
                     });
             });
     };
-
-    $scope.init();
 };
 ManagementController.$inject = ["$scope", "dataService"];

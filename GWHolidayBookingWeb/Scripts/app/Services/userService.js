@@ -9,7 +9,7 @@
                     loginService.broadcast();
                 });
         },
-        employeeGetById: function() {
+        getUser: function () {
             return user;
         },
         refreshUser: function() {

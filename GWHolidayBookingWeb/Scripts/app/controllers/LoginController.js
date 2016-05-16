@@ -1,12 +1,11 @@
-﻿LoginController = function($scope, dataService, authService, userService) {
+﻿LoginController = function ($scope, loginService, authService, userService, viewService, $timeout) {
     "use strict";
-    var vm = this;
-    $scope.login = function() {
+    $scope.login = function () {
         authService.authenticateAccount($scope.username, $scope.password)
-            .then(function(result) {
+            .then(function (result) {
                 if (result.data == true) {
-                    userService.setUser();
                     loginService.setLoginStatus(true);
+                    userService.setUser();
                 } else {
                     $(".alert").show();
                     $("#password").val("");
@@ -14,4 +13,4 @@
             });
     };
 };
-LoginController.$inject = ["$scope", "dataService", "authService", "userService"];
+LoginController.$inject = ["$scope", "loginService", "authService", "userService", "viewService",  "$timeout"];

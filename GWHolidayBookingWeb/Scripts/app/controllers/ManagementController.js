@@ -1,6 +1,9 @@
 ManagementController = function($scope, dataService) {
     "use strict";
-    $scope.init = function() {
+
+    init();
+
+    function init() {
         dataService.userGet()
             .then(function(response) {
                 $scope.data = response.data.ListOfCalendarViewModels;
@@ -76,7 +79,5 @@ ManagementController = function($scope, dataService) {
                     });
             });
     };
-
-    $scope.init();
 };
 ManagementController.$inject = ["$scope", "dataService"];

@@ -7,9 +7,13 @@ loginService = function($rootScope) {
         },
         setLoginStatus: function(status) {
             loginStatus = status;
+            localStorage.setItem("loggedIn", status);
         },
         getLoginStatus: function() {
             return loginStatus;
+        },
+        checkLoginStatus: function() {
+            return localStorage.getItem("loggedIn");
         }
     };
 }
@@ -225,7 +229,7 @@ userService = function(dataService, loginService) {
                     loginService.broadcast();
                 });
         },
-        employeeGetById: function() {
+        getUser: function () {
             return user;
         },
         refreshUser: function() {
@@ -407,9 +411,10 @@ viewService = function(templateService) {
             if (!target || target.length === 0)
                 target = "div.pageBody";
             templateService.addTemplate(view, target, $scope, false);
-        },
-        menuGotoView: function($scope, view, target) {
-            templateService.addTemplate(view, target, $scope, false);
         }
+        //},
+        //menuGotoView: function($scope, view, target) {
+        //    templateService.addTemplate(view, target, $scope, false);
+        //}
     };
 }

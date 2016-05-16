@@ -5,7 +5,7 @@
 </head>
 
 <body ng-app="holApp">
-    <div class="mainContainer" ng-controller="MenuController">
+    <div class="mainContainer" ng-controller="MainController">
         <div class="menuContainer">
             <div class="side-bar">
                 <div class="logo large">
@@ -23,7 +23,9 @@
                         <h2>{{loggedInUsername}}</h2>
                     </div>
                 </div>
-                <div class="side-bar-menu"></div>
+                <div class="side-bar-menu">
+                    <sidemenu></sidemenu>
+                </div>
             </div>
         </div>
         <div class="topNav">
