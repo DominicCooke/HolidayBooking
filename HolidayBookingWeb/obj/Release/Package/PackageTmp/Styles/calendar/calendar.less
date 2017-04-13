@@ -1,0 +1,193 @@
+﻿@import "../_lesshelpers/__imports.less";
+
+@spacing: 10px;
+@icon-width: 40px;
+@header-height: 40px;
+
+.bodyContainer {
+    color: @text-colour-primary;
+    cursor: default;
+    float: left;
+    height: 85%;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+    padding: 15px 0 0 15px;
+
+    
+    > calendar {
+        background: @innerbackground-colour;
+        border: 1px solid @border-colour;
+        float: left;
+        height: 75%;
+        position: relative;
+        width: 50%;       
+
+        > .header {
+            color: @text-colour-tertiary;
+            float: left;
+            padding-top: 10%;
+            width: 100%;
+            height: 20%;
+
+            > i {
+                cursor: pointer;
+                float: left;
+                position: relative;
+                width: 10%;
+            }
+
+            > .fa-angle-left {
+                text-align: left;
+                padding-left: 2%;
+            }
+
+            > .fa-angle-right {
+                text-align: right;
+                position: absolute;
+                right: 0;
+                padding-right: 2%;
+            }
+
+            > span {
+                float: left;
+                font-size: 2em;
+                font-weight: bold;
+                pointer-events: none;
+                text-align: center;
+                text-transform: uppercase;
+                width: 80%;
+            }
+        }
+
+        > .month {
+            height: 50%;
+
+            > .week {
+                margin-left: 15%;
+                margin-right: 15%;
+                margin-top: 3px;
+                width: 70%;
+                height: 100%/7;
+                float: left;
+
+                &.names {
+                    margin-bottom: 20px;
+
+                    > span {
+                        background: rgba(255,255,255,0);
+                        color: @text-colour-tertiary;
+                        margin-top: 30px;
+                        pointer-events: none;
+                    }
+                }
+
+                > .day {
+                    display: table;
+                    height: 100%;
+                    line-height: 100% !important;
+                    background: @background-colour;
+                    border-radius: 15%;
+                    cursor: pointer;
+                    float: left;
+                    margin: 0 0.5% 0.5% 0;
+                    position: relative;
+                    text-align: center;
+                    width: 90%/7;
+
+                    > .dayNumber {
+                        display: table-cell;
+                        vertical-align: middle;
+                    }
+
+                    > .confirmedHolidayCount {
+                        background-color: @notification-colour;
+                        border-bottom-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                        box-shadow: 1px 0 1px 0 #2a3f54;
+                        display: none;
+                        font-size: 14px;
+                        font-weight: normal;
+                        height: 15px;
+                        line-height: 1;
+                        padding: 1px 3px;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        width: 15px;
+                    }
+
+                    &.isweekend {
+                        background: #C5C7CB;
+                        cursor: none;
+                        pointer-events: none;
+                    }
+
+                    &.today {
+                        font-size: 1.8em;
+                        font-weight: bolder;
+                    }
+
+                    &.different-month {
+                        color: rgba(255, 255, 255, 0.60);
+                    }
+
+                    &.selected {
+                        background: lighten(@background-colour,5%);
+                        border-radius: 15%;
+                    }
+
+                    &.isConfirmedHoliday {
+                        background: @normalHoliday-colour;
+                    }
+
+                    &.isPublicHoliday {
+                        background: @publicHoliday-colour;
+                        cursor: none;
+                        pointer-events: none;
+                    }
+
+                    &.isPendingHoliday {
+                        background-color: @pendingHoliday-colour !important;
+                    }
+
+                    &.isCancelledHoliday {
+                        background: @cancelledHoliday-colour !important;
+                    }
+
+                    &.isTeamHoliday.isPendingHoliday {
+                        background: @pendingHoliday-colour !important;
+                    }
+
+                    &.teamHoliday1 {
+                        background: fade(@oneHoliday-colour, 80%);
+                        border-radius: 15%;
+                    }
+
+                    &.teamHoliday2 {
+                        background: fade(@twoHoliday-colour, 80%);
+                        border-radius: 15%;
+                    }
+
+                    &.teamHoliday3 {
+                        background: fade(@threeHoliday-colour, 80%);
+                        border-radius: 15%;
+                    }
+
+                    &.teamHoliday4 {
+                        background: fade(@fourHoliday-colour, 80%);
+                        border-radius: 15%;
+                    }
+
+                    &.teamHoliday5 {
+                        background: fade(@fiveHoliday-colour, 80%);
+                        border-radius: 15%;
+                    }
+                }
+            }
+        }
+        
+    }
+}

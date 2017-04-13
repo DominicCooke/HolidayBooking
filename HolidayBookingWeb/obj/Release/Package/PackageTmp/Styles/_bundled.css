@@ -1,0 +1,1036 @@
+﻿@keyframes textpulsatepending {
+    50% { background: rgba(52, 152, 219, 0.4); }
+}
+
+@keyframes textpulsatecancelled {
+    50% { background: rgba(155, 89, 182, 0.4); }
+}
+
+.bodyContainer {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    color: #ECF0F1;
+    cursor: default;
+    float: left;
+    height: 85%;
+    padding: 15px 0 0 15px;
+    user-select: none;
+    width: 100%;
+}
+
+.bodyContainer > calendar {
+    background: white;
+    border: 1px solid #ddd;
+    float: left;
+    height: 75%;
+    position: relative;
+    width: 50%;
+}
+
+.bodyContainer > calendar > .header {
+    color: #2A3F54;
+    float: left;
+    height: 20%;
+    padding-top: 10%;
+    width: 100%;
+}
+
+.bodyContainer > calendar > .header > i {
+    cursor: pointer;
+    float: left;
+    position: relative;
+    width: 10%;
+}
+
+.bodyContainer > calendar > .header > .fa-angle-left {
+    padding-left: 2%;
+    text-align: left;
+}
+
+.bodyContainer > calendar > .header > .fa-angle-right {
+    padding-right: 2%;
+    position: absolute;
+    right: 0;
+    text-align: right;
+}
+
+.bodyContainer > calendar > .header > span {
+    float: left;
+    font-size: 2em;
+    font-weight: bold;
+    pointer-events: none;
+    text-align: center;
+    text-transform: uppercase;
+    width: 80%;
+}
+
+.bodyContainer > calendar > .month { height: 50%; }
+
+.bodyContainer > calendar > .month > .week {
+    float: left;
+    height: 14.28571429%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3px;
+    width: 70%;
+}
+
+.bodyContainer > calendar > .month > .week.names { margin-bottom: 20px; }
+
+.bodyContainer > calendar > .month > .week.names > span {
+    background: rgba(255, 255, 255, 0);
+    color: #2A3F54;
+    margin-top: 30px;
+    pointer-events: none;
+}
+
+.bodyContainer > calendar > .month > .week > .day {
+    background: #2A3F54;
+    border-radius: 15%;
+    cursor: pointer;
+    display: table;
+    float: left;
+    height: 100%;
+    line-height: 100% !important;
+    margin: 0 0.5% 0.5% 0;
+    position: relative;
+    text-align: center;
+    width: 12.85714286%;
+}
+
+.bodyContainer > calendar > .month > .week > .day > .dayNumber {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.bodyContainer > calendar > .month > .week > .day > .confirmedHolidayCount {
+    background-color: #E74C3C;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 1px 0 1px 0 #2a3f54;
+    display: none;
+    font-size: 14px;
+    font-weight: normal;
+    height: 15px;
+    line-height: 1;
+    padding: 1px 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 15px;
+}
+
+.bodyContainer > calendar > .month > .week > .day.isweekend {
+    background: #C5C7CB;
+    cursor: none;
+    pointer-events: none;
+}
+
+.bodyContainer > calendar > .month > .week > .day.today {
+    font-size: 1.8em;
+    font-weight: bolder;
+}
+
+.bodyContainer > calendar > .month > .week > .day.different-month { color: rgba(255, 255, 255, 0.6); }
+
+.bodyContainer > calendar > .month > .week > .day.selected {
+    background: #334c65;
+    border-radius: 15%;
+}
+
+.bodyContainer > calendar > .month > .week > .day.isConfirmedHoliday { background: #1ABB9C; }
+
+.bodyContainer > calendar > .month > .week > .day.isPublicHoliday {
+    background: #73879C;
+    cursor: none;
+    pointer-events: none;
+}
+
+.bodyContainer > calendar > .month > .week > .day.isPendingHoliday { background-color: #3498DB !important; }
+
+.bodyContainer > calendar > .month > .week > .day.isCancelledHoliday { background: #9B59B6 !important; }
+
+.bodyContainer > calendar > .month > .week > .day.isTeamHoliday.isPendingHoliday { background: #3498DB !important; }
+
+.bodyContainer > calendar > .month > .week > .day.teamHoliday1 {
+    background: rgba(34, 178, 101, 0.8);
+    border-radius: 15%;
+}
+
+.bodyContainer > calendar > .month > .week > .day.teamHoliday2 {
+    background: rgba(54, 241, 144, 0.8);
+    border-radius: 15%;
+}
+
+.bodyContainer > calendar > .month > .week > .day.teamHoliday3 {
+    background: rgba(196, 109, 77, 0.8);
+    border-radius: 15%;
+}
+
+.bodyContainer > calendar > .month > .week > .day.teamHoliday4 {
+    background: rgba(231, 76, 60, 0.8);
+    border-radius: 15%;
+}
+
+.bodyContainer > calendar > .month > .week > .day.teamHoliday5 {
+    background: rgba(178, 32, 17, 0.8);
+    border-radius: 15%;
+}
+
+.bodyContainer .controls {
+    float: left;
+    height: 100%;
+    line-height: 1;
+    position: relative;
+    width: 40%;
+}
+
+.bodyContainer .controls .tableBody {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+.bodyContainer .controls .tableBody > tbody { font-size: 15px; }
+
+.bodyContainer .controls .tableBody > tbody .tableRow:nth-of-type(even) { background: #f9f9f9; }
+
+.bodyContainer .controls .tableBody > tbody .tableRow:first-child { border-top: 1px solid #ddd; }
+
+.bodyContainer .controls .tableBody > tbody .tableRow:last-child { border-bottom: 1px solid #ddd; }
+
+.bodyContainer .controls .tableBody > tbody .tableRow > .tableCell { color: #2A3F54; }
+
+.bodyContainer .controls .tableBody > tbody .tableRow > .tableCell.default {
+    border-bottom: solid 1px #ddd;
+    border-left: solid 1px #dddddd;
+    border-right: solid 1px #ddd;
+}
+
+.bodyContainer .controls .tableBody > tbody .tableRow > .tableCell.teamMember {
+    background: #2A3F54;
+    color: #ECF0F1;
+    cursor: pointer;
+    padding: 8px 15px;
+    transition: 0.5s;
+}
+
+.bodyContainer .controls .tableBody > tbody .tableHeadRow {
+    background: #2A3F54;
+    width: 100%;
+}
+
+.bodyContainer .controls .tableBody > tbody .tableHeadRow.secondary > .tableHead {
+    cursor: default !important;
+    padding: 8px 5px !important;
+}
+
+.bodyContainer .controls .tableBody > tbody .tableHeadRow > .tableHead {
+    color: #ECF0F1;
+    font-weight: normal;
+    padding: 0 5px;
+    position: relative;
+    text-align: center;
+}
+
+.bodyContainer .controls .tableBody > tbody .tableHeadRow > .tableHead:first-child {
+    cursor: pointer;
+    padding: 10px 15px;
+    pointer-events: all;
+}
+
+.bodyContainer .controls > infobox > .infoBoxContainer {
+    background: white;
+    border: 1px solid #ddd;
+    display: flex;
+    margin-right: 5%;
+}
+
+.bodyContainer .controls > infobox > .infoBoxContainer > .infoBoxSubContainer {
+    padding: 5px;
+    text-align: center;
+    width: 25%;
+}
+
+.bodyContainer .controls > infobox > .infoBoxContainer > .infoBoxSubContainer > .infoBoxContainerValue { font-size: 40px; }
+
+.bodyContainer .controls > infobox > .infoBoxContainer > .infoBoxSubContainer > .infoBoxContainerValue#infoBoxPending { color: #3498DB; }
+
+.bodyContainer .controls > infobox > .infoBoxContainer > .infoBoxSubContainer > .infoBoxContainerValue#infoBoxCancelled { color: #9B59B6; }
+
+.bodyContainer .controls > infobox > .infoBoxContainer > .infoBoxSubContainer > .infoBoxContainerValue#infoBoxConfirmed { color: #1ABB9C; }
+
+.bodyContainer .controls > infobox > .infoBoxContainer > .infoBoxSubContainer > .infoBoxContainerValue#infoBoxRemaining { color: #2A3F54; }
+
+.bodyContainer .controls > infobox > .infoBoxContainer > .infoBoxSubContainer > .infoBoxContainerLabel {
+    color: #2A3F54;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.bodyContainer .controls > calendarcontrols .submit {
+    background-color: #2A3F54;
+    color: #ECF0F1;
+    display: table;
+    font-size: 35px;
+    height: 60px;
+    line-height: 60px;
+    position: relative;
+    width: 100%;
+}
+
+.bodyContainer .controls > calendarcontrols .submit:hover { background-color: #2d445b; }
+
+.bodyContainer .controls > calendarcontrols .submit > .submittext {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.bodyContainer .controls > calendarcontrols .submit > .submittext.active {
+    cursor: none;
+    pointer-events: none;
+}
+
+.bodyContainer .controls > calendarcontrols .submit > .sliders {
+    font-size: 23px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: 1.3s linear all;
+    width: 28%;
+}
+
+.bodyContainer .controls > calendarcontrols .submit > .sliders.active { cursor: pointer; }
+
+.bodyContainer .controls > calendarcontrols .submit > .sliders > .sliderText {
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+
+.bodyContainer .controls > calendarcontrols .submit > .acceptSlider.active {
+    background-color: #1ABB9C;
+    z-index: 11;
+}
+
+.bodyContainer .controls > calendarcontrols .submit > .declineSlider { right: 0; }
+
+.bodyContainer .controls > calendarcontrols .submit > .declineSlider.active {
+    background-color: #E74C3C;
+    z-index: 11;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer {
+    background: white;
+    border: solid 1px #ddd;
+    border-collapse: collapse;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 3% 5% 0 0;
+    padding: 10px 17px;
+    text-align: center;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .nameOfTeam {
+    color: #2A3F54;
+    font-size: 25px;
+    font-weight: normal;
+    padding-bottom: 2%;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow { border-top: 0; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead {
+    text-align: center;
+    width: 12%;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child { width: 30%; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child.selected {
+    border-bottom: 0;
+    border-right: 0;
+    box-shadow: inset -10px 0 0 0 #1ABB9C;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell { width: 12%; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember { width: 30%; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.selected {
+    border-bottom: 0;
+    border-right: 0;
+    box-shadow: inset -10px 0 0 0 #1ABB9C;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.all-selected {
+    background: #1ABB9C;
+    pointer-events: none;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isPendingHoliday {
+    animation: textpulsatepending 5s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isCancelledHoliday {
+    animation: textpulsatecancelled 5s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer .editModeToggle {
+    background-color: #2A3F54;
+    box-shadow: inset 0 -10px 0 0 rgba(255, 255, 255, 0.3);
+    color: #ECF0F1;
+    cursor: pointer;
+    display: table;
+    font-size: 35px;
+    height: 60px;
+    line-height: 50px;
+    transition: box-shadow 0.4s;
+    width: 100%;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer .editModeToggle:hover { background-color: #2d445b; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer .editModeToggle.active { box-shadow: inset 0 -10px 0 0 #1ABB9C; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer { display: none; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableHeadRow .tableHead { width: 40%; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableHeadRow .tableHead:first-child { width: 45%; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableHeadRow .tableHead:last-child { width: 15%; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableContainer {
+    max-height: 280px;
+    min-height: 27px;
+    overflow-y: auto;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableContainer:-webkit-scrollbar-track { background-color: #b46868; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableContainer > .tableBody .tableRow .tableCell {
+    background: white;
+    width: 40%;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableContainer > .tableBody .tableRow .tableCell.tableCellAction {
+    -webkit-text-stroke: 1px black;
+    border-bottom: solid 1px #ddd;
+    border-left: solid 1px #dddddd;
+    border-right: solid 1px #ddd;
+    color: red;
+}
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableContainer > .tableBody .tableRow .tableCell .fa-times { cursor: pointer; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableContainer > .tableBody .tableRow .tableCell .td-slider { display: none; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableContainer > .tableBody .tableRow .tableCell:first-child { width: 45%; }
+
+.bodyContainer .controls > calendarcontrols > .employeeControlsContainer > .editAndChangesContainer > .changesContainer .tableContainer > .tableBody .tableRow .tableCell:last-child { width: 15%; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer {
+    background: white;
+    border: solid 1px #ddd;
+    margin-right: 5%;
+    padding: 10px 17px;
+    text-align: center;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .filtersContainer > select {
+    background: #2A3F54;
+    width: 100%;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead { width: 14%; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child { width: 30%; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child.selected {
+    border-bottom: 0;
+    border-right: 0;
+    box-shadow: inset -10px 0 0 0 #1ABB9C;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableHeadRow > .tableHead > .notification-counter {
+    background-color: #E74C3C;
+    border-bottom-left-radius: 5px;
+    box-shadow: 1px 0 1px 0 #2a3f54;
+    font-size: 12px;
+    font-weight: normal;
+    height: 15px;
+    line-height: 1;
+    padding: 1px 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell { width: 14%; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember { width: 30%; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.selected {
+    border-bottom: 0;
+    border-right: 0;
+    box-shadow: inset -10px 0 0 0 #1ABB9C;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.teamMember.all-selected {
+    background: #1ABB9C;
+    pointer-events: none;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isPendingHoliday {
+    animation: textpulsatepending 5s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isPendingHoliday.clicked {
+    animation: none;
+    background: rgba(52, 152, 219, 0.4);
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isCancelledHoliday {
+    animation: textpulsatecancelled 5s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .controlsContainer > .tableBody > tbody > .tableRow > .tableCell.isCancelledHoliday.clicked {
+    animation: none;
+    background: rgba(155, 89, 182, 0.4);
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer { display: none; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:first-child { width: 22%; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableHeadRow > .tableHead:last-child { width: 25%; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell {
+    background: rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid #ddd;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell:first-child { width: 22%; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell:last-child { width: 25%; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell > .tableCellAction {
+    -webkit-text-stroke: 1px black;
+    cursor: pointer;
+}
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell > .tableCellAction.fa-check { color: #0f0; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell > .tableCellAction.fa-times { color: red; }
+
+.bodyContainer .controls > calendarcontrols > .managerControlsContainer > .actionsContainer > .tableBody > tbody > .tableRow > .tableCell > .tableCellAction.fa-comment { color: white; }
+
+calendar > .key {
+    color: #2A3F54;
+    height: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+}
+
+calendar > .key.bottom { bottom: 0; }
+
+calendar > .key.manager {
+    bottom: 10%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+calendar > .key > .holidaykey { height: 100%; }
+
+calendar > .key > .holidaykey > .keyLabel {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    height: 100%;
+    justify-content: center;
+    padding: 12.5%;
+    text-align: center;
+    width: 79%;
+}
+
+calendar > .key > .holidaykey > .keyColor {
+    border: 1px solid #dddddd;
+    border-bottom: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    float: left;
+    height: 100%;
+    width: 21%;
+}
+
+calendar > .key #publicHolidayKey {
+    float: left;
+    width: 25%;
+}
+
+calendar > .key #publicHolidayKey > #publicHolidayKeyColor { background-color: #73879C; }
+
+calendar > .key #confirmedHolidayKey {
+    float: left;
+    width: 25%;
+}
+
+calendar > .key #confirmedHolidayKey > #confirmedHolidayKeyColor { background-color: #1ABB9C; }
+
+calendar > .key #pendingHolidayKey {
+    float: left;
+    width: 25%;
+}
+
+calendar > .key #pendingHolidayKey > #pendingHolidayKeyColor { background-color: #3498DB; }
+
+calendar > .key #cancelledHolidayKey {
+    float: left;
+    width: 25%;
+}
+
+calendar > .key #cancelledHolidayKey > #cancelledHolidayKeyColor { background-color: #9B59B6; }
+
+calendar > .key #teamHolidayKey {
+    display: table;
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+
+calendar > .key #teamHolidayKey > .teamHolidayKeyLabel {
+    text-align: center;
+    width: 100%;
+}
+
+calendar > .key #teamHolidayKey > .colorContainer {
+    display: table-row;
+    height: 2vh;
+    vertical-align: middle;
+    width: 100%;
+}
+
+calendar > .key #teamHolidayKey > .colorContainer > #teamHolidayKeyColor {
+    background: linear-gradient(to right, #22B265 0, #36F190 25%, #C46D4D 50%, #E74C3C 75%, #B22011 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #22B265), color-stop(25%, #36F190), color-stop(50%, #C46D4D), color-stop(75%, #E74C3C), color-stop(100%, #B22011));
+    background: -moz-linear-gradient(left, #22B265 0, #36F190 25%, #C46D4D 50%, #E74C3C 75%, #B22011 100%);
+    background: -ms-linear-gradient(left, #22B265 0, #36F190 25%, #C46D4D 50%, #E74C3C 75%, #B22011 100%);
+    border-bottom: 1px solid black;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+
+calendar > .key #teamHolidayKey > div {
+    display: table-footer-group;
+    float: left;
+}
+
+calendar > .key #teamHolidayKey > div.two { margin-left: 20%; }
+
+calendar > .key #teamHolidayKey > div.three { margin-left: 20%; }
+
+calendar > .key #teamHolidayKey > div.four { margin-left: 20%; }
+
+calendar > .key #teamHolidayKey > div.five { float: right; }
+
+calendar > tooltip > .hoverTooltip {
+    background: rgba(0, 0, 0, 0.85);
+    border-spacing: 9px;
+    outline: solid 1px black;
+    position: fixed;
+    text-align: center;
+    z-index: 1;
+}
+
+calendar > tooltip > .hoverTooltip.teamHoliday1 { border: solid 1px #22B265; }
+
+calendar > tooltip > .hoverTooltip.teamHoliday2 { border: solid 1px #36F190; }
+
+calendar > tooltip > .hoverTooltip.teamHoliday3 { border: solid 1px #C46D4D; }
+
+calendar > tooltip > .hoverTooltip.teamHoliday4 { border: solid 1px #E74C3C; }
+
+calendar > tooltip > .hoverTooltip.teamHoliday5 { border: solid 1px #B22011; }
+
+calendar > tooltip > .hoverTooltip > .employeeWithHolidayName { display: table-row; }
+
+calendar > tooltip > .hoverTooltip > .employeeWithHolidayName > .tooltipName { display: table-cell; }
+
+calendar > tooltip > .hoverTooltip > .employeeWithHolidayName > .tooltipIcon { display: table-cell; }
+
+calendar > tooltip > .hoverTooltip > .employeeWithHolidayName > .fa-check {
+    background-color: rgba(0, 255, 0, 0.3);
+    color: lime;
+    outline: 1px solid lime;
+}
+
+calendar > tooltip > .hoverTooltip > .employeeWithHolidayName > .fa-times {
+    background-color: rgba(155, 89, 182, 0.3);
+    color: #9B59B6;
+    outline: 1px solid #9B59B6;
+}
+
+calendar > tooltip > .hoverTooltip > .employeeWithHolidayName > .fa-question {
+    background-color: rgba(52, 152, 219, 0.3);
+    color: #3498DB;
+    outline: 1px solid #3498DB;
+}
+
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url('../Content/fonts/Roboto-Thin.ttf') format('truetype');
+}
+
+.mainContainer.minimized > .menuContainer { width: 110px; }
+
+.mainContainer.minimized > .menuContainer .logo.large { display: none !important; }
+
+.mainContainer.minimized > .menuContainer .logo.small { display: block !important; }
+
+.mainContainer.minimized > .menuContainer .profile { display: none !important; }
+
+.mainContainer.minimized > .menuContainer .side-menu { color: magenta; }
+
+.mainContainer.minimized > .menuContainer .side-menu li { color: magenta; }
+
+.mainContainer.minimized > .menuContainer .side-menu li a {
+    font-size: 10px;
+    font-weight: 400;
+    padding: 10px 5px;
+    text-align: center !important;
+}
+
+.mainContainer.minimized > .menuContainer .side-menu li a .fa {
+    font-size: 25px !important;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100% !important;
+}
+
+.mainContainer.minimized > .topNav { margin-left: 110px; }
+
+.mainContainer.minimized > .pageBody { padding-left: 110px; }
+
+.mainContainer > .menuContainer {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    display: flex;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    padding: 0;
+    position: absolute;
+    width: 230px;
+}
+
+.mainContainer > .menuContainer .side-bar {
+    background: #2A3F54;
+    color: white;
+    height: 100%;
+    width: 100%;
+}
+
+.mainContainer > .menuContainer .side-bar > .logo {
+    -webkit-user-select: none;
+    cursor: default;
+    font-family: Roboto-Thin;
+    font-size: 50px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.mainContainer > .menuContainer .side-bar > .logo.small { display: none; }
+
+.mainContainer > .menuContainer .side-bar > .profile {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.mainContainer > .menuContainer .side-bar > .profile > .profilePic {
+    float: left;
+    width: 35%;
+}
+
+.mainContainer > .menuContainer .side-bar > .profile > .profilePic > .profileImg {
+    background: #fff;
+    border: 1px solid rgba(52, 73, 94, 0.44);
+    margin-left: 15%;
+    margin-top: 20px;
+    padding: 4px;
+    position: inherit;
+    width: 70%;
+    z-index: 1000;
+}
+
+.mainContainer > .menuContainer .side-bar > .profile > .profileInfo {
+    float: left;
+    padding: 25px 10px 10px;
+    width: 65%;
+}
+
+.mainContainer > .menuContainer .side-bar > .profile > .profileInfo > span {
+    color: #BAB8B8;
+    font-size: 13px;
+    line-height: 30px;
+}
+
+.mainContainer > .menuContainer .side-bar > .profile > .profileInfo > h2 {
+    color: #ECF0F1;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.mainContainer > .menuContainer .side-bar > .side-bar-menu .menuSection > .side-menu > li.active {
+    border-right: 5px solid #1ABB9C;
+    transition: 0.2s;
+}
+
+.mainContainer > .menuContainer .side-bar > .side-bar-menu .menuSection > .side-menu > li.active > a {
+    background: linear-gradient(#334556, #2C4257), #2A3F54;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+}
+
+.mainContainer > .menuContainer .side-bar > .side-bar-menu .menuSection > .side-menu > li { cursor: pointer; }
+
+.mainContainer > .menuContainer .side-bar > .side-bar-menu .menuSection > .side-menu > li > a { color: #E7E7E7 !important; }
+
+.mainContainer > .menuContainer .side-bar > .side-bar-menu .menuSection > .side-menu > li > a > .fa {
+    font-size: 18px;
+    width: 1.3em;
+}
+
+.mainContainer > .menuContainer .side-bar > .side-bar-menu .menuSection > .side-menu > li > a:hover { color: #F2F5F7 !important; }
+
+.mainContainer > .menuContainer .side-bar > .side-bar-menu .menuSection > .side-menu > li > a:hover,
+.mainContainer > .menuContainer .side-bar > .side-bar-menu .menuSection > .side-menu > li > a:focus {
+    background: transparent;
+    text-decoration: none;
+}
+
+.mainContainer > .topNav {
+    display: flex;
+    margin-left: 230px;
+    padding: 0 !important;
+}
+
+.mainContainer > .topNav > .navMenu {
+    background: #EDEDED;
+    border-bottom: 1px solid #D9DEE4;
+    float: left;
+    height: 58px;
+    width: 100%;
+}
+
+.mainContainer > .topNav > .navMenu > nav > .toggle {
+    float: left;
+    padding-top: 16px;
+    width: 70px;
+}
+
+.mainContainer > .topNav > .navMenu > nav > .toggle > .menu-toggle {
+    cursor: pointer;
+    font-size: 26px;
+    margin: 0;
+    padding: 0 15px;
+}
+
+.mainContainer > .topNav > .navMenu > nav > .navbar-right {
+    float: right;
+    margin: 0;
+    margin-right: 0;
+    width: 70%;
+}
+
+.mainContainer > .topNav > .navMenu > nav > .navbar-right > li {
+    display: inline-block;
+    float: right;
+}
+
+.mainContainer > .topNav > .navMenu > nav > .navbar-right > li > a {
+    color: #515356 !important;
+    display: block;
+    font-weight: 500;
+    line-height: 32px;
+    margin-bottom: 5px;
+    margin-left: 0 !important;
+    padding: 13px 15px 7px;
+    position: relative;
+}
+
+.mainContainer > .topNav > .navMenu > nav > .navbar-right > li > a > img {
+    border-radius: 50%;
+    height: 29px;
+    margin-right: 10px;
+    width: 29px;
+}
+
+.mainContainer > .topNav > .navMenu > nav > .navbar-right > li > .dropdown-menu {
+    background: #fff;
+    border: 1px solid #D9DEE4;
+    box-shadow: none;
+    margin-top: 0;
+    min-width: 220px;
+    position: absolute;
+}
+
+.mainContainer > .topNav > .navMenu > nav > .navbar-right > li > .dropdown-menu > li { width: 100%; }
+
+.mainContainer > .topNav > .navMenu > nav > .navbar-right > li > .dropdown-menu > li > a {
+    color: #5A738E;
+    line-height: 100%;
+    padding: 12px 20px;
+    width: 100%;
+}
+
+.mainContainer > .pageBody {
+    background: #F7F7F7;
+    padding-left: 230px;
+}
+
+.page-title {
+    background: white;
+    border-bottom: 1px solid #ddd !important;
+    display: block;
+    float: left;
+    padding: 0 0 10px 10px;
+    width: 100%;
+}
+
+.page-title > h3 { padding-left: 15px; }
+
+.loginContainer {
+    float: left;
+    height: 70%;
+    width: 100%;
+}
+
+.loginContainer > .loginBody {
+    background: white;
+    border: solid 1px #ddd;
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    justify-content: center;
+    margin: 60px auto;
+    padding: 10px 17px;
+    width: 30%;
+}
+
+.loginContainer > .loginBody > .alert {
+    display: none;
+    margin: -25px -10px 20px -10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.loginContainer > .loginBody > form > .form-actions {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.loginContainer > .loginBody > form > .form-actions > button {
+    background-color: #2A3F54;
+    border-color: transparent !important;
+    text-align: center;
+}
+
+.managementContainer {
+    float: left;
+    padding: 10px;
+    width: 100%;
+}
+
+.managementContainer > .tableContainer > .table { padding: 15px 0 0 15px; }
+
+.managementContainer > .tableContainer > .table > tbody > .tableHead {
+    background: rgba(52, 73, 94, 0.94) !important;
+    color: #ECF0F1;
+}
+
+.managementContainer > .tableContainer > .table > tbody > .tableHead > th {
+    border: 0;
+    font-size: 13px;
+}
+
+.managementContainer > .tableContainer > .table > tbody > .tableHead > th:first-child { width: 8% !important; }
+
+.managementContainer > .tableContainer > .table > tbody > .tableRow > .actionsColumn { text-align: center; }
+
+.managementContainer > .tableContainer > .table > tbody > .tableRow > .actionsColumn > form > button {
+    margin-bottom: 1px;
+    padding: 3px 6px;
+}
+
+.managementContainer > .tableContainer > .table > tbody > .tableRow > td {
+    color: #73879C;
+    font-size: 13px;
+}
+
+.managementContainer > .tableContainer > .table > tbody > .tableRow > td:first-child { width: 8% !important; }
+
+.managementContainer > .tableContainer > .table > tbody > .tableRow > td:first-child i,
+.managementContainer > .tableContainer > .table > tbody > .tableRow > td:first-child a { cursor: pointer; }
+
+.managementContainer > .tableContainer > .table > tbody > .tableRow > td > form { margin: 0; }
+
+.managementContainer > .tableContainer > .table > tbody > .tableRow > td > span > div > input {
+    height: 30px;
+    padding: 6px 4px;
+    width: 100%;
+}
+
+.managementContainer > .tableContainer > .table > tbody > .tableRow:hover > td {
+    background: rgba(38, 185, 154, 0.07);
+    border-bottom: 1px solid rgba(38, 185, 154, 0.11);
+    border-top: 1px solid rgba(38, 185, 154, 0.11);
+}
+
+.managementContainer > .tableContainer > .table > tbody .form-group { margin: 0 !important; }
+
+.managementContainer > .createContainer {
+    background: white;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    width: 50%;
+}
+
+.managementContainer > .createContainer > form { padding: 10px 17px; }
+
+.managementContainer > .createContainer > form > .form-group .control-label {
+    color: #73879C;
+    float: left;
+    padding: 8px 10px 0 10px;
+    text-align: right;
+    width: 40%;
+}
+
+.managementContainer > .createContainer > form > .form-group .form-control {
+    border-radius: 0;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    width: 50%;
+}
+
+.managementContainer > .createContainer > form > .form-group .form-control.ng-dirty.ng-invalid { background: rgba(217, 83, 79, 0.5); }
+
+.managementContainer > .createContainer > form > .form-actions > button:first-child { margin-left: 40%; }

@@ -1,0 +1,68 @@
+﻿<div class="managerControlsContainer">
+    <div class="filtersContainer">
+        <select ng-change="updateFilter()" ng-model="selection">
+            <option value="" disabled selected>Select your team filter</option>
+            <option value="">No team filter</option>
+            <option ng-repeat="team in teams" value="{{team.TeamId}}">{{team.TeamName}}</option>
+        </select>
+    </div>
+    <div class="controlsContainer">
+        <table class="tableBody">
+            <tr class="tableHeadRow">
+                <th class="tableHead allPeople" value="all" id="personAll" ng-click="teamMemberSelected($event)">All</th>
+                <th class="tableHead">
+                    <div class="fa fa-question" title="Pending Holiday"></div>
+                    <span class="notification-counter-pending notification-counter">{{pendingNotificationCount}}</span>
+                </th>
+                <th class="tableHead">
+                    <div class="fa fa-times" title="Cancelled Holiday"></div>
+                    <span class="notification-counter-cancelled notification-counter">{{cancelledNotificationCount}}</span>
+                </th>
+                <th class="tableHead">
+                    <div class="fa fa-check" title="Confirmed Holiday"></div>
+                </th>
+                <th class="tableHead" title="Remaining Allowance">RA</th>
+                <th class="tableHead" title="Holiday Allowance">HA</th>
+            </tr>
+        </table>
+        <table class="tableBody">
+            <tr class="tableRow" ng-class="populateTableCounts(teamMember)" ng-repeat="teamMember in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
+                <td class="tableCell teamMember" step="1" value="{{teamMember.StaffId}}" ng-click="teamMemberSelected($event)">{{teamMember.FirstName}} {{teamMember.LastName | limitTo:1}}</td>
+                <td class="tableCell default" ng-class="{isPendingHoliday: teamMember.PendingHolidays!=0}" ng-click="holidayRequestSelect(teamMember.StaffId, 0, $event)">{{teamMember.PendingHolidays}}</td>
+                <td class="tableCell default" ng-class="{isCancelledHoliday: teamMember.CancelledHolidays!=0}" ng-click="holidayRequestSelect(teamMember.StaffId, 2, $event)">{{teamMember.CancelledHolidays}}</td>
+                <td class="tableCell default">{{teamMember.ConfirmedHolidays}}</td>
+                <td class="tableCell default">{{teamMember.RemainingAllowance}}</td>
+                <td class="tableCell default">{{teamMember.HolidayAllowance}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="actionsContainer">
+        <table class="tableBody ">
+            <tr class="tableHeadRow secondary">
+                <th class="tableHead">Name</th>
+                <th class="tableHead">Date</th>
+                <th class="tableHead">Actions</th>
+            </tr>
+        </table>
+        <table class="tableBody">
+            <tr class="tableRow" ng-repeat="holidayRequest in holidayRequests.HolidayRequests" ng-init="$last ? addScrollBar() : null">
+                <td class="tableCell default">{{holidayRequest.StaffName}}</td>
+                <td class="tableCell default">{{formatDate(holidayRequest.HolidayDate.StartDate, 1)}}</td>
+                <td class="tableCell default">
+                    <div class="fa fa-check tableCellAction" ng-click="holidayRequestAction(holidayRequest.HolidayDate.StartDate,holidayRequest.StaffId,'accept')"></div>
+                    <div class="fa fa-times tableCellAction" ng-click="holidayRequestAction(holidayRequest.HolidayDate.StartDate,holidayRequest.StaffId,'decline')"></div>
+                    <!--<div class="fa fa-comment tableCellAction" ng-click=""></div>-->
+                </td>
+            </tr>
+        </table>
+        <div class="submit">
+            <div class="submitText" ng-click="toggleSubmitStatus()">SUBMIT</div>
+            <div class="acceptSlider sliders">
+                <div class="acceptText sliderText" ng-click="acceptChanges()">SAVE</div>
+            </div>
+            <div class="declineSlider sliders">
+                <div class="declineText sliderText" ng-click="toggleSubmitStatus()">CANCEL</div>
+            </div>
+        </div>
+    </div>
+</div>

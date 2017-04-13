@@ -1,0 +1,12 @@
+﻿<div class="hoverTooltip" ng-class="{
+     getHolidayAmount : getHolidayAmount(holidayCountTooltip), 
+     teamHoliday1:  HolidayAmount == 1, 
+     teamHoliday2:  HolidayAmount == 2, 
+     teamHoliday3:  HolidayAmount == 3, 
+     teamHoliday4:  HolidayAmount == 4, 
+     teamHoliday5:  HolidayAmount >= 5}" ng-show="tooltipIsVisible">
+    <div class="employeeWithHolidayName" ng-repeat="user in holidayEmployeeNamesTooltip">
+        <span class="tooltipName">{{user.name.Name}}</span>
+        <span class="tooltipIcon" ng-class="{isFound : checkIsFound(user.isFoundState),'fa fa-check':  isFoundValue == 'checked','fa fa-times':  isFoundValue == 'cancelled','fa fa-question': isFoundValue == 'pending'}"></span>
+    </div>
+</div>

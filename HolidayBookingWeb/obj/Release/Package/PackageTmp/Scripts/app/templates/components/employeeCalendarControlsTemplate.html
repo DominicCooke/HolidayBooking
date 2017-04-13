@@ -1,0 +1,55 @@
+﻿<div class="employeeControlsContainer">
+    <div class="controlsContainer">
+        <div class="nameOfTeam">{{teamName}} Team</div>
+        <table class="tableBody">
+            <tr class="tableHeadRow">
+                <th class="tableHead allPeople" value="all" id="personAll" ng-click="teamMemberSelected($event)">All</th>
+                <th class="tableHead">
+                    <div class="fa fa-check" title="Confirmed Holiday"></div>
+                </th>
+                <th class="tableHead" title="Remaining Allowance">RA</th>
+                <th class="tableHead" title="Holiday Allowance">HA</th>
+            </tr>
+        </table>
+        <table class="tableBody">
+            <tr class="tableRow" ng-class="populateTableCounts(user)" ng-repeat="user in teamUserHolidayBookings" ng-init="$last ? addScrollBar() : null">
+                <td class="tableCell teamMember" value="{{user.StaffId}}" step="1" ng-click="teamMemberSelected($event)">{{user.FirstName}} {{user.LastName | limitTo:1}}</td>
+                <td class="tableCell default">{{user.ConfirmedHolidays}}</td>
+                <td class="tableCell default">{{user.RemainingAllowance}}</td>
+                <td class="tableCell default">{{user.HolidayAllowance}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="editAndChangesContainer">
+        <div class="editModeToggle" ng-click="toggleEditMode($event)">
+            EDIT
+        </div>
+        <div class="changesContainer">
+            <table class="tableBody">
+                <tr class="tableHeadRow secondary">
+                    <th class="tableHead">Day</th>
+                    <th class="tableHead">Type</th>
+                    <th class="tableHead">Action</th>
+                </tr>
+            </table>
+            <div class="tableContainer">
+                <table class="tableBody changes">
+                    <tr class="tableRow hidden {{formatDate(change.dateChange, 3)}}" ng-repeat="change in changes">
+                        <td class="tableCell default">{{formatDate(change.dateChange, 2)}}</td>
+                        <td class="tableCell default">{{change.stateChange}}</td>
+                        <td class="tableCell tableCellAction" ng-click="slideUpChangesContainerTableRow($event, change.dateChange)"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="submit">
+                <div class="submitText" ng-click="toggleSubmitStatus()">SUBMIT</div>
+                <div class="acceptSlider sliders">
+                    <div class="acceptText sliderText" ng-click="acceptChanges()">SAVE</div>
+                </div>
+                <div class="declineSlider sliders">
+                    <div class="declineText sliderText" ng-click="toggleSubmitStatus()">CANCEL</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

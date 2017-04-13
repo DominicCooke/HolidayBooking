@@ -1,0 +1,466 @@
+﻿@import "../_lesshelpers/__imports.less";
+
+.bodyContainer {
+    .controls {
+        float: left;
+        height: 100%;
+        line-height: 1;
+        width: 40%;
+        position: relative;
+
+        .tableBody {
+            border-collapse: collapse;
+            width: 100%;
+            text-align: center;
+
+            > tbody {
+                font-size: 15px;
+
+                .tableRow {
+                    &:nth-of-type(even) {
+                        background: #f9f9f9;
+                    }
+
+                    &:first-child {
+                        border-top: 1px solid @border-colour;
+                    }
+
+                    &:last-child {
+                        border-bottom: 1px solid @border-colour;
+                    }
+
+                    > .tableCell {
+                        color: @background-colour;
+
+                        &.default {
+                            border-bottom: solid 1px @border-colour;
+                            border-right: solid 1px @border-colour;
+                            border-left: solid 1px #dddddd;
+                        }
+
+                        &.teamMember {
+                            background: @background-colour;
+                            color: @text-colour-primary;
+                            cursor: pointer;
+                            padding: 8px 15px;
+                            transition: 0.5s;
+                        }
+                    }
+                }
+
+                .tableHeadRow {
+                    background: @background-colour;
+                    width: 100%;
+
+                    &.secondary {
+                        > .tableHead {
+                            padding: 8px 5px !important;
+                            cursor: default !important;
+                        }
+                    }
+
+                    > .tableHead {
+                        padding: 0 5px;
+                        position: relative;
+                        color: @text-colour-primary;
+                        font-weight: normal;
+                        text-align: center;
+
+                        &:first-child {
+                            padding: 10px 15px;
+                            cursor: pointer;
+                            pointer-events: all;
+                        }
+                    }
+                }
+            }
+        }
+
+        > infobox {
+            > .infoBoxContainer {
+                background: @innerbackground-colour;
+                border: 1px solid @border-colour;
+                display: flex;
+                margin-right: 5%;
+
+                > .infoBoxSubContainer {
+                    text-align: center;
+                    padding: 5px;
+                    width: 25%;
+
+                    > .infoBoxContainerValue {
+                        font-size: 40px;
+
+                        &#infoBoxPending {
+                            color: @pendingHoliday-colour;
+                        }
+
+                        &#infoBoxCancelled {
+                            color: @cancelledHoliday-colour;
+                        }
+
+                        &#infoBoxConfirmed {
+                            color: @normalHoliday-colour;
+                        }
+
+                        &#infoBoxRemaining {
+                            color: @text-colour-tertiary;
+                        }
+                    }
+
+                    > .infoBoxContainerLabel {
+                        font-size: 12px;
+                        font-weight: normal;
+                        color: @text-colour-tertiary;
+                    }
+                }
+            }
+        }
+
+        > calendarcontrols {
+            .submit {
+                width: 100%;
+                height: 60px;
+                display: table;
+                background-color: @background-colour;
+                color: @text-colour-primary;
+                font-size: 35px;
+                line-height: 60px;
+                position: relative;
+
+                &:hover {
+                    background-color: lighten(@background-colour,2);
+                }
+
+                > .submittext {
+                    position: absolute;
+                    width: 100%;
+                    cursor: pointer;
+                    z-index: 10;
+
+                    &.active {
+                        cursor: none;
+                        pointer-events: none;
+                    }
+                }
+
+                > .sliders {
+                    position: absolute;
+                    width: 28%;
+                    top: 0;
+                    height: 100%;
+                    font-size: 23px;
+                    transition: 1.3s linear all;
+
+                    &.active {
+                        cursor: pointer;
+                    }
+
+                    > .sliderText {
+                        height: 100%;
+                        width: 100%;
+                        display: none;
+                    }
+                }
+
+                > .acceptSlider {
+                    &.active {
+                        background-color: @selected-colour;
+                        z-index: 11;
+                    }
+                }
+
+                > .declineSlider {
+                    right: 0;
+
+                    &.active {
+                        background-color: @fourHoliday-colour;
+                        z-index: 11;
+                    }
+                }
+            }
+
+            > .employeeControlsContainer {
+                border-collapse: collapse;
+                font-size: 15px;
+                font-weight: normal;
+                margin: 3% 5% 0 0;
+                text-align: center;
+                .innerContainer();
+
+                > .controlsContainer {
+                    > .nameOfTeam {
+                        color: @text-colour-tertiary;
+                        font-size: 25px;
+                        font-weight: normal;
+                        padding-bottom: 2%;
+                    }
+
+                    > .tableBody {
+                        > tbody {
+                            > .tableHeadRow {
+                                border-top: 0;
+
+                                > .tableHead {
+                                    width: 12%;
+                                    text-align: center;
+
+                                    &:first-child {
+                                        width: 30%;
+
+                                        &.selected {
+                                            .selectedTemplate();
+                                        }
+                                    }
+                                }
+                            }
+
+                            > .tableRow {
+                                > .tableCell {
+                                    width: 12%;
+
+                                    &.teamMember {
+                                        width: 30%;
+                                        .activeAndDead();
+                                    }
+
+                                    &.isPendingHoliday {
+                                        animation: textpulsatepending 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
+                                    }
+
+                                    &.isCancelledHoliday {
+                                        animation: textpulsatecancelled 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                > .editAndChangesContainer {
+                    .editModeToggle {
+                        width: 100%;
+                        height: 60px;
+                        display: table;
+                        background-color: @background-colour;
+                        cursor: pointer;
+                        color: @text-colour-primary;
+                        font-size: 35px;
+                        line-height: 50px;
+                        transition: box-shadow 0.4s;
+                        box-shadow: inset 0 -10px 0 0 rgba(255,255,255,0.3);
+
+                        &:hover {
+                            background-color: lighten(@background-colour,2);
+                        }
+
+                        &.active {
+                            box-shadow: inset 0 -10px 0 0 @normalHoliday-colour;
+                        }
+                    }
+
+                    > .changesContainer {
+                        display: none;
+
+                        .tableHeadRow {
+                            .tableHead {
+                                width: 40%;
+
+                                &:first-child {
+                                    width: 45%;
+                                }
+
+                                &:last-child {
+                                    width: 15%;
+                                }
+                            }
+                        }
+
+                        .tableContainer {
+                            min-height: 27px;
+                            max-height: 280px;
+                            overflow-y: auto;
+
+                            &:-webkit-scrollbar-track {
+                                background-color: #b46868;
+                            }
+
+                            > .tableBody {
+                                .tableRow {
+                                    .tableCell {
+                                        width: 40%;
+
+                                        &.tableCellAction {
+                                            color: red;
+                                            -webkit-text-stroke: 1px black;
+                                            border-bottom: solid 1px @border-colour;
+                                            border-right: solid 1px @border-colour;
+                                            border-left: solid 1px #dddddd;
+                                        }
+
+                                        .fa-times {
+                                            cursor: pointer;
+                                        }
+
+                                        background: white;
+
+                                        .td-slider {
+                                            display: none;
+                                        }
+
+                                        &:first-child {
+                                            width: 45%;
+                                        }
+
+                                        &:last-child {
+                                            width: 15%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            > .managerControlsContainer {
+                margin-right: 5%;
+                .innerContainer();
+                text-align: center;
+
+                > .filtersContainer {
+                    > select {
+                        width: 100%;
+                        background: #2A3F54;
+
+                        > option {
+                        }
+                    }
+                }
+
+                > .controlsContainer {
+                    > .tableBody {
+                        > tbody {
+                            > .tableHeadRow {
+                                > .tableHead {
+                                    width: 70%/5;
+
+                                    &:first-child {
+                                        width: 30%;
+
+                                        &.selected {
+                                            .selectedTemplate()
+                                        }
+                                    }
+
+                                    > .notification-counter {
+                                        background-color: @notification-colour;
+                                        border-bottom-left-radius: 5px;
+                                        box-shadow: 1px 0 1px 0 #2a3f54;
+                                        font-size: 12px;
+                                        font-weight: normal;
+                                        height: 15px;
+                                        line-height: 1;
+                                        padding: 1px 3px;
+                                        position: absolute;
+                                        right: 0;
+                                        top: 0;
+                                    }
+                                }
+                            }
+
+                            > .tableRow {
+                                > .tableCell {
+                                    width: 70%/5;
+
+                                    &.teamMember {
+                                        width: 30%;
+                                        .activeAndDead();
+                                    }
+
+                                    &.isPendingHoliday {
+                                        animation: textpulsatepending 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
+
+                                        &.clicked {
+                                            background: fade(@pendingHoliday-colour,40%);
+                                            animation: none;
+                                        }
+                                    }
+
+                                    &.isCancelledHoliday {
+                                        animation: textpulsatecancelled 5s;
+                                        animation-iteration-count: infinite;
+                                        cursor: pointer;
+
+                                        &.clicked {
+                                            animation: none;
+                                            background: fade(@cancelledHoliday-colour,40%);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                > .actionsContainer {
+                    display: none;
+
+                    > .tableBody {
+                        > tbody {
+                            > .tableHeadRow {
+                                > .tableHead {
+                                    &:first-child {
+                                        width: 22%;
+                                    }
+
+                                    &:last-child {
+                                        width: 25%;
+                                    }
+                                }
+                            }
+
+                            > .tableRow {
+                                > .tableCell {
+                                    background: rgba(255,255,255,0.15);
+                                    border-bottom: 1px solid @border-colour;
+
+                                    &:first-child {
+                                        width: 22%;
+                                    }
+
+                                    &:last-child {
+                                        width: 25%;
+                                    }
+
+                                    > .tableCellAction {
+                                        cursor: pointer;
+                                        -webkit-text-stroke: 1px black;
+
+                                        &.fa-check {
+                                            color: #0f0;
+                                        }
+
+                                        &.fa-times {
+                                            color: red;
+                                        }
+
+                                        &.fa-comment {
+                                            color: white;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
