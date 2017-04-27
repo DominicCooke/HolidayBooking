@@ -239,7 +239,7 @@
     <Content Include="Content\images\img.jpg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\app\directives\infoBox.js" />
-    <None Include="Properties\PublishProfiles\Tes.pubxml" />
+    <None Include="Properties\PublishProfiles\TEST.pubxml" />
     <None Include="Scripts\lib\jquery\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\lib\jquery\jquery-2.2.3.js" />
     <Content Include="Scripts\lib\angular\angular\angular-animate.js" />

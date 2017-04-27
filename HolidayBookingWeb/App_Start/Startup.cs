@@ -70,6 +70,8 @@ namespace HolidayBookingWeb
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 CookieName = "Login Cookie",
                 CookieDomain = "localhost"
+
+                // CookieDomain = ".192.133.244.6"
             });
         }
     }

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ConnStringDb1-Web.config Connection String" description="ConnStringDb1 Connection String used in web.config by the application to access the database." defaultValue="server=XC010418\SQLEXPRESS;database=BookingDB;Integrated Security=True;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Dominic\\Desktop\\HolidayBooking\\HolidayBooking\\HolidayBookingWeb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConnStringDb1']/@connectionString" />
+  </parameter>
+</parameters>

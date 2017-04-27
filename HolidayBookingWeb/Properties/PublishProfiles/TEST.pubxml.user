@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>ftp://192.168.0.18:21/Test</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/AutoMapper.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/HolidayBookingWeb.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>10/11/2015 10:54:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>10/11/2015 10:55:09</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>10/11/2015 10:54:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Cors.dll">
+      <publishTime>10/11/2015 12:12:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>10/11/2015 10:42:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>10/11/2015 10:42:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>06/01/2016 12:35:48</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>10/11/2015 12:03:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>10/11/2015 12:03:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>12/10/2015 09:53:53</publishTime>
+    </File>
+    <File Include="bin/MoreLinq.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Ninject.dll">
+      <publishTime>04/01/2015 11:37:04</publishTime>
+    </File>
+    <File Include="bin/Ninject.Extensions.ContextPreservation.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Ninject.Extensions.Conventions.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Ninject.Web.Common.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Ninject.Web.Mvc.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Ninject.Web.WebApi.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>10/11/2015 10:42:00</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Cors.dll">
+      <publishTime>10/11/2015 12:12:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>12/10/2015 09:53:53</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Owin.dll">
+      <publishTime>10/11/2015 10:42:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>12/10/2015 09:54:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>12/10/2015 09:53:53</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>12/10/2015 09:53:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>12/10/2015 09:53:53</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>12/10/2015 09:53:53</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>12/10/2015 09:53:53</publishTime>
+    </File>
+    <File Include="bin/WebActivatorEx.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/WebApiContrib.IoC.Ninject.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bundleconfig.json.bindings">
+      <publishTime>09/12/2015 16:12:59</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>12/05/2016 17:08:54</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>12/05/2016 17:08:54</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>12/05/2016 17:08:54</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>12/05/2016 17:08:54</publishTime>
+    </File>
+    <File Include="Content/fontawesome/font-awesome.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>12/10/2015 10:02:32</publishTime>
+    </File>
+    <File Include="Content/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>12/10/2015 10:02:32</publishTime>
+    </File>
+    <File Include="Content/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>12/10/2015 10:02:32</publishTime>
+    </File>
+    <File Include="Content/fonts/glyphicons-halflings-regular.woff">
+      <publishTime>12/10/2015 10:02:32</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-Regular.ttf">
+      <publishTime>12/10/2015 09:58:55</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-Thin.ttf">
+      <publishTime>04/01/2016 12:25:17</publishTime>
+    </File>
+    <File Include="Content/images/GradWeb-logo.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/images/icon-user-default.png">
+      <publishTime>04/01/2016 11:26:59</publishTime>
+    </File>
+    <File Include="Content/images/img.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="index.html">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>12/05/2016 17:08:54</publishTime>
+    </File>
+    <File Include="Scripts/app/app.module.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/controllers/CalendarController.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/controllers/LoginController.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/controllers/MainController.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/controllers/ManagementController.js">
+      <publishTime>12/04/2017 16:13:33</publishTime>
+    </File>
+    <File Include="Scripts/app/directives/calendar.js">
+      <publishTime>12/04/2017 15:10:19</publishTime>
+    </File>
+    <File Include="Scripts/app/directives/calendarControls.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/directives/infoBox.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/directives/management.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/directives/sideMenu.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/directives/tooltip.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/services/authService.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/services/dataService.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/services/helperService.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/services/loginService.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/services/notificationService.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/services/templateService.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/services/userService.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/services/viewService.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/templates.js">
+      <publishTime>01/02/2016 15:27:13</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/components/employeeCalendarControlsTemplate.html">
+      <publishTime>12/05/2016 12:04:58</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/components/employeeCalendarInfoBoxTemplate.html">
+      <publishTime>08/12/2015 10:03:45</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/components/employeeCalendarTooltipTemplate.html">
+      <publishTime>04/01/2016 09:39:36</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/components/managerCalendarControlsTemplate.html">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/components/managerCalendarTooltipTemplate.html">
+      <publishTime>01/02/2016 15:21:57</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/employeeCalendarTemplate.html">
+      <publishTime>12/04/2017 17:04:35</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/managerCalendarTemplate.html">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/sideMenuTemplate.html">
+      <publishTime>01/02/2016 14:22:44</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/teamManagementTemplate.html">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/templates/userManagementTemplate.html">
+      <publishTime>12/04/2017 16:12:45</publishTime>
+    </File>
+    <File Include="Scripts/app/views.js">
+      <publishTime>01/02/2016 15:28:47</publishTime>
+    </File>
+    <File Include="Scripts/app/views/employeeCalendar.html">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/views/login.html">
+      <publishTime>12/05/2016 11:50:41</publishTime>
+    </File>
+    <File Include="Scripts/app/views/managerCalendar.html">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/views/sideMenu.html">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/views/teamManagement.html">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/app/views/userManagement.html">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/bundles/controllers.js">
+      <publishTime>12/04/2017 16:14:11</publishTime>
+    </File>
+    <File Include="Scripts/bundles/controllers.min.js">
+      <publishTime>12/04/2017 16:14:11</publishTime>
+    </File>
+    <File Include="Scripts/bundles/directives.es5.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/bundles/directives.es5.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/bundles/directives.js">
+      <publishTime>12/04/2017 15:58:52</publishTime>
+    </File>
+    <File Include="Scripts/bundles/directives.min.js">
+      <publishTime>12/04/2017 15:07:59</publishTime>
+    </File>
+    <File Include="Scripts/bundles/libs.css">
+      <publishTime>12/05/2016 11:30:21</publishTime>
+    </File>
+    <File Include="Scripts/bundles/libs.es5.js">
+      <publishTime>01/02/2016 09:45:34</publishTime>
+    </File>
+    <File Include="Scripts/bundles/libs.es5.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/bundles/libs.js">
+      <publishTime>12/05/2016 17:09:08</publishTime>
+    </File>
+    <File Include="Scripts/bundles/libs.min.css">
+      <publishTime>12/05/2016 11:30:21</publishTime>
+    </File>
+    <File Include="Scripts/bundles/libs.min.js">
+      <publishTime>12/05/2016 17:09:09</publishTime>
+    </File>
+    <File Include="Scripts/bundles/services.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/bundles/services.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/angular/angular/angular-animate.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/angular/angular/angular.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/angular/bootstrap/ui-bootstrap-0.13.4.js">
+      <publishTime>12/10/2015 09:58:55</publishTime>
+    </File>
+    <File Include="Scripts/lib/angular/bootstrap/ui-bootstrap-tpls-0.14.0.js">
+      <publishTime>12/10/2015 09:58:55</publishTime>
+    </File>
+    <File Include="Scripts/lib/angular/chart/angular-chart.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/angular/chart/angular-chart.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/angular/chart/chart.js">
+      <publishTime>12/10/2015 09:58:55</publishTime>
+    </File>
+    <File Include="Scripts/lib/angular/xeditable/xeditable.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/angular/xeditable/xeditable.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/bootstrap/bootstrap.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/bootstrap/bootstrap.js">
+      <publishTime>12/05/2016 17:08:54</publishTime>
+    </File>
+    <File Include="Scripts/lib/jquery/jquery-2.2.3.js">
+      <publishTime>12/05/2016 14:23:44</publishTime>
+    </File>
+    <File Include="Scripts/lib/jquery/jquery-ui.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/jquery/jquery-ui.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/jquery/scrollbar/jquery.scrollbar.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/jquery/scrollbar/jquery.scrollbar.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/lodash/lodash.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/moment/moment.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/lib/toastr/toastr.css">
+      <publishTime>03/02/2016 16:34:39</publishTime>
+    </File>
+    <File Include="Scripts/lib/toastr/toastr.js">
+      <publishTime>03/02/2016 16:34:41</publishTime>
+    </File>
+    <File Include="Scripts/lib/underscore/underscore-min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/calendar/calendar.less">
+      <publishTime>12/04/2017 19:15:58</publishTime>
+    </File>
+    <File Include="Styles/calendar/controls.less">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/calendar/key.less">
+      <publishTime>12/05/2016 11:44:04</publishTime>
+    </File>
+    <File Include="Styles/calendar/tooltip.less">
+      <publishTime>12/05/2016 11:44:08</publishTime>
+    </File>
+    <File Include="Styles/index.less">
+      <publishTime>12/05/2016 11:44:32</publishTime>
+    </File>
+    <File Include="Styles/login.less">
+      <publishTime>12/05/2016 11:44:41</publishTime>
+    </File>
+    <File Include="Styles/management.less">
+      <publishTime>12/05/2016 11:44:45</publishTime>
+    </File>
+    <File Include="Styles/_bundled.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/_bundled.less">
+      <publishTime>12/05/2016 11:56:18</publishTime>
+    </File>
+    <File Include="Styles/_bundled.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/_lesshelpers/animations.less">
+      <publishTime>02/12/2015 16:09:29</publishTime>
+    </File>
+    <File Include="Styles/_lesshelpers/colours.less">
+      <publishTime>08/12/2015 10:50:33</publishTime>
+    </File>
+    <File Include="Styles/_lesshelpers/mixins.less">
+      <publishTime>12/05/2016 11:49:25</publishTime>
+    </File>
+    <File Include="Styles/_lesshelpers/__imports.less">
+      <publishTime>12/05/2016 11:49:36</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
