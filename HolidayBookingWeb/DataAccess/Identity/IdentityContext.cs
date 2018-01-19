@@ -3,6 +3,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HolidayBookingWeb.DataAccess.Identity
 {
+    public interface IIdentityContext : IDbContext
+    {
+    }
+    
     public class IdentityContext : IdentityDbContext<IdentityEmployee>, IIdentityContext
     {
         public IdentityContext()

@@ -42,16 +42,7 @@ namespace HolidayBookingWeb.Controllers
             identity.AddClaim(new Claim("id", user.StaffId.ToString()));
             identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
             var listOfRoles = userManager.GetRoles(user.Id);
-            if (listOfRoles.Contains("admin"))
-            {
-                identity.AddClaim(new Claim("role", "admin"));
-            }
-            else
-            {
-                identity.AddClaim(new Claim("role", "user"));
-            }
-
-
+            identity.AddClaim(listOfRoles.Contains("admin") ? new Claim("role", "admin") : new Claim("role", "user"));
             var ctx = HttpContext.Current.GetOwinContext();
             var authManager = ctx.Authentication;
             authManager.SignIn(identity);

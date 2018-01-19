@@ -8,7 +8,7 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: "http://localhost:57068/api/Employee/GetPublicHolidays"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Employee/GetPublicHolidays"
             });
         },
         employeeGetById: function() {
@@ -18,7 +18,7 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: "http://localhost:57068/api/Employee/GetEmployeeById"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Employee/GetEmployeeById"
             });
         },
         employeesGetTeam: function(teamId) {
@@ -29,7 +29,7 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: "http://localhost:57068/api/Employee/GetEmployeesTeam"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Employee/GetEmployeesTeam"
             });
         },
         employeesGet: function() {
@@ -39,14 +39,14 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: "http://localhost:57068/api/Employee/GetEmployees"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Employee/GetEmployees"
             });
         },
         employeeUpdate: function(employee) {
             return $http({
                 data: employee,
                 method: "POST",
-                url: "http://localhost:57068/api/Employee/UpdateEmployee"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Employee/UpdateEmployee"
             });
         },
         employeeUpdateHoliday: function(employeeData) {
@@ -58,7 +58,7 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: "http://localhost:57068/api/Employee/UpdateEmployeeAndHoliday"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Employee/UpdateEmployeeAndHoliday"
             });
         },
         employeesUpdateHolidays: function(employeeData) {
@@ -70,55 +70,55 @@
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                url: "http://localhost:57068/api/Employee/UpdateEmployeesAndHolidays"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Employee/UpdateEmployeesAndHolidays"
             });
         },
         userDelete: function(user) {
             return $http({
                 data: { StaffId: user.StaffId, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
-                url: "http://localhost:57068/api/User/DeleteUserAndEmployee"
+                url: "http://localhost:58706/HolidayBookingWeb/api/User/DeleteUserAndEmployee"
             });
         },
         userRegister: function(user) {
             return $http({
                 data: user,
                 method: "POST",
-                url: "http://localhost:57068/api/User/RegisterUserAndEmployee"
+                url: "http://localhost:58706/HolidayBookingWeb/api/User/RegisterUserAndEmployee"
             });
         },
         userSetRole: function(user, role) {
             return $http({
                 data: { RoleName: role.Name, IdentityId: user.UserViewModel.IdentityId },
                 method: "POST",
-                url: "http://localhost:57068/api/User/UserSetRole"
+                url: "http://localhost:58706/HolidayBookingWeb/api/User/UserSetRole"
             });
         },
         userGet: function() {
             return $http({
                 method: "GET",
-                url: "http://localhost:57068/api/User/GetUsersAndRoles"
+                url: "http://localhost:58706/HolidayBookingWeb/api/User/GetUsersAndRoles"
             });
         },
         teamRegister: function(team) {
             return $http({
                 data: team,
                 method: "POST",
-                url: "http://localhost:57068/api/Team/CreateTeam"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Team/CreateTeam"
             });
         },
         teamUpdate: function(team) {
             return $http({
                 data: team,
                 method: "POST",
-                url: "http://localhost:57068/api/Team/UpdateTeam"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Team/UpdateTeam"
             });
         },
         teamDelete: function(team) {
             return $http({
                     data: team,
                     method: "POST",
-                    url: "http://localhost:57068/api/Team/DeleteTeam"
+                    url: "http://localhost:58706/HolidayBookingWeb/api/Team/DeleteTeam"
                 })
                 .then(function(response) {
                     if (response.data.length > 0)
@@ -128,14 +128,14 @@
         teamsGet: function() {
             return $http({
                 method: "GET",
-                url: "http://localhost:57068/api/Team/GetTeams"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Team/GetTeams"
             });
         },
         teamSetEmployee: function(employee, team) {
             return $http({
                 data: { Employee: employee, Team: team },
                 method: "POST",
-                url: "http://localhost:57068/api/Employee/EmployeeSetTeam"
+                url: "http://localhost:58706/HolidayBookingWeb/api/Employee/EmployeeSetTeam"
             });
         }
 
