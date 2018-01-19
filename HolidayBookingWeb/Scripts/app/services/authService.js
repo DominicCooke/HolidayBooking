@@ -7,7 +7,7 @@
                         "Content-Type": "application/json"
                     },
                     data: { username: u, password: p },
-                    url: "http://localhost:57068/api/Account/Login"
+                    url: "http://localhost:58706/HolidayBookingWeb/api/Account/Login"
                 })
                 .success(function(data) {
                     if (data == false) {

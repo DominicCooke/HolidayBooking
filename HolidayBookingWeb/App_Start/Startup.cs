@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using HolidayBookingWeb;
 using HolidayBookingWeb.DataAccess.Identity;
-using HolidayBookingWeb;
 using HolidayBookingWeb.DataAccess.Identity.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
